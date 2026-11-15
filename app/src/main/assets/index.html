@@ -627,11 +627,11 @@ input:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(61,220
 .plcsel{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:10px;padding:7px 10px;color:var(--tx);font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .plcsel i{font-style:normal;color:var(--mut)}
 #plcl{max-height:60vh;overflow:auto}
-.plate[data-c="pl"].t0,.plate[data-c="pl"].t-1{--pb:#dc143c;--pg:linear-gradient(160deg,#a0506a,#5a1e30)}
-.plate[data-c="de"].t0,.plate[data-c="de"].t-1{--pb:#ffcc00;--pg:linear-gradient(160deg,#4a4f5e,#1d2029)}
-.plate[data-c="ae"].t0,.plate[data-c="ae"].t-1{--pb:#00963f;--pg:linear-gradient(160deg,#4f7a5c,#1f3a2a)}
-.plate[data-c="is"].t0,.plate[data-c="is"].t-1{--pb:#7fb6ff;--pg:linear-gradient(160deg,#5d7ea8,#27415f)}
-.plate[data-c="pi"].t0,.plate[data-c="pi"].t-1{--pb:#ffd24d;--pg:linear-gradient(160deg,#3a2d1a,#14100a)}
+.plate[data-c="pl"].t-1{--pb:#dc143c;--pg:linear-gradient(160deg,#a0506a,#5a1e30)}
+.plate[data-c="de"].t-1{--pb:#ffcc00;--pg:linear-gradient(160deg,#4a4f5e,#1d2029)}
+.plate[data-c="ae"].t-1{--pb:#00963f;--pg:linear-gradient(160deg,#4f7a5c,#1f3a2a)}
+.plate[data-c="is"].t-1{--pb:#7fb6ff;--pg:linear-gradient(160deg,#5d7ea8,#27415f)}
+.plate[data-c="pi"].t-1{--pb:#ffd24d;--pg:linear-gradient(160deg,#3a2d1a,#14100a)}
 .plate[data-c="de"] .plc{font-family:'DIN Alternate','Arial Narrow',Arial,sans-serif}
 .plate[data-c="ae"] .plc{font-family:'Trebuchet MS',Arial,sans-serif}
 .plate[data-c="is"] .plc{font-family:Verdana,Arial,sans-serif}
@@ -1445,7 +1445,8 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
    <div class="card plcard" id="plcard">
     <div class="plflash" id="plflash"></div>
     <div class="plhead"><button type="button" class="plcost plcsel" id="plcsel"><span id="plcflag"></span> <span id="plcname">Россия</span> · <b id="plcostval">10 000 ₽</b> <i>▾</i></button><div class="plbtns"><button class="plbagbtn hide" id="plautobtn" aria-label="Авто-продажа" title="Авто-продажа"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M13.6 9.4c-.5-.8-1.4-1.2-2.6-1.2-1.6 0-2.6.9-2.6 2 0 3 5.4 1.2 5.4 4.2 0 1.2-1.2 2-2.8 2-1.2 0-2.2-.5-2.8-1.4M11 6.5v1.7M11 15.8v1.7"/><path d="M19 3l3 3-3 3M22 6h-5"/></svg><span class="plbadge" id="plautob">0</span></button><button class="plbagbtn" id="plpodbtn" aria-label="Подиум" title="Подиум"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 16h12M8 16V9h8v7M10 9V5h4v4M3 21h18"/><path d="M12 2.5l1 1.5-1 1.5L11 4z"/></svg><span class="plbadge" id="plpodb">0/1</span></button><button class="plbagbtn" id="plbagbtn" aria-label="Рюкзак"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6.5V6a3 3 0 0 1 6 0v.5"/><rect x="4.5" y="6.5" width="15" height="15" rx="5"/><path d="M8.5 15h7M9 11.5h6"/></svg><span class="plbadge" id="plbadge">0/10</span></button></div></div>
-    <div class="plstage" id="plstage"><div class="plate t-1" id="plplate"><div class="plg"><i class="plc"></i><i class="plc"></i></div><div class="plg"><i class="plc"></i><i class="plc"></i><i class="plc"></i><i class="plc"></i></div><div class="plg"><i class="plc"></i><i class="plc"></i></div><div class="plr"><em></em><em></em><em></em><small>RUS</small></div></div></div>
+    <div class="lkrow" id="lkrow"><button type="button" class="plbagbtn lkbtn" id="lkbtn" aria-label="Lucky Roll" title="Lucky Roll"><svg class="lkic" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="lkg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1a8"/><stop offset=".55" stop-color="#ffc933"/><stop offset="1" stop-color="#e08a00"/></linearGradient></defs><g fill="url(#lkg)"><circle cx="8.6" cy="8.6" r="4.3"/><circle cx="15.4" cy="8.6" r="4.3"/><circle cx="8.6" cy="15.4" r="4.3"/><circle cx="15.4" cy="15.4" r="4.3"/></g><path d="M12 12.5c.4 3.4 1.7 6 4 8" fill="none" stroke="#e08a00" stroke-width="1.8" stroke-linecap="round"/></svg><span class="plbadge" id="lkb">0</span></button></div>
+     <div class="plstage" id="plstage"><div class="plate t-1" id="plplate"><div class="plg"><i class="plc"></i><i class="plc"></i></div><div class="plg"><i class="plc"></i><i class="plc"></i><i class="plc"></i><i class="plc"></i></div><div class="plg"><i class="plc"></i><i class="plc"></i></div><div class="plr"><em></em><em></em><em></em><small>RUS</small></div></div></div>
     <div class="plinfo" id="plinfo"><div class="plhint">Нажми «Крутить», чтобы выбить номер</div></div>
     <div class="plqty" aria-label="Количество номеров за одну крутку"><button type="button" class="active" data-plqty="1" aria-pressed="true">x1</button><button type="button" data-plqty="2" disabled aria-label="x2 закрыто">x2 <span class="lock">🔒</span></button><button type="button" data-plqty="3" disabled aria-label="x3 закрыто">x3 <span class="lock">🔒</span></button><button type="button" data-plqty="4" disabled aria-label="x4 закрыто">x4 <span class="lock">🔒</span></button><button type="button" class="plarbtn hide" id="plarbtn" aria-pressed="false" aria-label="Авто-ролл">Авто-ролл</button></div>
     <button class="go" id="plgo">Крутить · 10 000 ₽</button>
@@ -1455,7 +1456,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
   </section>
  </main>
 </div>
-<div class="modal" id="md"><div class="box" style="max-height:90vh;overflow-y:auto"><h3 id="mt" style="margin:0 0 12px;color:var(--tx)">Ввод кода</h3><div class="pmban premmenu off" id="premInfo"><svg viewBox="0 0 24 24"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5L3 7z"/></svg><div><span class="pon">До конца премиума осталось <b class="premT"></b></span><span class="poff">PREMIUM не активен</span></div></div><input id="mi" type="text" placeholder="Введите код" autocomplete="off"><div id="me" style="color:var(--bad);font-size:14px;margin-top:8px"></div><div id="admRig" hidden><div class="admt">Следующая крутка номера (1 раз)</div><div class="admb"><button type="button" data-rig="4" style="--rc:#ffc933">Легендарный</button><button type="button" data-rig="5" style="--rc:#ff4d6a">Мифик</button><button type="button" data-rig="6" style="--rc:#fff">Секретный</button><button type="button" data-rig="-1">Сброс</button></div><div class="adms" id="admRigS"></div><div class="admt" style="margin-top:14px">Выдать PREMIUM игроку</div><input id="admPremNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admPremNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><select id="admPremDur" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><option value="3600000">1 час</option><option value="21600000">6 часов</option><option value="86400000" selected>1 день</option><option value="259200000">3 дня</option><option value="604800000">7 дней</option><option value="2592000000">30 дней</option><option value="31536000000">365 дней</option><option value="-1">∞ Навсегда</option></select><button type="button" id="admPremGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;font-weight:900;font-size:14px">Выдать PREMIUM</button><div class="adms" id="admPremS"></div></div><div class="row"><button id="mc" style="background:var(--line);color:var(--tx)">Отмена</button><button id="mo" style="background:var(--ac);color:#06210f">ОК</button></div><div id="sendBox" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)"><div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:6px">Отправить деньги</div><input id="sendTo" type="text" maxlength="16" placeholder="@username" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><input id="sendAmt" type="text" inputmode="numeric" placeholder="₽ сумма" autocomplete="off" style="margin-top:8px"><input id="sendNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="margin-top:8px"><div id="sendMsg" style="font-size:14px;min-height:18px;margin-top:8px"></div><button id="sendBtn" style="width:100%;margin-top:8px;background:var(--ac);color:#06210f">Отправить</button></div><div id="sv" class="svs"></div><button class="wipe" id="wipe"><i class="wbar"></i><span class="w1">Удалить прогресс</span><span class="w2">Ты уверен?</span></button></div></div>
+<div class="modal" id="md"><div class="box" style="max-height:90vh;overflow-y:auto"><h3 id="mt" style="margin:0 0 12px;color:var(--tx)">Ввод кода</h3><div class="pmban premmenu off" id="premInfo"><svg viewBox="0 0 24 24"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5L3 7z"/></svg><div><span class="pon">До конца премиума осталось <b class="premT"></b></span><span class="poff">PREMIUM не активен</span></div></div><input id="mi" type="text" placeholder="Введите код" autocomplete="off"><div id="me" style="color:var(--bad);font-size:14px;margin-top:8px"></div><div id="admRig" hidden><div class="admt">Следующая крутка номера (1 раз)</div><div class="admb"><button type="button" data-rig="4" style="--rc:#ffc933">Легендарный</button><button type="button" data-rig="5" style="--rc:#ff4d6a">Мифик</button><button type="button" data-rig="6" style="--rc:#fff">Секретный</button><button type="button" data-rig="-1">Сброс</button></div><div class="adms" id="admRigS"></div><div class="admt" style="margin-top:14px">Выдать PREMIUM игроку</div><input id="admPremNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admPremNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><select id="admPremDur" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><option value="3600000">1 час</option><option value="21600000">6 часов</option><option value="86400000" selected>1 день</option><option value="259200000">3 дня</option><option value="604800000">7 дней</option><option value="2592000000">30 дней</option><option value="31536000000">365 дней</option><option value="-1">∞ Навсегда</option></select><button type="button" id="admPremGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;font-weight:900;font-size:14px">Выдать PREMIUM</button><div class="adms" id="admPremS"></div><div class="admt" style="margin-top:14px">Выдать Lucky Roll игроку</div><input id="admLkNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admLkNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admLkCnt" type="text" inputmode="numeric" maxlength="3" placeholder="Количество" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><button type="button" id="admLkGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;font-weight:900;font-size:14px">Выдать Lucky Roll</button><div class="adms" id="admLkS"></div></div><div class="row"><button id="mc" style="background:var(--line);color:var(--tx)">Отмена</button><button id="mo" style="background:var(--ac);color:#06210f">ОК</button></div><div id="sendBox" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)"><div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:6px">Отправить деньги</div><input id="sendTo" type="text" maxlength="16" placeholder="@username" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><input id="sendAmt" type="text" inputmode="numeric" placeholder="₽ сумма" autocomplete="off" style="margin-top:8px"><input id="sendNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="margin-top:8px"><div id="sendMsg" style="font-size:14px;min-height:18px;margin-top:8px"></div><button id="sendBtn" style="width:100%;margin-top:8px;background:var(--ac);color:#06210f">Отправить</button></div><div id="sv" class="svs"></div><button class="wipe" id="wipe"><i class="wbar"></i><span class="w1">Удалить прогресс</span><span class="w2">Ты уверен?</span></button></div></div>
 <div class="hfull" id="hfull"><div class="hfh"><h3>История ставок</h3><button class="hbtn" id="hclose"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div id="hall"></div></div>
 <div class="hfull" id="plbag"><div class="hfh"><div><h3 id="plbagt">Рюкзак</h3><div class="plcount" id="plbagc"></div></div><button class="hbtn" id="plbagx"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="plbody"><div class="plgrid" id="plgrid"></div></div><div class="plfoot"><button class="plsa" id="plsellall"><i class="wbar"></i><span class="w1" id="plsa1">Продать все</span><span class="w2" id="plsa2">Точно? Продать все</span></button></div></div>
 <div class="hfull" id="plpod"><div class="hfh"><div><h3>Подиум</h3><div class="plcount">Пассивный доход с установленного номера</div></div><button class="hbtn" id="plpodx" aria-label="Закрыть"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="plbody"><div class="plpod"><div class="plpodslot" id="plpodslot"><div class="plpodempty">Пока пусто — добавь номер из рюкзака</div></div><div class="plpodmeta" id="plpodrate">Доход: 0 ₽/сек</div><div class="plpodmeta" id="plpodstats"></div></div></div></div>
@@ -1510,7 +1511,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 <style>
 /* v2.8: кнопка звука и «хватательный» курсор дерева */
 .sndbtn{right:60px}.flg.flge{width:auto;height:auto;box-shadow:none;background:none;border-radius:0;line-height:1;font-size:20px;vertical-align:middle;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
-.plate[data-c="al"].t0,.plate[data-c="al"].t-1{--pb:#7cfc8a;--pg:linear-gradient(160deg,#25503a,#0b1a14)}
+.plate[data-c="al"].t-1{--pb:#7cfc8a;--pg:linear-gradient(160deg,#25503a,#0b1a14)}
 .plate[data-c="al"] .plc{font-family:'Courier New',Consolas,monospace}
 .plate[data-c="al"] .plr em{display:none}
 .plate[data-c="al"] .plr::before{content:"\1F47D";display:block;font-size:22px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;filter:drop-shadow(0 0 4px rgba(124,252,138,.7))}
@@ -1684,6 +1685,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 </script>
 <script>
 let money=1000,ton=0,busy=false,ang=0,shown=0,raf,ps=[];
+var plLucky=0,plLuckArmed=false,plLuckNow=false,plQtyKeep=1;
 function lock(v){['bet','tar'].forEach(i=>$(i).disabled=v);document.querySelectorAll('.quick button').forEach(b=>b.disabled=v)}
 function back(){const s=ang%360,t0=performance.now();
  (function f(n){const p=Math.min(1,(n-t0)/(1000/SF())),e=1-Math.pow(1-p,3);ang=s*(1-e);$('ptr').style.transform='rotate('+ang+'deg)';
@@ -2311,6 +2313,13 @@ function premStr(){if(!badges.includes('prem'))return null;if(premUntil<=0)retur
 function premDurTxt(ms){if(ms<0)return 'навсегда ∞';var d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4),o=[];if(d)o.push(d+' дн.');if(h)o.push(h+' ч.');if(m||!o.length)o.push(m+' мин.');return o.join(' ')}
 function premNote(t){try{var e=document.createElement('div');e.textContent=t;e.style.cssText='position:fixed;left:50%;top:14px;transform:translateX(-50%);max-width:90vw;z-index:9999;padding:12px 16px;border-radius:14px;background:#1a1608;color:#ffe08a;border:1px solid #ffc933;font-weight:800;font-size:13px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.5)';document.body.appendChild(e);setTimeout(function(){try{e.remove()}catch(x){}},7000)}catch(e){}}
 function premBanHtml(offTitle,onSub,offSub){return NC_CROWN+(fxHasPrem()?'<div>PREMIUM активен · осталось <span class="premT">'+premStr()+'</span><small>'+onSub+'</small></div>':'<div>'+offTitle+'<small>'+offSub+'</small></div>')}
+function premBonusFx(b){try{let box=document.getElementById('pbfx');if(!box){box=document.createElement('div');box.id='pbfx';document.body.appendChild(box)}
+ while(box.children.length>=3)box.firstChild.remove();
+ const e=document.createElement('div');e.className='pbt';
+ e.innerHTML='<svg viewBox="0 0 24 24"><path d="M3 18L2 7l5.5 4.5L12 4l4.5 7.5L22 7l-1 11z" fill="#ffc933"/><rect x="3" y="19.5" width="18" height="2.2" rx="1.1" fill="#ffc933"/></svg><span></span><i></i>';
+ e.querySelector('span').textContent='+'+fmt(b);box.appendChild(e);
+ setTimeout(()=>e.classList.add('out'),650);setTimeout(()=>{try{e.remove()}catch(x){}},800)}catch(e){}}
+function premBonus(a){try{if(!fxHasPrem())return 0;const b=Math.floor((Number(a)||0)*0.05);if(!(b>0))return 0;money+=b;premBonusFx(b);return b}catch(e){return 0}}
 function premGrant(ms){var had=badges.includes('prem'),now=Date.now();if(ms<0){premUntil=-1}else if(had&&premUntil<0){/* уже навсегда — оставляем */}else{var base=(had&&premUntil>now)?premUntil:now;premUntil=base+ms}if(!had)badges.push('prem');try{bdgRender('prem')}catch(e){}try{save()}catch(e){}premUi()}
 function premCheck(){if(badges.includes('prem')&&premUntil>0&&premUntil<=Date.now()){var i=badges.indexOf('prem');if(i>=0)badges.splice(i,1);premUntil=0;try{bdgRender()}catch(e){}try{save()}catch(e){}premNote('Срок PREMIUM закончился')}}
 function premUi(){var v=premStr();document.querySelectorAll('.premT').forEach(function(e){if(v!==null)e.textContent=v});var b=document.getElementById('premInfo');if(b){b.classList.toggle('on',v!==null);b.classList.toggle('off',v===null)}}
@@ -2341,7 +2350,7 @@ function svStatus(){let ok=true;try{localStorage.setItem('_t','1');localStorage.
  const e=$('sv');e.style.color=ok?'var(--ac)':'var(--bad)';e.textContent=ok?'Автосохранение включено'+(lastSave?' · '+lastSave:''):'Автосохранение недоступно в этом режиме. Открой игру в Safari или Chrome.'}
 function doWipe(){try{localStorage.removeItem(SK);localStorage.removeItem(CK);localStorage.removeItem('upg_fx_v1')}catch(e){}
  money=1000;ton=0;tonBought=0;lvQ=[];lvShown=0;lvRender();try{XC.cd=0}catch(e){}tonUpd();myPhone=null;phInit();showMoney(1200);fastMode=false;owned=new Set();tclose();trefresh(false);
- plInv=[];plPending=null;plPodium=[];plPodCarry=0;plPodNext=0;plCountry='ru';plPodLast=Date.now();plRender();plUpd();hist=[];hrender(false);badges=[];premUntil=0;bdgRender();fxS=[0,0,0,0];fxApply();best=0;$('bw').textContent='\u2014';$('bc').textContent='\u0428\u0430\u043d\u0441: \u2014';used=[];
+ plInv=[];plPending=null;plPodium=[];plPodCarry=0;plPodNext=0;plCountry='ru';plLucky=0;plLuckArmed=false;plQtyKeep=1;plQty=1;try{plLuckUi()}catch(e){}plPodLast=Date.now();plRender();plUpd();hist=[];hrender(false);badges=[];premUntil=0;bdgRender();fxS=[0,0,0,0];fxApply();best=0;$('bw').textContent='\u2014';$('bc').textContent='\u0428\u0430\u043d\u0441: \u2014';used=[];
  if(!(window.__depMine&&window.__depMine()))$('nick').textContent='Player';$('ava').style.backgroundImage='';delete $('ava').dataset.img;avaDeco=-1;applyAvaDeco();avaFrame=-1;applyAvaFrame();nickColor=-1;applyNickColor();nickMedal=-1;applyNickMedal();
  $('bet').value='';$('tar').value='';clearQ();calc();$('dbet').value='';dupd();$('lbet').value='';lreset();
  nextAt=Date.now()+ivl()*1000;save();wipeOff();
@@ -2392,7 +2401,7 @@ $('go').onclick=()=>{
   $('ptr').style.transform='rotate('+ang+'deg)';
   if(p<1)requestAnimationFrame(f);else{
    $('wb').classList.remove('spin');fin(win,t/b);if(!win)addHist('Апгрейдер',t/b,b,true);setTimeout(back,1000/SF());
-   if(win){money+=t;showMoney();setBest(t,ch,t/b);addHist('Апгрейдер',t/b,t-b);$('res').style.color='var(--ac)';$('res').textContent='Победа! +'+fmt(t)}
+   if(win){money+=t;premBonus(t);showMoney();setBest(t,ch,t/b);addHist('Апгрейдер',t/b,t-b);$('res').style.color='var(--ac)';$('res').textContent='Победа! +'+fmt(t)}
    else{$('res').style.color='var(--bad)';$('res').textContent='Проигрыш −'+fmt(b)}
   }
  })(t0);
@@ -2813,7 +2822,7 @@ function lset(d){$('lup').disabled=d;$('ltake').disabled=d}
 function lmsg(t,c){const r=$('lres');r.style.color=c;r.textContent=t;r.style.fontSize=Math.min(19,19*24/t.length)+'px';r.style.animation='none';void r.offsetWidth;r.style.animation='pop .45s'}
 function lreset(){lplay=false;lstep=0;lbusy=false;lset(false);$('lplay').classList.add('hide');$('lsetup').classList.remove('hide');$('ltake').classList.add('hide');$('lres').textContent='';$('lad').classList.remove('sh');lupd();
  const b0=moneyVal('lbet');if(b0>bLim('lbet')){const t0=performance.now(),b1=bLim('lbet');(function f(n){const p=Math.min(1,(n-t0)/800),e=1-Math.pow(1-p,3);setMoneyField('lbet',p<1?Math.floor(b0+(b1-b0)*e):b1);lupd();if(p<1)requestAnimationFrame(f)})(t0)}}
-function ltakeDo(){if(!lplay||lstep<1)return;const w=lw();money+=w;showMoney();addHist('Лесенка',ladderMult(lstep),w-lbet);lmsg('Забрал +'+fmt(w),'var(--ac)');boom();SFX.cash(lstep);if(navigator.vibrate)navigator.vibrate([60,40,60]);setTimeout(lreset,1500/SF())}
+function ltakeDo(){if(!lplay||lstep<1)return;const w=lw();money+=w;premBonus(w);showMoney();addHist('Лесенка',ladderMult(lstep),w-lbet);lmsg('Забрал +'+fmt(w),'var(--ac)');boom();SFX.cash(lstep);if(navigator.vibrate)navigator.vibrate([60,40,60]);setTimeout(lreset,1500/SF())}
 $('lbet').oninput=()=>{if(moneyVal('lbet')>bLim('lbet'))setMoneyField('lbet',bLim('lbet'));lupd()};
 document.querySelectorAll('[data-m]').forEach(bt=>bt.onclick=()=>{if(lplay)return;const v=moneyVal('lbet')||0;setMoneyField('lbet',Math.max(0,Math.min(bLim('lbet'),bt.dataset.m==='max'?bLim('lbet'):Math.floor(v*bt.dataset.m))));lupd()});
 $('lgo').onclick=()=>{if(lplay)return;let b=moneyVal('lbet');if(b>bLim('lbet')){animateMoneyField('lbet');return}if(!(b>0))return;lbet=b;lplay=true;lstep=0;money-=b;showMoney();SFX.bet();$('lres').textContent='';$('lsetup').classList.add('hide');$('lplay').classList.remove('hide');$('ltake').classList.add('hide');lupd()};
@@ -2837,7 +2846,7 @@ function dupd(){$('dgo').classList.toggle('ready',(moneyVal('dbet')||0)>0)}
 function dend(res,b){const k=res.k,c=DR[k],pay=Math.floor(b*res.x);
  $('dcard').classList.remove('spinning');const w=$('dwin');w.style.setProperty('--rc',c);w.classList.add('done');w.classList.toggle('myth',k===5);w.classList.toggle('leg',k===4);
  $('dstrip').children[DT].classList.add('win');
- money+=pay;showMoney();dlast=res;
+ money+=pay;premBonus(pay);showMoney();dlast=res;
  const r=$('dres');r.style.color=c;r.textContent='x'+res.x+' · '+fmt(pay);r.style.animation='none';void r.offsetWidth;r.style.animation=k===5?'pop .5s,mshift 3s linear .5s infinite':'pop .5s';r.classList.toggle('myth',k===5);
  const f=$('dflash');f.style.background=k===5?'conic-gradient(from 0deg at 78% 50%,#ff0040,#ff9a00,#ffe600,#00ff7f,#00cfff,#7a5cff,#ff00c8,#ff0040)':'radial-gradient(circle at 78% 50%,'+c+',transparent 62%)';f.style.webkitMaskImage=f.style.maskImage=k===5?'radial-gradient(circle at 78% 50%,#000,transparent 68%)':'none';f.classList.remove('go');void f.offsetWidth;f.classList.add('go');
  if(res.x<1)SFX.lose();else SFX.win(k>=5?4:k>=4?3:k>=3?2:1);if(k>=2)boom([0,0,50,130,260,420][k]);
@@ -3068,7 +3077,7 @@ $('plautobtn').onclick=()=>{if(!owned.has(47))return;plAutoDraft=plAuto.slice();
 $('plautol').onclick=e=>{const b=e.target.closest('.plautorow');if(!b)return;const i=+b.dataset.i;plAutoDraft[i]=!plAutoDraft[i];plAutoDraw()};
 $('plautoc').onclick=()=>$('plautom').classList.remove('show');
 $('plautok').onclick=()=>{plAuto=plAutoDraft.slice(0,7).map(Boolean);$('plautom').classList.remove('show');plAutoUi();save();const n=plAuto.filter(Boolean).length;plMsg(n?'Авто-продажа включена: '+n+' из 7':'Авто-продажа выключена')};
-function plAutoSell(items){const arr=items.filter(i=>plAutoOn(i.t));if(!arr.length)return 0;let sum=0;arr.forEach(i=>sum+=i.v);const ids=new Set(arr.map(i=>i.id));plInv=plInv.filter(i=>!ids.has(i.id));money+=sum;showMoney(900);pfloat(sum);setTimeout(()=>SFX.sell(0),380);plMsg('Авто-продажа: '+arr.length+' шт. · +'+fmt(sum));return sum}
+function plAutoSell(items){const arr=items.filter(i=>plAutoOn(i.t));if(!arr.length)return 0;let sum=0;arr.forEach(i=>sum+=i.v);const ids=new Set(arr.map(i=>i.id));plInv=plInv.filter(i=>!ids.has(i.id));money+=sum;premBonus(sum);showMoney(900);pfloat(sum);setTimeout(()=>SFX.sell(0),380);plMsg('Авто-продажа: '+arr.length+' шт. · +'+fmt(sum));return sum}
 let plQty=1,plInv=[],plBusy=false,plPending=null,plSaT=0,plPodium=[],plPodCarry=0,plPodLast=Date.now(),plPodNext=0,plCountry='ru';
 function plCost(){return plCur().cost*plQty}
 function plQtyUi(){const max=plMaxQty();if(plQty>max)plQty=max;document.querySelectorAll('[data-plqty]').forEach(b=>{const q=Number(b.dataset.plqty);b.disabled=q>max||plBusy;b.classList.toggle('active',q===plQty);b.setAttribute('aria-pressed',q===plQty?'true':'false');b.innerHTML='x'+q+(q>max?' <span class="lock">🔒</span>':'')});const cost=fmt(plCost());$('plgo').textContent='Крутить · '+cost;$('plcostval').textContent=cost;plCUi()}
@@ -3096,7 +3105,7 @@ function plPts(p){const L=[p[0],p[1],p[6],p[7]],D=[+p[2],+p[3],+p[4],+p[5]];let 
  return s}
 function plTier(pts){return pts<1.5?0:pts<3.5?1:pts<5.5?2:pts<7.5?3:pts<10?4:5}
 function plPickW(w){let r=Math.random()*w.reduce((a,b)=>a+b,0),i=0;for(;i<w.length-1&&r>=w[i];i++)r-=w[i];return i}
-function plPickTier(){const luck=plLuckBonus()/100,w=PLT.map((x,i)=>x.p*(i>=2?1+luck:1)),sum=w.reduce((a,b)=>a+b,0);let r=Math.random()*sum,i=0;for(;i<w.length-1&&r>=w[i];i++)r-=w[i];return i}
+function plPickTier(){const luck=plLuckBonus()/100,lm=plLuckNow?100:1,w=PLT.map((x,i)=>x.p*(i>=2?(1+luck)*lm:1)),sum=w.reduce((a,b)=>a+b,0);let r=Math.random()*sum,i=0;for(;i<w.length-1&&r>=w[i];i++)r-=w[i];return i}
 function plGen(T){if(T>=6){const a=plRl();return{p:a+a+'0000'+a+a,pts:16+Math.random()*4}}for(let n=0;n<8000;n++){const L=plLetters(plPickW([6,2,2,2,2,2,2])),D=plDigits(plPickW([6,2,2,2,2,2,2,2,2])),p=L[0]+L[1]+D.join('')+L[2]+L[3],pts=plPts(p);if(plTier(pts)===T)return{p:p,pts:pts}}
  const a=plRl();return T===5?{p:a+a+'7777'+a+a,pts:12}:{p:plRl()+plRl()+'1234'+plRl()+plRl(),pts:3}}
 var plForce=-1;
@@ -3280,7 +3289,7 @@ function plUpd(){const full=plInv.length+plQty>plCap(),b=$('plgo'),m=$('plmsg'),
 function plIsPend(id){return Array.isArray(plPending)?plPending.includes(id):id===plPending}
 function plSell(id){const it=plInv.find(i=>i.id===id);if(!it||plIsPend(id))return;
  const el=document.querySelector('.plitem[data-id="'+id+'"]');if(el)el.classList.add('sold');SFX.sell(0);
- setTimeout(()=>{plInv=plInv.filter(i=>i.id!==id);money+=it.v;showMoney(900);pfloat(it.v);save();plRender();plUpd()},el?320:0)}
+ setTimeout(()=>{plInv=plInv.filter(i=>i.id!==id);money+=it.v;premBonus(it.v);showMoney(900);pfloat(it.v);save();plRender();plUpd()},el?320:0)}
 $('plgrid').onclick=e=>{const put=e.target.closest('.plput');if(put){const it=plInv.find(i=>i.id===put.dataset.id);if(!it||plIsPend(it.id)||plPodium.length>=plPodCap())return;plInv=plInv.filter(i=>i.id!==it.id);plPodium.push({...it,_carry:0});plPodLast=Date.now();save();plRender();plUpd();return}const b=e.target.closest('.plsell');if(b)plSell(b.dataset.id)};
 $('plpodslot').onclick=e=>{const b=e.target.closest('[data-podtake]');if(!b||plInv.length>=plCap())return;const ix=plPodium.findIndex(i=>String(i.id)===b.dataset.podtake);if(ix<0)return;plInv.unshift(plPodium.splice(ix,1)[0]);plPodLast=Date.now();save();plRender();plUpd()};
 $('plbagbtn').onclick=()=>{plRender();$('plbag').classList.add('show')};
@@ -3291,14 +3300,14 @@ $('plsellall').onclick=()=>{const b=$('plsellall'),keepPending=plPending,arr=plI
  if(!b.classList.contains('armed')){b.classList.add('armed');const bar=b.querySelector('.wbar');bar.style.transition='none';bar.style.transform='scaleX(1)';void bar.offsetWidth;bar.style.transition='transform 4s linear,opacity .3s';bar.style.transform='scaleX(0)';clearTimeout(plSaT);plSaT=setTimeout(plSaOff,4000);return}
  plSaOff();let sum=0;arr.forEach(i=>sum+=i.v);SFX.sell(1);
  document.querySelectorAll('.plitem').forEach((e,k)=>setTimeout(()=>e.classList.add('sold'),k*60));
- setTimeout(()=>{plInv=plInv.filter(i=>Array.isArray(keepPending)?keepPending.includes(i.id):i.id===keepPending);money+=sum;showMoney(1400);pfloat(sum);save();plRender();plUpd()},arr.length*60+340)};
+ setTimeout(()=>{plInv=plInv.filter(i=>Array.isArray(keepPending)?keepPending.includes(i.id):i.id===keepPending);money+=sum;premBonus(sum);showMoney(1400);pfloat(sum);save();plRender();plUpd()},arr.length*60+340)};
 document.querySelectorAll('[data-plqty]').forEach(b=>b.addEventListener('click',()=>{if(b.disabled||plBusy)return;plQty=Number(b.dataset.plqty)||1;document.querySelectorAll('[data-plqty]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')});plUpd()}));
 function plGoRoll(auto){if(plBusy)return;
  if(plInv.length+plQty>plCap()){if(auto)plARStop();plMsg(auto?'Авто-ролл остановлен: в рюкзаке нет места':'В рюкзаке недостаточно места — продай номера');SFX.deny();plShake();plBump();return}
  const cost=plCost();if(money<cost){if(auto)plARStop();plMsg((auto?'Авто-ролл остановлен: не хватает ':'Не хватает ')+fmt(cost-money));SFX.deny();plShake();return}
  plBusy=true;$('plmsg').textContent='';money-=cost;showMoney();SFX.bet();SFX.roll();plUpd();
- const items=Array.from({length:plQty},()=>plRoll());items.forEach(item=>{plInv.unshift(item)});plPending=items.map(x=>x.id);save();plRender();plPrep(items.length);
- plAnimate(items,()=>{plReveal(items);plPending=null;plAutoSell(items);plRender(items[items.length-1].id);plBump();save();
+ plLuckNow=plLuckArmed;let items;try{items=Array.from({length:plQty},()=>plRoll())}finally{plLuckNow=false}items.forEach(item=>{plInv.unshift(item)});plPending=items.map(x=>x.id);save();plRender();plPrep(items.length);
+ plAnimate(items,()=>{plReveal(items);plLuckEnd();plPending=null;plAutoSell(items);plRender(items[items.length-1].id);plBump();save();
   const fin=()=>{plBusy=false;plUpd();if(plAR)plARNext()},mi=items.reduce((a,b)=>b.t>a.t?b:a,items[0]);
   if(mi.t>=4){const pls=plStagePlates();plxParty(mi.t,pls[items.indexOf(mi)]||pls[0],()=>{setTimeout(plCountRun,300);fin()})}else fin()})}
 $('plgo').onclick=()=>plGoRoll(false);
@@ -3314,6 +3323,27 @@ $('plcsel').onclick=()=>{if(plBusy)return;plCDraw();$('plcm').classList.add('sho
 $('plcc').onclick=()=>$('plcm').classList.remove('show');
 $('plcl').onclick=e=>{const b=e.target.closest('.plautorow');if(!b||plBusy)return;plCountry=b.dataset.k;$('plcm').classList.remove('show');plPrep(1);$('plplate').className='plate t-1';$('plinfo').innerHTML='<div class="plhint">Нажми «Крутить», чтобы выбить номер</div>';plUpd();save()};
 plRender();plUpd();plARUi();
+/* ===== Lucky Roll ===== */
+function plLuckUi(){try{const row=$('lkrow'),b=$('lkbtn');if(!row||!b)return;
+ b.classList.toggle('gray',plLuckArmed);b.classList.toggle('none',plLucky<1&&!plLuckArmed);
+ const n=$('lkb');if(n.textContent!==String(plLucky)){n.textContent=plLucky;n.classList.remove('pop');void n.offsetWidth;n.classList.add('pop')}
+ $('plcard').classList.toggle('lucky',plLuckArmed)}catch(e){}}
+function plLuckGive(n){n=Math.floor(Number(n)||0);if(n<1)return;plLucky=Math.min(9999,plLucky+n);plLuckUi();try{save()}catch(e){}}
+function plLuckFx(){try{const cd=$('plcard'),c=cd.getBoundingClientRect(),r=$('lkbtn').getBoundingClientRect();
+ const fl=document.createElement('div');fl.className='lkflash';cd.appendChild(fl);setTimeout(()=>fl.remove(),850);
+ const cx=r.left-c.left+r.width/2,cy=r.top-c.top+r.height/2;
+ for(let i=0;i<18;i++){const p=document.createElement('i');p.className='lkp';p.textContent=i%3?'\u2728':'\u{1F340}';
+  const a=Math.PI*2*i/18+Math.random()*.4,d=60+Math.random()*90;
+  p.style.left=cx+'px';p.style.top=cy+'px';p.style.setProperty('--dx',Math.cos(a)*d+'px');p.style.setProperty('--dy',Math.sin(a)*d+'px');p.style.setProperty('--rt',(Math.random()*360-180)+'deg');
+  cd.appendChild(p);setTimeout(()=>p.remove(),950)}}catch(e){}}
+function plLuckArm(){if(plBusy||plLuckArmed||plLucky<1)return;
+ plLucky--;plLuckArmed=true;plQtyKeep=plQty;plQty=1;if(plAR)plARStop();
+ plLuckUi();plUpd();plLuckFx();try{SFX.win(3)}catch(e){}if(navigator.vibrate)navigator.vibrate([30,30,60]);
+ plMsg('\u{1F340} Lucky Roll: удача x100');save()}
+function plLuckEnd(){if(!plLuckArmed)return;plLuckArmed=false;plQty=Math.max(1,Math.min(plQtyKeep||1,plMaxQty()));
+ const cd=$('plcard');cd.classList.add('lkout');setTimeout(()=>cd.classList.remove('lkout'),500);
+ plLuckUi();plUpd();save()}
+$('lkbtn').onclick=plLuckArm;
 let hist=[];
 function hrender0(anim){$('hl').innerHTML=hist.map((h,i)=>{const d=new Date(h.t),tm=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);return '<div class="he'+(anim&&i===0?' new':'')+(h.l?' lose':'')+'"><div class="hm"><b>'+h.m+'</b><span>x'+h.x+' · '+tm+'</span></div><div class="ha">'+(h.l?'\u2212':'+')+fmt(h.a)+'</div></div>'}).join('')}
 function addHist(m,x,a,l){hist.unshift({m:m,x:Math.round(x*100)/100,a:a,t:Date.now(),l:!!l});if(hist.length>40)hist.pop();hrender(true);try{window.__pp&&window.__pp(false,true)}catch(e){}}
@@ -3324,13 +3354,13 @@ function pfloat(a){const e=document.createElement('div');e.className='pf';e.text
 function ptick(){const now=Date.now(),I=ivl()*1000;
  {const PI=60000,pin=plPodInc();
  if(plPodium.length){if(!plPodNext)plPodNext=now+PI;
-  if(now>=plPodNext){if(pin>0){money+=pin;showMoney();pfloat(pin);SFX.coin()}plPodNext=(now-plPodNext>PI)?now+PI:plPodNext+PI}
+  if(now>=plPodNext){if(pin>0){money+=pin;premBonus(pin);showMoney();pfloat(pin);SFX.coin()}plPodNext=(now-plPodNext>PI)?now+PI:plPodNext+PI}
   const pleft=Math.max(0,plPodNext-now),psec=Math.max(1,Math.ceil(pleft/1000));
   $('tpod').classList.remove('off');$('pt2').textContent='+'+fmt(pin);if($('pn2').textContent!=psec)$('pn2').textContent=psec;$('pbi').style.width=((1-pleft/PI)*100)+'%'}
  else{plPodNext=0;$('tpod').classList.add('off');$('pt2').textContent='Подиум пуст';$('pbi').style.width='0'}}
  plPodLast=now;
  if(nextAt-now>I)nextAt=now+I;
- if(now>=nextAt){const inc=income();money+=inc;showMoney();pfloat(inc);SFX.coin();nextAt=(now-nextAt>I)?now+I:nextAt+I}
+ if(now>=nextAt){const inc=income();money+=inc;premBonus(inc);showMoney();pfloat(inc);SFX.coin();nextAt=(now-nextAt>I)?now+I:nextAt+I}
  const left=nextAt-now,s=Math.max(1,Math.ceil(left/1000));
  if(s!==lastS){lastS=s;const tn=$('tn');tn.textContent=s;tn.style.animation='none';void tn.offsetWidth;tn.style.animation='tnp .35s'}
  const tx='+'+fmt(income());if($('tt').textContent!==tx)$('tt').textContent=tx;
@@ -3354,9 +3384,9 @@ function fxDraw(){$('stt').textContent='Стиль: '+FXN[fxSel-1];const pr=fxHa
 $('stl').onclick=e=>{const b=e.target.closest('.sbt');if(!b)return;const k=+b.dataset.s;if(FXP.has(k)&&!fxHasPrem()){const m=$('stmsg');m.textContent='Этот стиль доступен только с PREMIUM';m.style.animation='none';void m.offsetWidth;m.style.animation='shake .4s';if(navigator.vibrate)navigator.vibrate(80);return}$('stmsg').textContent='';fxS[fxSel-1]=k;fxApply();fxDraw();save();const c=$('pc'+fxSel);c.classList.remove('stp');void c.offsetWidth;c.classList.add('stp');setTimeout(()=>$('stm').classList.remove('show'),250)};
 $('stc').onclick=()=>$('stm').classList.remove('show');
 const SK='upg_save_v2';
-function save(){try{localStorage.setItem('upg_fx_v1',JSON.stringify({fx:fxS,bg:badges,pu:premUntil}))}catch(e){}try{localStorage.setItem(SK,JSON.stringify({m:money,tn:ton,ph:myPhone,n:$('nick').textContent,nc:nickColor,nm:nickMedal,ad:avaDeco,fr:avaFrame,b:best,bw:$('bw').textContent,bc:$('bc').textContent,a:$('ava').dataset.img||'',h:hist,u:used,o:[...owned],q:fastMode,pl:plInv,pod:plPodium,podCarry:plPodCarry,as:plAuto,bg:badges,pu:premUntil,fx:fxS,pn:plPodNext>0?Math.max(0,plPodNext-Date.now()):0,pc:plCountry,tb:tonBought}));lastSave=new Date().toLocaleTimeString('ru-RU')}catch(e){}try{window.__pp&&window.__pp(false,true)}catch(e){}}
+function save(){try{localStorage.setItem('upg_fx_v1',JSON.stringify({fx:fxS,bg:badges,pu:premUntil}))}catch(e){}try{localStorage.setItem(SK,JSON.stringify({m:money,tn:ton,ph:myPhone,n:$('nick').textContent,nc:nickColor,nm:nickMedal,ad:avaDeco,fr:avaFrame,b:best,bw:$('bw').textContent,bc:$('bc').textContent,a:$('ava').dataset.img||'',h:hist,u:used,o:[...owned],q:fastMode,pl:plInv,pod:plPodium,podCarry:plPodCarry,as:plAuto,bg:badges,pu:premUntil,fx:fxS,pn:plPodNext>0?Math.max(0,plPodNext-Date.now()):0,pc:plCountry,tb:tonBought,lk:plLucky,la:plLuckArmed,lq:plQtyKeep}));lastSave=new Date().toLocaleTimeString('ru-RU')}catch(e){}try{window.__pp&&window.__pp(false,true)}catch(e){}}
 function load(){try{const d=JSON.parse(localStorage.getItem(SK)||'null');if(!d)return;
- if(typeof d.m==='number'&&d.m>=0)money=d.m;if(typeof d.tn==='number'&&d.tn>=0)ton=d.tn;if(typeof d.tb==='number'&&d.tb>=0)tonBought=d.tb;else if(typeof d.tn==='number'&&d.tn>0)tonBought=d.tn;tonUpd();if(d.ph&&typeof d.ph.s==='string'&&PHC[d.ph.c])myPhone={c:d.ph.c,s:d.ph.s.slice(0,30)};if(d.n)$('nick').textContent=d.n;
+ if(typeof d.m==='number'&&d.m>=0)money=d.m;if(typeof d.lk==='number'&&d.lk>=0)plLucky=Math.floor(d.lk);plLuckArmed=!!d.la;plQtyKeep=(d.lq>=1&&d.lq<=4)?d.lq:1;if(typeof d.tn==='number'&&d.tn>=0)ton=d.tn;if(typeof d.tb==='number'&&d.tb>=0)tonBought=d.tb;else if(typeof d.tn==='number'&&d.tn>0)tonBought=d.tn;tonUpd();if(d.ph&&typeof d.ph.s==='string'&&PHC[d.ph.c])myPhone={c:d.ph.c,s:d.ph.s.slice(0,30)};if(d.n)$('nick').textContent=d.n;
  if(d.b>0){best=d.b;$('bw').textContent=d.bw;$('bc').textContent=d.bc}
  if(d.a){$('ava').style.backgroundImage='url('+d.a+')';$('ava').dataset.img=d.a}
  if(Array.isArray(d.h)){hist=d.h;hrender(false)}
@@ -3368,7 +3398,7 @@ function load(){try{const d=JSON.parse(localStorage.getItem(SK)||'null');if(!d)r
  if(Array.isArray(d.pod))plPodium=d.pod.filter(i=>i&&typeof i.p==='string'&&i.p.length===8&&PLT[i.t]).slice(0,plPodCap());else if(d.pod&&typeof d.pod.p==='string'&&d.pod.p.length===8&&PLT[d.pod.t])plPodium=[{...d.pod,_carry:Number.isFinite(d.podCarry)?Math.max(0,d.podCarry):0}];if(d.pn>0&&plPodium.length)plPodNext=Date.now()+d.pn;if(typeof d.pc==='string'&&PLC.some(c=>c.id===d.pc))plCountry=d.pc;plPodLast=Date.now();plRender();
  shown=0;showMoney(2500)}catch(e){}}
 function loadFx(){try{const d=JSON.parse(localStorage.getItem('upg_fx_v1')||'null');if(!d)return;if(Array.isArray(d.bg))d.bg.filter(x=>BDG[x]).forEach(x=>{if(!badges.includes(x))badges.push(x);if(x==='prem'&&typeof d.pu==='number')premUntil=d.pu});if(Array.isArray(d.fx))fxS=[0,1,2,3].map(i=>(+d.fx[i]>=0&&+d.fx[i]<=15)?+d.fx[i]:0);bdgRender()}catch(e){}}
-load();loadCustom();loadFx();premCheck();premUi();lvRender();phInit();ptick();setInterval(ptick,100);setInterval(save,1000);document.addEventListener('visibilitychange',()=>{save();try{xcTick()}catch(e){}});addEventListener('pagehide',save);addEventListener('beforeunload',save);
+load();try{if(plLuckArmed)plQty=1;plLuckUi();plUpd()}catch(e){}loadCustom();loadFx();premCheck();premUi();lvRender();phInit();ptick();setInterval(ptick,100);setInterval(save,1000);document.addEventListener('visibilitychange',()=>{save();try{xcTick()}catch(e){}});addEventListener('pagehide',save);addEventListener('beforeunload',save);
 
 /* v1.96: ripple feedback on buttons */
 document.addEventListener('pointerdown',e=>{const b=e.target.closest&&e.target.closest('.go,.tabs button,.quick button,.box button,.plput,.plsell,.plautorow');if(!b||b.disabled)return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height)*2,sp=document.createElement('span');sp.className='rpl';sp.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';if(getComputedStyle(b).position==='static')b.style.position='relative';b.style.overflow='hidden';b.appendChild(sp);setTimeout(()=>sp.remove(),620)},{passive:true});
@@ -3569,6 +3599,39 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
 .hlx{overflow:hidden}
 .pvsk{display:flex;flex-direction:column;gap:14px}.pvsk i{display:block;height:110px;border-radius:16px;background:linear-gradient(100deg,#1a1d27 30%,#252a3a 50%,#1a1d27 70%) 0 0/200% 100%;animation:xqSh 1.2s linear infinite;border:1px solid var(--line)}.pvsk i:nth-child(2){height:84px}
 .pvmsg{text-align:center;color:var(--mut);padding:40px 10px;font-size:15px}.pvmsg button{margin-top:14px;padding:11px 22px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--tx);font-weight:800}
+
+/* ===== Lucky Roll + Premium bonus ===== */
+.lkrow{display:flex;justify-content:center;margin:0 0 12px}.lkrow.hide{display:none}
+.plbagbtn.lkbtn{width:60px;height:48px;font-size:27px;line-height:1;border-color:#b8860b;background:linear-gradient(160deg,#2a2208,#14110a);filter:drop-shadow(0 0 8px rgba(255,201,51,.35));animation:lkIdle 2.4s ease-in-out infinite}
+.lkbtn .plbadge{background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;min-width:24px;right:-7px;bottom:-7px}
+.lkbtn .plbadge.pop{animation:pop .5s}
+.lkic{display:block;filter:drop-shadow(0 0 5px rgba(255,201,51,.7))}.plbagbtn.lkbtn.none:not(.gray){opacity:.8;animation:none}
+.plbagbtn.lkbtn.gray{border-color:#3a4058;background:#12151d;filter:grayscale(1);opacity:.55;animation:none;pointer-events:none;box-shadow:none}
+.lkbtn.gray .plbadge{background:#3a4058;color:#9aa0b5}
+@keyframes lkIdle{50%{box-shadow:0 0 16px rgba(255,201,51,.6)}}
+.plcard.lucky{border-color:#ffc933;box-shadow:0 0 0 1px rgba(255,201,51,.5),0 0 30px rgba(255,201,51,.22)}
+.plcard.lucky .go{background:linear-gradient(110deg,#ffb020 30%,#fff1a8 50%,#ffb020 70%);background-size:200% 100%;color:#2a1a00;box-shadow:0 6px 26px rgba(255,190,40,.6);animation:lkBtnIn .55s ease-out,shine 1.6s linear infinite,lkGlow 1.4s ease-in-out infinite}
+.plcard.lucky .go::before{opacity:0}
+.plcard.lucky #plmsg{color:#ffd75e}
+.plcard.lucky .plqty button[data-plqty="1"]{flex:1 1 100%!important;background:linear-gradient(135deg,#ffd75e,#ffb020)!important;color:#2a1a00!important;border-color:#ffc933!important;box-shadow:0 0 16px rgba(255,201,51,.6);animation:lkBtnIn .55s ease-out,lkPulse 1.3s ease-in-out infinite}
+.plcard.lucky .plqty button:not([data-plqty="1"]){display:none!important}
+.plcard.lkout .go,.plcard.lkout .plqty button{animation:lkOut .45s ease-out}
+@keyframes lkBtnIn{0%{transform:scale(.94);filter:brightness(1.8)}60%{transform:scale(1.04)}100%{transform:none;filter:none}}
+@keyframes lkGlow{50%{box-shadow:0 6px 34px rgba(255,200,60,.9)}}
+@keyframes lkPulse{50%{box-shadow:0 0 24px rgba(255,201,51,.95)}}
+@keyframes lkOut{from{filter:brightness(1.6)}to{filter:none}}
+.lkflash{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(circle at 50% 10%,rgba(255,215,94,.7),transparent 65%);animation:lkFl .8s ease-out forwards}
+@keyframes lkFl{from{opacity:1}to{opacity:0}}
+.lkp{position:absolute;z-index:6;pointer-events:none;font-size:16px;line-height:1;animation:lkPart .9s ease-out forwards}
+@keyframes lkPart{from{opacity:1;transform:translate(0,0) scale(.6) rotate(0)}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2) rotate(var(--rt))}}
+#pbfx{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);z-index:9998;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.pbt{position:relative;overflow:hidden;display:flex;align-items:center;gap:8px;padding:10px 18px 13px;border-radius:14px;background:linear-gradient(135deg,#2a2008,#1a1608);color:#ffe08a;border:1px solid #ffc933;font-weight:900;font-size:16px;box-shadow:0 8px 28px rgba(0,0,0,.55),0 0 18px rgba(255,201,51,.35);animation:pbIn .18s ease-out both}
+.pbt svg{width:16px;height:16px;flex:none}
+.pbt i{position:absolute;left:0;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,#ffb020,#ffe08a);transform-origin:left;animation:pbBar .8s linear forwards}
+.pbt.out{animation:pbOut .15s ease-in forwards}
+@keyframes pbIn{from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes pbBar{to{transform:scaleX(0)}}
+@keyframes pbOut{to{opacity:0;transform:translateY(6px)}}
 </style>
 <div id="xpp"><div class="xqg" id="xpgain"></div><div class="xqw"><div class="xqs" id="xpL"></div><div class="xqm"><div class="xqbar"><div class="xqfill" id="xpfill"></div></div><div class="xqt" id="xpt"></div></div><div class="xqs" id="xpR"></div></div><div class="xqban" id="xpban"></div></div>
 <div class="modal" id="lvm"><div class="box" id="lvbox"></div></div>
@@ -3924,8 +3987,8 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   }
   var l=document.getElementById('giftL');
   items.forEach(function(it){
-   var c=document.createElement('div');c.className='giftit'+(it.t==='prem'?' prem':'');
-   var b=document.createElement('b');b.textContent=(it.t==='prem'?'👑 ':'💰 ')+it.txt;c.appendChild(b);
+   var c=document.createElement('div');c.className='giftit'+(it.t==='prem'||it.t==='lucky'?' prem':'');
+   var b=document.createElement('b');b.textContent=(it.t==='prem'?'👑 ':it.t==='lucky'?'\u{1F340} ':'💰 ')+it.txt;c.appendChild(b);
    var sm=document.createElement('small');sm.textContent='от @'+it.f;c.appendChild(sm);
    if(it.m){var q=document.createElement('q');q.textContent='«'+it.m+'»';c.appendChild(q)}
    l.appendChild(c);
@@ -3960,6 +4023,32 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    finally{go.disabled=false}
   });
  })();
+ (function(){
+  var ni=g('admLkNick'),nt=g('admLkNote'),cn=g('admLkCnt'),go=g('admLkGo'),sd=g('admLkS');
+  if(!ni||!go)return;
+  function say(t,bad){if(sd){sd.textContent=t;sd.style.color=bad?'#ff6b6b':''}}
+  ni.addEventListener('input',function(){var v=ni.value.replace(/^@+/,'').replace(/[^A-Za-z0-9]/g,'').slice(0,15);ni.value=v?'@'+v:''});
+  cn.addEventListener('input',function(){cn.value=cn.value.replace(/\D/g,'').slice(0,3)});
+  go.addEventListener('click',async function(){
+   var raw=ni.value.replace(/^@/,''),n=parseInt(cn.value,10);
+   if(raw.length<3){say('Введите ник (3–15 символов)',1);return}
+   if(!(n>=1)){say('Введите количество (1–999)',1);return}
+   var note=nt?nt.value.trim().slice(0,80):'',k=key(raw);
+   go.disabled=true;say('Отправка…');
+   try{
+    if(k===key(nick())){plLuckGive(n);giftShow([{t:'lucky',f:nick(),txt:'Lucky Roll ×'+n,m:note}]);say('Выдано себе: '+n);return}
+    if(!ready())throw 0;
+    var r=await fetch(CHAT_URL+'/names/'+k+'/n.json');
+    var ex=r.ok?await r.json():null;
+    if(!ex){say('Игрок @'+raw+' не найден',1);return}
+    var body={d:0,l:n,ts:Date.now(),f:nick(),k:PREM_KEY};if(note)body.m=note;
+    var w=await fetch(CHAT_URL+'/premgrants/'+k+'/'+nonce(20)+'.json',{method:'PUT',body:JSON.stringify(body)});
+    if(!w.ok)throw 0;
+    say('Отправлено @'+raw+': Lucky Roll ×'+n+(note?' с подписью':'')+'. Придёт уведомление.');if(nt)nt.value='';
+   }catch(e){say('Ошибка отправки (проверьте правила Firebase)',1)}
+   finally{go.disabled=false}
+  });
+ })();
  var premPolling=false;
  async function pollPrem(){
   if(premPolling||!ready()||!isMine()||document.hidden)return;
@@ -3976,6 +4065,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
     var m=d[id];
     if(!m||typeof m.d!=='number'||!isFinite(m.d)||m.k!==PREM_KEY)return;
     if(done.indexOf(id)>=0)return;
+    if(typeof m.l==='number'&&isFinite(m.l)&&m.l>=1){var ln=Math.min(Math.floor(m.l),999);plLuckGive(ln);done.push(id);got.push({t:'lucky',f:String(m.f||'?').slice(0,20),txt:'Lucky Roll ×'+ln,m:typeof m.m==='string'?m.m.slice(0,120):''});return}
     var ms=m.d<0?-1:Math.min(Math.floor(m.d),31536000000);
     if(ms===0)return;
     premGrant(ms);done.push(id);got.push({t:'prem',f:String(m.f||'?').slice(0,20),txt:'PREMIUM: '+premDurTxt(ms),m:typeof m.m==='string'?m.m.slice(0,120):''});
