@@ -1,0 +1,16 @@
+name: Copy index
+on: push
+permissions:
+  contents: write
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cp app/src/main/assets/index.html index.html
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add index.html
+          git commit -m "Add index.html to root"
+          git push
