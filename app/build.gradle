@@ -1,0 +1,21 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.upgrader.app'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.upgrader.app'
+        minSdk 23
+        targetSdk 34
+        versionCode 291
+        versionName '2.91'
+    }
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
