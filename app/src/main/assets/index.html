@@ -4441,9 +4441,9 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 .sec.open .opt:active{transform:scale(.95);transition-delay:0s}
 .opt:hover{border-color:rgba(var(--ar),.8)}
 .ov{padding:12px 4px 10px;font-size:14px;font-weight:800;text-align:center}
-.pf{position:relative;border-top:1.5px dashed rgba(255,255,255,.18)}
-.pf::before,.pf::after{content:"";position:absolute;top:-6px;width:11px;height:11px;border-radius:50%;background:var(--pn)}
-.pf::before{left:-7px}.pf::after{right:-7px}
+.shpf{position:relative;border-top:1.5px dashed rgba(255,255,255,.18)}
+.shpf::before,.shpf::after{content:"";position:absolute;top:-6px;width:11px;height:11px;border-radius:50%;background:var(--pn)}
+.shpf::before{left:-7px}.shpf::after{right:-7px}
 .pr{display:flex;align-items:center;justify-content:center;gap:5px;padding:9px 4px 10px;color:#ffe08a;font-weight:900;font-size:14px;font-variant-numeric:tabular-nums}
 .opt.cant{border-color:#2c3246}.opt.cant .pr{color:#ff8f9b}.opt.cant .ov{color:#aab}
 .opt.inf{background:linear-gradient(110deg,#2f2610,#4f3d10,#2f2610);background-size:200% 100%;animation:shSh 3s linear infinite}
@@ -4505,10 +4505,10 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 #shopBox .sec .fold.open .grid .opt{opacity:1;transform:none;transition:opacity .3s calc(var(--i)*75ms + 120ms),transform .5s var(--ease) calc(var(--i)*75ms + 120ms),border-color .25s,box-shadow .25s}
 #shopBox .sec .fold.open .grid .opt:active{transform:scale(.97);transition-delay:0s}
 #shopBox .sec .grid .opt .ov{flex:1;display:flex;align-items:center;justify-content:flex-start;text-align:left;padding:13px 14px}
-#shopBox .sec .grid .opt .pf{border-top:0;border-left:1.5px dashed rgba(255,255,255,.2)}
-#shopBox .sec .grid .opt .pf::before,#shopBox .sec .grid .opt .pf::after{left:-6.5px;right:auto}
-#shopBox .sec .grid .opt .pf::before{top:-6px}
-#shopBox .sec .grid .opt .pf::after{top:auto;bottom:-6px}
+#shopBox .sec .grid .opt .shpf{border-top:0;border-left:1.5px dashed rgba(255,255,255,.2)}
+#shopBox .sec .grid .opt .shpf::before,#shopBox .sec .grid .opt .shpf::after{left:-6.5px;right:auto}
+#shopBox .sec .grid .opt .shpf::before{top:-6px}
+#shopBox .sec .grid .opt .shpf::after{top:auto;bottom:-6px}
 #shopBox .sec .grid .opt .pr{min-width:84px;padding:0 14px}
 </style>
 <script>
@@ -4600,7 +4600,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  }
  function secHtml(k){
   var h='<div class="sec '+k.c+'" id="sec-'+k.c+'" data-s="'+k.c+'"><button type="button" class="shexp" data-exp="'+k.c+'" aria-expanded="false"><span class="shexl">Показать предложения</span><span class="chv">'+I(P.chev,18)+'</span></button><div class="fold" id="fold-'+k.c+'"><div class="in"><div class="grid">';
-  k.L.forEach(function(o,i){var pr=k.c==='prem'?o[2]:o[1];h+='<button class="opt '+k.sp(i,k.L.length)+(k.c==='prem'&&o[1]<0?' inf':'')+'" data-i="'+i+'" data-p="'+pr+'" style="--i:'+i+'"><span class="ov">'+(k.c==='prem'?o[0]:'\u00d7'+o[0])+'</span><span class="pf"></span><span class="pr">'+TK(15)+pr+'</span><span class="okv">'+I(P.check,18)+'Куплено</span></button>'});
+  k.L.forEach(function(o,i){var pr=k.c==='prem'?o[2]:o[1];h+='<button class="opt '+k.sp(i,k.L.length)+(k.c==='prem'&&o[1]<0?' inf':'')+'" data-i="'+i+'" data-p="'+pr+'" style="--i:'+i+'"><span class="ov">'+(k.c==='prem'?o[0]:'\u00d7'+o[0])+'</span><span class="shpf"></span><span class="pr">'+TK(15)+pr+'</span><span class="okv">'+I(P.check,18)+'Куплено</span></button>'});
   return h+'</div></div></div></div>'
  }
  function toggleExp(c,force){
