@@ -2250,7 +2250,7 @@ function lvPlay(a,b,done){if(lvSeg(a).max){lvRender();done();return}
    if(sg.up)levelUp(sg.s.l+1,()=>{if(i<segs.length)bar(lvSeg(segs[i].from),segs[i].from);step()});else step()})(t0)};
  setTimeout(step,200)}
 /* данные моего профиля для других игроков */
-function upgProfExtra(){return{lv:lvOf(tonBought),tb:Math.round(tonBought*100)/100,nc:nickColor,nm:nickMedal,ad:avaDeco,fr:avaFrame,bg:badges.slice(0,4),fx:fxS.slice(0,4),ph:myPhone?{c:myPhone.c,s:myPhone.s}:null,pod:plPodium.slice(0,6).map(i=>({p:i.p,t:i.t,k:i.k||'ru'})),h:hist.slice(0,15).map(x=>({m:String(x.m).slice(0,30),x:x.x,a:x.a,t:x.t,l:x.l?1:0}))}}
+function upgProfExtra(){return{lv:lvOf(tonBought),tb:Math.round(tonBought*100)/100,nc:nickColor,nm:nickMedal,ad:avaDeco,fr:avaFrame,bg:badges.filter(b=>b!=='prem'&&b!=='help').slice(0,4),fx:fxS.slice(0,4),ph:myPhone?{c:myPhone.c,s:myPhone.s}:null,pod:plPodium.slice(0,6).map(i=>({p:i.p,t:i.t,k:i.k||'ru'})),h:hist.slice(0,15).map(x=>({m:String(x.m).slice(0,30),x:x.x,a:x.a,t:x.t,l:x.l?1:0}))}}
 /* стили оформления истории (#hl) дублируем для копий профиля (.hlx) */
 let pvFxDone=0;function pvFx(){if(pvFxDone)return;pvFxDone=1;try{[...document.styleSheets].forEach(ss=>{let rs;try{rs=ss.cssRules}catch(e){return}const add=[];[...rs].forEach(r=>{if(r.type===1&&r.selectorText&&r.selectorText.indexOf('#hl')>=0)add.push(r.cssText.replace(/#hl\b/g,'.hlx'))});add.forEach(t=>{try{ss.insertRule(t,ss.cssRules.length)}catch(e){}})})}catch(e){}}
 /* профиль другого игрока — точная копия моей страницы профиля с его данными и оформлением */
@@ -3642,22 +3642,76 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
 </div></div>
 <script>
 (function(){
- // Адрес Firebase Realtime Database, например https://depchik-default-rtdb.firebaseio.com
+ // Адрес Firebase Realtime Database
  var CHAT_URL='https://depchik-5c9b7-default-rtdb.firebaseio.com';
+ // Web API Key проекта: Firebase Console → Project settings → General → Web API Key (публичный, это нормально)
+ var FB_API_KEY='AIzaSyAlxpmeTagoK0DFvnSLWItQVYTU805USaw';
  var g=function(i){return document.getElementById(i)};
  var fab=g('chatFab'),mod=g('chatm'),list=g('chatList'),st=g('chatSt'),inp=g('chatIn'),btn=g('chatSend');
  var timer=null,lastKey='',lastSend=0,lastPush=0;
- function ready(){return /^https:\/\/.+/.test(CHAT_URL)}
+ function authOk(){return /^AIza[A-Za-z0-9_-]{30,}$/.test(FB_API_KEY)}
+ function ready(){return /^https:\/\/.+/.test(CHAT_URL)&&authOk()}
  function txt(i){var e=g(i);return e?String(e.textContent||'').trim().slice(0,40):''}
  function nick(){return (txt('nick')||'Player').slice(0,20)}
  function key(n){return String(n).toLowerCase()}
  function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
- var uid=ls('dep_uid');
- if(!uid){uid=(Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2)+Date.now().toString(36)).slice(0,36);ls('dep_uid',uid)}
  function nonce(n){var a='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',o='';try{var b=new Uint8Array(n);crypto.getRandomValues(b);for(var i=0;i<n;i++)o+=a[b[i]%62]}catch(e){o='';for(var j=0;j<n;j++)o+=a[Math.floor(Math.random()*62)]}return o}
  function owned(){try{return JSON.parse(ls('dep_names')||'[]')}catch(e){return[]}}
  function addOwned(k){var a=owned();if(a.indexOf(k)<0){a.push(k);ls('dep_names',JSON.stringify(a))}}
  function isMine(){return owned().indexOf(key(nick()))>=0}
+ var SV={'.sv':'timestamp'};
+
+ /* ===== Анонимная авторизация Firebase (uid аккаунта = auth.uid в Rules) ===== */
+ var A={uid:ls('dep_auid')||null,tok:null,exp:0,rt:ls('dep_rt')||null,p:null};
+ function setAuth(tok,rt,uid,ttl){A.tok=tok;A.exp=Date.now()+(parseInt(ttl,10)||3600)*1000;A.rt=rt;A.uid=uid;ls('dep_rt',rt);ls('dep_auid',uid)}
+ function tokenFetch(){
+  if(A.tok&&Date.now()<A.exp-300000)return Promise.resolve(A.tok);
+  if(A.p)return A.p;
+  A.p=(async function(){
+   try{
+    if(A.rt){
+     var r=await fetch('https://securetoken.googleapis.com/v1/token?key='+FB_API_KEY,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=refresh_token&refresh_token='+encodeURIComponent(A.rt)});
+     if(r.ok){var d=await r.json();setAuth(d.id_token,d.refresh_token,d.user_id,d.expires_in);return A.tok}
+     if(r.status!==400&&r.status!==401)throw r.status;
+    }
+    var r2=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+FB_API_KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:'{"returnSecureToken":true}'});
+    if(!r2.ok)throw r2.status;
+    var d2=await r2.json();setAuth(d2.idToken,d2.refreshToken,d2.localId,d2.expiresIn);return A.tok;
+   }finally{A.p=null}
+  })();
+  return A.p;
+ }
+ /* все запросы к базе идут через api(): добавляет токен */
+ async function api(path,o){
+  var t=await tokenFetch();
+  return fetch(CHAT_URL+path+(path.indexOf('?')<0?'?':'&')+'auth='+encodeURIComponent(t),o||{});
+ }
+ async function getJ(path){var r=await api(path);if(!r.ok)throw r.status;return r.json()}
+ var _adm=null;
+ async function isAdmin(){if(_adm!==null)return _adm;try{_adm=(await getJ('/admins/'+A.uid+'.json'))===true}catch(e){return false}return _adm}
+
+ /* Синхронизация ника с аккаунтом + перенос старого ника (миграция со старой схемы) */
+ async function bootSync(){
+  if(!ready())return;
+  try{
+   await tokenFetch();
+   var k=await getJ('/uidname/'+A.uid+'.json');
+   if(typeof k==='string'){
+    var n=null;try{n=await getJ('/names/'+k+'/n.json')}catch(e){}
+    ls('dep_names',JSON.stringify([k]));
+    if(typeof n==='string'&&key(n)===k&&nick()!==n){g('nick').textContent=n;try{save()}catch(e){}}
+    return;
+   }
+   var cur=nick(),ck=key(cur),old=ls('dep_uid');
+   if(old&&owned().indexOf(ck)>=0&&/^[A-Za-z0-9]{3,15}$/.test(cur)){
+    var b={};b['names/'+ck]={u:A.uid,ou:old,n:cur,v:2};b['uidname/'+A.uid]=ck;
+    var w=await api('/.json',{method:'PATCH',body:JSON.stringify(b)});
+    if(w.ok){ls('dep_names',JSON.stringify([ck]));return}
+    if(w.status===401||w.status===403)ls('dep_names','[]');
+   }else ls('dep_names','[]');
+  }catch(e){}
+ }
+ var bootP=bootSync();
 
  /* ===== Мой профиль на сервере (его видят другие, только чтение) ===== */
  function thumb(cb){
@@ -3674,9 +3728,9 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   if(!force&&now-lastPush<20000)return;if(soft&&!force&&now-lastPush<60000)return;
   lastPush=now;
   thumb(function(a){
-   var p={n:nick(),m:txt('bal'),t:txt('tonv'),w:txt('bw'),c:txt('bc'),a:a,ts:now},ex=null,url=CHAT_URL+'/profiles/'+key(nick())+'.json';try{ex=window.upgProfExtra()}catch(e){}
-   var bd=function(o){return JSON.stringify({u:uid,p:Object.assign({},p,o||{})})};
-   fetch(url,{method:'PUT',body:bd(ex)}).then(function(r){if(!r.ok&&(r.status===401||r.status===403)){try{console.warn('Профиль отклонён сервером ('+r.status+'): проверьте Rules и владельца ника')}catch(e){}}if(r.ok||!ex)return;var e2=Object.assign({},ex);delete e2.h;return fetch(url,{method:'PUT',body:bd(e2)}).then(function(r2){if(!r2.ok)return fetch(url,{method:'PUT',body:bd(null)})})}).catch(function(){});
+   var p={n:nick(),m:txt('bal'),t:txt('tonv'),w:txt('bw'),c:txt('bc'),a:a,ts:SV},ex=null,path='/profiles/'+key(nick())+'.json';try{ex=window.upgProfExtra()}catch(e){}
+   var bd=function(o){return JSON.stringify({p:Object.assign({},p,o||{})})};
+   api(path,{method:'PUT',body:bd(ex)}).then(function(r){if(!r.ok&&(r.status===401||r.status===403)&&!ex)return;if(r.ok||!ex)return;var e2=Object.assign({},ex);delete e2.h;return api(path,{method:'PUT',body:bd(e2)}).then(function(r2){if(!r2.ok)return api(path,{method:'PUT',body:bd(null)})})}).catch(function(){});
   });
  }
  window.__pp=pushProfile;document.addEventListener('visibilitychange',function(){if(document.hidden)pushProfile(false)});
@@ -3692,20 +3746,29 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   pg.classList.add('show');
   function msg(t,retry){body.textContent='';var d=document.createElement('div');d.className='pvmsg';d.textContent=t;if(retry){var b=document.createElement('button');b.type='button';b.textContent='Повторить';b.onclick=function(){showProfile(name)};d.appendChild(document.createElement('br'));d.appendChild(b)}body.appendChild(d)}
   function draw(p){if(tk!==pvTok)return;try{var v=window.upgProfView(p,name);body.textContent='';body.appendChild(v);body.scrollTop=0}catch(e){msg('Не удалось показать профиль')}}
-  fetch(CHAT_URL+'/profiles/'+key(name)+'/p.json')
-   .then(function(r){if(!r.ok)throw 0;return r.json()})
-   .then(function(p){return{p:(p&&typeof p==='object')?p:null}},function(){return{err:1}})
+  /* бейджи PREMIUM/HELPER берутся только с сервера (их выдаёт админ), из профиля игрока они игнорируются */
+  function withBadges(p,b){
+   var bg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'&&x!=='help'});
+   if(b&&typeof b==='object'){
+    if(b.help===true)bg.push('help');
+    if(typeof b.prem==='number'&&(b.prem===-1||b.prem>Date.now()))bg.push('prem');
+   }
+   p.bg=bg;return p;
+  }
+  var k=key(name);
+  Promise.all([getJ('/profiles/'+k+'/p.json'),getJ('/badges/'+k+'.json').catch(function(){return null})])
+   .then(function(a){return{p:(a[0]&&typeof a[0]==='object')?a[0]:null,b:a[1]}},function(){return{err:1}})
    .then(function(r){
     if(tk!==pvTok)return;
-    if(mine){thumb(function(a){var p=Object.assign({},{n:nick(),m:txt('bal'),t:txt('tonv'),w:txt('bw'),c:txt('bc')});try{Object.assign(p,window.upgProfExtra())}catch(e){}if(a)p.a=a;draw(p)});return}
+    if(mine){thumb(function(a){var p=Object.assign({},{n:nick(),m:txt('bal'),t:txt('tonv'),w:txt('bw'),c:txt('bc')});try{Object.assign(p,window.upgProfExtra())}catch(e){}if(a)p.a=a;try{p.bg=(Array.isArray(p.bg)?p.bg:[]).concat(badges.filter(function(x){return x==='prem'||x==='help'}))}catch(e){}draw(p)});return}
     if(r.err)return msg('Нет связи с сервером',1);
     if(!r.p)return msg('Профиль пока пуст');
-    draw(r.p)});
+    draw(withBadges(r.p,r.b))});
  }
  g('profX').onclick=function(){g('profm').classList.remove('show')};
 
  /* ===== Чат ===== */
- /* v2.92: если человек сменил ник, его старые сообщения показываются с новым ником (renames/старый_ник/uid = {n:новый, ts}) */
+ /* если человек сменил ник, его старые сообщения показываются с новым ником (rn/старый_ник/uid = {n:новый, ts}) */
  var rnC={},rnVer=0,rnSeen=0,lastData=null;
  function rname(n,ts){var c=rnC[key(n)];if(c&&typeof ts==='number')for(var i=0;i<c.l.length;i++)if(c.l[i].ts>ts)return c.l[i].n;return n}
  function rnSync(data){
@@ -3713,7 +3776,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   Object.keys(data||{}).forEach(function(id){var m=data[id];if(!m||typeof m.n!=='string')return;var k=key(m.n.slice(0,20));if((!rnC[k]||Date.now()-rnC[k].ts>60000)&&need.indexOf(k)<0)need.push(k)});
   need.slice(0,20).forEach(function(k){
    rnC[k]=rnC[k]||{ts:0,l:[]};rnC[k].ts=Date.now();
-   fetch(CHAT_URL+'/renames/'+k+'.json').then(function(r){return r.ok?r.json():null}).then(function(v){
+   getJ('/rn/'+k+'.json').then(function(v){
     var l=[];if(v&&typeof v==='object')Object.keys(v).forEach(function(u){var e=v[u];if(e&&typeof e.n==='string'&&typeof e.ts==='number')l.push({n:e.n,ts:e.ts})});
     l.sort(function(a,b){return a.ts-b.ts});
     var c=rnC[k];if(!c)return;var ch=JSON.stringify(l)!==JSON.stringify(c.l);c.l=l;
@@ -3747,12 +3810,11 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
     if(sp.dataset.l!==String(l)){sp.dataset.l=l;sp.innerHTML=lvBadge(l,18)}
     if(n!==me&&(!lvC[k]||Date.now()-lvC[k].ts>60000)&&need.indexOf(k)<0)need.push(k)});
    need.slice(0,15).forEach(function(k){lvC[k]=lvC[k]||{l:1,ts:0};lvC[k].ts=Date.now();
-    fetch(CHAT_URL+'/profiles/'+k+'/p/lv.json').then(function(r){return r.ok?r.json():null}).then(function(v){if(typeof v==='number'&&v>=1&&v<=9){lvC[k].l=Math.floor(v);lvSync()}}).catch(function(){})});}
+    getJ('/profiles/'+k+'/p/lv.json').then(function(v){if(typeof v==='number'&&v>=1&&v<=9){lvC[k].l=Math.floor(v);lvSync()}}).catch(function(){})});}
   list.onclick=function(e){var c=e.target.closest?e.target.closest('.cm'):null;if(c&&c.dataset.n)showProfile(c.dataset.n)};
  function load(){
-  if(!ready()){st.textContent='Сервер не настроен';return}
-  fetch(CHAT_URL+'/chat.json?orderBy='+encodeURIComponent('"$key"')+'&limitToLast=60')
-   .then(function(r){if(!r.ok)throw 0;return r.json()})
+  if(!ready()){st.textContent=authOk()?'Сервер не настроен':'Сервер не настроен (нет API-ключа)';return}
+  getJ('/chat.json?orderBy='+encodeURIComponent('"$key"')+'&limitToLast=60')
    .then(function(d){render(d);st.textContent=''})
    .catch(function(){st.textContent='Нет связи с сервером'});
  }
@@ -3763,12 +3825,13 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   if(!t||!ready())return;
   if(!isMine()){st.textContent='Сначала задайте юзернейм: нажмите на свой ник';return}
   var now=Date.now();
-  if(now-lastSend<1500){st.textContent='Не так быстро';return}
+  if(now-lastSend<2500){st.textContent='Не так быстро';return}
   lastSend=now;inp.value='';
-  var cid=String(now).padStart(13,'0')+nonce(8);
-  fetch(CHAT_URL+'/chatauth/'+cid+'.json',{method:'PUT',body:JSON.stringify({f:nick(),su:uid,ts:{'.sv':'timestamp'}})})
-   .then(function(r){if(!r.ok)throw r.status;return fetch(CHAT_URL+'/chat/'+cid+'.json',{method:'PUT',body:JSON.stringify({n:nick(),t:t.slice(0,200),ts:{'.sv':'timestamp'}})})})
-   .then(function(r){if(!r.ok)throw r.status;SFX.send();fetch(CHAT_URL+'/chatauth/'+cid+'.json',{method:'DELETE'}).catch(function(){});load();pushProfile(false)})
+  var cid=String(now).padStart(13,'0')+nonce(8),b={};
+  b['chat/'+cid]={n:nick(),t:t.slice(0,200),ts:SV};
+  b['chatlast/'+A.uid]=SV; /* серверный лимит: не чаще раза в 2 сек */
+  api('/.json',{method:'PATCH',body:JSON.stringify(b)})
+   .then(function(r){if(!r.ok)throw r.status;SFX.send();load();pushProfile(false)})
    .catch(function(c){st.textContent='Не удалось отправить'+(typeof c==='number'?' (код '+c+')':'')});
  }
  fab.onclick=open;g('chatX').onclick=close;btn.onclick=send;
@@ -3804,46 +3867,40 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    if(!/^[A-Za-z0-9]{3,15}$/.test(v)){fail('Только английские буквы и цифры, от 3 до 15 символов');return}
    var k=key(v);
    if(v===cur&&(!ready()||owned().indexOf(k)>=0)){nem.classList.remove('show');setTitle('Изменить ник');return}
-   /* v2.92: если ник уже задан, это СМЕНА — разрешена только 1 раз */
+   /* если ник уже задан, это СМЕНА — разрешена только 1 раз */
    var change=ready()&&isMine();
    if(change&&k===key(cur)){fail('Это ваш текущий ник. Введите другой');return}
    if(ready()){
     no.disabled=true;err.style.color='var(--mut)';err.textContent='Проверяю…';
     try{
-     var r=await fetch(CHAT_URL+'/names/'+k+'/n.json');if(!r.ok)throw 0;
-     var d=await r.json();
+     await tokenFetch();
+     var d=await getJ('/names/'+k+'/n.json');
      var mine=owned().indexOf(k)>=0;
      if(d&&!mine){fail('Этот ник уже занят');return}
+     var body={};
      if(change){
       /* забираем переводы, пришедшие на старый ник, пока он ещё ваш */
       try{await pollInbox()}catch(e){}
-      var olds=owned().filter(function(x){return x!==k});
-      var body={};
-      olds.forEach(function(o){
-       body['names/'+o]=null;       /* старый ник освобождается */
-       body['profiles/'+o]=null;    /* старый профиль удаляется */
-       body['inbox/'+o]=null;       /* непринятые переводы не достанутся новому владельцу ника */
-       body['slots/'+o]=null;       /* лимиты переводов старого ника */
-       body['renames/'+o+'/'+uid]={n:v,ts:{'.sv':'timestamp'}}; /* для чата: старый ник -> новый */
-      });
-      if(!d)body['names/'+k]={u:uid,n:v}; /* новый ник занимается */
-      body['renamed/'+uid]=true;           /* метка: смена использована (на сервере, 1 раз) */
-      var w2=await fetch(CHAT_URL+'/.json',{method:'PATCH',body:JSON.stringify(body)});
-      if(w2.status===401||w2.status===403){fail('Сервер отклонил смену ника (код '+w2.status+'). Ник уже менялся или не обновлены Rules в Firebase');return}
-      if(!w2.ok)throw 0;
-      ls('dep_renamed','1');ls('dep_names',JSON.stringify([k]));rnC={};lvC={};rnVer++;
-     }else{
-      if(!d||mine){
-       var w=await fetch(CHAT_URL+'/names/'+k+'.json',{method:'PUT',body:JSON.stringify({u:uid,n:v})});
-       if(w.status===401||w.status===403){
-        var chk=await fetch(CHAT_URL+'/names/'+k+'/n.json');
-        var cd=chk.ok?await chk.json():null;
-        if(cd)fail('Этот ник уже занят');else fail('Сервер отклонил запись (код '+w.status+'). Проверьте Rules в Firebase');
-        return}
-       if(!w.ok)throw 0;
-      }
-      addOwned(k);
+      var o=key(cur);
+      body['names/'+o]=null;       /* старый ник освобождается */
+      body['profiles/'+o]=null;    /* старый профиль удаляется */
+      body['inbox/'+o]=null;       /* непринятые переводы не достанутся новому владельцу ника */
+      body['slots/'+o]=null;       /* лимиты переводов старого ника */
+      body['rn/'+o+'/'+A.uid]={n:v,ts:SV}; /* для чата: старый ник -> новый */
+      body['renamed/'+A.uid]=true;         /* метка: смена использована (на сервере, 1 раз) */
      }
+     body['names/'+k]={u:A.uid,n:v,v:2};
+     body['uidname/'+A.uid]=k;
+     var w=await api('/.json',{method:'PATCH',body:JSON.stringify(body)});
+     if(w.status===401||w.status===403){
+      var cd=null;try{cd=await getJ('/names/'+k+'/n.json')}catch(e){}
+      if(cd&&!mine)fail('Этот ник уже занят');
+      else if(change)fail('Сервер отклонил смену ника (код '+w.status+'). Ник уже менялся или не обновлены Rules в Firebase');
+      else fail('Сервер отклонил запись (код '+w.status+'). У аккаунта уже есть ник либо не обновлены Rules');
+      return}
+     if(!w.ok)throw 0;
+     if(change){ls('dep_renamed','1');ls('dep_names',JSON.stringify([k]));rnC={};lvC={};rnVer++}
+     else addOwned(k);
     }catch(e){fail('Нет связи с сервером, попробуйте позже');return}
     finally{no.disabled=false}
    }
@@ -3851,10 +3908,12 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   };
   /* при каждом запуске просим задать юзернейм, пока он не задан */
   setTimeout(function(){
-   var n=nick();
-   var need=ready()?!isMine():(!/^[A-Za-z0-9]{3,15}$/.test(n)||n==='Player');
-   if(need){setForced(true);setTitle('Придумайте юзернейм');ni.value='';err.textContent='';nem.classList.add('show');try{ni.focus()}catch(e){}}
-   else pushProfile(true);
+   bootP.then(function(){
+    var n=nick();
+    var need=ready()?!isMine():(!/^[A-Za-z0-9]{3,15}$/.test(n)||n==='Player');
+    if(need){setForced(true);setTitle('Придумайте юзернейм');ni.value='';err.textContent='';nem.classList.add('show');try{ni.focus()}catch(e){}}
+    else pushProfile(true);
+   });
   },1200);
  }
 
@@ -3866,7 +3925,6 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   e.textContent=t;e.onclick=function(){e.remove()};
   document.body.appendChild(e);setTimeout(function(){e.remove()},7000);
  }
- /* v2.92: юзернейм можно сменить только 1 раз */
  var eb=g('editNickBtn');
   if(eb)eb.style.display='';
 
@@ -3891,23 +3949,14 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   var log=sentLog();
   if(log.length>=LIM){var wait=Math.max(1,Math.ceil((WIN-(Date.now()-log[0]))/60000));sMsg('Лимит: 10 переводов в час. Подождите ~'+wait+' мин.');return}
   sending=true;sendBtn.disabled=true;sMsg('Отправляю…',true);
-  var taken=false,code=0;
+  var taken=false,code=0,id=nonce(24);
   try{
-   var r=await fetch(CHAT_URL+'/names/'+k+'/n.json');
-   if(!r.ok){code=r.status;throw 0}
-   var d=await r.json();
+   var d=await getJ('/names/'+k+'/n.json').catch(function(c){code=c;throw 0});
    if(!d||typeof d!=='string'){sMsg('Ошибка: игрок @'+to+' не найден');return}
-   /* проверка: ваш ник на сервере принадлежит этому устройству (заодно восстанавливает запись, если её нет) */
-   var own0=await fetch(CHAT_URL+'/names/'+me+'/n.json');
-   if(own0.ok&&(await own0.json())===null){var rr=await fetch(CHAT_URL+'/renames/'+me+'/'+uid+'.json');if(rr.ok&&(await rr.json())){sMsg('Ваш ник был изменён. Перезапустите игру');return}}
-   var ow=await fetch(CHAT_URL+'/names/'+me+'.json',{method:'PUT',body:JSON.stringify({u:uid,n:nick()})});
-   if(!ow.ok){
-    if(ow.status===401||ow.status===403){sMsg('Ваш ник привязан к другому устройству (код '+ow.status+')');return}
-    code=ow.status;throw 0}
    /* шаг 1: серверный слот (лимит 10 в час, подтверждает, что отправитель - это вы) */
-   var id=nonce(24),slot=-1,lastSt=0;
+   var slot=-1,lastSt=0;
    for(var i=0;i<10;i++){
-    var sr=await fetch(CHAT_URL+'/slots/'+me+'/'+i+'.json',{method:'PUT',body:JSON.stringify({su:uid,ts:{'.sv':'timestamp'},id:id,to:k,a:amt})});
+    var sr=await api('/slots/'+me+'/'+i+'.json',{method:'PUT',body:JSON.stringify({ts:SV,id:id,to:k,a:amt})});
     if(sr.ok){slot=i;break}
     lastSt=sr.status;
     if(sr.status!==401&&sr.status!==403){code=sr.status;throw 0}
@@ -3915,17 +3964,19 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    if(slot<0){sMsg('Лимит 10 переводов в час, либо сервер отклонил запись (код '+lastSt+')');return}
    if(amt>Math.floor(money)){sMsg('Недостаточно денег');return}
    money-=amt;taken=true;save();showMoney(1200);
-   /* шаг 2: сам перевод, сервер сверяет его со слотом */
+   /* шаг 2: сам перевод (и подпись) одним запросом, сервер сверяет его со слотом */
    var note=sendNote?sendNote.value.trim().slice(0,80):'',noteBad=false;
-   if(note){try{var nw=await fetch(CHAT_URL+'/notes/'+k+'/'+id+'.json',{method:'PUT',body:JSON.stringify({m:note})});if(!nw.ok)noteBad=true}catch(_){noteBad=true}}
-   var p=await fetch(CHAT_URL+'/inbox/'+k+'/'+id+'.json',{method:'PUT',body:JSON.stringify({f:nick(),a:amt,ts:Date.now(),sl:String(slot)})});
+   var mk=function(withNote){var b={};b['inbox/'+k+'/'+id]={f:nick(),a:amt,ts:Date.now(),sl:String(slot)};if(withNote)b['notes/'+k+'/'+id]={m:note};return b};
+   var p=await api('/.json',{method:'PATCH',body:JSON.stringify(mk(!!note))});
+   if(!p.ok&&note){noteBad=true;p=await api('/.json',{method:'PATCH',body:JSON.stringify(mk(false))})}
    if(!p.ok){code=p.status;throw 0}
    log.push(Date.now());ls('dep_sent',JSON.stringify(log));
    taken=false;
    sendAmt.value='';if(sendNote&&!noteBad)sendNote.value='';
-   sMsg('Отправлено @'+d+': '+fmt(amt)+(note?(noteBad?' (подпись не отправилась — проверьте правила Firebase)':' с подписью'):''),true);
+   sMsg('Отправлено @'+d+': '+fmt(amt)+(note?(noteBad?' (подпись не отправилась)':' с подписью'):''),true);
   }catch(e){
-   if(taken){var sent=false;try{var ck=await fetch(CHAT_URL+'/inbox/'+k+'/'+id+'.json');sent=ck.ok&&(await ck.json())!==null}catch(_){}
+   if(taken){var sent=false;try{sent=(await getJ('/inbox/'+k+'/'+id+'.json'))!==null}catch(_){}
+    /* получатель мог уже забрать перевод — тогда запись исчезла; в этом случае проверить нечем, считаем неотправленным только если запрос не дошёл */
     if(sent){log.push(Date.now());ls('dep_sent',JSON.stringify(log));sendAmt.value='';sMsg('Отправлено @'+to+': '+fmt(amt),true);return}
     money+=amt;save();showMoney(1200)}
    sMsg('Не удалось отправить, деньги не списаны'+(code?' (код '+code+')':''));
@@ -3942,37 +3993,30 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   polling=true;
   try{
    var k=key(nick());
-   var r=await fetch(CHAT_URL+'/inbox/'+k+'.json');
-   if(!r.ok)throw 0;
-   var d=await r.json();
+   var d=await getJ('/inbox/'+k+'.json');
    if(!d||typeof d!=='object')return;
-   var done=doneList(),total=0,names=[],cnt=0,fresh=[];
+   var done=doneList(),total=0,cnt=0,fresh=[];
    Object.keys(d).forEach(function(id){
     var m=d[id];
     if(!m||typeof m.a!=='number'||!isFinite(m.a)||m.a<1)return;
     if(done.indexOf(id)>=0)return;
     var a=Math.floor(m.a);
     money+=a;total+=a;cnt++;done.push(id);fresh.push({id:id,f:String(m.f||'?').slice(0,20),a:a});
-    var f='@'+String(m.f||'?').slice(0,20);
-    if(names.indexOf(f)<0)names.push(f);
    });
    if(cnt>0){
     ls('dep_done',JSON.stringify(done.slice(-300)));
     save();showMoney(2200);try{pfloat(total)}catch(e){}
-    var nd=null;try{var nr=await fetch(CHAT_URL+'/notes/'+k+'.json');if(nr.ok)nd=await nr.json()}catch(e){}
+    var nd=null;try{nd=await getJ('/notes/'+k+'.json')}catch(e){}
     if(!nd||typeof nd!=='object')nd=null;
     giftShow(fresh.map(function(x){var n=nd&&nd[x.id];return{t:'money',f:x.f,txt:'+'+fmt(x.a),m:(n&&typeof n.m==='string')?n.m.slice(0,120):''}}));
-    if(nd)fresh.forEach(function(x){if(nd[x.id])fetch(CHAT_URL+'/notes/'+k+'/'+x.id+'.json',{method:'DELETE'}).catch(function(){})});
+    if(nd)fresh.forEach(function(x){if(nd[x.id])api('/notes/'+k+'/'+x.id+'.json',{method:'DELETE'}).catch(function(){})});
    }
-   Object.keys(d).forEach(function(id){
-    fetch(CHAT_URL+'/inbox/'+k+'/'+id+'/c.json',{method:'PUT',body:JSON.stringify(uid)})
-     .then(function(r){if(r.ok)return fetch(CHAT_URL+'/inbox/'+k+'/'+id+'.json',{method:'DELETE'})})
-     .catch(function(){});
-   });
+   /* прочитанные переводы удаляем (получатель вправе удалять свой ящик) */
+   Object.keys(d).forEach(function(id){api('/inbox/'+k+'/'+id+'.json',{method:'DELETE'}).catch(function(){})});
   }catch(e){}finally{polling=false}
  }
 
- /* ===== Выдача PREMIUM (админ → игрок) ===== */
+ /* ===== Подарки от админа: PREMIUM / Lucky Roll ===== */
  /* окно подарков: несколько подарков и подписей показываются списком в одном окне */
  function giftShow(items){
   if(!items||!items.length)return;
@@ -3996,9 +4040,17 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   var n=l.children.length;
   document.getElementById('giftH').textContent=n>1?'🎁 Подарков: '+n:'🎁 Вам подарок';
  }
-
  window.giftShow=giftShow;
- var PREM_KEY='CHANGE_ME_SECRET';
+
+ /* админ-права определяются на сервере: в базе должен быть узел admins/<UID> = true (UID виден в админ-панели) */
+ window.__admInfo=async function(){
+  var w=g('admRig');if(!w)return;
+  var d=document.getElementById('admUid');
+  if(!d){d=document.createElement('div');d.id='admUid';d.style.cssText='font-size:11px;word-break:break-all;margin-bottom:10px;opacity:.85;user-select:all;-webkit-user-select:all';w.insertBefore(d,w.firstChild)}
+  if(!ready()){d.textContent='Сервер не настроен (нет API-ключа)';return}
+  try{await tokenFetch();_adm=null;var a=await isAdmin();d.textContent='Ваш UID: '+A.uid+(a?' · права админа есть ✓':' · прав админа нет (добавьте в базе admins/'+A.uid+' = true)')}catch(e){d.textContent='Нет связи с сервером'}
+ };
+ function adminFail(say,w,code){say(w&&w.status===401||w&&w.status===403?'Сервер отклонил: вы не админ (код '+w.status+')':'Ошибка отправки'+(code?' (код '+code+')':''),1)}
  (function(){
   var ni=g('admPremNick'),go=g('admPremGo'),sd=g('admPremS'),du=g('admPremDur');
   if(!ni||!go)return;
@@ -4010,16 +4062,22 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    var ms=parseInt(du.value,10);if(!isFinite(ms)||ms===0){say('Выберите срок',1);return}
    var nk='@'+raw,k=key(raw),nte=g('admPremNote'),nt=nte?nte.value.trim().slice(0,80):'';
    go.disabled=true;say('Отправка…');
+   var w=null;
    try{
-    if(k===key(nick())){premGrant(ms);giftShow([{t:'prem',f:nick(),txt:'PREMIUM: '+premDurTxt(ms),m:nt}]);say('Выдано себе: '+premDurTxt(ms));return}
     if(!ready())throw 0;
-    var r=await fetch(CHAT_URL+'/names/'+k+'/n.json');
-    var ex=r.ok?await r.json():null;
+    var ex=await getJ('/names/'+k+'/n.json');
     if(!ex){say('Игрок '+nk+' не найден',1);return}
-    var w=await fetch(CHAT_URL+'/premgrants/'+k+'/'+nonce(20)+'.json',{method:'PUT',body:JSON.stringify(nt?{d:ms,ts:Date.now(),f:nick(),k:PREM_KEY,m:nt}:{d:ms,ts:Date.now(),f:nick(),k:PREM_KEY})});
+    var cur=null;try{cur=await getJ('/badges/'+k+'/prem.json')}catch(e){}
+    var now=Date.now(),np;
+    if(ms<0||cur===-1)np=-1;else np=Math.max(typeof cur==='number'?cur:0,now)+ms;
+    var b={};b['badges/'+k+'/prem']=np;
+    var self=(k===key(nick()));
+    if(!self){var gf={t:'prem',d:ms,ts:now,f:nick()};if(nt)gf.m=nt;b['gifts/'+k+'/'+nonce(20)]=gf}
+    w=await api('/.json',{method:'PATCH',body:JSON.stringify(b)});
     if(!w.ok)throw 0;
-    say('Отправлено '+nk+': '+premDurTxt(ms)+(nt?' с подписью':'')+'. Придёт уведомление.');if(nte)nte.value='';
-   }catch(e){say('Ошибка отправки (проверьте правила Firebase)',1)}
+    if(self){premGrant(ms);giftShow([{t:'prem',f:nick(),txt:'PREMIUM: '+premDurTxt(ms),m:nt}]);say('Выдано себе: '+premDurTxt(ms));return}
+    say('Отправлено '+nk+': '+premDurTxt(ms)+(nt?' с подписью':'')+'. Бейдж виден всем, игроку придёт уведомление.');if(nte)nte.value='';
+   }catch(e){adminFail(say,w)}
    finally{go.disabled=false}
   });
  })();
@@ -4033,22 +4091,18 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    var raw=ni.value.replace(/^@/,''),n=parseInt(cn.value,10);
    if(raw.length<3){say('Введите ник (3–15 символов)',1);return}
    if(!(n>=1)){say('Введите количество (1–999)',1);return}
-   var note=nt?nt.value.trim().slice(0,80):'',k=key(raw),code=0,step='подготовка',det='';
+   var note=nt?nt.value.trim().slice(0,80):'',k=key(raw),w=null;
    go.disabled=true;say('Отправка…');
    try{
     if(k===key(nick())){plLuckGive(n);giftShow([{t:'lucky',f:nick(),txt:'Lucky Roll ×'+n,m:note}]);say('Выдано себе: '+n);return}
-    if(!ready()){say('Сервер не настроен (нет адреса базы)',1);return}
-    step='поиск игрока';
-    var r=await fetch(CHAT_URL+'/names/'+k+'/n.json');
-    if(!r.ok){code=r.status;throw 0}
-    var ex=await r.json();
+    if(!ready()){say('Сервер не настроен (нет API-ключа)',1);return}
+    var ex=await getJ('/names/'+k+'/n.json');
     if(!ex){say('Игрок @'+raw+' не найден',1);return}
-    step='запись подарка';
-    var body={d:n,ts:Date.now(),f:nick(),k:PREM_KEY};if(note)body.m=note;
-    var w=await fetch(CHAT_URL+'/premgrants/'+k+'/'+nonce(20)+'.json',{method:'PUT',body:JSON.stringify(body)});
-    if(!w.ok){code=w.status;try{det=(await w.text()).slice(0,120)}catch(_){}throw 0}
+    var body={t:'lucky',d:n,ts:Date.now(),f:nick()};if(note)body.m=note;
+    w=await api('/gifts/'+k+'/'+nonce(20)+'.json',{method:'PUT',body:JSON.stringify(body)});
+    if(!w.ok)throw 0;
     say('Отправлено @'+raw+': Lucky Roll ×'+n+(note?' с подписью':'')+'. Придёт уведомление.');if(nt)nt.value='';
-   }catch(e){say('Ошибка на шаге «'+step+'»: '+(code?'код '+code+(det?' · '+det:''):'нет связи с сервером'),1)}
+   }catch(e){adminFail(say,w)}
    finally{go.disabled=false}
   });
  })();
@@ -4058,26 +4112,23 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   premPolling=true;
   try{
    var k=key(nick());
-   var r=await fetch(CHAT_URL+'/premgrants/'+k+'.json');
-   if(!r.ok)throw 0;
-   var d=await r.json();
+   var d=await getJ('/gifts/'+k+'.json');
    if(!d||typeof d!=='object')return;
    var done=[];try{done=JSON.parse(ls('dep_pdone')||'[]')}catch(e){}
    var got=[],ids=Object.keys(d);
    ids.forEach(function(id){
     var m=d[id];
-    if(!m||typeof m.d!=='number'||!isFinite(m.d)||m.k!==PREM_KEY)return;
+    if(!m||typeof m.d!=='number'||!isFinite(m.d))return;
     if(done.indexOf(id)>=0)return;
-    var lk0=(typeof m.l==='number'&&isFinite(m.l)&&m.l>=1)?m.l:((m.d>=1&&m.d<=999&&Math.floor(m.d)===m.d)?m.d:0);if(lk0>=1){var ln=Math.min(Math.floor(lk0),999);plLuckGive(ln);done.push(id);got.push({t:'lucky',f:String(m.f||'?').slice(0,20),txt:'Lucky Roll ×'+ln,m:typeof m.m==='string'?m.m.slice(0,120):''});return}
-    var ms=m.d<0?-1:Math.min(Math.floor(m.d),31536000000);
-    if(ms===0)return;
-    premGrant(ms);done.push(id);got.push({t:'prem',f:String(m.f||'?').slice(0,20),txt:'PREMIUM: '+premDurTxt(ms),m:typeof m.m==='string'?m.m.slice(0,120):''});
+    var f=String(m.f||'?').slice(0,20),mm=typeof m.m==='string'?m.m.slice(0,120):'';
+    if(m.t==='lucky'){var ln=Math.min(Math.floor(m.d),999);if(!(ln>=1))return;plLuckGive(ln);done.push(id);got.push({t:'lucky',f:f,txt:'Lucky Roll ×'+ln,m:mm});return}
+    if(m.t==='prem'){var ms=m.d<0?-1:Math.min(Math.floor(m.d),31536000000);if(ms===0)return;premGrant(ms);done.push(id);got.push({t:'prem',f:f,txt:'PREMIUM: '+premDurTxt(ms),m:mm})}
    });
    if(got.length){
     ls('dep_pdone',JSON.stringify(done.slice(-300)));
     giftShow(got);
    }
-   ids.forEach(function(id){fetch(CHAT_URL+'/premgrants/'+k+'/'+id+'.json',{method:'DELETE'}).catch(function(){})});
+   ids.forEach(function(id){api('/gifts/'+k+'/'+id+'.json',{method:'DELETE'}).catch(function(){})});
   }catch(e){}finally{premPolling=false}
  }
  setInterval(pollPrem,5000);
@@ -4201,7 +4252,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
 function admRigUi(){const w=document.getElementById('admRig');if(!w)return;
  w.querySelectorAll('[data-rig]').forEach(b=>b.classList.toggle('on',+b.dataset.rig===plForce));
  const st=document.getElementById('admRigS');if(st)st.textContent=plForce>=0?'Следующая крутка: '+PLT[plForce].n:''}
-function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=false;admRigUi()}}
+function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=false;admRigUi();try{window.__admInfo&&window.__admInfo()}catch(e){}}}
 (function(){const w=document.getElementById('admRig');if(!w)return;
  w.addEventListener('click',function(e){const b=e.target.closest('[data-rig]');if(!b)return;plForce=+b.dataset.rig;admRigUi()})})();
 </script>
