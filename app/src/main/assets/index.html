@@ -1510,7 +1510,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 
 <style>
 /* v2.8: кнопка звука и «хватательный» курсор дерева */
-.sndbtn{right:60px}.flg.flge{width:auto;height:auto;box-shadow:none;background:none;border-radius:0;line-height:1;font-size:20px;vertical-align:middle;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+.sndbtn{right:16px;top:100px}.flg.flge{width:auto;height:auto;box-shadow:none;background:none;border-radius:0;line-height:1;font-size:20px;vertical-align:middle;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
 .plate[data-c="al"].t-1{--pb:#7cfc8a;--pg:linear-gradient(160deg,#25503a,#0b1a14)}
 .plate[data-c="al"] .plc{font-family:'Courier New',Consolas,monospace}
 .plate[data-c="al"] .plr em{display:none}
@@ -2250,7 +2250,7 @@ function lvPlay(a,b,done){if(lvSeg(a).max){lvRender();done();return}
    if(sg.up)levelUp(sg.s.l+1,()=>{if(i<segs.length)bar(lvSeg(segs[i].from),segs[i].from);step()});else step()})(t0)};
  setTimeout(step,200)}
 /* данные моего профиля для других игроков */
-function upgProfExtra(){if(!fxHasPrem())premStrip();return{lv:lvOf(tonBought),tb:Math.round(tonBought*100)/100,nc:nickColor,nm:nickMedal,ad:avaDeco,fr:avaFrame,bg:badges.filter(b=>b!=='prem'&&b!=='help').slice(0,4),fx:fxS.slice(0,4),ph:myPhone?{c:myPhone.c,s:myPhone.s}:null,pod:plPodium.slice(0,6).map(i=>({p:i.p,t:i.t,k:i.k||'ru'})),h:hist.slice(0,15).map(x=>({m:String(x.m).slice(0,30),x:x.x,a:x.a,t:x.t,l:x.l?1:0}))}}
+function upgProfExtra(){if(!fxHasPrem())premStrip();return{lv:lvOf(tonBought),tb:Math.round(tonBought*100)/100,nc:nickColor,nm:nickMedal,ad:avaDeco,fr:avaFrame,bg:badges.filter(b=>b!=='prem').slice(0,4),fx:fxS.slice(0,4),ph:myPhone?{c:myPhone.c,s:myPhone.s}:null,pod:plPodium.slice(0,6).map(i=>({p:i.p,t:i.t,k:i.k||'ru'})),h:hist.slice(0,15).map(x=>({m:String(x.m).slice(0,30),x:x.x,a:x.a,t:x.t,l:x.l?1:0}))}}
 /* стили оформления истории (#hl) дублируем для копий профиля (.hlx) */
 let pvFxDone=0;function pvFx(){if(pvFxDone)return;pvFxDone=1;try{[...document.styleSheets].forEach(ss=>{let rs;try{rs=ss.cssRules}catch(e){return}const add=[];[...rs].forEach(r=>{if(r.type===1&&r.selectorText&&r.selectorText.indexOf('#hl')>=0)add.push(r.cssText.replace(/#hl\b/g,'.hlx'))});add.forEach(t=>{try{ss.insertRule(t,ss.cssRules.length)}catch(e){}})})}catch(e){}}
 /* профиль другого игрока — точная копия моей страницы профиля с его данными и оформлением */
@@ -3788,11 +3788,11 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   pg.classList.add('show');
   function msg(t,retry){body.textContent='';var d=document.createElement('div');d.className='pvmsg';d.textContent=t;if(retry){var b=document.createElement('button');b.type='button';b.textContent='Повторить';b.onclick=function(){showProfile(name)};d.appendChild(document.createElement('br'));d.appendChild(b)}body.appendChild(d)}
   function draw(p){if(tk!==pvTok)return;try{var v=window.upgProfView(p,name);body.textContent='';body.appendChild(v);body.scrollTop=0}catch(e){msg('Не удалось показать профиль')}}
-  /* бейджи PREMIUM/HELPER берутся только с сервера (их выдаёт админ), из профиля игрока они игнорируются */
+  /* PREMIUM берётся только с сервера (его выдаёт админ), из профиля игрока игнорируется; HELPER берётся и из профиля, и с сервера */
   function withBadges(p,b){
-   var bg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'&&x!=='help'});
+   var bg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'});
    if(b&&typeof b==='object'){
-    if(b.help===true)bg.push('help');
+    if(b.help===true&&bg.indexOf('help')<0)bg.push('help');
     if(typeof b.prem==='number'&&(b.prem===-1||b.prem>Date.now()))bg.push('prem');
    }
    p.bg=bg;return p;
@@ -4494,6 +4494,10 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 </style>
 <style>
 /* ===== Маркет: фикс Ultra Roll + раскрытие предложений лесенкой ===== */
+/* тряска иконки при отказе: ~0.8 с, затем возврат в исходное положение */
+@keyframes shkIc{0%{transform:translateX(0) rotate(0)}12%{transform:translateX(-7px) rotate(-11deg)}28%{transform:translateX(6px) rotate(9deg)}44%{transform:translateX(-5px) rotate(-7deg)}60%{transform:translateX(3px) rotate(4deg)}76%{transform:translateX(-2px) rotate(-2deg)}90%{transform:translateX(1px) rotate(1deg)}100%{transform:translateX(0) rotate(0)}}
+#shopBox .shtab.shk{animation:none}
+#shopBox .shtab.shk .med{animation:shkIc .8s ease-in-out}
 #shopBox .sec.ultra.open,#shopBox .sec.ultra.open:not(.locked){display:block}
 .shexp{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 24px);margin:12px 12px 0;padding:12px;border-radius:14px;border:1px solid rgba(var(--ar),.55);background:rgba(var(--ar),.1);color:var(--tx);font-size:14px;font-weight:800;transition:background .25s,border-color .25s,transform .15s}
 .shexp:active{transform:scale(.97)}
