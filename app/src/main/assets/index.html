@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Upgrader v3.01 obverse</title>
+<title>Upgrader v3.03</title>
 
 <style>
 :root{color-scheme:dark;--bg:#0f1117;--card:#1a1d27;--line:#2a2e3d;--tx:#eef0f6;--mut:#8b90a3;--ac:#3ddc84;--bad:#ff5468;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -1334,7 +1334,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 </style>
 
 <div id="app">
- <div class="top"><div class="ver">v3.01 obverse</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
+ <div class="top"><div class="ver">v3.03</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
  <div class="tabs"><button id="t1" class="on">Профиль</button><button id="t6">Улучшения</button><button id="t2">Мини игры</button><button id="t7">Номера</button></div>
  <main>
   <section id="p1">
@@ -4083,6 +4083,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   document.getElementById('giftH').textContent=n>1?'🎁 Подарков: '+n:'🎁 Вам подарок';
  }
  window.giftShow=giftShow;
+ window.__shop={api:api,getJ:getJ,key:key,nonce:nonce,ready:ready,isMine:isMine,nick:nick};
 
  /* админ-права определяются на сервере: в базе должен быть узел admins/<UID> = true (UID виден в админ-панели) */
  window.__admInfo=async function(){
@@ -4345,3 +4346,370 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 })();
 </script>
 </html>
+<style>
+/* ===== Маркет билетиков v2 ===== */
+.shopbtn{right:auto!important;left:16px;top:40px;color:#ffd75e;overflow:visible;border-color:#6b5420;background:linear-gradient(160deg,#33290f,#17150f);box-shadow:0 0 16px -4px rgba(255,201,51,.55)}
+.shopbtn .tkdot{position:absolute;right:-6px;top:-6px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#ff4d6a;color:#fff;font-size:10px;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 2px #0f1117}
+.shopbtn.pulse{animation:shPulse .7s}
+@keyframes shPulse{0%{transform:scale(1)}40%{transform:scale(1.25);box-shadow:0 0 18px #ffd75e}100%{transform:scale(1)}}
+#shopOv{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(4,6,12,.74);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:opacity .28s,visibility 0s .28s}
+#shopOv.show{opacity:1;visibility:visible;transition:opacity .28s}
+#shopBox{width:100%;max-width:400px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);display:flex;flex-direction:column;transform:translateY(26px) scale(.93);transition:transform .5s cubic-bezier(.2,1.2,.3,1)}
+#shopOv.show #shopBox{transform:none}
+#shopBox button:focus-visible,#shopBox input:focus-visible{outline:2px solid #ffd75e;outline-offset:2px}
+/* билет, разорванный по перфорации: корешок сверху, основная часть снизу */
+.shpc{filter:drop-shadow(0 0 .7px rgba(255,214,102,.65)) drop-shadow(0 16px 26px rgba(0,0,0,.5))}
+.shpc.mn{flex:1;min-height:0;display:flex}
+.shstub{position:relative;padding:14px 14px 20px;border-radius:22px;background:linear-gradient(150deg,#3d3010 0%,#1f1d1b 55%,#171a25 100%);-webkit-mask:radial-gradient(circle 11px at 0 100%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 100%,#0000 97%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 11px at 0 100%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 100%,#0000 97%,#000) right/51% 100% no-repeat}
+.shdash{height:14px;flex:none;background:repeating-linear-gradient(90deg,rgba(255,214,102,.5) 0 6px,transparent 6px 12px) center/calc(100% - 48px) 2px no-repeat}
+.shmain{position:relative;flex:1;overflow-y:auto;overscroll-behavior:contain;padding:22px 12px 14px;border-radius:22px;background:linear-gradient(#191d2a,#12151e);scrollbar-width:none;-webkit-mask:radial-gradient(circle 11px at 0 0,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 0,#0000 97%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 11px at 0 0,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 0,#0000 97%,#000) right/51% 100% no-repeat}
+.shmain::-webkit-scrollbar{display:none}
+.shh{display:flex;align-items:center;gap:10px}
+.shlogo{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,rgba(255,201,51,.4),rgba(255,201,51,.08) 70%);box-shadow:inset 0 0 0 1px rgba(255,201,51,.45)}
+.shlogo svg{width:28px;height:28px;animation:shFl 2.6s ease-in-out infinite}
+@keyframes shFl{50%{transform:translateY(-3px) rotate(5deg)}}
+.shh>div:nth-child(2){flex:1;min-width:0}
+.shh h3{margin:0;font-size:17px;font-weight:800;color:#fff;letter-spacing:.2px}
+.shh small{display:block;font-size:11.5px;color:#b9a56a;margin-top:2px;line-height:1.25}
+.shtk{display:flex;align-items:center;gap:5px;padding:6px 11px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid #ffc933;color:#ffe08a;font-weight:900;font-size:15px;font-variant-numeric:tabular-nums}
+.shtk.bump{animation:shPulse .6s}
+.shx{flex:none;width:34px;height:34px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#c9cde0;display:grid;place-items:center}
+.shx:active{transform:scale(.9)}
+.shbar{height:10px;margin-top:14px;border-radius:6px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.shbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffb020,#ffe14d,#ffb020);background-size:200% 100%;animation:shSh 1.6s linear infinite;box-shadow:0 0 12px #ffc933;transition:width .9s linear}
+@keyframes shSh{to{background-position:-200% 0}}
+.shtm{font-size:12px;color:#c8b680;text-align:center;margin-top:6px;font-variant-numeric:tabular-nums}
+.shtm.off{color:#ff8a8a}
+.shpr{display:flex;align-items:center;gap:9px;margin-top:12px;padding:8px 10px;border-radius:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:13px;font-weight:700;color:var(--mut);transition:background .4s,border-color .4s}
+.shpr svg{width:22px;height:22px;flex:none;filter:grayscale(1) opacity(.55)}
+.shpr span{flex:1}
+.shpr em{font-style:normal;font-size:12px;color:#ffe08a;font-variant-numeric:tabular-nums}
+.shpr.on{background:rgba(255,201,51,.1);border-color:rgba(255,201,51,.45);color:#ffe08a}
+.shpr.on svg{filter:none}
+.shpr.hl{animation:shHl .9s}
+@keyframes shHl{30%{box-shadow:0 0 0 3px rgba(255,176,32,.7);transform:scale(1.02)}}
+.shgo{padding:6px 14px;border-radius:999px;border:0;background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;font-weight:900;font-size:12.5px}
+.shgo:active{transform:scale(.94)}
+/* получатель */
+.shrc{display:flex;align-items:center;gap:9px;width:100%;padding:11px 12px;border-radius:14px;border:1px solid #2c3246;background:#1a1f2e;color:var(--tx);font-size:14px;font-weight:700;margin-bottom:10px}
+.shrc>svg{color:#9aa3c4;flex:none}
+.shrc .rcl{color:var(--mut);font-weight:600}
+.shrc b{flex:1;text-align:right;color:#fff}
+.chv{display:grid;place-items:center;color:var(--mut);transition:transform .4s var(--ease),color .3s}
+.shrc.open{border-color:#ffc93399}.shrc.open .chv{transform:rotate(180deg);color:#ffc933}
+.fold{display:grid;grid-template-rows:0fr;transition:grid-template-rows .42s var(--ease)}
+.fold.open{grid-template-rows:1fr}
+.fold>.in{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .42s}
+.fold.open>.in{visibility:visible;transition:none}
+#shRcF>.in,#shEx>.in{padding:0 2px}
+.shchips{display:flex;flex-wrap:wrap;gap:6px;padding:0 0 10px}
+.shchip{padding:8px 13px;border-radius:999px;border:1px solid #2c3246;background:#1a1f2e;color:var(--tx);font-size:13px;font-weight:700}
+.shchip.on{border-color:#ffc933;color:#ffe08a;background:rgba(255,201,51,.12)}
+.shfs{padding-bottom:10px}
+.shin{display:block;width:100%;padding:11px 12px;border-radius:12px;border:1px solid #2c3246;background:#12151e;color:var(--tx);font-size:14px;margin-top:6px}
+.shin[hidden]{display:none}
+/* категории */
+.sec{--a:#ffc933;--ar:255,201,51;--pn:#161a26;margin-bottom:10px;border-radius:18px;background:var(--pn);border:1px solid rgba(var(--ar),.3);transition:border-color .35s,box-shadow .4s;animation:shIn .55s var(--ease) both;animation-delay:calc(var(--n)*80ms + 120ms)}
+@keyframes shIn{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.sec.luck{--a:#3ddc84;--ar:61,220,132}.sec.ultra{--a:#b46bff;--ar:180,107,255}
+.sec.open{border-color:rgba(var(--ar),.75);box-shadow:0 0 26px -8px rgba(var(--ar),.7)}
+.sec.ultra:not(.locked){border-color:transparent;background:linear-gradient(var(--pn),var(--pn)) padding-box,linear-gradient(110deg,#ff4d6a,#ffe14d,#3ddc84,#4da6ff,#b46bff,#ff4d6a) border-box;background-size:auto,300% 100%;animation:shIn .55s var(--ease) both,shRb 7s linear infinite}
+@keyframes shRb{to{background-position:0 0,300% 0}}
+.sech{display:flex;align-items:center;gap:12px;width:100%;padding:12px;background:none;border:0;color:var(--tx);text-align:left}
+.sech:active{transform:scale(.985)}
+.med{flex:none;width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,rgba(var(--ar),.38),rgba(var(--ar),.07) 70%);box-shadow:inset 0 0 0 1px rgba(var(--ar),.4);transition:filter .5s}
+.med svg{width:31px;height:31px;animation:shFl 2.8s ease-in-out infinite}
+.st{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.st b{font-size:16px;font-weight:800}
+.st small{font-size:12px;color:var(--mut);line-height:1.3;transition:color .3s}
+.sec.open .chv{transform:rotate(180deg);color:var(--a)}
+.lkb{display:none;flex:none;width:32px;height:32px;border-radius:50%;place-items:center;background:rgba(255,176,32,.14);border:1px solid rgba(255,176,32,.5);color:#ffb020}
+.sec.locked{--pn:#13161f;border-color:#2a2e3d;box-shadow:none}
+.sec.locked .med{filter:grayscale(1) brightness(.6)}
+.sec.locked .st b{color:#9aa0b6}
+.sec.locked .st small{color:#ffb020;font-weight:700}
+.sec.locked .lkb{display:grid}.sec.locked .chv{display:none}
+.sec.shk{animation:shK .45s}
+@keyframes shK{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.sec.unl .med{animation:shUnl .9s}
+@keyframes shUnl{35%{transform:scale(1.25);box-shadow:0 0 30px rgba(var(--ar),.9)}}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:2px 12px 14px}
+.sp2{grid-column:span 2}.sp3{grid-column:span 3}.sp6{grid-column:span 6}
+/* билетик-вариант */
+.opt{position:relative;display:flex;flex-direction:column;padding:0;border-radius:13px;border:1px solid rgba(var(--ar),.28);background:linear-gradient(170deg,#212637,#171b27);color:var(--tx);opacity:0;transform:translateY(10px) scale(.95);transition:opacity .35s,transform .4s var(--ease),border-color .25s,box-shadow .25s;transition-delay:0s}
+.sec.open .opt{opacity:1;transform:none;transition-delay:calc(var(--i)*40ms + 120ms),calc(var(--i)*40ms + 120ms),0s,0s}
+.sec.open .opt:active{transform:scale(.95);transition-delay:0s}
+.opt:hover{border-color:rgba(var(--ar),.8)}
+.ov{padding:12px 4px 10px;font-size:14px;font-weight:800;text-align:center}
+.pf{position:relative;border-top:1.5px dashed rgba(255,255,255,.18)}
+.pf::before,.pf::after{content:"";position:absolute;top:-6px;width:11px;height:11px;border-radius:50%;background:var(--pn)}
+.pf::before{left:-7px}.pf::after{right:-7px}
+.pr{display:flex;align-items:center;justify-content:center;gap:5px;padding:9px 4px 10px;color:#ffe08a;font-weight:900;font-size:14px;font-variant-numeric:tabular-nums}
+.opt.cant{border-color:#2c3246}.opt.cant .pr{color:#ff8f9b}.opt.cant .ov{color:#aab}
+.opt.inf{background:linear-gradient(110deg,#2f2610,#4f3d10,#2f2610);background-size:200% 100%;animation:shSh 3s linear infinite}
+.opt.inf .ov{font-size:15px;color:#ffe08a}
+.okv{position:absolute;inset:0;border-radius:inherit;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#1d8a4f,#35d884);color:#05240f;font-weight:900;font-size:14px;opacity:0;transform:scale(.9);pointer-events:none;transition:opacity .25s,transform .35s var(--ease)}
+.opt.done .okv{opacity:1;transform:none}
+.shmsg{position:sticky;bottom:0;display:none;margin-top:4px;padding:10px 12px;border-radius:12px;font-size:13px;font-weight:700;text-align:center;line-height:1.35;background:#2a1519;border:1px solid #6b2a35;color:#ff9aa6;box-shadow:0 -10px 14px #12151e}
+.shmsg.on{display:block;animation:shIn .3s var(--ease)}
+.shmsg.ok{background:#12261a;border-color:#2c7a4b;color:#7ff0a8}
+/* эффекты и уведомление */
+#shToast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translate(-50%,-160%);z-index:9500;display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:16px;background:linear-gradient(160deg,#2a2208,#14110a);border:1px solid #ffc933;color:#ffe08a;font-weight:900;font-size:15px;box-shadow:0 10px 34px rgba(255,201,51,.35);transition:transform .45s cubic-bezier(.2,1.3,.3,1);pointer-events:none;max-width:92vw}
+#shToast svg{flex:none}
+#shToast.show{transform:translate(-50%,0)}
+#shFx{position:fixed;inset:0;z-index:9600;pointer-events:none;overflow:hidden}
+.shp{position:absolute;width:20px;height:20px;animation:shP 1.3s ease-out forwards}
+.shp svg{width:100%;height:100%}
+@keyframes shP{0%{opacity:1;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.4) rotate(var(--r))}}
+.shbuy{position:absolute;left:50%;top:50%;width:120px;height:120px;color:#ffc933;filter:drop-shadow(0 0 24px rgba(255,201,51,.75));transform:translate(-50%,-50%) scale(0);animation:shBuy 1.25s cubic-bezier(.2,1.3,.3,1) forwards}
+.shbuy svg{width:100%;height:100%}
+@keyframes shBuy{40%{transform:translate(-50%,-50%) scale(1.2)}75%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-80%) scale(1);opacity:0}}
+</style>
+<style>
+/* ===== Маркет: 3 иконки в ряд, без бесконечных анимаций ===== */
+.shlogo svg,.med svg{animation:none!important}
+.shbar i,.opt.inf{animation:none!important}
+.shtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.shtab{--a:#ffc933;--ar:255,201,51;position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 4px 10px;border-radius:16px;border:1px solid rgba(var(--ar),.3);background:#161a26;color:var(--tx);font-weight:800;font-size:12.5px;white-space:nowrap;transition:border-color .25s,box-shadow .3s,background .25s,transform .18s}
+.shtab.luck{--a:#3ddc84;--ar:61,220,132}.shtab.ultra{--a:#b46bff;--ar:180,107,255}
+.shtab .med{width:52px;height:52px}
+.shtab.on{border-color:rgba(var(--ar),.9);background:rgba(var(--ar),.12);box-shadow:0 0 22px -6px rgba(var(--ar),.8)}
+.shtab .lkb{position:absolute;top:6px;right:6px;width:22px;height:22px}
+.shtab.locked{border-color:#2a2e3d;background:#13161f;box-shadow:none}
+.shtab.locked .med{filter:grayscale(1) brightness(.6)}
+.shtab.locked b{color:#9aa0b6}
+.shtab.locked .lkb{display:grid}
+.shtab.shk{animation:shK .45s}
+.shtab.unl .med{animation:shUnl .9s!important}
+.shhint{text-align:center;color:var(--mut);font-size:13px;padding:6px 0 10px}
+.shhint[hidden]{display:none}
+#shopBox .sec,#shopBox .sec.ultra:not(.locked){display:none;margin:0;animation:none;border-color:rgba(var(--ar),.35);background:var(--pn);box-shadow:none}
+#shopBox .sec.open{display:block}
+#shopBox .grid{padding:12px}
+#shopBox .opt{opacity:1;transform:none;transition:border-color .25s,box-shadow .25s,transform .15s}
+#shopBox .sec.open .opt{animation:shOptIn .35s var(--ease) backwards;animation-delay:calc(var(--i)*35ms)}
+@keyframes shOptIn{from{opacity:0;transform:translateY(8px) scale(.95)}}
+#shopBox .sec.open .opt:active{transform:scale(.95)}
+#shBody>.in{padding:0 2px}#shBody.open{padding-bottom:6px}
+</style>
+<style>
+/* ===== Маркет: фикс Ultra Roll + раскрытие предложений лесенкой ===== */
+#shopBox .sec.ultra.open,#shopBox .sec.ultra.open:not(.locked){display:block}
+.shexp{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 24px);margin:12px 12px 0;padding:12px;border-radius:14px;border:1px solid rgba(var(--ar),.55);background:rgba(var(--ar),.1);color:var(--tx);font-size:14px;font-weight:800;transition:background .25s,border-color .25s,transform .15s}
+.shexp:active{transform:scale(.97)}
+.shexp.open{background:rgba(var(--ar),.18);border-color:rgba(var(--ar),.9)}
+#shopBox .sec .shexp .chv{transform:none;color:var(--a)}
+#shopBox .sec .shexp.open .chv{transform:rotate(180deg)}
+#shopBox .sec .grid{display:flex;flex-direction:column;gap:8px;padding:12px}
+#shopBox .sec .grid .opt{flex-direction:row;align-items:stretch;margin-left:0;grid-column:auto;animation:none;opacity:0;transform:translateX(-22px) scale(.97);transition:opacity .2s,transform .2s,border-color .25s,box-shadow .25s}
+#shopBox .sec .fold.open .grid .opt{opacity:1;transform:none;transition:opacity .3s calc(var(--i)*75ms + 120ms),transform .5s var(--ease) calc(var(--i)*75ms + 120ms),border-color .25s,box-shadow .25s}
+#shopBox .sec .fold.open .grid .opt:active{transform:scale(.97);transition-delay:0s}
+#shopBox .sec .grid .opt .ov{flex:1;display:flex;align-items:center;justify-content:flex-start;text-align:left;padding:13px 14px}
+#shopBox .sec .grid .opt .pf{border-top:0;border-left:1.5px dashed rgba(255,255,255,.2)}
+#shopBox .sec .grid .opt .pf::before,#shopBox .sec .grid .opt .pf::after{left:-6.5px;right:auto}
+#shopBox .sec .grid .opt .pf::before{top:-6px}
+#shopBox .sec .grid .opt .pf::after{top:auto;bottom:-6px}
+#shopBox .sec .grid .opt .pr{min-width:84px;padding:0 14px}
+</style>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)},SHK='upg_tix_v1';
+ var TIX=0,ACC=0,CAP=60;
+ try{var d=JSON.parse(localStorage.getItem(SHK)||'{}');TIX=Math.max(0,Math.floor(d.t||0));ACC=Math.min(CAP-1,Math.max(0,d.a||0))}catch(e){}
+ function sv(){try{localStorage.setItem(SHK,JSON.stringify({t:TIX,a:Math.floor(ACC*10)/10}))}catch(e){}}
+
+ /* ---- иконки ---- */
+ function I(p,s){s=s||20;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
+ var P={
+  x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  chev:'<path d="M6 9l6 6 6-6"/>',
+  lock:'<rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  user:'<circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.6 3.6-5.6 7-5.6s6.4 2 7 5.6"/>',
+  check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  gift:'<rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5V20h14v-7.5M12 8.5V20M12 8.5C10 8.5 8 7.5 8 5.8 8 4.5 9 4 10 4c1.5 0 2 2.5 2 4.5zM12 8.5c2 0 4-1 4-2.7C16 4.5 15 4 14 4c-1.5 0-2 2.5-2 4.5z"/>',
+  tk:'<path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6.5v2M14 11v2M14 15.5v2"/>'
+ };
+ function TK(s){s=s||16;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2.5a2.5 2.5 0 0 0 0 5V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2.5a2.5 2.5 0 0 0 0-5z" fill="#ffc933"/><path d="M9 7v10" stroke="#8a5a00" stroke-width="1.5" stroke-dasharray="2 2"/></svg>'}
+ var TIC=TK(16);
+ var STAR='<svg viewBox="0 0 24 24"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="currentColor"/></svg>';
+ function clover(c,s){var o='<svg viewBox="0 0 24 24" aria-hidden="true">',p=[[8.4,8.4],[15.6,8.4],[8.4,15.6],[15.6,15.6]];p.forEach(function(q,i){o+='<circle cx="'+q[0]+'" cy="'+q[1]+'" r="4.6" fill="'+c[i]+'"/>'});return o+'<circle cx="12" cy="12" r="2" fill="#fff" fill-opacity=".55"/><path d="M12 13c.4 3.2 1.7 5.6 4 7.4" fill="none" stroke="'+s+'" stroke-width="1.8" stroke-linecap="round"/></svg>'}
+ var IC={
+  prem:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18L2 7l5.5 4.5L12 4l4.5 7.5L22 7l-1 11z" fill="#ffc933"/><rect x="3" y="19.5" width="18" height="2.2" rx="1.1" fill="#e08a00"/><circle cx="12" cy="13" r="1.6" fill="#fff3b0"/></svg>',
+  luck:clover(['#3ddc84','#5df0a0','#2fbf70','#3ddc84'],'#1a8f4f'),
+  ultra:clover(['#ff4d6a','#ffe14d','#3ddc84','#4da6ff'],'#b46bff')
+ };
+ var PREM=[['1 час',36e5,15],['6 часов',216e5,40],['1 день',864e5,75],['3 дня',2592e5,125],['7 дней',6048e5,180],['14 дней',12096e5,240],['30 дней',2592e6,300],['90 дней',7776e6,420],['365 дней',31536e6,500],['Навсегда ∞',-1,600]];
+ var LUCK=[[1,10],[2,15],[3,20],[5,30],[10,50]],ULTRA=[[1,60],[2,100],[3,140],[5,200],[10,325]];
+ var DESC={prem:'Цвета, значки, рамки и стили',luck:'Удача ×100 на одну крутку',ultra:'Удача ×10 000 на одну крутку'};
+ var CATS=[
+  {c:'prem',t:'Premium',L:PREM,sp:function(i,n){return i===n-1?'sp6':'sp2'}},
+  {c:'luck',t:'Super Roll',L:LUCK,sp:function(i){return i<3?'sp2':'sp3'}},
+  {c:'ultra',t:'Ultra Roll',L:ULTRA,sp:function(i){return i<3?'sp2':'sp3'}}
+ ];
+ var to='me',busy=false,pm=null;
+
+ /* ---- кнопка и окно ---- */
+ var top=document.querySelector('.top');
+ var sb=document.createElement('button');sb.className='codebtn shopbtn';sb.id='shopbtn';sb.setAttribute('aria-label','Маркет билетиков');sb.innerHTML=I(P.tk,22)+'<span class="tkdot" id="shdot">0</span>';
+ if(top)top.insertBefore(sb,top.firstChild);
+ var ov=document.createElement('div');ov.id='shopOv';ov.innerHTML='<div id="shopBox" role="dialog" aria-modal="true" aria-label="Маркет билетиков"></div>';document.body.appendChild(ov);
+ var toast=document.createElement('div');toast.id='shToast';document.body.appendChild(toast);
+ var fx=document.createElement('div');fx.id='shFx';document.body.appendChild(fx);
+ var box=$('shopBox');
+ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ function hasPrem(){try{return !!fxHasPrem()}catch(e){return false}}
+ function pt(){try{var s=premStr();return s==='∞'?'навсегда':'осталось '+s}catch(e){return ''}}
+ function dot(){var x=$('shdot');if(x)x.textContent=TIX>99?'99+':TIX}
+ function bump(){var s=$('shopbtn');if(s){s.classList.remove('pulse');void s.offsetWidth;s.classList.add('pulse')}var t=$('shTk');if(t){t.classList.remove('bump');void t.offsetWidth;t.classList.add('bump')}}
+ function sparks(kinds,n,cx,cy){for(var i=0;i<n;i++){var p=document.createElement('i');p.className='shp';p.innerHTML=kinds[i%kinds.length];p.style.color=['#ffd75e','#fff3b0','#ffb020'][i%3];p.style.left=cx+'px';p.style.top=cy+'px';var a=Math.random()*6.28,r=60+Math.random()*130;p.style.setProperty('--dx',Math.cos(a)*r+'px');p.style.setProperty('--dy',Math.sin(a)*r-40+'px');p.style.setProperty('--r',(Math.random()*360-180)+'deg');p.style.animationDelay=Math.random()*.2+'s';fx.appendChild(p);(function(q){setTimeout(function(){q.remove()},1700)})(p)}}
+ function buyFx(kind){var b=document.createElement('div');b.className='shbuy';b.innerHTML=kind==='gift'?I(P.gift,120):IC[kind];fx.appendChild(b);setTimeout(function(){b.remove()},1300);var w=innerWidth/2,h=innerHeight/2;sparks([STAR],22,w,h);sparks([TK(20)],8,w,h);try{if(navigator.vibrate)navigator.vibrate([30,40,60])}catch(e){}}
+ var tt=0;
+ function say(t,ms){toast.innerHTML=t;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},ms||2600)}
+ var mt=0;
+ function msg(t,ok){var m=$('shMsg');if(!m)return;clearTimeout(mt);m.textContent=t;m.className='shmsg on'+(ok?' ok':'');void m.offsetWidth;mt=setTimeout(function(){m.className='shmsg'},4500)}
+
+ /* ---- билетики: считаем только когда игрок в сети и вкладка открыта ---- */
+ function online(){return navigator.onLine!==false&&!document.hidden}
+ var last=Date.now();
+ setInterval(function(){
+  var n=Date.now(),dt=(n-last)/1000;last=n;
+  if(dt>3)dt=1; /* пауза/сон устройства не засчитывается */
+  if(!online()){upd(true);return}
+  ACC+=dt;
+  if(ACC>=CAP){ACC-=CAP;TIX++;sv();dot();afford();say(TIC+' +1 билетик');sparks([TK(20),STAR],6,innerWidth/2,50);bump()}
+  else if(Math.floor(ACC)%5===0)sv();
+  upd(false);
+ },1000);
+ document.addEventListener('visibilitychange',function(){last=Date.now()});
+ window.addEventListener('online',function(){last=Date.now()});
+ window.addEventListener('beforeunload',sv);
+ function upd(off){
+  var f=$('shBar'),t=$('shTm'),k=$('shTkN');
+  if(k&&k.textContent!==String(TIX))k.textContent=TIX;
+  if(!f)return;
+  f.style.width=(ACC/CAP*100)+'%';
+  t.className='shtm'+(off?' off':'');
+  t.textContent=off?'Нет сети — отсчёт на паузе':'Следующий билетик через '+Math.max(1,Math.ceil(CAP-ACC))+' сек';
+  if(hasPrem()!==pm)sync();else if(pm){var e=$('shPrT');if(e)e.textContent=pt()}
+ }
+ function afford(){box.querySelectorAll('.opt').forEach(function(o){o.classList.toggle('cant',TIX<+o.dataset.p)})}
+
+ /* ---- экран ---- */
+ function tabHtml(k){
+  return '<button class="shtab '+k.c+'" id="tab-'+k.c+'" data-c="'+k.c+'" aria-expanded="false"><span class="med">'+IC[k.c]+'</span><b>'+k.t+'</b><span class="lkb">'+I(P.lock,13)+'</span></button>'
+ }
+ function secHtml(k){
+  var h='<div class="sec '+k.c+'" id="sec-'+k.c+'" data-s="'+k.c+'"><button type="button" class="shexp" data-exp="'+k.c+'" aria-expanded="false"><span class="shexl">Показать предложения</span><span class="chv">'+I(P.chev,18)+'</span></button><div class="fold" id="fold-'+k.c+'"><div class="in"><div class="grid">';
+  k.L.forEach(function(o,i){var pr=k.c==='prem'?o[2]:o[1];h+='<button class="opt '+k.sp(i,k.L.length)+(k.c==='prem'&&o[1]<0?' inf':'')+'" data-i="'+i+'" data-p="'+pr+'" style="--i:'+i+'"><span class="ov">'+(k.c==='prem'?o[0]:'\u00d7'+o[0])+'</span><span class="pf"></span><span class="pr">'+TK(15)+pr+'</span><span class="okv">'+I(P.check,18)+'Куплено</span></button>'});
+  return h+'</div></div></div></div>'
+ }
+ function toggleExp(c,force){
+  var f=$('fold-'+c),b=document.querySelector('#sec-'+c+' .shexp');if(!f||!b)return;
+  var on=typeof force==='boolean'?force:!f.classList.contains('open');
+  f.classList.toggle('open',on);b.classList.toggle('open',on);b.setAttribute('aria-expanded',on);
+  b.querySelector('.shexl').textContent=on?'Скрыть предложения':'Показать предложения';
+  if(on)setTimeout(function(){var m=$('shMain'),e=$('sec-'+c);if(m&&e){var r=e.getBoundingClientRect(),q=m.getBoundingClientRect();if(r.bottom>q.bottom-10)m.scrollBy({top:r.bottom-q.bottom+90,behavior:'smooth'})}},500);
+ }
+ function render(){
+  to='me';
+  box.innerHTML='<div class="shpc"><div class="shstub"><div class="shh"><span class="shlogo">'+TK(28)+'</span><div><h3>Маркет билетиков</h3><small>1 билетик в минуту, пока ты в игре и в сети</small></div><div class="shtk" id="shTk">'+TIC+'<span id="shTkN">'+TIX+'</span></div><button class="shx" id="shX" aria-label="Закрыть">'+I(P.x,18)+'</button></div><div class="shbar"><i id="shBar"></i></div><div class="shtm" id="shTm"></div><div class="shpr" id="shPr"></div></div></div><div class="shdash"></div>'+
+  '<div class="shpc mn"><div class="shmain" id="shMain">'+
+  '<div class="shtabs">'+CATS.map(tabHtml).join('')+'</div><div class="shhint" id="shHint">Нажми на иконку, чтобы выбрать покупку</div>'+
+  '<div class="fold" id="shBody"><div class="in">'+
+  '<button class="shrc" id="shRc" aria-expanded="false">'+I(P.user,20)+'<span class="rcl">Кому</span><b id="shRcL">Себе</b><span class="chv">'+I(P.chev,18)+'</span></button>'+
+  '<div class="fold" id="shRcF"><div class="in"><div class="shchips" id="shChips"></div></div></div>'+
+  '<div class="fold" id="shEx"><div class="in"><div class="shfs"><input class="shin" id="shNick" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" hidden><input class="shin" id="shNote" maxlength="80" placeholder="Текст подарка (необязательно)" autocomplete="off"></div></div></div>'+
+  CATS.map(secHtml).join('')+'</div></div><div class="shmsg" id="shMsg"></div></div></div>';
+  pm=null;sync(true);rcUpd();afford();upd(false);
+ }
+ function sync(first){
+  var p=hasPrem(),was=pm;pm=p;
+  ['luck','ultra'].forEach(function(c){var t=$('tab-'+c);if(!t)return;
+   t.classList.toggle('locked',!p);t.setAttribute('aria-disabled',p?'false':'true');
+   if(!p&&$('sec-'+c).classList.contains('open')){$('sec-'+c).classList.remove('open');t.classList.remove('on');$('shBody').classList.remove('open');$('shHint').hidden=false}
+   if(p&&was===false&&!first){t.classList.add('unl');setTimeout(function(){t.classList.remove('unl')},1000)}});
+  var st=$('shPr');if(!st)return;
+  st.className='shpr'+(p?' on':'');
+  st.innerHTML=IC.prem+(p?'<span>Premium активен</span><em id="shPrT">'+pt()+'</em>':'<span>Premium не активен</span><button class="shgo" data-act="prem">Купить</button>');
+ }
+ function openSec(c,tg){
+  var body=$('shBody'),cur=null;
+  CATS.forEach(function(k){if($('sec-'+k.c).classList.contains('open'))cur=k.c});
+  var off=!!tg&&cur===c&&body.classList.contains('open');
+  CATS.forEach(function(k){toggleExp(k.c,false)});
+  CATS.forEach(function(k){var on=!off&&k.c===c;$('sec-'+k.c).classList.toggle('open',on);var t=$('tab-'+k.c);t.classList.toggle('on',on);t.setAttribute('aria-expanded',on)});
+  body.classList.toggle('open',!off);$('shHint').hidden=!off;
+  if(!off)setTimeout(function(){var m=$('shMain');if(m&&body.classList.contains('open'))m.scrollTo({top:Math.max(0,body.offsetTop-8),behavior:'smooth'})},430);
+ }
+ function deny(s){
+  s.classList.remove('shk');void s.offsetWidth;s.classList.add('shk');
+  var p=$('shPr');if(p){p.classList.remove('hl');void p.offsetWidth;p.classList.add('hl')}
+  var m=$('shMain');if(m)m.scrollTo({top:0,behavior:'smooth'});
+  msg('Для Super Roll и Ultra Roll нужен активный Premium. Сначала купи Premium.');
+  try{SFX.deny()}catch(e){}try{if(navigator.vibrate)navigator.vibrate(40)}catch(e){}
+ }
+ function rcLabel(){return to==='me'?'Себе':to==='other'?'Другому игроку':'@'+to}
+ function rcUpd(){
+  var fr=[];try{fr=JSON.parse(localStorage.getItem('upg_shop_rc')||'[]')}catch(e){}
+  var h='<button class="shchip'+(to==='me'?' on':'')+'" data-to="me">Себе</button>';
+  fr.forEach(function(n){h+='<button class="shchip'+(to===n?' on':'')+'" data-to="'+esc(n)+'">@'+esc(n)+'</button>'});
+  h+='<button class="shchip'+(to==='other'?' on':'')+'" data-to="other">Написать ник…</button>';
+  $('shChips').innerHTML=h;$('shRcL').textContent=rcLabel();
+  $('shNick').hidden=to!=='other';$('shEx').classList.toggle('open',to!=='me');
+ }
+ function dur(ms){try{return premDurTxt(ms)}catch(e){return ms<0?'навсегда':ms+' мс'}}
+
+ async function buy(c,i,el){
+  if(busy)return;
+  var k=CATS.filter(function(x){return x.c===c})[0],o=k.L[i],price=c==='prem'?o[2]:o[1],val=o[c==='prem'?1:0];
+  if(c!=='prem'&&!hasPrem()){deny($('tab-'+c));return}
+  if(TIX<price){msg('Не хватает билетиков: нужно '+price+', у тебя '+TIX);try{SFX.deny()}catch(e){}return}
+  var note=(to!=='me'&&$('shNote')&&$('shNote').value.trim().slice(0,80))||'',lbl=c==='prem'?dur(val):'×'+val,nm=c==='prem'?'PREMIUM: ':c==='luck'?'Super Roll ':'Ultra Roll ';
+  function okTile(){if(!el)return;el.classList.add('done');setTimeout(function(){el.classList.remove('done')},1100)}
+  busy=true;
+  try{
+   if(to==='me'){
+    if(c==='prem'){var ms=val;try{if(ms>0&&badges.includes('prem')&&premUntil<=0)ms=-1}catch(e){}premGrant(ms)}
+    else if(c==='luck')plLuckGive(val);else plUltraGive(val);
+    TIX-=price;sv();dot();okTile();buyFx(c);
+    msg('Куплено: '+nm+lbl,1);say(I(P.check,18)+nm+lbl+' — готово!');
+   }else{
+    var raw=to==='other'?(($('shNick')&&$('shNick').value)||'').replace(/^@+/,'').replace(/[^A-Za-z0-9]/g,''):to;
+    if(raw.length<3){msg('Введи ник (3–15 символов)');return}
+    var S=window.__shop;if(!S||!S.ready()||!S.isMine()){msg('Для подарков нужен сервер и свой юзернейм');return}
+    var kk=S.key(raw);if(kk===S.key(S.nick())){msg('Себе — выбери «Себе»');return}
+    msg('Отправка…',1);
+    var ex=null;try{ex=await S.getJ('/names/'+kk+'/n.json')}catch(e){}
+    if(!ex){msg('Игрок @'+raw+' не найден');return}
+    var g={t:c==='prem'?'prem':c==='luck'?'lucky':'ultra',d:val,ts:Date.now(),f:S.nick()};if(note)g.m=note;
+    var w=await S.api('/gifts/'+kk+'/'+S.nonce(20)+'.json',{method:'PUT',body:JSON.stringify(g)});
+    if(!w.ok){msg(w.status===401||w.status===403?'Сервер не принимает подарки от игроков (нужны новые правила базы)':'Ошибка отправки (код '+w.status+')');return}
+    TIX-=price;sv();dot();okTile();
+    try{var rc=JSON.parse(localStorage.getItem('upg_shop_rc')||'[]').filter(function(x){return x!==raw});rc.unshift(raw);localStorage.setItem('upg_shop_rc',JSON.stringify(rc.slice(0,4)))}catch(e){}
+    buyFx('gift');msg('Подарок отправлен @'+raw+': '+nm+lbl,1);say(I(P.gift,18)+'Подарок для @'+esc(raw)+' отправлен!');
+    if($('shNote'))$('shNote').value='';rcUpd();
+   }
+   afford();upd(false);bump();
+  }catch(e){msg('Не получилось, билетики не списаны')}
+  finally{busy=false}
+ }
+
+ box.addEventListener('click',function(e){
+  var t=e.target.closest('button');if(!t)return;
+  if(t.id==='shX'){close();return}
+  if(t.id==='shRc'){var f=$('shRcF'),on=!f.classList.contains('open');f.classList.toggle('open',on);t.classList.toggle('open',on);t.setAttribute('aria-expanded',on);return}
+  if(t.dataset.exp){toggleExp(t.dataset.exp);return}
+  if(t.dataset.act==='prem'){openSec('prem');return}
+  if(t.dataset.c){var tb=$('tab-'+t.dataset.c);if(tb.classList.contains('locked')){deny(tb);return}openSec(t.dataset.c,true);return}
+  if(t.dataset.to!==undefined){to=t.dataset.to;rcUpd();$('shRcF').classList.remove('open');$('shRc').classList.remove('open');$('shRc').setAttribute('aria-expanded','false');if(to==='other')setTimeout(function(){var n=$('shNick');if(n)n.focus()},420);return}
+  if(t.dataset.i!==undefined)buy(t.closest('.sec').dataset.s,+t.dataset.i,t);
+ });
+ box.addEventListener('input',function(e){if(e.target.id==='shNick'){var v=e.target.value.replace(/^@+/,'').replace(/[^A-Za-z0-9]/g,'').slice(0,15);e.target.value=v?'@'+v:''}});
+ function open(){render();ov.classList.add('show')}
+ function close(){ov.classList.remove('show');var a=document.activeElement;if(a&&box.contains(a))a.blur()}
+ sb.addEventListener('click',open);
+ ov.addEventListener('click',function(e){if(e.target===ov)close()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))close()});
+ dot();
+})();
+</script>
