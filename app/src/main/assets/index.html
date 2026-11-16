@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Upgrader v3.05</title>
+<title>Upgrader v3.06</title>
 
 <style>
 :root{color-scheme:dark;--bg:#0f1117;--card:#1a1d27;--line:#2a2e3d;--tx:#eef0f6;--mut:#8b90a3;--ac:#3ddc84;--bad:#ff5468;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -1338,7 +1338,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 </style>
 
 <div id="app">
- <div class="top"><div class="ver">v3.05</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
+ <div class="top"><div class="ver">v3.06</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
  <div class="tabs"><button id="t1" class="on">Профиль</button><button id="t6">Улучшения</button><button id="t2">Мини игры</button><button id="t7">Номера</button></div>
  <main>
   <section id="p1">
@@ -4410,8 +4410,8 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 .shopbtn .tkdot{position:absolute;right:-6px;top:-6px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#ff4d6a;color:#fff;font-size:10px;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 2px #0f1117}
 .shopbtn.pulse{animation:shPulse .7s}
 @keyframes shPulse{0%{transform:scale(1)}40%{transform:scale(1.25);box-shadow:0 0 18px #ffd75e}100%{transform:scale(1)}}
-#shopOv{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(4,6,12,.74);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:opacity .28s,visibility 0s .28s}
-#shopOv.show{opacity:1;visibility:visible;transition:opacity .28s}
+#shopOv{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(4,6,12,.74);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .28s,visibility 0s .28s}
+#shopOv.show{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .28s,visibility 0s}
 #shopBox{width:100%;max-width:400px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);display:flex;flex-direction:column;transform:translateY(26px) scale(.93);transition:transform .5s cubic-bezier(.2,1.2,.3,1)}
 #shopOv.show #shopBox{transform:none}
 #shopBox button:focus-visible,#shopBox input:focus-visible{outline:2px solid #ffd75e;outline-offset:2px}
@@ -4723,7 +4723,8 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  function dur(ms){try{return premDurTxt(ms)}catch(e){return ms<0?'навсегда':ms+' мс'}}
 
  async function buy(c,i,el){
-  if(busy)return;
+  /* Закрытый магазин не должен принимать даже запоздавшие нажатия */
+  if(!ov.classList.contains('show')||!box.contains(el)||busy)return;
   var k=CATS.filter(function(x){return x.c===c})[0],o=k.L[i],price=c==='prem'?o[2]:o[1],val=o[c==='prem'?1:0];
   if(c!=='prem'&&!hasPrem()){deny($('tab-'+c));return}
   if(TIX<price){msg('Не хватает билетиков: нужно '+price+', у тебя '+TIX);try{SFX.deny()}catch(e){}return}
@@ -4758,6 +4759,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  }
 
  box.addEventListener('click',function(e){
+  if(!ov.classList.contains('show'))return;
   var t=e.target.closest('button');if(!t)return;
   if(t.id==='shX'){close();return}
   if(t.id==='shRc'){var f=$('shRcF'),on=!f.classList.contains('open');f.classList.toggle('open',on);t.classList.toggle('open',on);t.setAttribute('aria-expanded',on);return}
@@ -4768,8 +4770,8 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
   if(t.dataset.i!==undefined)buy(t.closest('.sec').dataset.s,+t.dataset.i,t);
  });
  box.addEventListener('input',function(e){if(e.target.id==='shNick'){var v=e.target.value.replace(/^@+/,'').replace(/[^A-Za-z0-9]/g,'').slice(0,15);e.target.value=v?'@'+v:''}});
- function open(){render();ov.classList.add('show')}
- function close(){ov.classList.remove('show');var a=document.activeElement;if(a&&box.contains(a))a.blur()}
+ function open(){render();ov.style.pointerEvents='';ov.classList.add('show')}
+ function close(){ov.classList.remove('show');ov.style.pointerEvents='none';var a=document.activeElement;if(a&&box.contains(a))a.blur()}
  sb.addEventListener('click',open);
  ov.addEventListener('click',function(e){if(e.target===ov)close()});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))close()});
