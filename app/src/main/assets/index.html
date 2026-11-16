@@ -3788,24 +3788,29 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   pg.classList.add('show');
   function msg(t,retry){body.textContent='';var d=document.createElement('div');d.className='pvmsg';d.textContent=t;if(retry){var b=document.createElement('button');b.type='button';b.textContent='Повторить';b.onclick=function(){showProfile(name)};d.appendChild(document.createElement('br'));d.appendChild(b)}body.appendChild(d)}
   function draw(p){if(tk!==pvTok)return;try{var v=window.upgProfView(p,name);body.textContent='';body.appendChild(v);body.scrollTop=0}catch(e){msg('Не удалось показать профиль')}}
-  /* PREMIUM берётся только с сервера (его выдаёт админ), из профиля игрока игнорируется; HELPER берётся и из профиля, и с сервера */
-  function withBadges(p,b){
-   var bg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'});
-   if(b&&typeof b==='object'){
-    if(b.help===true&&bg.indexOf('help')<0)bg.push('help');
-    if(typeof b.prem==='number'&&(b.prem===-1||b.prem>Date.now()))bg.push('prem');
-   }
+  /* PREMIUM берётся с сервера. HELPER показывается другим игрокам только после подтверждения UID админом. */
+  function withBadges(p,b,approved){
+   var bg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'&&x!=='help'});
+   if(approved===true)bg.push('help');
+   if(b&&typeof b==='object'&&typeof b.prem==='number'&&(b.prem===-1||b.prem>Date.now()))bg.push('prem');
    p.bg=bg;return p;
   }
   var k=key(name);
-  Promise.all([getJ('/profiles/'+k+'/p.json'),getJ('/badges/'+k+'.json').catch(function(){return null})])
-   .then(function(a){return{p:(a[0]&&typeof a[0]==='object')?a[0]:null,b:a[1]}},function(){return{err:1}})
+  Promise.all([
+   getJ('/profiles/'+k+'/p.json'),
+   getJ('/badges/'+k+'.json').catch(function(){return null}),
+   getJ('/names/'+k+'/u.json').catch(function(){return null})
+  ]).then(async function(a){
+    var uid=a[2],approved=false;
+    if(typeof uid==='string'&&uid.length>=8){try{approved=(await getJ('/helperApprovals/'+uid+'.json'))===true}catch(e){approved=false}}
+    return{p:(a[0]&&typeof a[0]==='object')?a[0]:null,b:a[1],approved:approved};
+   },function(){return{err:1}})
    .then(function(r){
     if(tk!==pvTok)return;
     if(mine){thumb(function(a){var p=Object.assign({},{n:nick(),m:txt('bal'),t:txt('tonv'),w:txt('bw'),c:txt('bc')});try{Object.assign(p,window.upgProfExtra())}catch(e){}if(a)p.a=a;try{p.bg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'&&x!=='help'}).concat(badges.filter(function(x){return x==='prem'||x==='help'}))}catch(e){}draw(p)});return}
     if(r.err)return msg('Нет связи с сервером',1);
     if(!r.p)return msg('Профиль пока пуст');
-    draw(withBadges(r.p,r.b))});
+    draw(withBadges(r.p,r.b,r.approved))});
  }
  g('profX').onclick=function(){g('profm').classList.remove('show')};
 
@@ -4137,18 +4142,19 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
     if(!ready())throw 0;
     var ex=await getJ('/names/'+k+'/n.json');
     if(!ex){say('Игрок @'+raw+' не найден',1);return}
-    var b={};b['badges/'+k+'/help']=val?true:null;
+    var uid=await getJ('/names/'+k+'/u.json');
+    if(typeof uid!=='string'||uid.length<8){say('Не удалось получить UID игрока',1);return}
+    var b={};b['helperApprovals/'+uid]=val?true:null;
     w=await api('/.json',{method:'PATCH',body:JSON.stringify(b)});
     if(!w.ok)throw 0;
-    say(val?'HELPER выдан @'+raw+'. Виден всем в профиле.':'HELPER забран у @'+raw);
+    say(val?'UID игрока @'+raw+' подтверждён. HELPER увидят все.':'Подтверждение HELPER у @'+raw+' отозвано.');
    }catch(e){adminFail(say,w)}
    finally{on.disabled=off.disabled=false}
   }
   on.addEventListener('click',function(){setH(true)});
   off.addEventListener('click',function(){setH(false)});
-  /* HELPER, полученный кодом, публикуем на сервере (badges/ник/help), чтобы видели другие */
-  window.__helpSync=async function(){try{if(!ready()||!isMine()||badges.indexOf('help')<0)return;var k=key(nick());var w=await api('/.json',{method:'PATCH',body:JSON.stringify((function(){var b={};b['badges/'+k+'/help']=true;return b})())})}catch(e){}};
-  setTimeout(function(){try{window.__helpSync()}catch(e){}},3500);
+  /* Код nexus выдаёт HELPER только локально. Публичный показ включается админом по UID. */
+  window.__helpSync=function(){};
  })();
  (function(){
   var ni=g('admLkNick'),nt=g('admLkNote'),cn=g('admLkCnt'),go=g('admLkGo'),sd=g('admLkS');
@@ -4521,9 +4527,9 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 <style>
 /* ===== Маркет: фикс Ultra Roll + раскрытие предложений лесенкой ===== */
 /* тряска иконки при отказе: ~0.8 с, затем возврат в исходное положение */
-@keyframes shkIc{0%,100%{transform:translateX(0)}10%{transform:translateX(-8px)}25%{transform:translateX(8px)}40%{transform:translateX(-6px)}55%{transform:translateX(6px)}70%{transform:translateX(-3px)}85%{transform:translateX(3px)}}
+@keyframes shkIc{0%,100%{transform:translateX(0) scale(1)}20%{transform:translateX(0) scale(.88)}45%{transform:translateX(0) scale(1.08)}70%{transform:translateX(0) scale(.96)}}
 #shopBox .shtab.shk{animation:none}
-#shopBox .shtab.shk .med{animation:shkIc .8s linear 1}
+#shopBox .shtab.shk .med{animation:shkIc .8s ease-in-out 1;transform-origin:center center}
 #shopBox .sec.ultra.open,#shopBox .sec.ultra.open:not(.locked){display:block}
 .shexp{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 24px);margin:12px 12px 0;padding:12px;border-radius:14px;border:1px solid rgba(var(--ar),.55);background:rgba(var(--ar),.1);color:var(--tx);font-size:14px;font-weight:800;transition:background .25s,border-color .25s,transform .15s}
 .shexp:active{transform:scale(.97)}
