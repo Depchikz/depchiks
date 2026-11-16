@@ -3113,7 +3113,7 @@ function plPts(p){const L=[p[0],p[1],p[6],p[7]],D=[+p[2],+p[3],+p[4],+p[5]];let 
  return s}
 function plTier(pts){return pts<1.5?0:pts<3.5?1:pts<5.5?2:pts<7.5?3:pts<10?4:5}
 function plPickW(w){let r=Math.random()*w.reduce((a,b)=>a+b,0),i=0;for(;i<w.length-1&&r>=w[i];i++)r-=w[i];return i}
-function plPickTier(){const luck=plLuckBonus()/100,lm=plUltraNow?10000:plLuckNow?100:1,w=PLT.map((x,i)=>x.p*(i>=2?(1+luck)*lm:1)),sum=w.reduce((a,b)=>a+b,0);let r=Math.random()*sum,i=0;for(;i<w.length-1&&r>=w[i];i++)r-=w[i];return i}
+function plPickTier(){const luck=plLuckBonus()/100,lm=plLuckNow?100:1,um=plUltraNow,w=PLT.map((x,i)=>x.p*(i>=2?(1+luck)*(um?1e4*Math.pow(10,i-2):lm):1)),sum=w.reduce((a,b)=>a+b,0);let r=Math.random()*sum,i=0;for(;i<w.length-1&&r>=w[i];i++)r-=w[i];return i}
 function plGen(T){if(T>=6){const a=plRl();return{p:a+a+'0000'+a+a,pts:16+Math.random()*4}}for(let n=0;n<8000;n++){const L=plLetters(plPickW([6,2,2,2,2,2,2])),D=plDigits(plPickW([6,2,2,2,2,2,2,2,2])),p=L[0]+L[1]+D.join('')+L[2]+L[3],pts=plPts(p);if(plTier(pts)===T)return{p:p,pts:pts}}
  const a=plRl();return T===5?{p:a+a+'7777'+a+a,pts:12}:{p:plRl()+plRl()+'1234'+plRl()+plRl(),pts:3}}
 var plForce=-1;
@@ -3335,7 +3335,7 @@ plRender();plUpd();plARUi();
 function plLuckUi(){try{const row=$('lkrow'),b=$('lkbtn');if(!row||!b)return;
  b.classList.toggle('gray',plLuckArmed||plUltraArmed);b.classList.toggle('none',plLucky<1&&!plLuckArmed);
  const n=$('lkb');if(n.textContent!==String(plLucky)){n.textContent=plLucky;n.classList.remove('pop');void n.offsetWidth;n.classList.add('pop')}
- $('plcard').classList.toggle('lucky',plLuckArmed);plUltraUi()}catch(e){}}
+ $('plcard').classList.toggle('lucky',plLuckArmed);plUltraUi();try{window.__plchRedraw&&window.__plchRedraw()}catch(e){}}catch(e){}}
 function plLuckGive(n){n=Math.floor(Number(n)||0);if(n<1)return;plLucky=Math.min(9999,plLucky+n);plLuckUi();try{save()}catch(e){}}
 function plLuckFx(){try{const cd=$('plcard'),c=cd.getBoundingClientRect(),r=$('lkbtn').getBoundingClientRect();
  const fl=document.createElement('div');fl.className='lkflash';cd.appendChild(fl);setTimeout(()=>fl.remove(),850);
@@ -4210,26 +4210,27 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
 /* v2.7: шансы выпадения номеров */
 (function(){
  function fm(n){if(n<10)return (Math.round(n*100)/100).toString();if(n<100)return (Math.round(n*10)/10).toString().replace(/\.0$/,'');return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
- function chances(luckPct){const l=luckPct/100,w=PLT.map((x,i)=>x.p*(i>=2?1+l:1)),sum=w.reduce((a,b)=>a+b,0);return w.map(x=>sum/x)}
+ function chances(luckPct,md){const l=luckPct/100,w=PLT.map((x,i)=>x.p*(i>=2?(1+l)*(md===2?1e4*Math.pow(10,i-2):md===1?100:1):1)),sum=w.reduce((a,b)=>a+b,0);return w.map(x=>sum/x)}
  function draw(){
   const box=document.getElementById('plchl');if(!box)return;
-  const lk=plLuckBonus();
-  const base=chances(0),cur=chances(lk);
+  const lk=plLuckBonus(),md=plUltraArmed?2:plLuckArmed?1:0;
+  const base=chances(0,0),cur=chances(lk,md);
+  const lbl=md===2?'С Ultra Roll (x10 000)':md===1?'С Lucky Roll (x100)':'С вашей удачей',lc=md===2?'#d2b3ff':md===1?'#ffd75e':'';
   const pc=x=>{const v=100/x;return (v>=10?v.toFixed(2):v>=1?v.toFixed(3):v>=.01?v.toFixed(4):v>=.0001?v.toFixed(6):v.toFixed(8)).replace(/0+$/,'').replace(/\.$/,'')+'%'};
   const rg=(r,ch)=>{const lo=Math.max(1,r[0]*ch/ch0),hi=Math.max(1,r[1]*ch/ch0);return '1 к '+fm(lo)+' — 1 к '+fm(hi)};
   let ch0=1;
   box.innerHTML=PLT.map((t,i)=>{
    ch0=base[i];
    return '<div class="plchc"><div class="plchr"><b style="color:'+(i===6?'#000;text-shadow:0 0 2px #fff,0 0 6px #fff,0 0 12px #fff':t.col)+'">'+t.n+'</b></div>'
-    +'<div class="plchsub"><span>Без удачи: <b>'+rg(t.rg,base[i])+'</b> · '+pc(base[i])+'</span><span class="me">С вашей удачей'+(lk>0?' +'+lk+'%':'')+': <b>'+rg(t.rg,cur[i])+'</b> · '+pc(cur[i])+'</span></div></div>'
+    +'<div class="plchsub"><span>Без удачи: <b>'+rg(t.rg,base[i])+'</b> · '+pc(base[i])+'</span><span class="me"'+(lc?' style="color:'+lc+'"':'')+'>'+lbl+(lk>0?' +'+lk+'%':'')+': <b>'+rg(t.rg,cur[i])+'</b> · '+pc(cur[i])+'</span></div></div>'
    }).join('')
-   +'<div class="plchn">'+(lk>0?'Ваша удача: +'+lk+'%. Шансы пересчитаны с учётом прокачки.':'Улучшений удачи пока нет.')+'</div>';
+   +'<div class="plchn">'+(md===2?'Активен Ultra Roll: шансы пересчитаны. После крутки вернутся обычные. ':md===1?'Активен Lucky Roll: шансы пересчитаны. После крутки вернутся обычные. ':'')+(lk>0?'Ваша удача: +'+lk+'%. Шансы пересчитаны с учётом прокачки.':'Улучшений удачи пока нет.')+'</div>';
  }
  const m=document.getElementById('plchm'),btn=document.getElementById('plchb'),x=document.getElementById('plchx');
  if(!m||!btn)return;
  function open(){draw();m.classList.add('show');m.setAttribute('aria-hidden','false')}
  function close(){m.classList.remove('show');m.setAttribute('aria-hidden','true')}
- btn.onclick=open;x.onclick=close;
+ btn.onclick=open;x.onclick=close;window.__plchRedraw=function(){if(m.classList.contains('show'))draw()};
  m.addEventListener('click',function(e){if(e.target===m)close()});
  window.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('show'))close()});
 })();
