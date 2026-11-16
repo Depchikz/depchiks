@@ -4048,7 +4048,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   var d=document.getElementById('admUid');
   if(!d){d=document.createElement('div');d.id='admUid';d.style.cssText='font-size:11px;word-break:break-all;margin-bottom:10px;opacity:.85;user-select:all;-webkit-user-select:all';w.insertBefore(d,w.firstChild)}
   if(!ready()){d.textContent='Сервер не настроен (нет API-ключа)';return}
-  try{await tokenFetch();_adm=null;var a=await isAdmin();d.textContent='Ваш UID: '+A.uid+(a?' · права админа есть ✓':' · прав админа нет (добавьте в базе admins/'+A.uid+' = true)')}catch(e){d.textContent='Нет связи с сервером'}
+  try{await tokenFetch();var r=await api('/admins/'+A.uid+'.json');var tx='';try{tx=(await r.text()).slice(0,80)}catch(_){}_adm=(r.ok&&tx==='true');d.textContent='Ваш UID: '+A.uid+' · ответ сервера: '+r.status+' '+tx+(_adm?' · права админа есть ✓':' · прав админа нет')}catch(e){d.textContent='Ошибка входа: '+(typeof e==='number'?'код '+e:'нет связи')}
  };
  function adminFail(say,w,code){say(w&&w.status===401||w&&w.status===403?'Сервер отклонил: вы не админ (код '+w.status+')':'Ошибка отправки'+(code?' (код '+code+')':''),1)}
  (function(){
