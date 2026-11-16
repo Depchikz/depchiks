@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Upgrader v3.04</title>
+<title>Upgrader v3.05</title>
 
 <style>
 :root{color-scheme:dark;--bg:#0f1117;--card:#1a1d27;--line:#2a2e3d;--tx:#eef0f6;--mut:#8b90a3;--ac:#3ddc84;--bad:#ff5468;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -1338,7 +1338,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 </style>
 
 <div id="app">
- <div class="top"><div class="ver">v3.04</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
+ <div class="top"><div class="ver">v3.05</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
  <div class="tabs"><button id="t1" class="on">Профиль</button><button id="t6">Улучшения</button><button id="t2">Мини игры</button><button id="t7">Номера</button></div>
  <main>
   <section id="p1">
@@ -2312,6 +2312,7 @@ $('pc4l').onclick=()=>{try{lvMenu(Math.round(tonBought*100)/100,String($('nick')
 let stage='code',used=[],lastSave='';
 const CODES={benefits:{m:5000},sweet:{m:20000}};
 var badges=[];
+var verifiedPublicSelf=false;
 var premUntil=0;
 function premStr(){if(!badges.includes('prem'))return null;if(premUntil<=0)return '∞';var t=Math.max(0,premUntil-Date.now()),d=Math.floor(t/864e5),h=Math.floor(t%864e5/36e5),m=Math.floor(t%36e5/6e4),sc=Math.floor(t%6e4/1e3),o=[];if(d)o.push(d+'d');if(d||h)o.push(h+'h');if(d||h||m)o.push(m+'m');o.push(sc+'s');return o.join(' ')}
 function premDurTxt(ms){if(ms<0)return 'навсегда ∞';var d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4),o=[];if(d)o.push(d+' дн.');if(h)o.push(h+' ч.');if(m||!o.length)o.push(m+' мин.');return o.join(' ')}
@@ -2340,7 +2341,7 @@ const BDG={
  prem:{t:'PREMUIM',h:'<svg width="13" height="13" viewBox="0 0 24 24"><path d="M3 18L2 7l5.5 4.5L12 4l4.5 7.5L22 7l-1 11z" fill="currentColor"/><rect x="3" y="19.5" width="18" height="2.2" rx="1.1" fill="currentColor"/></svg><b>PREMUIM</b><u class="s1"></u><u class="s2"></u><u class="s3"></u>'},
  help:{t:'HELPER',h:'<svg width="13" height="13" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 9.300-8 11-4.600-1.700-8-6-8-11V5z" fill="currentColor"/><path d="M12 8v6M9 11h6" stroke="#b3001f" stroke-width="2.4" stroke-linecap="round"/></svg><b>HELPER</b>'},
  verified:{t:'VERIFED',h:'<svg width="13" height="13" viewBox="0 0 24 24"><path d="M12 2.2l2.7 1.5 3.1-.1 1.5 2.7 2.5 1.8-.7 3  .7 3-2.5 1.8-1.5 2.7-3.1-.1-2.7 1.5-2.7-1.5-3.1.1-1.5-2.7-2.5-1.8.7-3-.7-3 2.5-1.8 1.5-2.7 3.1.1z" fill="currentColor"/><path d="M7.8 12.2l2.7 2.7 5.8-6" fill="none" stroke="#07539b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>VERIFED</b>'}};
-function bdgRender(fresh){try{fxApply()}catch(e){}try{applyNickMedal()}catch(e){}try{applyNickColor()}catch(e){}try{applyAvaDeco()}catch(e){}try{applyAvaFrame()}catch(e){}const el=document.getElementById('bdgs');if(!el)return;el.innerHTML=['help','prem','verified'].filter(k=>badges.includes(k)).map(k=>'<span class="bdg '+k+(k===fresh?' fresh':'')+'">'+BDG[k].h+'</span>').join('')}
+function bdgRender(fresh){try{fxApply()}catch(e){}try{applyNickMedal()}catch(e){}try{applyNickColor()}catch(e){}try{applyAvaDeco()}catch(e){}try{applyAvaFrame()}catch(e){}const el=document.getElementById('bdgs');if(!el)return;el.innerHTML=['help','prem','verified'].filter(k=>badges.includes(k)||(k==='verified'&&verifiedPublicSelf)).map(k=>'<span class="bdg '+k+(k===fresh?' fresh':'')+'">'+BDG[k].h+'</span>').join('')}
 function mmsg(t,c,sh){const e=$('me');e.style.color=c||'var(--bad)';e.textContent=t;e.style.animation='none';void e.offsetWidth;e.style.animation='pop .4s';if(sh){const bx=document.querySelector('#md .box');bx.style.animation='none';void bx.offsetWidth;bx.style.animation='shake .4s'}}
 $('codebtn').onclick=()=>{try{$('admRig').hidden=true}catch(e){}premUi();wipeOff();svStatus();stage='code';const m=$('mi');m.type='text';m.inputMode='text';m.placeholder='Введите код';m.value='';m.disabled=false;$('mo').disabled=false;$('me').textContent='';$('mt').textContent='Ввод кода';$('md').classList.add('show');m.focus()};
 $('mc').onclick=()=>$('md').classList.remove('show');
@@ -3759,6 +3760,8 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   }catch(e){}
  }
  var bootP=bootSync();
+ async function syncVerifiedSelf(){try{if(!ready()||!isMine()){verifiedPublicSelf=false;bdgRender();return}verifiedPublicSelf=(await getJ('/verifiedPublic/'+key(nick())+'.json'))===true;bdgRender()}catch(e){verifiedPublicSelf=false;bdgRender()}}
+ bootP.then(syncVerifiedSelf);
 
  /* ===== Мой профиль на сервере (его видят другие, только чтение) ===== */
  function thumb(cb){
@@ -4173,7 +4176,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    if(raw.length<3){say('Введите ник (3–15 символов)',1);return}
    var k=key(raw),w=null;on.disabled=off.disabled=true;say('Отправка…');
    try{if(!ready())throw 0;var ex=await getJ('/names/'+k+'/n.json');if(!ex){say('Игрок @'+raw+' не найден',1);return}
-    var b={};b['verifiedPublic/'+k]=val?true:null;w=await api('/.json',{method:'PATCH',body:JSON.stringify(b)});if(!w.ok)throw 0;
+    var b={};b['verifiedPublic/'+k]=val?true:null;w=await api('/.json',{method:'PATCH',body:JSON.stringify(b)});if(!w.ok)throw 0;if(k===key(nick())){verifiedPublicSelf=!!val;bdgRender()}
     say(val?'Баннер VERIFED выдан игроку @'+raw+'. Его увидят все.':'Баннер VERIFED у @'+raw+' забран.');
    }catch(e){adminFail(say,w)}finally{on.disabled=off.disabled=false}
   }
