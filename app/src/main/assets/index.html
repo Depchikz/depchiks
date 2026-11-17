@@ -5210,8 +5210,8 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  var ICO_BIG='<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="dlTg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe58a"/><stop offset="1" stop-color="#ff9f1a"/></linearGradient></defs><g transform="rotate(-14 32 32)"><path d="M6 20a4 4 0 0 1 4-4h44a4 4 0 0 1 4 4v7a5 5 0 0 0 0 10v7a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4v-7a5 5 0 0 0 0-10z" fill="url(#dlTg)" opacity=".55" transform="translate(-4 -5)"/></g><g transform="rotate(8 32 32)"><path d="M6 20a4 4 0 0 1 4-4h44a4 4 0 0 1 4 4v7a5 5 0 0 0 0 10v7a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4v-7a5 5 0 0 0 0-10z" fill="url(#dlTg)" opacity=".75" transform="translate(3 -3)"/></g><path d="M6 20a4 4 0 0 1 4-4h44a4 4 0 0 1 4 4v7a5 5 0 0 0 0 10v7a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4v-7a5 5 0 0 0 0-10z" fill="url(#dlTg)" stroke="#a65f00" stroke-width="1.5" transform="translate(0 2)"/><path d="M22 20v24" stroke="#8a5a00" stroke-width="2.4" stroke-dasharray="3.500 3.500" transform="translate(0 2)"/><path d="M42 26l2.500 5 5.500.800-4 3.900.900 5.500-4.900-2.600-4.900 2.600.900-5.500-4-3.900 5.500-.800z" fill="#fff3b0" transform="translate(-1 2)"/></svg>';
 
  /* ---- состояние ---- */
- var S={s:0,l:null,m:0};
- try{var d0=JSON.parse(localStorage.getItem(KEY)||'null');if(d0&&typeof d0==='object'){S.s=Math.min(30,Math.max(0,d0.s|0));S.l=(typeof d0.l==='number'&&isFinite(d0.l))?Math.floor(d0.l):null;S.m=d0.m?1:0}}catch(e){}
+ var S={s:0,k:0,l:null,m:0};
+ try{var d0=JSON.parse(localStorage.getItem(KEY)||'null');if(d0&&typeof d0==='object'){S.s=Math.min(30,Math.max(0,d0.s|0));S.k=(typeof d0.k==='number'&&d0.k>=0)?Math.floor(d0.k):S.s;S.l=(typeof d0.l==='number'&&isFinite(d0.l))?Math.floor(d0.l):null;S.m=d0.m?1:0}}catch(e){}
  function sv(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
  /* время: берём серверное смещение (из онлайн-статуса), чтобы перевод часов на телефоне не помогал */
  function now(){var k=0;try{k=window.__srvSkew?window.__srvSkew():0}catch(e){}return Date.now()+(k||0)}
@@ -5219,7 +5219,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  function today(){return dayOf(now())}
  function msLeft(){var t=now(),d=new Date(t);return new Date(d.getFullYear(),d.getMonth(),d.getDate()+1).getTime()-t}
  /* пропустил день (не заходил за целые сутки) — серия сгорает, награда за 1 день станет доступна завтра */
- function check(){var t=today();if(S.l!==null&&t-S.l>=2){S.s=0;S.l=t;S.m=1;sv();return true}return false}
+ function check(){var t=today();if(S.l!==null&&t-S.l>=2){S.s=0;S.k=0;S.l=t;S.m=1;sv();return true}return false}
  function ready(){return S.l===null||today()-S.l>=1}
  function nextDay(){return S.s>=30?1:S.s+1}
  function dispS(){return(S.s>=30&&ready())?0:S.s}
@@ -5266,9 +5266,9 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  }
  function note(){
   var n=$('dlNote');if(!n)return;
-  if(S.m){n.className='dlnote miss on';n.innerHTML=ICO_WARN+'<div>Ты пропустил день, поэтому серия сгорела и всё началось заново. Награда за 1 день будет доступна уже завтра. Заходи каждый день!</div>';S.m=0;sv();dot()}
+  if(S.m){n.className='dlnote miss on';n.innerHTML=ICO_WARN+'<div>Ты пропустил день, твой огонь сгорел, и всё началось заново с 1 дня. Награду за 1 день сможешь получить уже завтра. Заходи каждый день!</div>';S.m=0;sv();dot()}
   else if(S.l===null){n.className='dlnote hi on';n.innerHTML=ICO_GIFT+'<div>Добро пожаловать! Забирай награду за 1 день и заходи каждый день: награды становятся всё больше.</div>'}
-  else if(S.s>=30&&ready()){n.className='dlnote hi on';n.innerHTML=ICO_GIFT+'<div>Круг из 30 дней пройден! Начинаем заново с 1 дня.</div>'}
+  else if(S.s>=30&&ready()){n.className='dlnote hi on';n.innerHTML=ICO_GIFT+'<div>Поздравляем! Ты официально прошёл все ежедневные награды за 30 дней. Всё началось по новой: сегодня снова День 1. Твой огонь не погас, серия сохраняется!</div>'}
   else n.className='dlnote';
  }
  function select(d,quiet){
@@ -5281,11 +5281,11 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  }
  function updFire(anim){
   var f=$('dlFire'),n=$('dlFn');if(!f||!n)return;
-  var old=n.textContent,lv=S.s>=30?4:S.s>=14?3:S.s>=7?2:S.s>=1?1:0;
-  n.textContent=S.s;f.classList.toggle('off',S.s===0);f.dataset.lv=lv;
+  var old=n.textContent,lv=S.k>=30?4:S.k>=14?3:S.k>=7?2:S.k>=1?1:0;
+  n.textContent=S.k;f.classList.toggle('off',S.k===0);f.dataset.lv=lv;
   if(anim){
    f.classList.remove('bump');void f.offsetWidth;f.classList.add('bump');setTimeout(function(){f.classList.remove('bump')},950);
-   if(old!==String(S.s)){n.classList.remove('pop');void n.offsetWidth;n.classList.add('pop')}
+   if(old!==String(S.k)){n.classList.remove('pop');void n.offsetWidth;n.classList.add('pop')}
    for(var i=0;i<18;i++){var k=document.createElement('i');k.className='dlsk';var a=rnd(-3.1,0.1)+(i%2?3.14:0),r=rnd(24,64);
     k.style.setProperty('--dx',Math.cos(a)*r+'px');k.style.setProperty('--dy',Math.sin(a)*r*.9+'px');k.style.animationDelay=rnd(0,.15)+'s';var z=rnd(3,7);k.style.width=k.style.height=z+'px';
     f.appendChild(k);(function(q){setTimeout(function(){q.remove()},1100)})(k)}
@@ -5349,7 +5349,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
    if(r.t&&window.__shopGive){window.__shopGive(r.t);var sb=$('shopbtn');if(sb){sb.classList.remove('pulse');void sb.offsetWidth;sb.classList.add('pulse')}}
    if(r.p){var ms=r.p;try{if(badges.includes('prem')&&premUntil<=0)ms=-1}catch(e){}premGrant(ms)}
   }catch(e){}
-  S.s=d;S.l=today();S.m=0;sv();
+  S.s=d;S.k=(S.k||0)+1;S.l=today();S.m=0;sv();
   try{save()}catch(e){}
   sel=d;if(!$('dlStrip')){busy=false;dot();return}
   refresh();select(d,false);
@@ -5382,7 +5382,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
   if(ov.classList.contains('show')&&!rd){var m=$('dlTm');if(m)m.innerHTML='День '+nextDay()+' откроется через <b>'+hms(msLeft())+'</b>'}
  },1000);
  document.addEventListener('visibilitychange',function(){if(!document.hidden){check();dot();if(ov.classList.contains('show')){note();refresh()}}});
- window.__dailyWipe=function(){S={s:0,l:null,m:0};try{localStorage.removeItem(KEY)}catch(e){}wasReady=true;dot();if(ov.classList.contains('show'))close()};
+ window.__dailyWipe=function(){S={s:0,k:0,l:null,m:0};try{localStorage.removeItem(KEY)}catch(e){}wasReady=true;dot();if(ov.classList.contains('show'))close()};
  window.__dailyState=function(){return JSON.parse(JSON.stringify(S))};
 
  /* при входе в игру сразу показываем меню, если есть награда или нужно сообщить о пропуске */
