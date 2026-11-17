@@ -4100,7 +4100,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   document.getElementById('giftH').textContent=n>1?'🎁 Подарков: '+n:'🎁 Вам подарок';
  }
  window.giftShow=giftShow;
- window.__shop={api:api,getJ:getJ,key:key,nonce:nonce,ready:ready,isMine:isMine,nick:nick};
+ window.__shop={api:api,getJ:getJ,key:key,nonce:nonce,ready:ready,isMine:isMine,nick:nick,uid:function(){return A.uid},sv:SV};
 
  /* админ-права определяются на сервере: в базе должен быть узел admins/<UID> = true (UID виден в админ-панели) */
  window.__admInfo=async function(){
@@ -4766,13 +4766,16 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
     var raw=to==='other'?(($('shNick')&&$('shNick').value)||'').replace(/^@+/,'').replace(/[^A-Za-z0-9]/g,''):to;
     if(raw.length<3){msg('Введи ник (3–15 символов)');return}
     var S=window.__shop;if(!S||!S.ready()||!S.isMine()){msg('Для подарков нужен сервер и свой юзернейм');return}
+    if(Date.now()-(window.__giftAt||0)<2500){msg('Не так быстро, подожди пару секунд');return}
     var kk=S.key(raw);if(kk===S.key(S.nick())){msg('Себе — выбери «Себе»');return}
     msg('Отправка…',1);
     var ex=null;try{ex=await S.getJ('/names/'+kk+'/n.json')}catch(e){}
     if(!ex){msg('Игрок @'+raw+' не найден');return}
     var g={t:c==='prem'?'prem':c==='luck'?'lucky':'ultra',d:val,ts:Date.now(),f:S.nick()};if(note)g.m=note;
-    var w=await S.api('/gifts/'+kk+'/'+S.nonce(20)+'.json',{method:'PUT',body:JSON.stringify(g)});
-    if(!w.ok){msg(w.status===401||w.status===403?'Сервер не принимает подарки от игроков (нужны новые правила базы)':'Ошибка отправки (код '+w.status+')');return}
+    var gb={};gb['gifts/'+kk+'/'+S.nonce(20)]=g;gb['giftlast/'+S.uid()]=S.sv; /* серверный лимит: не чаще раза в 2 сек */
+    var w=await S.api('/.json',{method:'PATCH',body:JSON.stringify(gb)});
+    if(!w.ok){msg(w.status===401||w.status===403?'Не так быстро или сервер не принял подарок. Подожди пару секунд и повтори':'Ошибка отправки (код '+w.status+')');return}
+    window.__giftAt=Date.now();
     TIX-=price;sv();dot();okTile();
     try{var rc=JSON.parse(localStorage.getItem('upg_shop_rc')||'[]').filter(function(x){return x!==raw});rc.unshift(raw);localStorage.setItem('upg_shop_rc',JSON.stringify(rc.slice(0,4)))}catch(e){}
     buyFx('gift');msg('Подарок отправлен @'+raw+': '+nm+lbl,1);say(I(P.gift,18)+'Подарок для @'+esc(raw)+' отправлен!');
