@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Upgrader v3.20</title>
+<title>Upgrader v3.21</title>
 
 <style>
 :root{color-scheme:dark;--bg:#0f1117;--card:#1a1d27;--line:#2a2e3d;--tx:#eef0f6;--mut:#8b90a3;--ac:#3ddc84;--bad:#ff5468;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -3852,6 +3852,18 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   var now=Date.now();
   if(!force&&now-lastPush<15000)return;
   lastPush=now;
+  try{
+   var pk=key(nick());
+   if(badges.includes('prem')){
+    var pu=premUntil<=0?-1:premUntil;
+    if((pu===-1||pu>now)&&pu!==window.__lastPremPub){
+     api('/premSelf/'+pk+'.json',{method:'PUT',body:JSON.stringify(pu)}).then(function(r){if(r&&r.ok)window.__lastPremPub=pu}).catch(function(){});
+    }
+   }else if(!window.__premSelfCleared){
+    window.__premSelfCleared=1;
+    api('/premSelf/'+pk+'.json',{method:'DELETE'}).catch(function(){});
+   }
+  }catch(e){}
   thumb(function(a){
    var p={n:nick(),m:fmt(money),t:txt('tonv'),w:txt('bw'),c:txt('bc'),a:a,ts:SV},ex=null,path='/profiles/'+key(nick())+'.json';try{ex=window.upgProfExtra()}catch(e){}
    var bd=function(o){return JSON.stringify({p:Object.assign({},p,o||{})})};
@@ -3943,11 +3955,11 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
   function msg(t,retry){body.textContent='';var d=document.createElement('div');d.className='pvmsg';d.textContent=t;if(retry){var b=document.createElement('button');b.type='button';b.textContent='Повторить';b.onclick=function(){showProfile(name)};d.appendChild(document.createElement('br'));d.appendChild(b)}body.appendChild(d)}
   function draw(p){if(tk!==pvTok)return;try{var v=window.upgProfView(p,name);body.textContent='';body.appendChild(v);body.scrollTop=0}catch(e){msg('Не удалось показать профиль')}}
   /* PREMIUM берётся с сервера. Публичная отметка HELPER читается по нику, UID игроков закрыт. */
-  function withBadges(p,b,approved,verified){
+  function withBadges(p,b,approved,verified,ps){
    var bg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'&&x!=='help'&&x!=='verified'});
    if(approved===true)bg.push('help');
    if(verified===true)bg.push('verified');
-   if(b&&typeof b==='object'&&typeof b.prem==='number'&&(b.prem===-1||b.prem>Date.now()))bg.push('prem');
+   if((b&&typeof b==='object'&&typeof b.prem==='number'&&(b.prem===-1||b.prem>Date.now()))||(typeof ps==='number'&&(ps===-1||ps>Date.now())))bg.push('prem');
    p.bg=bg;return p;
   }
   var k=key(name);
@@ -3955,16 +3967,17 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    getJ('/profiles/'+k+'/p.json'),
    getJ('/badges/'+k+'.json').catch(function(){return null}),
    getJ('/helperPublic/'+k+'.json').catch(function(){return false}),
-   getJ('/verifiedPublic/'+k+'.json').catch(function(){return false})
+   getJ('/verifiedPublic/'+k+'.json').catch(function(){return false}),
+   getJ('/premSelf/'+k+'.json').catch(function(){return null})
   ]).then(function(a){
-    return{p:(a[0]&&typeof a[0]==='object')?a[0]:null,b:a[1],approved:a[2]===true,verified:a[3]===true};
+    return{p:(a[0]&&typeof a[0]==='object')?a[0]:null,b:a[1],approved:a[2]===true,verified:a[3]===true,ps:a[4]};
    },function(){return{err:1}})
    .then(function(r){
     if(tk!==pvTok)return;
     if(mine){thumb(function(a){var p=Object.assign({},{n:nick(),m:txt('bal'),t:txt('tonv'),w:txt('bw'),c:txt('bc')});try{Object.assign(p,window.upgProfExtra())}catch(e){}if(a)p.a=a;try{var ownBg=(Array.isArray(p.bg)?p.bg:[]).filter(function(x){return x!=='prem'&&x!=='help'&&x!=='verified'});badges.forEach(function(x){if((x==='prem'||x==='help')&&ownBg.indexOf(x)<0)ownBg.push(x)});if(r.b&&typeof r.b.prem==='number'&&(r.b.prem===-1||r.b.prem>Date.now())&&ownBg.indexOf('prem')<0)ownBg.push('prem');if(r.approved===true&&ownBg.indexOf('help')<0)ownBg.push('help');if(r.verified===true&&ownBg.indexOf('verified')<0)ownBg.push('verified');p.bg=ownBg}catch(e){}draw(p)});return}
     if(r.err)return msg('Нет связи с сервером',1);
     if(!r.p)return msg('Профиль пока пуст');
-    draw(withBadges(r.p,r.b,r.approved,r.verified))});
+    draw(withBadges(r.p,r.b,r.approved,r.verified,r.ps))});
  }
  g('profX').onclick=function(){g('profm').classList.remove('show')};
 
