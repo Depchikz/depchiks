@@ -4920,6 +4920,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  document.addEventListener('visibilitychange',function(){last=Date.now()});
  window.addEventListener('online',function(){last=Date.now()});
  window.addEventListener('beforeunload',sv);
+ window.__shopGet=function(){return TIX};
  window.__shopGive=function(n){TIX+=n;sv();dot();afford();try{upd(false)}catch(e){}};
  window.__shopWipe=function(){TIX=0;ACC=0;last=Date.now();try{localStorage.removeItem(SHK);localStorage.removeItem('upg_shop_rc')}catch(e){}try{dot();afford();upd(false)}catch(e){}};
  function upd(off){
@@ -5780,6 +5781,8 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 .trmon{position:relative;width:100%;box-sizing:border-box;padding:10px 10px;border-radius:12px;border:1px solid #2b4152;background:#0e141d;color:#fff;font-family:inherit;font-size:15px;font-weight:900;font-variant-numeric:tabular-nums;outline:none;transition:border-color .2s,box-shadow .2s,background .3s}
 input.trmon:focus{border-color:#ffd75e;box-shadow:0 0 0 3px rgba(255,215,94,.16)}
 div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
+.trmon.tk{color:#ffe08a}
+.trrg .mn.tkl{color:#ffd75e}
 .trmon.flash{animation:trFlash .8s}
 @keyframes trFlash{0%{background:#3a3414;box-shadow:0 0 18px rgba(255,215,94,.8)}100%{background:#0e141d;box-shadow:none}}
 .trits{flex:1;min-height:0;overflow-y:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;align-content:start;padding:2px;-webkit-overflow-scrolling:touch}
@@ -5909,8 +5912,8 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
   '<div class="trtoast" id="trToast"></div>'+
   '<div class="trhd"><h3 id="trTitle">Трейд</h3><button type="button" class="trmin" id="trMin">Свернуть</button></div>'+
   '<div class="trmain">'+
-   '<div class="trp me" id="trpMe"><div class="trph"><b id="trMeN">offer</b><span class="trrd">READY</span></div><div class="trlbl">Деньги</div><input class="trmon" id="trMon" inputmode="numeric" autocomplete="off" placeholder="0"><div class="trlbl" style="margin-top:10px">Билеты</div><div class="trits" id="trMyIt"></div></div>'+
-   '<div class="trp ot" id="trpOt"><div class="trph"><b id="trOtN">offer</b><span class="trrd">READY</span></div><div class="trlbl">Деньги</div><div class="trmon" id="trOtM">0 ₽</div><div class="trlbl" style="margin-top:10px">Билеты</div><div class="trits" id="trOtIt"></div></div>'+
+   '<div class="trp me" id="trpMe"><div class="trph"><b id="trMeN">offer</b><span class="trrd">READY</span></div><div class="trlbl">Деньги</div><input class="trmon" id="trMon" inputmode="numeric" autocomplete="off" placeholder="0"><div class="trlbl" style="margin-top:8px">Билетики</div><input class="trmon tk" id="trTk" inputmode="numeric" autocomplete="off" placeholder="0"><div class="trlbl" style="margin-top:10px">Предметы</div><div class="trits" id="trMyIt"></div></div>'+
+   '<div class="trp ot" id="trpOt"><div class="trph"><b id="trOtN">offer</b><span class="trrd">READY</span></div><div class="trlbl">Деньги</div><div class="trmon" id="trOtM">0 ₽</div><div class="trlbl" style="margin-top:8px">Билетики</div><div class="trmon tk" id="trOtT">0</div><div class="trlbl" style="margin-top:10px">Предметы</div><div class="trits" id="trOtIt"></div></div>'+
    '<div class="trchat"><div class="th">ЧАТ</div><div class="trcl" id="trCl"></div><div class="trcin"><input id="trCi" maxlength="200" placeholder="Сообщение…" autocomplete="off"><button type="button" id="trCs" aria-label="Отправить">'+IC_SEND+'</button></div></div>'+
   '</div>'+
   '<div class="trfoot"><div class="trcdb" id="trCdb">Трейд завершится через <b id="trCdn">5</b><i id="trCdi"></i></div><div class="trbtns"><button type="button" class="trbtn ok" id="trRdy">Принять</button><button type="button" class="trbtn no" id="trNo">Отклонить</button></div></div>'+
@@ -5923,10 +5926,11 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 
  /* ---------- состояние ---------- */
  var T=null,OUT=null,INQ={},tTimer=0,oTimer=0,inBusy=false,cfIdx=-1;
- function stash(){if(!T){return}ls(LSE,JSON.stringify({tid:T.tid,side:T.side,m:T.esc.m,items:T.esc.items}))}
+ function stash(){if(!T){return}ls(LSE,JSON.stringify({tid:T.tid,side:T.side,m:T.esc.m,tk:T.esc.tk||0,items:T.esc.items}))}
  function doneList(){try{return JSON.parse(ls(LSD)||'[]')}catch(e){return[]}}
  function markDone(tid){var a=doneList();if(a.indexOf(tid)<0)a.push(tid);ls(LSD,JSON.stringify(a.slice(-100)))}
- function offItems(o){var it=(o&&o.it)||{};return Object.keys(it).sort().map(function(k){return it[k]}).filter(function(x){return x&&x.t&&typeof x.v==='number'}).map(function(x){return{t:x.t,v:x.v}})}
+ function offItems(o){var it=(o&&o.it)||{};return Object.keys(it).sort().map(function(k){return it[k]}).filter(function(x){return x&&x.t&&x.t!=='tk'&&typeof x.v==='number'}).map(function(x){return{t:x.t,v:x.v}})}
+ function offTk(o){var it=(o&&o.it)||{},n=0;Object.keys(it).forEach(function(k){var x=it[k];if(x&&x.t==='tk'&&typeof x.v==='number'&&x.v>0)n+=Math.floor(x.v)});return n}
  function msDiff(a,b){var pool=b.slice(),out=[];a.forEach(function(x){var i=-1;pool.forEach(function(y,j){if(i<0&&y.t===x.t&&y.v===x.v)i=j});if(i>=0)pool.splice(i,1);else out.push(x)});return out}
  function offVer(tr,s){return tr&&tr.o&&tr.o[s]&&tr.o[s].v||''}
  function xOf(tr){return offVer(tr,'a')+offVer(tr,'b')}
@@ -5935,16 +5939,17 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  /* ---------- расчёт итогов (деньги и предметы) ---------- */
  function settle(tid,tr,esc0,side){
   if(doneList().indexOf(tid)>=0){ls(LSE,null);return null}
-  var other=side==='a'?'b':'a',res={ok:false,got:{m:0,items:[]},back:{m:0,items:[]}};
-  esc0=esc0||{m:0,items:[]};
+  var other=side==='a'?'b':'a',res={ok:false,got:{m:0,tk:0,items:[]},back:{m:0,tk:0,items:[]}};
+  esc0=esc0||{m:0,tk:0,items:[]};
   if(tr&&tr.s==='ok'&&tr.o&&tr.o[side]&&tr.o[other]){
    var mine=tr.o[side];res.ok=true;
    res.back.m=Math.max(0,Math.floor(esc0.m||0)-Math.floor(mine.m||0));
-   res.back.items=msDiff(esc0.items||[],offItems(mine));
-   res.got.m=Math.max(0,Math.floor(tr.o[other].m||0));res.got.items=offItems(tr.o[other]);
-  }else{res.back.m=Math.floor(esc0.m||0);res.back.items=(esc0.items||[]).map(function(x){return{t:x.t,v:x.v,f:x.f||''}})}
+   res.back.tk=Math.max(0,Math.floor(esc0.tk||0)-offTk(mine));res.back.items=msDiff(esc0.items||[],offItems(mine));
+   res.got.m=Math.max(0,Math.floor(tr.o[other].m||0));res.got.tk=offTk(tr.o[other]);res.got.items=offItems(tr.o[other]);
+  }else{res.back.m=Math.floor(esc0.m||0);res.back.tk=Math.floor(esc0.tk||0);res.back.items=(esc0.items||[]).map(function(x){return{t:x.t,v:x.v,f:x.f||''}})}
   var addM=res.back.m+res.got.m;
   if(addM>0){try{money+=addM;save();showMoney(1400)}catch(e){}}
+  var addT=res.back.tk+res.got.tk;if(addT>0){try{window.__shopGive(addT)}catch(e){}}
   res.back.items.forEach(function(x){B.give(x,true)});
   var from=(tr&&tr.h&&(side==='a'?tr.h.bn:tr.h.an))||'';
   res.got.items.forEach(function(x){B.give({t:x.t,v:x.v,f:from},true)});
@@ -6083,7 +6088,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 
  function startTrade(tid,side,tr){
   var other=side==='a'?'b':'a',h=tr&&tr.h||{};
-  T={tid:tid,side:side,other:other,otN:(side==='a'?h.bn:h.an)||'?',myN:S.nick(),snap:tr,esc:{m:0,items:[]},busy:false,t0:Date.now(),hb:0,hbSeen:null,hbAt:Date.now(),cd:0,cdTxt:'',errs:0,lastOv:'',lastCnt:{me:0,ot:0},cMax:'',why:'',ending:false,ver:{}};
+  T={tid:tid,side:side,other:other,otN:(side==='a'?h.bn:h.an)||'?',myN:S.nick(),snap:tr,esc:{m:0,tk:0,items:[]},busy:false,t0:Date.now(),hb:0,hbSeen:null,hbAt:Date.now(),cd:0,cdTxt:'',errs:0,lastOv:'',lastCnt:{me:0,ot:0},cMax:'',why:'',ending:false,ver:{}};
   stash();liveUpd();
   $('trTitle').innerHTML='Трейд с <i>@'+esc(T.otN)+'</i>';
   $('trMeN').textContent='@'+T.myN+' offer';$('trOtN').textContent='@'+T.otN+' offer';
@@ -6118,6 +6123,8 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
    T.lastOt=sg2;
   }
   T.otV=od.v;
+  var ot=$('trOtT'),otv=sp(offTk(od));if(ot.textContent!==otv){ot.textContent=otv;ot.classList.remove('flash');void ot.offsetWidth;if(!force)ot.classList.add('flash')}
+  if(document.activeElement!==$('trTk')){var wt=T.esc.tk?sp(T.esc.tk):'';if($('trTk').value!==wt)$('trTk').value=wt}
   if(document.activeElement!==$('trMon')){var want=T.esc.m?sp(T.esc.m):'';if($('trMon').value!==want)$('trMon').value=want}
  }
  function rdOf(tr,s){var r=tr&&tr.rd&&tr.rd[s];return r&&r.x===xOf(tr)?r:null}
@@ -6204,17 +6211,17 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
   var b=$('trResB'),why=t.why;
   if(ok){
    var gave=t.esc,h='<div class="ck">'+IC_OK+'</div><h4>Трейд завершён!</h4><p>Обмен с @'+esc(t.otN)+' прошёл успешно</p>';
-   h+='<div class="trrg"><small>Ты получил</small>'+(res.got.m?'<div class="mn">+'+rub(res.got.m)+'</div>':'')+(res.got.items.length||!res.got.m?itemsHtml(res.got.items):'')+'</div>';
-   h+='<div class="trrg"><small>Ты отдал</small>'+(gave.m?'<div class="mn">−'+rub(gave.m)+'</div>':'')+(gave.items.length||!gave.m?itemsHtml(gave.items,res.got.items.length):'')+'</div>';
+   h+='<div class="trrg"><small>Ты получил</small>'+(res.got.m?'<div class="mn">+'+rub(res.got.m)+'</div>':'')+(res.got.tk?'<div class="mn tkl">+'+sp(res.got.tk)+' билетиков</div>':'')+(res.got.items.length||!(res.got.m||res.got.tk)?itemsHtml(res.got.items):'')+'</div>';
+   h+='<div class="trrg"><small>Ты отдал</small>'+(gave.m?'<div class="mn">−'+rub(gave.m)+'</div>':'')+(gave.tk?'<div class="mn tkl">−'+sp(gave.tk)+' билетиков</div>':'')+(gave.items.length||!(gave.m||gave.tk)?itemsHtml(gave.items,res.got.items.length):'')+'</div>';
    h+='<button type="button" class="trgo" id="trResX">Отлично!</button>';
    b.className='trresb';b.innerHTML=h;sfx('win',1);vib([40,50,90]);
    setTimeout(function(){burst()},350);
    try{if(res.got.m)pfloat(res.got.m)}catch(e){}
   }else{
    var txt=why==='mine'?'Ты отклонил(а) трейд':why==='gone'?'@'+esc(t.otN)+' вышел(а) из трейда':why==='net'?'Пропала связь с сервером':'@'+esc(t.otN)+' отклонил(а) трейд';
-   var back=(res.back.m>0||res.back.items.length);
+   var back=(res.back.m>0||res.back.tk>0||res.back.items.length);
    var h2='<div class="ck">'+IC_NO+'</div><h4>Трейд отменён</h4><p>'+txt+'</p>';
-   if(back)h2+='<div class="trrg"><small>Возвращено тебе</small>'+(res.back.m?'<div class="mn">+'+rub(res.back.m)+'</div>':'')+(res.back.items.length?itemsHtml(res.back.items):'')+'</div>';
+   if(back)h2+='<div class="trrg"><small>Возвращено тебе</small>'+(res.back.m?'<div class="mn">+'+rub(res.back.m)+'</div>':'')+(res.back.tk?'<div class="mn tkl">+'+sp(res.back.tk)+' билетиков</div>':'')+(res.back.items.length?itemsHtml(res.back.items):'')+'</div>';
    h2+='<button type="button" class="trgo alt" id="trResX">Закрыть</button>';
    b.className='trresb bad';b.innerHTML=h2;sfx('deny');vib(60);
   }
@@ -6231,19 +6238,20 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  async function pushOffer(nw,mark){
   var t=T,body={};
   var o={m:Math.floor(nw.m),v:S.nonce(16)};
-  if(nw.items.length){o.it={};nw.items.forEach(function(x,i){o.it[i]={t:x.t,v:x.v}})}
+  var all=nw.items.map(function(x){return{t:x.t,v:x.v}});if(nw.tk>0)all.push({t:'tk',v:Math.floor(nw.tk)});
+  if(all.length){o.it={};all.forEach(function(x,i){o.it[i]=x})}
   body['trades/'+t.tid+'/o/'+t.side]=o;body['trades/'+t.tid+'/rd/a']=null;body['trades/'+t.tid+'/rd/b']=null;
   var w=await P(body);
   if(!w.ok)return false;
   if(t.snap){t.snap.o=t.snap.o||{};t.snap.o[t.side]=o;t.snap.rd=null}
   return true;
  }
- function union(a,b){var u={m:Math.max(a.m,b.m),items:a.items.slice()};msDiff(b.items,a.items).forEach(function(x){u.items.push(x)});return u}
+ function union(a,b){var u={m:Math.max(a.m,b.m),tk:Math.max(a.tk||0,b.tk||0),items:a.items.slice()};msDiff(b.items,a.items).forEach(function(x){u.items.push(x)});return u}
  async function mutate(fn){
   var t=T;if(!t||t.busy||t.ending)return false;
   t.busy=true;
   try{
-   var old=t.esc,nw={m:old.m,items:old.items.slice()},undo=fn(nw);
+   var old=t.esc,nw={m:old.m,tk:old.tk||0,items:old.items.slice()},undo=fn(nw);
    if(undo===false)return false;
    var u=union(old,nw);t.esc=u;stash();            /* на случай сбоя храним «большее» из двух состояний */
    var ok=false;try{ok=await pushOffer(nw)}catch(e){}
@@ -6275,6 +6283,27 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
    return{fail:function(){money+=delta;save();showMoney(600)}};
   });
   if(!okk&&T){el.value=T.esc.m?sp(T.esc.m):''}
+ }
+ /* билетики */
+ var tkT=0;
+ $('trTk').addEventListener('input',function(e){var el=e.target,d=el.value.replace(/\D/g,'').replace(/^0+(?=\d)/,'').slice(0,9);el.value=d?sp(d):'';clearTimeout(tkT);tkT=setTimeout(commitTk,650)});
+ $('trTk').addEventListener('blur',function(){clearTimeout(tkT);commitTk()});
+ $('trTk').addEventListener('keydown',function(e){if(e.key==='Enter')e.target.blur()});
+ async function commitTk(){
+  if(!T)return;var el=$('trTk'),want=Math.floor(Number(el.value.replace(/\s/g,''))||0),cur=T.esc.tk||0;
+  if(want===cur)return;
+  var have=0;try{have=window.__shopGet()}catch(e){}
+  var avail=have+cur;
+  if(want>avail){want=avail;toast('Максимум билетиков: '+avail,1);el.value=want?sp(want):''}
+  if(want===cur)return;
+  var delta=want-cur;
+  var ok=await mutate(function(nw){
+   var h=0;try{h=window.__shopGet()}catch(e){}
+   if(delta>h)return false;
+   nw.tk=want;try{window.__shopGive(-delta)}catch(e){}
+   return{fail:function(){try{window.__shopGive(delta)}catch(e){}}};
+  });
+  if(!ok&&T)el.value=T.esc.tk?sp(T.esc.tk):'';
  }
  /* рюкзак → оффер */
  function openPick(){
@@ -6329,7 +6358,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
    if(mr){await P({['trades/'+t.tid+'/rd/'+t.side]:null});if(t.snap&&t.snap.rd)t.snap.rd[t.side]=null;sfx('deny')}
    else{
     var mine=t.esc,oth=tr&&tr.o&&tr.o[t.other]||{m:0},oi=offItems(oth);
-    if(!mine.m&&!mine.items.length&&!(oth.m>0)&&!oi.length){toast('Оффер пуст: добавь деньги или предмет',1);return}
+    if(!mine.m&&!(mine.tk>0)&&!mine.items.length&&!(oth.m>0)&&!offTk(oth)&&!oi.length){toast('Оффер пуст: добавь деньги или предмет',1);return}
     if(oi.length>B.free()){toast('Не хватит места в рюкзаке: нужно слотов '+oi.length+', свободно '+B.free(),1);return}
     var x=xOf(tr);
     var w=await P({['trades/'+t.tid+'/rd/'+t.side]:{ts:S.sv,x:x}});
@@ -6355,9 +6384,9 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
   var tr=null;
   try{tr=await G(e.tid)}catch(x){return setTimeout(recover,8000)}
   if(tr&&tr.s==='on'){try{await P({['trades/'+e.tid+'/s']:'x',['trades/'+e.tid+'/c']:null});tr.s='x'}catch(x){return setTimeout(recover,8000)}}
-  var res=settle(e.tid,tr&&tr.s==='ok'?tr:tr&&Object.assign({},tr,{s:'x'}),{m:e.m||0,items:e.items||[]},e.side||'a');
+  var res=settle(e.tid,tr&&tr.s==='ok'?tr:tr&&Object.assign({},tr,{s:'x'}),{m:e.m||0,tk:e.tk||0,items:e.items||[]},e.side||'a');
   if(tr)cleanup(e.tid,e.side||'a',!(tr.o&&tr.o.b));
-  if(res)showResult({otN:(tr&&tr.h&&(e.side==='a'?tr.h.bn:tr.h.an))||'?',esc:{m:e.m||0,items:e.items||[]},why:'gone'},res,res.ok);
+  if(res)showResult({otN:(tr&&tr.h&&(e.side==='a'?tr.h.bn:tr.h.an))||'?',esc:{m:e.m||0,tk:e.tk||0,items:e.items||[]},why:'gone'},res,res.ok);
  }
  setTimeout(recover,3500);
  window.__trade={active:function(){return !!T}};
