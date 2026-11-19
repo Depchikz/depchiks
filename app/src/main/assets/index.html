@@ -3270,6 +3270,17 @@ sp:'<rect width="30" height="20" fill="#8f0f1c"/><rect x=".6" y=".6" width="28.8
 bb:'<rect width="30" height="20" fill="#16419a"/><rect width="30" height="2.2" fill="#e0b43a"/><rect y="17.8" width="30" height="2.2" fill="#e0b43a"/><polygon points="15.00,3.80 15.99,7.60 19.38,5.62 17.40,9.01 21.20,10.00 17.40,10.99 19.38,14.38 15.99,12.40 15.00,16.20 14.01,12.40 10.62,14.38 12.60,10.99 8.80,10.00 12.60,9.01 10.62,5.62 14.01,7.60" fill="#e0b43a"/><circle cx="15" cy="10" r="1.6" fill="#16419a"/>',
 gx:'<defs><radialGradient id="g" cx=".5" cy=".5" r=".8"><stop offset="0" stop-color="#5a2bd0"/><stop offset="1" stop-color="#07031a"/></radialGradient></defs><rect width="30" height="20" fill="url(#g)"/><circle cx="4" cy="4" r=".6" fill="#fff"/><circle cx="25" cy="5" r=".5" fill="#fff"/><circle cx="7" cy="16" r=".5" fill="#fff"/><circle cx="26" cy="15" r=".7" fill="#fff"/><circle cx="21" cy="2.5" r=".4" fill="#fff"/><circle cx="15" cy="10" r="4.2" fill="#35d0ff"/><ellipse cx="15" cy="10" rx="8.5" ry="2.2" transform="rotate(-20 15 10)" fill="none" stroke="#e23fb4" stroke-width="1"/>'};
 const PLFLC={};
+/* красивые флаги в самой крутке вместо палочек */
+(function(){try{let css='';Object.keys(PLFLG).forEach(id=>{if(id==='gx'||id==='pi'||id==='al')return;
+const u='url(&quot;data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">'+PLFLG[id]+'</svg>')+'&quot;)';
+const q='.plate[data-c="'+id+'"]',m='#plstage.multi>.plate[data-c="'+id+'"]';
+css+=q+' .plr em{display:none}'+
+q+' .plr::before{content:"";display:block;width:36px;height:24px;border-radius:4px;background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,0) 45%,rgba(0,0,0,.18)),'+u+' center/100% 100% no-repeat;box-shadow:0 0 0 1px rgba(255,255,255,.5),0 3px 8px rgba(0,0,0,.55)}'+
+q+' .plr small{font-size:8px;letter-spacing:.6px;margin-top:2px}'+
+m+'>.plr{flex:0 0 auto!important}'+
+m+' .plr::before{width:22px;height:15px;border-radius:3px}'+
+m+' .plr small{font-size:5px!important}';});
+const st=document.createElement('style');st.id='plFlagCss';st.textContent=css.replace(/&quot;/g,'"');document.head.appendChild(st)}catch(e){}})();
 function plFl(k){const id=plCOf(k).id;if(id==='al')return '<span class="flg flge">\u{1F47D}</span>';if(!PLFLC[id]){const g=PLFLG[id]||PLFLG.ru;PLFLC[id]='<img class="flg" alt="" src="data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">'+g+'</svg>')+'">'}return PLFLC[id]}
 function plCur(){return plCOf(plCountry)}
 function plSkin(p,k){const c=plCOf(k);if(c.id==='ru')return p;return p.split('').map((ch,i)=>{if(i>1&&i<6)return ch;const x=PLN.indexOf(ch);return x<0?ch:c.al[x]}).join('')}
@@ -6174,6 +6185,15 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 .nd[data-id="54"] .ni svg{filter:drop-shadow(0 0 3px rgba(0,0,0,.55))}
 .nd[data-id="54"].locked .ni{box-shadow:none!important;filter:saturate(.7)}
 @keyframes rbw{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+
+/* Galactic flag redesign */
+.plate[data-c="gx"] .plr em{display:none}
+.plate[data-c="gx"] .plr::before{content:"";display:block;width:38px;height:26px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 24'><defs><radialGradient id='g' cx='50%' cy='50%' r='50%'><stop offset='0' stop-color='%23fff'/><stop offset='.3' stop-color='%23ffa6ec'/><stop offset='.65' stop-color='%237b4cf0' stop-opacity='.7'/><stop offset='1' stop-color='%237b4cf0' stop-opacity='0'/></radialGradient><linearGradient id='b' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237b4cf0'/><stop offset='.5' stop-color='%2335d0ff'/><stop offset='1' stop-color='%23e23fb4'/></linearGradient><linearGradient id='a' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='%2335d0ff' stop-opacity='0'/><stop offset='.5' stop-color='%2335d0ff'/><stop offset='1' stop-color='%23e23fb4'/></linearGradient></defs><rect x='.7' y='.7' width='34.6' height='22.6' rx='4.5' fill='%230b0821' stroke='url(%23b)' stroke-width='1.4'/><g transform='rotate(-28 18 12)'><ellipse cx='18' cy='12' rx='14' ry='5.4' fill='url(%23g)' opacity='.7'/><path d='M4.5 12.5C8 5.5 17 6.5 18 12' fill='none' stroke='url(%23a)' stroke-width='1.5' stroke-linecap='round'/><path d='M31.5 11.5C28 18.5 19 17.5 18 12' fill='none' stroke='url(%23a)' stroke-width='1.5' stroke-linecap='round' transform='rotate(180 18 12)'/><circle cx='18' cy='12' r='2.3' fill='%23fff'/></g><circle cx='6' cy='5' r='.7' fill='%23fff'/><circle cx='30' cy='19' r='.7' fill='%23fff'/><circle cx='29' cy='5.5' r='.5' fill='%23cfe'/><circle cx='8' cy='19' r='.5' fill='%23fff'/><circle cx='22' cy='3.5' r='.4' fill='%23fff'/></svg>") center/contain no-repeat;filter:drop-shadow(0 0 5px rgba(123,76,240,.75))}
+.plate[data-c="gx"] .plr small{font-size:8px;letter-spacing:.6px;background:linear-gradient(90deg,#9b7bff,#35d0ff,#ff6fd8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#plstage.multi>.plate[data-c="gx"]>.plr{flex:0 0 auto!important}
+#plstage.multi>.plate[data-c="gx"] .plr::before{width:24px;height:16px}
+#plstage.multi>.plate[data-c="gx"] .plr small{font-size:5px!important}
+.plate.mini[data-c="gx"] .plr{display:none}
 </style>
 
 <script>
