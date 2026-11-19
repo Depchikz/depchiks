@@ -1533,9 +1533,9 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 .giftit b{display:block;font-size:14px}.giftit small{display:block;color:var(--mut);font-size:12px;margin-top:2px}
 .giftit q{display:block;margin-top:8px;padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.25);font-style:italic;font-size:14px;overflow-wrap:anywhere;quotes:none}
 .giftok{width:100%;margin-top:6px;padding:12px;border:0;border-radius:12px;background:var(--ac);color:#06210f;font-weight:900;font-size:15px}
-.shfmt{flex:none;max-width:94px;padding:7px 8px;border-radius:9px;border:1px solid var(--line);background:#111520;color:var(--ac);font-size:11px;font-weight:900;line-height:1.15;text-align:center}.shfmt small{display:block;color:var(--mut);font-size:9px;font-weight:700;margin-bottom:2px}
+.shfmt{flex:none;align-self:flex-start;width:auto;min-width:112px;max-width:none;padding:9px 14px;border-radius:9px;border:1px solid var(--line);background:#111520;color:var(--ac);font-size:11px;font-weight:900;line-height:1.15;text-align:center}.shfmt small{display:block;color:var(--mut);font-size:9px;font-weight:700;margin-bottom:2px}
 /* Настройки игры и формат чисел */
-.game-setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025)}
+.game-setting-row{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025)}
 .game-setting-row b{display:block;color:var(--tx);font-size:13px}
 .game-setting-row small{display:block;color:var(--mut);font-size:10px;line-height:1.35;margin-top:3px}
 /* v3.05: живой переключатель формата чисел */
@@ -4970,7 +4970,11 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
   fmtButton();
   try{showMoney(450)}catch(e){}
   try{hrender(false)}catch(e){}
-  try{if(typeof best==='number'&&best>0)$('bw').textContent=fmt(best)}catch(e){}
+  try{
+   var bwEl=$('bw'),bwNum=typeof best==='number'&&best>0?best:Number(String(bwEl.textContent||'').replace(/[^0-9-]/g,''));
+   if(bwNum>0)bwEl.textContent=fmt(bwNum);
+   var bcEl=$('bc');if(bcEl){bcEl.textContent=bcEl.textContent.replace(/x\s*([\d\s.,]+)/gi,function(_,raw){var n=Number(raw.replace(/[\s,]/g,''));return 'x'+(Number.isFinite(n)?multFmt(n):raw.trim())})}
+  }catch(e){}
   try{pc4Upd()}catch(e){}
   try{ptick()}catch(e){}
   try{tonUpd();mkDraw();mkMeta(mkOffers.length)}catch(e){}
