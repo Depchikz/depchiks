@@ -1533,6 +1533,24 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 .giftit b{display:block;font-size:14px}.giftit small{display:block;color:var(--mut);font-size:12px;margin-top:2px}
 .giftit q{display:block;margin-top:8px;padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.25);font-style:italic;font-size:14px;overflow-wrap:anywhere;quotes:none}
 .giftok{width:100%;margin-top:6px;padding:12px;border:0;border-radius:12px;background:var(--ac);color:#06210f;font-weight:900;font-size:15px}
+.shfmt{flex:none;max-width:94px;padding:7px 8px;border-radius:9px;border:1px solid var(--line);background:#111520;color:var(--ac);font-size:11px;font-weight:900;line-height:1.15;text-align:center}.shfmt small{display:block;color:var(--mut);font-size:9px;font-weight:700;margin-bottom:2px}
+/* v3.05: живой переключатель формата чисел */
+.shfmt{position:relative;overflow:hidden;isolation:isolate;cursor:pointer;transform:translateZ(0);transition:transform .22s cubic-bezier(.2,.8,.2,1),background .28s,border-color .28s,box-shadow .28s,color .28s}
+.shfmt:before{content:"";position:absolute;inset:-45%;z-index:-1;opacity:0;background:radial-gradient(circle,rgba(91,255,174,.24),transparent 62%);transform:scale(.45);transition:opacity .3s,transform .45s}
+.shfmt:after{content:"";position:absolute;top:-70%;left:-45%;width:35%;height:240%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:translateX(-180%) rotate(18deg);pointer-events:none}
+.shfmt:hover{transform:translateY(-2px);border-color:var(--ac);box-shadow:0 5px 18px rgba(0,0,0,.22),0 0 0 1px rgba(100,255,170,.08)}
+.shfmt:active{transform:scale(.94)}
+.shfmt.letters{background:linear-gradient(135deg,rgba(31,116,75,.32),rgba(17,21,32,.96));border-color:#45d994;color:#8cffbd;box-shadow:inset 0 0 14px rgba(69,217,148,.08),0 0 12px rgba(69,217,148,.12)}
+.shfmt.letters:before{opacity:1;transform:scale(1)}
+.shfmt.switching:after{animation:shFmtShine .65s ease}
+.shfmt #shFmtVal{display:inline-block;min-width:35px;transform-origin:50% 70%;font-variant-numeric:tabular-nums}
+.shfmt.switching #shFmtVal{animation:shFmtFlip .42s cubic-bezier(.2,.8,.2,1)}
+.shfmt small{transition:color .25s}
+.shfmt.letters small{color:#a9edc8}
+@keyframes shFmtFlip{0%{opacity:.25;transform:translateY(8px) scale(.82) rotateX(-55deg);filter:blur(2px)}55%{opacity:1;transform:translateY(-2px) scale(1.08) rotateX(8deg);filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1) rotateX(0)}}
+@keyframes shFmtShine{0%{transform:translateX(-180%) rotate(18deg)}100%{transform:translateX(480%) rotate(18deg)}}
+@media(prefers-reduced-motion:reduce){.shfmt,.shfmt:before,.shfmt:after,.shfmt #shFmtVal{animation:none!important;transition:none!important}}
+
 .pmban.premmenu{margin:0 0 14px}.premmenu .poff{display:none}.pmban.premmenu.off{background:rgba(255,255,255,.05);color:var(--mut);border:1px solid var(--line);box-shadow:none}.pmban.premmenu.off::after{display:none}.pmban.premmenu.off svg{fill:var(--mut);filter:none}.pmban.premmenu.off .pon{display:none}.pmban.premmenu.off .poff{display:inline}.premT{font-weight:900;font-variant-numeric:tabular-nums}.pmban.on .premT{color:#fff3b0}
 .sndbtn.off{color:var(--mut)}
 .sndbtn:not(.off) .sx{display:none}
@@ -1709,7 +1727,9 @@ function fin(w,x){if(!w)shrinkBet();const wb=$('wb');wb.classList.remove('win','
  const r=$('res');r.classList.remove('show');void r.offsetWidth;r.classList.add('show');
  if(w){boom();SFX.win(x>=50?4:x>=10?3:x>=3?2:1)}else SFX.lose();if(navigator.vibrate)navigator.vibrate(w?[60,40,60]:200)}
 const $=id=>document.getElementById(id);
-const fmt=n=>Math.floor(Number(n)||0).toLocaleString('ru-RU')+' ₽';
+let compactMoneyMode=false;try{compactMoneyMode=localStorage.getItem('upg_numfmt_v1')==='letters'}catch(e){}
+const compactNum=(value,fixed=false)=>{let n=Number(value)||0,sign=n<0?'-':'',a=Math.abs(n);if(!compactMoneyMode)return sign+(fixed?a.toFixed(2):a.toLocaleString('ru-RU',{maximumFractionDigits:2}));if(a<1000)return sign+(fixed?a.toFixed(2):a.toLocaleString('ru-RU',{maximumFractionDigits:2}));const units=[['K',1e3],['M',1e6],['B',1e9],['T',1e12],['Qa',1e15],['Qi',1e18]];let i=0;while(i<units.length-1&&a>=units[i+1][1])i++;let v=a/units[i][1];if(v>=999.995&&i<units.length-1){i++;v=a/units[i][1]}return sign+v.toFixed(2)+units[i][0]};
+const fmt=n=>compactNum(Math.floor(Number(n)||0))+' ₽';
 const PHR=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),PHD=n=>{let s='';for(let i=0;i<n;i++)s+=Math.floor(Math.random()*10);return s},PHP=a=>a[Math.floor(Math.random()*a.length)];
 const PHC={
  ca:{n:'Канада',f:'🇨🇦',c:'+1',gen:()=>'+1 ('+PHP([204,226,236,249,250,289,306,343,365,403,416,418,431,437,438,450,506,514,519,579,581,587,604,613,647,705,709,778,780,807,819,825,867,902,905])+') '+PHR(2,9)+PHD(2)+' '+PHD(2)+' '+PHD(2)},
@@ -1775,7 +1795,7 @@ let mkBase={},mkSearchT=0;
 let mkCountry='ua',mkOffers=[],mkOwned=[],mkAnonCount=100,mkRestockAt=(Math.floor(Date.now()/600000)+1)*600000;
 try{const mks=JSON.parse(localStorage.getItem('upg_phone_market_v1')||'{}');if(mks.country)mkCountry=mks.country;if(Array.isArray(mks.owned))mkOwned=mks.owned;if(Number.isFinite(mks.anonCount))mkAnonCount=mks.anonCount;}catch(e){}
 const mkCountryBy=id=>MK_COUNTRIES.find(c=>c[0]===id)||MK_COUNTRIES[1];
-const mkFmt=n=>Number(n).toLocaleString('ru-RU',{maximumFractionDigits:2});
+const mkFmt=n=>compactNum(n);
 function mkRng(seed){let a=seed>>>0;return()=>{a=(a+0x6D2B79F5)>>>0;let t=a;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
 function mkSeed(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 /* Оценка красоты 7 последних цифр: чем «ровнее» комбинация, тем больше очков и выше цена */
@@ -2023,7 +2043,7 @@ function xcTick(){
 setInterval(xcTick,250);
 /* влияние сделки на цену: минимум 0.5% даже за 0.01 TON, дальше растёт с объёмом */
 const xcImp=a=>Math.max(-Math.log(.995),a/XC.L);
-const xcFmt=n=>Math.round(n).toLocaleString('ru-RU');
+const xcFmt=n=>compactNum(Math.round(n));
 function xcAmt(){const v=parseFloat(String($('xin').value).replace(',','.'));if(!(v>=0.01))return 0;return Math.round(Math.min(1e6,v)*100)/100}
 let xcT={};
 function xcSet(id,v){if(xcT[id]!==v){xcT[id]=v;$(id).textContent=v}}
@@ -2187,7 +2207,7 @@ $('xsell').onclick=()=>{
 const LVT=[0,1000,3000,10000,25000,60000,140000,300000,600000,1000000];
 let tonBought=0,lvUid=0,lvShown=0,lvBusy=false,lvQ=[];
 const lvOf=tb=>{let l=1;for(let i=1;i<LVT.length;i++)if(tb>=LVT[i])l=i+1;return l};
-const lvFmt=n=>Math.floor(n+1e-9).toLocaleString('ru-RU');
+const lvFmt=n=>compactNum(Math.floor(n+1e-9));
 /* названия уровней */
 const LVN=['Новичок','Стажёр','Игрок','Профи','Мастер','Эксперт','Элита','Легенда','Титан','Грандтитан'];
 /* форма значка зависит от уровня: круг, квадрат, ромб, щит, шестиугольник, восьмиугольник, прямоугольник, звезда, корона */
@@ -2243,7 +2263,7 @@ function lvPlay(a,b,done){if(lvSeg(a).max){lvRender();done();return}
  const tint=l=>{const S=LVS[l-1];P.style.setProperty('--a',S[1]);P.style.setProperty('--b',S[2]);P.style.setProperty('--g',S[3])};
  const badges=(l,pop)=>{L.innerHTML=lvBadge(l,46)+'<small>Уровень '+l+'</small>';R.innerHTML=l<10?lvBadge(l+1,46)+'<small>Уровень '+(l+1)+'</small>':lvBadge(10,46)+'<small>МАКС</small>';R.classList.toggle('lock',l<10);if(pop){const lb=L.querySelector('.lvb');if(lb)lb.classList.add('pop')}};
  const bar=(s,v)=>{F.style.width=Math.max(0,Math.min(1,(v-s.lo)/(s.hi-s.lo||1)))*100+'%';T.textContent=s.max?'МАКСИМАЛЬНЫЙ УРОВЕНЬ':lvFmt(v)+' / '+lvFmt(s.hi)+' TON'};
- const gtxt=x=>'+'+(Math.round(x*100)/100).toLocaleString('ru-RU')+' TON';
+ const gtxt=x=>'+'+compactNum(Math.round(x*100)/100)+' TON';
  const segs=[];{let c=a,n=0;while(c<b&&n++<12){const s=lvSeg(c);if(s.max)break;const t=Math.min(b,s.hi);segs.push({s:s,from:c,to:t,up:t>=s.hi&&s.l<10});c=t}}
  const total=Math.max(1e-9,b-a);let i=0;
  P.classList.remove('on','up');B.classList.remove('show');B.textContent='';tint(lv);G.textContent=gtxt(0);G.classList.remove('pop');
@@ -2295,7 +2315,7 @@ function upgProfView(p,name){pvFx();const prem=Array.isArray(p.bg)&&p.bg.include
  const pod=Array.isArray(p.pod)?p.pod.filter(i=>i&&typeof i.p==='string'&&i.p.length===8&&PLT[i.t]).slice(0,6):[];
  if(pod.length){const h=document.createElement('div');h.className='pvph';h.textContent='Подиум';c4.appendChild(h);const w=document.createElement('div');w.className='pvpod';w.innerHTML=pod.map(i=>{const kk=/^[a-z]{2}$/.test(i.k)?i.k:'ru';return '<div class=\"pvpi\">'+plMini(i.p.replace(/[^0-9A-Za-zА-Яа-яЁё]/g,'?'),i.t,kk)+plFl(kk)+'</div>'}).join('');c4.appendChild(w)}
  wrap.appendChild(c4);return wrap}
-function tonUpd(){const s=(Math.max(0,Number(ton)||0)).toFixed(2);['tonv','tonv2'].forEach(i=>{const e=document.getElementById(i);if(e)e.textContent=s})}
+function tonUpd(){const s=compactNum(Math.max(0,Number(ton)||0),true);['tonv','tonv2'].forEach(i=>{const e=document.getElementById(i);if(e)e.textContent=s})}
 // Все суммы — строго целые числа. Ввод разрешает только цифры; запятые, точки и прочие символы удаляются.
 function moneyVal(id){const digits=String($(id).value||'').replace(/[^0-9]/g,'');if(!digits)return 0;const n=Number(digits);return Number.isSafeInteger(n)?Math.max(0,n):Number.MAX_SAFE_INTEGER}
 function setMoneyField(id,value){const el=$(id);if(!el)return;const n=Math.max(0,Math.floor(Number(value)||0));el.value=n.toLocaleString('ru-RU')}
@@ -4938,6 +4958,17 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  var toast=document.createElement('div');toast.id='shToast';document.body.appendChild(toast);
  var fx=document.createElement('div');fx.id='shFx';document.body.appendChild(fx);
  var box=$('shopBox');
+ function fmtButton(){var v=$('shFmtVal'),b=$('shFmt');if(v)v.textContent=compactMoneyMode?'1.00K':'1 000';if(b){b.classList.toggle('letters',!!compactMoneyMode);b.setAttribute('aria-pressed',compactMoneyMode?'true':'false');b.setAttribute('aria-label',compactMoneyMode?'Формат чисел: буквами':'Формат чисел: цифрами')}}
+ function refreshFormattedValues(){
+  fmtButton();
+  try{showMoney(450)}catch(e){}
+  try{pc4Upd()}catch(e){}
+  try{ptick()}catch(e){}
+  try{tonUpd();mkDraw();mkMeta(mkOffers.length)}catch(e){}
+  try{xcUI(Date.now())}catch(e){}
+  try{lvRender()}catch(e){}
+  try{plRender();plUpd()}catch(e){}
+ }
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
  function hasPrem(){try{return !!fxHasPrem()}catch(e){return false}}
  function pt(){try{var s=premStr();return s==='∞'?'навсегда':'осталось '+s}catch(e){return ''}}
@@ -4997,7 +5028,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  }
  function render(){
   to='me';
-  box.innerHTML='<div class="shpc"><div class="shstub"><div class="shh"><span class="shlogo">'+TK(28)+'</span><div><h3>Маркет билетиков</h3><small>1 билетик в минуту, пока ты в игре и в сети</small></div><div class="shtk" id="shTk">'+TIC+'<span id="shTkN">'+TIX+'</span></div><button class="shx" id="shX" aria-label="Закрыть">'+I(P.x,18)+'</button></div><div class="shbar"><i id="shBar"></i></div><div class="shtm" id="shTm"></div><div class="shpr" id="shPr"></div></div></div><div class="shdash"></div>'+
+  box.innerHTML='<div class="shpc"><div class="shstub"><div class="shh"><span class="shlogo">'+TK(28)+'</span><div><h3>Маркет билетиков</h3><small>1 билетик в минуту, пока ты в игре и в сети</small></div><div class="shtk" id="shTk">'+TIC+'<span id="shTkN">'+TIX+'</span></div><button type="button" class="shfmt" id="shFmt" aria-label="Формат чисел"><small>Формат</small><span id="shFmtVal">1 000</span></button><button class="shx" id="shX" aria-label="Закрыть">'+I(P.x,18)+'</button></div><div class="shbar"><i id="shBar"></i></div><div class="shtm" id="shTm"></div><div class="shpr" id="shPr"></div></div></div><div class="shdash"></div>'+
   '<div class="shpc mn"><div class="shmain" id="shMain">'+
   '<div class="shtabs">'+CATS.map(tabHtml).join('')+'</div><div class="shhint" id="shHint">Нажми на иконку, чтобы выбрать покупку</div>'+
   '<div class="fold" id="shBody"><div class="in">'+
@@ -5005,7 +5036,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
   '<div class="fold" id="shRcF"><div class="in"><div class="shchips" id="shChips"></div></div></div>'+
   '<div class="fold" id="shEx"><div class="in"><div class="shfs"><input class="shin" id="shNick" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" hidden><input class="shin" id="shNote" maxlength="80" placeholder="Текст подарка (необязательно)" autocomplete="off"></div></div></div>'+
   CATS.map(secHtml).join('')+'</div></div><div class="shmsg" id="shMsg"></div></div></div>';
-  pm=null;sync(true);rcUpd();afford();upd(false);
+  pm=null;sync(true);rcUpd();afford();upd(false);fmtButton();
  }
  function sync(first){
   var p=hasPrem(),was=pm;pm=p;
@@ -5116,6 +5147,8 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  confirmOv.addEventListener('click',function(e){if(e.target===confirmOv)closeConfirm()});
 
  box.addEventListener('click',function(e){
+  var fmtBtn=e.target.closest('#shFmt');
+  if(fmtBtn){compactMoneyMode=!compactMoneyMode;fmtBtn.classList.remove('switching');void fmtBtn.offsetWidth;fmtBtn.classList.add('switching');setTimeout(function(){fmtBtn.classList.remove('switching')},720);try{localStorage.setItem('upg_numfmt_v1',compactMoneyMode?'letters':'digits')}catch(_){}refreshFormattedValues();return}
   if(!ov.classList.contains('show'))return;
   var t=e.target.closest('button');if(!t)return;
   if(t.id==='shX'){close();return}
