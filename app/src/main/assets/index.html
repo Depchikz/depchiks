@@ -1534,6 +1534,16 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 .giftit q{display:block;margin-top:8px;padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.25);font-style:italic;font-size:14px;overflow-wrap:anywhere;quotes:none}
 .giftok{width:100%;margin-top:6px;padding:12px;border:0;border-radius:12px;background:var(--ac);color:#06210f;font-weight:900;font-size:15px}
 .shfmt{flex:none;max-width:94px;padding:7px 8px;border-radius:9px;border:1px solid var(--line);background:#111520;color:var(--ac);font-size:11px;font-weight:900;line-height:1.15;text-align:center}.shfmt small{display:block;color:var(--mut);font-size:9px;font-weight:700;margin-bottom:2px}
+/* Настройки игры и формат чисел */
+.game-settings-btn{right:16px;top:144px;color:var(--ac)}
+.game-settings-btn:active svg{transform:rotate(45deg)}
+.game-settings-btn svg{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.game-settings-box{max-width:390px}
+.game-settings-box h3{margin:0 0 16px;color:var(--tx)}
+.game-setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025)}
+.game-setting-row b{display:block;color:var(--tx);font-size:14px}
+.game-setting-row small{display:block;color:var(--mut);font-size:11px;line-height:1.35;margin-top:4px}
+.game-settings-close{width:100%;margin-top:14px;background:var(--ac);color:#06210f;font-weight:900}
 /* v3.05: живой переключатель формата чисел */
 .shfmt{position:relative;overflow:hidden;isolation:isolate;cursor:pointer;transform:translateZ(0);transition:transform .22s cubic-bezier(.2,.8,.2,1),background .28s,border-color .28s,box-shadow .28s,color .28s}
 .shfmt:before{content:"";position:absolute;inset:-45%;z-index:-1;opacity:0;background:radial-gradient(circle,rgba(91,255,174,.24),transparent 62%);transform:scale(.45);transition:opacity .3s,transform .45s}
@@ -1730,6 +1740,8 @@ const $=id=>document.getElementById(id);
 let compactMoneyMode=false;try{compactMoneyMode=localStorage.getItem('upg_numfmt_v1')==='letters'}catch(e){}
 const compactNum=(value,fixed=false)=>{let n=Number(value)||0,sign=n<0?'-':'',a=Math.abs(n);if(!compactMoneyMode)return sign+(fixed?a.toFixed(2):a.toLocaleString('ru-RU',{maximumFractionDigits:2}));if(a<1000)return sign+(fixed?a.toFixed(2):a.toLocaleString('ru-RU',{maximumFractionDigits:2}));const units=[['K',1e3],['M',1e6],['B',1e9],['T',1e12],['Qa',1e15],['Qi',1e18]];let i=0;while(i<units.length-1&&a>=units[i+1][1])i++;let v=a/units[i][1];if(v>=999.995&&i<units.length-1){i++;v=a/units[i][1]}return sign+v.toFixed(2)+units[i][0]};
 const fmt=n=>compactNum(Math.floor(Number(n)||0))+' ₽';
+/* Множитель не сокращаем до K/M/B: разделяем тысячи пробелом. */
+const multFmt=n=>{let v=Number(n);if(!Number.isFinite(v))v=0;let sign=v<0?'-':'';let a=Math.abs(v),parts=a.toFixed(2).replace(/0+$/,'').replace(/\.$/,'').split('.');parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return sign+parts[0]+(parts[1]?'.'+parts[1]:'')};
 const PHR=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),PHD=n=>{let s='';for(let i=0;i<n;i++)s+=Math.floor(Math.random()*10);return s},PHP=a=>a[Math.floor(Math.random()*a.length)];
 const PHC={
  ca:{n:'Канада',f:'🇨🇦',c:'+1',gen:()=>'+1 ('+PHP([204,226,236,249,250,289,306,343,365,403,416,418,431,437,438,450,506,514,519,579,581,587,604,613,647,705,709,778,780,807,819,825,867,902,905])+') '+PHR(2,9)+PHD(2)+' '+PHD(2)+' '+PHD(2)},
@@ -2883,7 +2895,7 @@ $('avDecoList').onclick=e=>{const b=e.target.closest('[data-i]');if(!b)return;co
  if(avTab){avaFrame=i;pvFrame=null;applyAvaFrame()}else{avaDeco=i;pvDeco=null;applyAvaDeco()}
  drawAvDecos();saveCustom(1);save()};
 
-function setBest(t,ch,x,m){if(t>best){best=t;$('bw').textContent=fmt(t);$('bc').textContent=m==='l'?'Лесенка · x'+(Math.round(x*100)/100):m==='d'?'Дропер · x'+(Math.round(x*100)/100):'Апгрейдер · Шанс: '+(ch?ch.toFixed(2).replace(/\.?0+$/,''):0)+'% · x'+(Math.round(x*100)/100);const e=$('bw');e.style.animation='none';void e.offsetWidth;e.style.animation='pop .45s'}}
+function setBest(t,ch,x,m){if(t>best){best=t;$('bw').textContent=fmt(t);$('bc').textContent=m==='l'?'Лесенка · x'+multFmt(x):m==='d'?'Дропер · x'+multFmt(x):'Апгрейдер · Шанс: '+(ch?ch.toFixed(2).replace(/\.?0+$/,''):0)+'% · x'+multFmt(x);const e=$('bw');e.style.animation='none';void e.offsetWidth;e.style.animation='pop .45s'}}
 const LM=[1,1.1,1.25,1.45,1.8,2.3,3.1,4,5.25,6.7,8.15,10,24],LC=[0,70,66,59,50,42,31,22,17,10,7,6,4];
 let lstep=0,lplay=false,lbet=0,lbusy=false;
 $('ladin').innerHTML=LM.map((m,i)=>'<div class="lr" style="--c:hsl('+(150-i*11)+',80%,60%)"><i>'+(i||'★')+'</i><b></b><span>x'+m+'</span><em></em></div>').join('');
@@ -3445,7 +3457,7 @@ function plUltraArm(){if(plBusy||plLuckArmed||plUltraArmed||plUltra<1)return;
 $('ulbtn').onclick=plUltraArm;
 
 let hist=[];
-function hrender0(anim){$('hl').innerHTML=hist.map((h,i)=>{const d=new Date(h.t),tm=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);return '<div class="he'+(anim&&i===0?' new':'')+(h.l?' lose':'')+'"><div class="hm"><b>'+h.m+'</b><span>x'+h.x+' · '+tm+'</span></div><div class="ha">'+(h.l?'\u2212':'+')+fmt(h.a)+'</div></div>'}).join('')}
+function hrender0(anim){$('hl').innerHTML=hist.map((h,i)=>{const d=new Date(h.t),tm=('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);return '<div class="he'+(anim&&i===0?' new':'')+(h.l?' lose':'')+'"><div class="hm"><b>'+h.m+'</b><span>x'+multFmt(h.x)+' · '+tm+'</span></div><div class="ha">'+(h.l?'\u2212':'+')+fmt(h.a)+'</div></div>'}).join('')}
 function addHist(m,x,a,l){hist.unshift({m:m,x:Math.round(x*100)/100,a:a,t:Date.now(),l:!!l});if(hist.length>40)hist.pop();hrender(true);try{window.__pp&&window.__pp(false,true)}catch(e){}}
 function hrender(anim){hrender0(anim);$('hall').innerHTML=$('hl').innerHTML;[...$('hl').children].slice(3).forEach(e=>e.remove())}
 $('hopen').onclick=()=>$('hfull').classList.add('show');$('hclose').onclick=()=>$('hfull').classList.remove('show');
@@ -4952,6 +4964,19 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
 
  /* ---- кнопка и окно ---- */
  var top=document.querySelector('.top');
+ /* Общие настройки игры */
+ var settingsBtn=document.createElement('button');
+ settingsBtn.type='button';settingsBtn.className='codebtn game-settings-btn';settingsBtn.id='gameSettingsBtn';
+ settingsBtn.setAttribute('aria-label','Настройки');settingsBtn.title='Настройки';
+ settingsBtn.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.7 2.94-.08-.02a1.7 1.7 0 0 0-1.8.5l-.05.06h-3.4l-.04-.08a1.7 1.7 0 0 0-1.55-1.02 1.7 1.7 0 0 0-.7.15l-.08.04-2.94-1.7.02-.08a1.7 1.7 0 0 0-.5-1.8l-.06-.05v-3.4l.08-.04a1.7 1.7 0 0 0 1.02-1.55 1.7 1.7 0 0 0-.15-.7l-.04-.08 1.7-2.94.08.02a1.7 1.7 0 0 0 1.8-.5l.05-.06h3.4l.04.08a1.7 1.7 0 0 0 1.55 1.02 1.7 1.7 0 0 0 .7-.15l.08-.04 2.94 1.7-.02.08a1.7 1.7 0 0 0 .5 1.8l.06.05z"/></svg>';
+ if(top)top.appendChild(settingsBtn);
+ var settingsModal=document.createElement('div');
+ settingsModal.className='modal';settingsModal.id='gameSettingsModal';
+ settingsModal.innerHTML='<div class="box game-settings-box"><h3>Настройки</h3><div class="game-setting-row"><div><b>Формат чисел</b><small>Применяется ко всем деньгам и ценам в игре</small></div><button type="button" class="shfmt" id="shFmt" aria-label="Формат чисел"><small>Формат</small><span id="shFmtVal">1 000</span></button></div><button type="button" class="game-settings-close" id="gameSettingsClose">Готово</button></div>';
+ document.body.appendChild(settingsModal);
+ settingsBtn.addEventListener('click',function(){fmtButton();settingsModal.classList.add('show')});
+ settingsModal.addEventListener('click',function(e){if(e.target===settingsModal)settingsModal.classList.remove('show')});
+ settingsModal.querySelector('#gameSettingsClose').addEventListener('click',function(){settingsModal.classList.remove('show')});
  var sb=document.createElement('button');sb.className='codebtn shopbtn';sb.id='shopbtn';sb.setAttribute('aria-label','Маркет билетиков');sb.innerHTML=I(P.tk,22)+'<span class="tkdot" id="shdot">0</span>';
  if(top)top.insertBefore(sb,top.firstChild);
  var ov=document.createElement('div');ov.id='shopOv';ov.innerHTML='<div id="shopBox" role="dialog" aria-modal="true" aria-label="Маркет билетиков"></div>';document.body.appendChild(ov);
@@ -4962,6 +4987,8 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  function refreshFormattedValues(){
   fmtButton();
   try{showMoney(450)}catch(e){}
+  try{hrender(false)}catch(e){}
+  try{if(typeof best==='number'&&best>0){$('bw').textContent=fmt(best);var bc=$('bc');if(bc)bc.textContent=bc.textContent.replace(/x[\d.,\s]+$/,'x'+multFmt((bc.textContent.match(/x([\d.,\s]+)$/)||[])[1]||0))}}catch(e){}
   try{pc4Upd()}catch(e){}
   try{ptick()}catch(e){}
   try{tonUpd();mkDraw();mkMeta(mkOffers.length)}catch(e){}
@@ -5028,7 +5055,7 @@ function admRigShow(){const w=document.getElementById('admRig');if(w){w.hidden=f
  }
  function render(){
   to='me';
-  box.innerHTML='<div class="shpc"><div class="shstub"><div class="shh"><span class="shlogo">'+TK(28)+'</span><div><h3>Маркет билетиков</h3><small>1 билетик в минуту, пока ты в игре и в сети</small></div><div class="shtk" id="shTk">'+TIC+'<span id="shTkN">'+TIX+'</span></div><button type="button" class="shfmt" id="shFmt" aria-label="Формат чисел"><small>Формат</small><span id="shFmtVal">1 000</span></button><button class="shx" id="shX" aria-label="Закрыть">'+I(P.x,18)+'</button></div><div class="shbar"><i id="shBar"></i></div><div class="shtm" id="shTm"></div><div class="shpr" id="shPr"></div></div></div><div class="shdash"></div>'+
+  box.innerHTML='<div class="shpc"><div class="shstub"><div class="shh"><span class="shlogo">'+TK(28)+'</span><div><h3>Маркет билетиков</h3><small>1 билетик в минуту, пока ты в игре и в сети</small></div><div class="shtk" id="shTk">'+TIC+'<span id="shTkN">'+TIX+'</span></div><button class="shx" id="shX" aria-label="Закрыть">'+I(P.x,18)+'</button></div><div class="shbar"><i id="shBar"></i></div><div class="shtm" id="shTm"></div><div class="shpr" id="shPr"></div></div></div><div class="shdash"></div>'+
   '<div class="shpc mn"><div class="shmain" id="shMain">'+
   '<div class="shtabs">'+CATS.map(tabHtml).join('')+'</div><div class="shhint" id="shHint">Нажми на иконку, чтобы выбрать покупку</div>'+
   '<div class="fold" id="shBody"><div class="in">'+
