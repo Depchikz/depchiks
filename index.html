@@ -3113,7 +3113,7 @@ function ownedLadderGuard(){let v=0;owned.forEach(id=>v+=UP[id].ladderGuard||0);
 function ownedLadderBonus(){let v=0;owned.forEach(id=>v+=UP[id].ladderBonus||0);return v}
 lupd();
 dbuild(null);dpos(DT,false);dupd();
-function income(){let f=100,p=0;owned.forEach(id=>{f+=UP[id].f||0;p+=UP[id].pct||0});return Math.round(f*(1+p)*(1+ixB().pass/100))}
+function income(){let f=100,p=0;owned.forEach(id=>{f+=UP[id].f||0;p+=UP[id].pct||0});return Math.round(f*(1+p+ixB().pass/100))}
 function ivl(){let k=0;owned.forEach(id=>k+=UP[id].spd||0);return Math.max(1,6-k)}
 const SD={8:'Мощный процентный бонус ко всему доходу.',10:'Ускоряет анимации во всех мини-играх.',11:'Реже обычные предметы, чаще редкие.',13:'Ещё больше удачи для Дропера.',9:'Финал основной ветки улучшений.',46:'x4 крутка, +50% удачи и +25% скорости номеров.',47:'Открывает кнопку авто-продажи.',48:'Открывает кнопку «Авто-ролл» в разделе «Номера».',42:'Два номера за одну крутку.',27:'Ещё +0,2 п.п. к шансу победы на ступеньке.',28:'+0,02x к множителю и +0,3 п.п. к шансу.',50:'+3 000 ₽ к начислению и выплаты быстрее на 0,5 сек.',51:'+14 000 ₽ к начислению и +50% к пассивному заработку.',52:'+0,5% к шансу победы на каждой ступеньке.',53:'+5 единиц удачи Дропера.',54:'+9 999% к пассивному заработку.',55:'+3,5% к шансу победы на каждой ступеньке Лесенки.',56:'+250% удачи для редких номеров.',57:'+0,12x ко всем редкостям в Дропере.',58:'+99 999% ко всему пассивному заработку.'};
 function shortD(u,id){if(SD[id])return SD[id];const t=String(u.d||'');const m=t.split(/(?<=[.!?])\s/)[0];return m||t}
@@ -3600,7 +3600,7 @@ function plBump(){const b=$('plbagbtn');b.classList.remove('bump');void b.offset
 function plShake(){const cd=$('plcard');cd.classList.remove('sh');void cd.offsetWidth;cd.classList.add('sh')}
 function plMsg(t){const m=$('plmsg');m.textContent=t;m.style.animation='none';void m.offsetWidth;m.style.animation='pop .4s'}
 var plCountQ=[];function plCountRun(){const q=plCountQ;plCountQ=[];q.forEach(f=>{try{f()}catch(e){}})}
-function plReveal(items){if(!Array.isArray(items))items=[items];plCountQ=[];const plates=plStagePlates();plates.forEach((pl,i)=>{const item=items[i]||items[0];plSlots(pl).forEach(el=>el.removeAttribute('data-h'));pl.className='plate t'+item.t;pl.querySelectorAll('.plmeta').forEach(m=>{const fl=m.querySelector('.plr');if(fl)m.parentNode.insertBefore(fl,m);m.remove()});if(items.length>1){const meta=document.createElement('div');meta.className='plmeta';const stats=document.createElement('div');stats.className='plinline';stats.innerHTML='<b>'+PLT[item.t].n+'</b><span class="plchm">'+plChStr(1)+'</span><span>'+fmt(item.v)+'</span>';meta.appendChild(stats);pl.appendChild(meta);const cm=stats.querySelector('.plchm');plCountQ.push(()=>plChAnim(cm,item.c,'',1000))}});
+function plReveal(items){if(!Array.isArray(items))items=[items];plCountQ=[];const plates=plStagePlates();plates.forEach((pl,i)=>{const item=items[i]||items[0];plSlots(pl).forEach(el=>el.removeAttribute('data-h'));pl.className='plate t'+item.t;plSetC(pl,item.k);pl.querySelectorAll('.plmeta').forEach(m=>{const fl=m.querySelector('.plr');if(fl)m.parentNode.insertBefore(fl,m);m.remove()});if(items.length>1){const meta=document.createElement('div');meta.className='plmeta';const stats=document.createElement('div');stats.className='plinline';stats.innerHTML='<b>'+PLT[item.t].n+'</b><span class="plchm">'+plChStr(1)+'</span><span>'+fmt(item.v)+'</span>';meta.appendChild(stats);pl.appendChild(meta);const cm=stats.querySelector('.plchm');plCountQ.push(()=>plChAnim(cm,item.c,'',1000))}});
  const maxItem=items.reduce((a,b)=>b.t>a.t?b:a,items[0]);SFX.reveal(maxItem.t);$('plinfo').innerHTML=items.length===1?'<div class="pltn" style="color:'+PLT[items[0].t].col+'">'+PLT[items[0].t].n+'</div><div class="plch" id="plch"></div><div class="plv" id="plv"></div>':'<div class="plmulti-note">Результаты показаны на каждой плашке</div>';
  if(items.length===1){const item=items[0],ce=$('plch'),ve=$('plv');ce.textContent='Шанс: '+plChStr(1);ve.textContent='Цена: '+fmt(0);plCountQ.push(()=>{plChAnim(ce,item.c,'Шанс: ',1000);plCount(ve,e=>'Цена: '+fmt(item.v*e),1000)})}
  if(maxItem.t<4)plCountRun();
@@ -7095,3 +7095,5 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  dot();
 })();
 </script>
+
+<!-- Divine country uses the same rarity-specific character highlights as every other country. -->
