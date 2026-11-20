@@ -3616,7 +3616,7 @@ function plRender(newId){try{pc4Upd()}catch(e){}const list=plInv.filter(i=>!(Arr
  for(let k=plInv.length;k<plCap();k++)h+='<div class="plempty">Пусто</div>';
  $('plgrid').innerHTML=h;
  $('plpodrate').textContent='Доход: '+fmt(plPodInc())+' / мин';
- $('plpodslot').innerHTML=Array.from({length:plPodCap()},(_,k)=>{const it=plPodium[k];return it?'<div class="plpodstep s'+k+'" style="--rk:'+PLT[it.t].col+';--n:'+plPodCap()+'">'+plMini(it.p,it.t,it.k)+'<div class="plmeta"><b style="color:'+PLT[it.t].col+'">'+plFl(it.k)+' '+PLT[it.t].n+'</b><span>'+fmt(it.v)+'</span><button class="plput" data-podtake="'+it.id+'">Снять в рюкзак</button></div></div>':'<div class="plpodempty plpodstep s'+k+'" style="--n:'+plPodCap()+'"><span>Место '+(k+1)+'/'+plPodCap()+' · '+(k===0?'Добавь номер из рюкзака':'Откроется после улучшения «Богатый подиум I»')+'</span></div>'}).join(''); $('plpodstats').innerHTML=plPodium.length?plPodium.map((it,k)=>'<b>Место '+(k+1)+':</b> '+it.p+' '+plFl(it.k)+'<br><b>Редкость:</b> '+plFl(it.k)+' '+PLT[it.t].n+'<br><b>Шанс:</b> '+plChStr(it.c)+'<br><b>Стоимость:</b> '+fmt(it.v)+'<br><b>Доход:</b> '+fmt(Math.round(it.v*60/10000))+' / мин').join('<hr>'):'Выбери номер в рюкзаке и нажми «На подиум»'}
+ $('plpodslot').innerHTML=Array.from({length:plPodCap()},(_,k)=>{const it=plPodium[k];return it?'<div class="plpodstep s'+k+'" style="--rk:'+PLT[it.t].col+';--n:'+plPodCap()+'">'+plMini(it.p,it.t,it.k)+'<div class="plmeta"><b style="color:'+PLT[it.t].col+'">'+plFl(it.k)+' '+PLT[it.t].n+'</b><span>'+fmt(it.v)+'</span><button class="plput" data-podtake="'+it.id+'">Снять в рюкзак</button></div></div>':'<div class="plpodempty plpodstep s'+k+'" style="--n:'+plPodCap()+'"><span>Место '+(k+1)+'/'+plPodCap()+'</span></div>'}).join(''); $('plpodstats').innerHTML=plPodium.length?plPodium.map((it,k)=>'<b>Место '+(k+1)+':</b> '+it.p+' '+plFl(it.k)+'<br><b>Редкость:</b> '+plFl(it.k)+' '+PLT[it.t].n+'<br><b>Шанс:</b> '+plChStr(it.c)+'<br><b>Стоимость:</b> '+fmt(it.v)+'<br><b>Доход:</b> '+fmt(Math.round(it.v*60/10000))+' / мин').join('<hr>'):'Выбери номер в рюкзаке и нажми «На подиум»'}
 function plUpd(){const full=plInv.length+plQty>plCap(),b=$('plgo'),m=$('plmsg'),cost=plCost();b.classList.toggle('ready',!plBusy&&!full&&money>=cost);b.disabled=plBusy;
  if(full&&!plBusy)m.textContent='В рюкзаке недостаточно места — продай номера';else if(m.textContent.indexOf('В рюкзаке недостаточно места')===0)m.textContent='';plQtyUi()}
 function plIsPend(id){return Array.isArray(plPending)?plPending.includes(id):id===plPending}
@@ -7056,6 +7056,20 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 .ixtab.on{animation:ixtabpop .35s cubic-bezier(.2,1.5,.4,1)}
 @keyframes ixtabpop{from{transform:scale(.85)}}
 @media (prefers-reduced-motion:reduce){#ixov *,#ixov::before{animation-duration:.01s!important;animation-iteration-count:1!important;animation-delay:0s!important}#ixov .ixline{width:70%}}
+
+/* v3.37.4: подиум — одинаковая ширина карточек, без лесенки и сдвигов; контент 4-го места не ломается */
+#plpodslot.plpodslot{align-items:stretch;gap:0;padding-left:0;padding-right:0}
+#plpodslot .plpodstep{box-sizing:border-box;width:100%;max-width:100%;margin-left:0!important;margin-right:0!important;min-width:0;display:flex;flex-wrap:nowrap;align-items:center;gap:12px;padding:12px 14px}
+#plpodslot .plpodstep .plate.mini{flex:0 0 auto;width:max-content;max-width:none;min-width:0}
+#plpodslot .plpodstep .plmeta{flex:1 1 0;min-width:0;max-width:none;align-items:flex-start;text-align:left;overflow:visible}
+#plpodslot .plpodstep .plput{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;flex:0 0 auto;width:auto;max-width:100%;white-space:nowrap;word-break:normal;overflow-wrap:normal;padding:7px 10px;margin-top:5px}
+#plpodslot .plpodstep.plpodempty{width:100%;max-width:100%;margin-left:0!important}
+@media(max-width:380px){
+ #plpodslot .plpodstep{gap:8px;padding:10px 8px}
+ #plpodslot .plpodstep .plate.mini{transform:scale(.94);transform-origin:left center;margin-right:-6px}
+ #plpodslot .plpodstep .plmeta{font-size:12px}
+ #plpodslot .plpodstep .plput{font-size:11px;padding:6px 7px}
+}
 </style>
 <script>
 /* v3.36: Индекс номеров — собирает пары «страна + редкость» из всех выпавших номеров */
