@@ -4769,7 +4769,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
     if(nd)fresh.forEach(function(x){if(nd[x.id])api('/notes/'+k+'/'+x.id+'.json',{method:'DELETE'}).catch(function(){})});
    }
    /* прочитанные переводы удаляем (получатель вправе удалять свой ящик) */
-   Object.keys(d).forEach(function(id){api('/inbox/'+k+'/'+id+'.json',{method:'DELETE'}).catch(function(){})});
+   var dl={};Object.keys(d).forEach(function(id){dl['inbox/'+k+'/'+id]=null;dl['used/'+k+'/'+id]=SV});if(Object.keys(dl).length)api('/.json',{method:'PATCH',body:JSON.stringify(dl)}).catch(function(){});
   }catch(e){}finally{polling=false}
  }
 
