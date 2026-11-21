@@ -7562,7 +7562,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  var L=ov.querySelector('#dqL');
  function fm(n){try{return fmt(n)}catch(e){return String(n)}}
  function dur(ms){var h=ms/H;return h>=24?(h/24+' д'):h>=1?(h+' ч'):(Math.round(ms/60000)+' мин')}
- function rewardTxt(r){return r.k==='m'?'+'+fm(r.v):r.k==='t'?'+'+r.v+' 🎟':r.k==='sr'?'Super Roll ×'+r.v:'Premium на '+dur(r.v)}
+ function rewardTxt(r){return r.k==='m'?'+'+fm(r.v):r.k==='t'?'+'+r.v+' 🎟':r.k==='sr'?'Super Roll ×'+r.v+' 🎒':r.k==='ur'?'Ultra Roll ×'+r.v+' 🎒':'Premium на '+dur(r.v)+' 🎒'}
  function prog(t,d){var p=Math.min(t.p,d.target);if(d.tm)return Math.floor(p/60)+' / '+Math.round(d.target/60)+' мин';if(d.cur||d.target>=10000)return fm(Math.floor(p))+' / '+fm(d.target);return Math.floor(p)+' / '+d.target}
  function cardHtml(t,i,anim){
   var d=def(t),pr=Math.min(1,t.p/d.target),pct=Math.floor(pr*100),dn=done(t);
@@ -7614,19 +7614,22 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
   var c=['#5cf0a0','#fff','#ffd75e','#c79bff'];
   for(var i=0;i<14;i++){var p=document.createElement('i');p.className='dqpt2';var a=Math.random()*6.283,d=50+Math.random()*90;p.style.setProperty('--dx',Math.round(Math.cos(a)*d)+'px');p.style.setProperty('--dy',Math.round(Math.sin(a)*d)+'px');p.style.setProperty('--r',Math.round(Math.random()*400-200)+'deg');p.style.background=c[i%4];card.appendChild(p);setTimeout(function(q){return function(){q.remove()}}(p),950)}
  }
+ /* деньги и билетики выдаются сразу; Super Roll, Ultra Roll и Premium попадают в рюкзак (их используют вручную). Возвращает false, если рюкзак полон */
+ var BPT={sr:'luck',ur:'ultra',pm:'prem'};
  function give(r){
   try{
+   if(BPT[r.k]){return !!(window.__bpAdd&&window.__bpAdd({t:BPT[r.k],v:r.v,f:''}))}
    if(r.k==='m'){money+=r.v;showMoney();pfloat(r.v)}
    else if(r.k==='t'){if(window.__shopGive)window.__shopGive(r.v)}
-   else if(r.k==='sr'){plLuckGive(r.v)}
-   else if(r.k==='pm'){var ms=r.v;try{if(ms>0&&badges.includes('prem')&&premUntil<=0)ms=-1}catch(e){}premGrant(ms)}
-  }catch(e){}
+   return true;
+  }catch(e){return false}
  }
  function claim(i){
   var t=st.t[i];if(!t||t.c||!done(t))return;
-  t.c=1;sv();
   var d=def(t);
-  give(d.r);
+  if(!give(d.r)){toast('🎒 Рюкзак полон (50/50). Освободи место и забери награду');try{SFX.deny&&SFX.deny()}catch(e){}return}
+  t.c=1;sv();
+  if(BPT[d.r.k])toast('🎒 Награда добавлена в рюкзак');
   try{save_()}catch(e){}
   try{SFX.cash(1)}catch(e){}
   try{if(navigator.vibrate)navigator.vibrate([40,30,60])}catch(e){}
