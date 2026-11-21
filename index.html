@@ -7585,7 +7585,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  function def(t){return POOL[t.key]||POOL[KEYS[0]]}
  function done(t){return t.p>=def(t).target}
  /* кнопка */
- var b=document.createElement('button');b.type='button';b.className='codebtn dqbtn';b.id='dqbtn';b.setAttribute('aria-label','Ежедневные задания');
+ var b=document.createElement('button');b.type='button';b.className='codebtn dqbtn';b.id='dqbtn';b.setAttribute('aria-label','Задания');
  b.innerHTML='<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="3"/><path d="M9 4.5h6M9 11l1.6 1.6L14 9M9 17h6"/></svg><span class="dqbdg"></span>';
  top.appendChild(b);
  var bd=b.querySelector('.dqbdg');
@@ -7600,7 +7600,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  function toast(m){toastEl.textContent=m;toastEl.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){toastEl.classList.remove('on')},2400)}
  /* окно */
  var ov=document.createElement('div');ov.className='dqov';ov.id='dqOv';
- ov.innerHTML='<div class="dqm" role="dialog" aria-modal="true" aria-label="Ежедневные задания"><button type="button" class="dqx" id="dqX" aria-label="Закрыть"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><h3>📋 Ежедневные задания</h3><div class="dqtm"><span>Новые задания через</span><b id="dqT">6 ч 00 мин</b><i class="dqtb"><u id="dqTb"></u></i></div><div class="dqlist" id="dqL"></div><p class="dqnote">Невзятые награды сгорают при обновлении заданий</p></div>';
+ ov.innerHTML='<div class="dqm" role="dialog" aria-modal="true" aria-label="Задания"><button type="button" class="dqx" id="dqX" aria-label="Закрыть"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><h3>📋 Задания</h3><div class="dqtm"><span>Новые задания через</span><b id="dqT">6 ч 00 мин</b><i class="dqtb"><u id="dqTb"></u></i></div><div class="dqlist" id="dqL"></div><p class="dqnote">Невзятые награды сгорают при обновлении заданий</p></div>';
  document.body.appendChild(ov);
  var L=ov.querySelector('#dqL');
  function fm(n){try{return fmt(n)}catch(e){return String(n)}}
