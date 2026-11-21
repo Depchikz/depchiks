@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Upgrader v3.38</title>
+<title>Upgrader v3.40</title>
 
 <style>
 :root{color-scheme:dark;--bg:#0f1117;--card:#1a1d27;--line:#2a2e3d;--tx:#eef0f6;--mut:#8b90a3;--ac:#3ddc84;--bad:#ff5468;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -396,6 +396,7 @@ section.out{animation:fout .22s ease forwards!important}
 .plate[data-c="in"].t-1{--pb:#ff9933;--pg:linear-gradient(160deg,#ff9933,#12151d)}
 .plate[data-c="af"].t-1{--pb:#d32011;--pg:linear-gradient(160deg,#000,#12151d)}
 .plate[data-c="jp"].t-1{--pb:#bc002d;--pg:linear-gradient(160deg,#bc002d,#12151d)}
+.plate[data-c="az"].t-1{--pb:#ef3340;--pg:linear-gradient(160deg,#00b5e2,#12151d)}
 .plate[data-c="eg"].t-1{--pb:#ce1126;--pg:linear-gradient(160deg,#ce1126,#12151d)}
 .plate[data-c="qa"].t-1{--pb:#8a1538;--pg:linear-gradient(160deg,#8a1538,#12151d)}
 .plate[data-c="kz"].t-1{--pb:#fec50c;--pg:linear-gradient(160deg,#00afca,#12151d)}
@@ -1366,7 +1367,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 #codeSec{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}#md.adm #codeSec{margin-top:0;padding-top:0;border-top:0}#md.adm #numberFormatSetting,#md.adm #abcToggles,#md.adm #sendBox,#md.adm #sv,#md.adm #wipe,#md.adm #premInfo{display:none!important}</style>
 
 <div id="app">
- <div class="top"><div class="ver">v3.38</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><button class="codebtn ixbtn" id="ixbtn" aria-label="Индекс" title="Индекс"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg><i class="ixdot"></i></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
+ <div class="top"><div class="ver">v3.40</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><button class="codebtn ixbtn" id="ixbtn" aria-label="Индекс" title="Индекс"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg><i class="ixdot"></i></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
  <div class="tabs"><button id="t1" class="on">Профиль</button><button id="t6">Улучшения</button><button id="t2">Мини игры</button><button id="t7">Номера</button></div>
  <div id="evPill" aria-live="polite"></div>
  <main>
@@ -1492,7 +1493,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 <div class="modal" id="md"><div class="box" style="max-height:90vh;overflow-y:auto"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px"><h3 id="mt" style="margin:0;color:var(--tx)">Настройки</h3><button id="mc" aria-label="Закрыть" style="flex:none;width:36px;height:36px;padding:0;border-radius:10px;border:1px solid var(--line);background:#222635;color:var(--mut);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pmban premmenu off" id="premInfo"><svg viewBox="0 0 24 24"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5L3 7z"/></svg><div><span class="pon">До конца премиума осталось <b class="premT"></b></span><span class="poff">PREMIUM не активен</span></div></div><div class="game-setting-row" id="numberFormatSetting" style="text-align:center;margin:14px 0 16px"><div style="text-align:center"><b>Формат чисел</b><small>Во всей игре: деньги, цены и история ставок</small></div><div class="fmt-options" role="group" aria-label="Выбор формата чисел"><button type="button" class="fmt-choice" id="fmtDigits" aria-pressed="false"><span class="fmt-check">✓</span><span class="fmt-name">Формат цифрами</span><span class="fmt-example">1 000 000</span></button><button type="button" class="fmt-choice" id="fmtLetters" aria-pressed="false"><span class="fmt-check">✓</span><span class="fmt-name">Формат буквами</span><span class="fmt-example">1.00M</span></button></div></div><div class="game-setting-row" id="abcToggles"><div class="abc-list" role="group" aria-label="Оптимизация"><button type="button" class="abc-row" id="abc1" role="switch" aria-checked="false"><span class="abc-txt"><span class="abc-name">Оптимизация профиля</span><small>Убирает все анимации в профиле и часть эффектов, которые нагружают телефон, в том числе в чужих профилях.</small></span><span class="abc-sw"><i class="abc-knob"></i></span></button><button type="button" class="abc-row" id="abc2" role="switch" aria-checked="false"><span class="abc-txt"><span class="abc-name">Оптимизация улучшений</span><small>Убирает анимации прокачек и фона, фон становится просто серым. Всё работает легче.</small></span><span class="abc-sw"><i class="abc-knob"></i></span></button><button type="button" class="abc-row" id="abc3" role="switch" aria-checked="false"><span class="abc-txt"><span class="abc-name">Оптимизация эффектов</span><small>Убирает много эффектов по всей игре или делает их очень лёгкими. Повышает FPS.</small></span><span class="abc-sw"><i class="abc-knob"></i></span></button></div></div><div id="sendBox" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)"><div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:6px">Отправить деньги</div><input id="sendTo" type="text" maxlength="16" placeholder="@username" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><input id="sendAmt" type="text" inputmode="numeric" placeholder="₽ сумма" autocomplete="off" style="margin-top:8px"><input id="sendNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="margin-top:8px"><div id="sendMsg" style="font-size:14px;min-height:18px;margin-top:8px"></div><button id="sendBtn" style="width:100%;margin-top:8px;background:var(--ac);color:#06210f">Отправить</button></div><div id="sv" class="svs"></div><div id="codeSec"><input id="mi" type="text" placeholder="Введите код" autocomplete="off"><div id="me" style="color:var(--bad);font-size:14px;margin-top:8px"></div><button type="button" id="admMoneyGo" style="display:none;width:100%;margin-top:8px;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;font-weight:900;font-size:14px">Дать деньги</button><div id="admTkBox" style="display:none;margin-top:10px"><input id="admTkAmt" type="number" inputmode="numeric" min="1" placeholder="Сколько билетиков" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><button type="button" id="admTkGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#7ad7ff,#3b82f6);color:#06223d;font-weight:900;font-size:14px">Дать билетики</button></div><div id="admRig" hidden><div class="admt">Следующая крутка номера (1 раз)</div><div class="admb"><button type="button" data-rig="4" style="--rc:#ffc933">Легендарный</button><button type="button" data-rig="5" style="--rc:#ff4d6a">Мифик</button><button type="button" data-rig="6" style="--rc:#fff">Секретный</button><button type="button" data-rig="7" style="--rc:#5dffc6">Eclipse</button><button type="button" data-rig="-1">Сброс</button></div><div class="adms" id="admRigS"></div><div class="admt" style="margin-top:14px">Апгрейдер: подкрутка (1 раз, до x1 000)</div><div class="admb"><button type="button" data-uprig="1" style="--rc:#3ddc84">Подкрутить</button><button type="button" data-uprig="0">Сброс</button></div><div class="adms" id="admUpS"></div><div class="admt" style="margin-top:14px">Выдать PREMIUM игроку</div><input id="admPremNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admPremNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><select id="admPremDur" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><option value="3600000">1 час</option><option value="21600000">6 часов</option><option value="86400000" selected>1 день</option><option value="259200000">3 дня</option><option value="604800000">7 дней</option><option value="2592000000">30 дней</option><option value="31536000000">365 дней</option><option value="-1">∞ Навсегда</option></select><button type="button" id="admPremGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;font-weight:900;font-size:14px">Выдать PREMIUM</button><div class="adms" id="admPremS"></div><div class="admt" style="margin-top:14px">HELPER игроку (виден всем в профиле)</div><input id="admHelpNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><div class="admb"><button type="button" id="admHelpOn" style="--rc:#ff4560">Выдать HELPER</button><button type="button" id="admHelpOff">Забрать</button></div><div class="adms" id="admHelpS"></div><div class="admt" style="margin-top:14px">VERIFED игроку (синий баннер, виден всем)</div><input id="admVerNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><div class="admb"><button type="button" id="admVerOn" style="--rc:#42a5ff">Выдать VERIFED</button><button type="button" id="admVerOff">Забрать</button></div><div class="adms" id="admVerS"></div><div class="admt" style="margin-top:14px">Выдать Lucky Roll игроку</div><input id="admLkNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admLkNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admLkCnt" type="text" inputmode="numeric" maxlength="3" placeholder="Количество" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><button type="button" id="admLkGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#ffd75e,#ffb020);color:#2a1a00;font-weight:900;font-size:14px">Выдать Lucky Roll</button><div class="adms" id="admLkS"></div><div class="admt" style="margin-top:14px">Выдать Ultra Roll игроку</div><input id="admUlNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admUlNote" type="text" maxlength="80" placeholder="Подпись к подарку (необязательно)" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admUlCnt" type="text" inputmode="numeric" maxlength="3" placeholder="Количество" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><button type="button" id="admUlGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(110deg,#ff4d6a,#ffb020,#ffe14d,#3ddc84,#4da6ff,#b46bff,#ff4d6a);color:#14101f;font-weight:900;font-size:14px">Выдать Ultra Roll</button><div class="adms" id="admUlS"></div><div class="admt" style="margin-top:14px">⚠ Предупреждение (штраф)</div><input id="admWarnNick" type="text" maxlength="16" placeholder="@ник" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admWarnAmt" type="text" inputmode="numeric" placeholder="Сколько снять, ₽ (например 6000000)" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><input id="admWarnRsn" type="text" maxlength="120" placeholder="Причина" autocomplete="off" style="width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--line);background:#12151d;color:var(--tx);font-size:14px;margin-bottom:8px"><button type="button" id="admWarnGo" style="width:100%;padding:11px;border-radius:10px;border:0;background:linear-gradient(135deg,#ff6b6b,#d62839);color:#fff;font-weight:900;font-size:14px">Выдать предупреждение</button><div class="adms" id="admWarnS"></div></div><div class="row"><button id="mo" style="background:var(--ac);color:#06210f">ОК</button></div><button class="wipe" id="wipe"><i class="wbar"></i><span class="w1">Удалить прогресс</span><span class="w2">Ты уверен?</span></button></div></div></div>
 <div class="hfull" id="hfull"><div class="hfh"><h3>История ставок</h3><button class="hbtn" id="hclose"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div id="hall"></div></div>
 <div class="hfull" id="plbag"><div class="hfh"><div><h3 id="plbagt">Рюкзак</h3><div class="plcount" id="plbagc"></div></div><button class="hbtn" id="plbagx"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="plbody"><div class="plgrid" id="plgrid"></div></div><div class="plfoot"><button class="plsa" id="plsellall"><i class="wbar"></i><span class="w1" id="plsa1">Продать все</span><span class="w2" id="plsa2">Точно? Продать все</span></button></div></div>
-<div class="hfull" id="ixov" aria-hidden="true"><div class="ixhead"><button type="button" class="ixtab on" data-n="10">10</button><button type="button" class="ixtab" data-n="16">16</button><button type="button" class="ixtab" data-n="22">22</button><button type="button" class="hbtn ixx" id="ixx" aria-label="Закрыть"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="ixtitle"><div class="ixtico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg></div><div class="ixtxt"><h2>Индекс номеров</h2><p>Собери каждую страну во всех редкостях</p><i class="ixline"></i></div></div><div class="plbody" id="ixbody"></div></div>
+<div class="hfull" id="ixov" aria-hidden="true"><div class="ixhead"><button type="button" class="ixtab on" data-n="10">10</button><button type="button" class="ixtab" data-n="16">16</button><button type="button" class="ixtab" data-n="99">Все</button><button type="button" class="hbtn ixx" id="ixx" aria-label="Закрыть"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="ixtitle"><div class="ixtico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg></div><div class="ixtxt"><h2>Индекс номеров</h2><p>Собери каждую страну во всех редкостях</p><i class="ixline"></i></div></div><div class="plbody" id="ixbody"></div></div>
 <div class="ixtoast" id="ixtoast"></div>
 <div class="hfull" id="plpod"><div class="hfh"><div><h3>Подиум</h3><div class="plcount">Пассивный доход с установленного номера</div></div><button class="hbtn" id="plpodx" aria-label="Закрыть"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="plbody"><div class="plpod"><div class="plpodslot" id="plpodslot"><div class="plpodempty">Пока пусто — добавь номер из рюкзака</div></div><div class="plpodmeta" id="plpodrate">Доход: 0 ₽/сек</div><button type="button" class="plput" id="plpodbest" style="width:100%;margin-top:10px;padding:11px;font-size:14px">Поставить лучшее</button><div class="plpodmeta" id="plpodstats"></div></div></div></div>
 <div class="plchm" id="plchm" aria-hidden="true"><div class="plchs" role="dialog" aria-label="Шансы выпадения"><div class="plchh"><h3>Шансы выпадения</h3><button type="button" class="plchx" id="plchx" aria-label="Закрыть"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="plchl" id="plchl"></div></div></div>
@@ -1549,10 +1550,8 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 .plate[data-c="al"].t-1{--pb:#7cfc8a;--pg:linear-gradient(160deg,#25503a,#0b1a14)}
 .plate[data-c="al"] .plc{font-family:'Courier New',Consolas,monospace}
 .plate[data-c="al"] .plr em{display:none}
-.plate[data-c="al"] .plr::before{content:"\1F47D";display:block;font-size:22px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;filter:drop-shadow(0 0 4px rgba(124,252,138,.7))}
 .plate[data-c="al"] .plr small{font-size:7px;letter-spacing:.3px;color:#7cfc8a}
 #plstage.multi>.plate[data-c="al"]>.plr{flex:0 0 auto!important}
-#plstage.multi>.plate[data-c="al"] .plr::before{font-size:14px}
 #plstage.multi>.plate[data-c="al"] .plr small{font-size:5px!important}
 .plate.mini[data-c="al"] .plr{display:none}
 .debt,#bal.debt{color:#ff5468!important}
@@ -2409,7 +2408,7 @@ $('xbuy').onclick=()=>{
  if(Date.now()<(XC.cd||0)){xcMsg('Покупка и продажа раз в 5 секунд — подожди '+Math.ceil(((XC.cd||0)-Date.now())/1000)+' с',false);return}
  const a=xcAmt();if(!a)return;const now=Date.now(),p=xcAt(now),cost=Math.ceil(a*p);
  if(money<cost){xcMsg('Недостаточно ₽',false);return}
- const _tb0=tonBought;tonBought=Math.round((tonBought+a)*100)/100;money-=cost;ton=Math.round((ton+a)*100)/100;tonUpd();showMoney();save();lvGain(_tb0,tonBought);try{window.dqEvent&&dqEvent('tonbuy',a)}catch(e){}try{window.__pp&&window.__pp(true)}catch(e){}
+ const _tb0=tonBought;tonBought=Math.round((tonBought+a)*100)/100;money-=cost;ton=Math.round((ton+a)*100)/100;tonUpd();showMoney();save();lvGain(_tb0,tonBought);try{window.dqEvent&&dqEvent('tonbuy',a);dqEvent('tonop',1)}catch(e){}try{window.__pp&&window.__pp(true)}catch(e){}
  XC.marks.push({t:now,p:p,type:'buy',a:a});
  xcPush(XC.target*Math.exp(-xcImp(a)),700);
  XC.cd=Date.now()+5000;xcMsg('Куплено '+a+' TON за '+xcFmt(cost)+' ₽',true);
@@ -2423,7 +2422,7 @@ $('xsell').onclick=()=>{
  const a=xcAmt();if(!a)return;
  if(ton<a){xcMsg('Недостаточно TON',false);return}
  const now=Date.now(),p=xcAt(now),gain=Math.floor(a*p);
- money+=gain;ton=Math.round((ton-a)*100)/100;tonUpd();showMoney();save();try{window.dqEvent&&dqEvent('tonsell',a)}catch(e){}
+ money+=gain;ton=Math.round((ton-a)*100)/100;tonUpd();showMoney();save();try{window.dqEvent&&dqEvent('tonsell',a);dqEvent('tonop',1)}catch(e){}
  XC.marks.push({t:now,p:p,type:'sell',a:a});
  xcPush(XC.target*Math.exp(xcImp(a)),700);
  XC.cd=Date.now()+5000;xcMsg('Продано '+a+' TON за '+xcFmt(gain)+' ₽',true);
@@ -2709,7 +2708,7 @@ $('go').onclick=()=>{
   if(p<1)requestAnimationFrame(f);else{
    $('wb').classList.remove('spin');fin(win,t/b);try{window.dqEvent&&dqEvent('upg',1)}catch(e){}if(!win)addHist('Апгрейдер',t/b,b,true);setTimeout(back,1000/SF());
    if(win){money+=t;premBonus(t);evGameBonus(t);showMoney();try{window.dqWin&&dqWin('upg',b,t)}catch(e){}setBest(t,ch,t/b);addHist('Апгрейдер',t/b,t-b);$('res').style.color='var(--ac)';$('res').textContent='Победа! +'+fmt(t)}
-   else{$('res').style.color='var(--bad)';$('res').textContent='Проигрыш −'+fmt(b)}
+   else{try{window.dqLose&&dqLose()}catch(e){}$('res').style.color='var(--bad)';$('res').textContent='Проигрыш −'+fmt(b)}
   }
  })(t0);
 };
@@ -3137,7 +3136,7 @@ $('lup').onclick=()=>{if(!lplay||lbusy)return;lbusy=true;lset(true);const nx=LR[
  setTimeout(()=>{nx.classList.remove('try');
   if(Math.random()*100<nlChance(ladderChance(lstep+1))){lstep++;lupd();setBest(lw(),0,ladderMult(lstep),'l');boom(40);SFX.step(lstep);if(navigator.vibrate)navigator.vibrate(40);$('ltake').classList.remove('hide');
    if(lstep===LM.length-1)setTimeout(ltakeDo,1100/SF());else{lbusy=false;lset(false)}}
-  else{nx.classList.add('bad');const ld=$('lad');ld.classList.remove('sh');void ld.offsetWidth;ld.classList.add('sh');lmsg('Проигрыш −'+fmt(lbet),'var(--bad)');SFX.lose();if(navigator.vibrate)navigator.vibrate(200);addHist('Лесенка',ladderMult(lstep+1),lbet,true);setTimeout(lreset,1600/SF())}
+  else{nx.classList.add('bad');const ld=$('lad');ld.classList.remove('sh');void ld.offsetWidth;ld.classList.add('sh');lmsg('Проигрыш −'+fmt(lbet),'var(--bad)');try{window.dqLose&&dqLose()}catch(e){}SFX.lose();if(navigator.vibrate)navigator.vibrate(200);addHist('Лесенка',ladderMult(lstep+1),lbet,true);setTimeout(lreset,1600/SF())}
  },900/SF())};
 $('ltake').onclick=()=>{if(lbusy)return;lbusy=true;lset(true);ltakeDo()};
 const DR=['#e8ebf2','#3ddc84','#4a9bff','#b36bff','#ffc933','#ff3b4d'],DN=['Обычная','Необычная','Редкая','Эпическая','Легендарная','Мифическая'],DRG=[[.2,.54],[.55,.89],[.9,1.24],[1.25,1.74],[1.75,2.49],[2.5,3.25]],DP=[35,35,25,0,4,1],DS=56,DT=6;
@@ -3244,21 +3243,21 @@ let owned=new Set(),selU=0,tto;
 function ownedLuck(){let v=0;owned.forEach(id=>v+=UP[id].luck||0);return v}
 function plLuckBonus(){let v=0;owned.forEach(id=>v+=UP[id].plLuck||0);return v+ixB().luck}
 function plSpeedBonus(){let v=0;owned.forEach(id=>v+=UP[id].plSpeed||0);return v}
-/* v3.37: бонусы «Индекса номеров». Бонус включается, когда у тебя собрана вся редкость среди N самых дешёвых стран (N = 10 / 16 / 22) */
+/* v3.37: бонусы «Индекса номеров». Бонус включается, когда у тебя собрана вся редкость среди N самых дешёвых стран (N = 10 / 16 / все) */
 var IXBON=[
- {n:10,t:0,k:'inv',v:2},{n:16,t:0,k:'inv',v:3},{n:22,t:0,k:'pod',v:1},
- {n:10,t:1,k:'luck',v:4},{n:16,t:1,k:'luck',v:18},{n:22,t:1,k:'luck',v:50},
- {n:10,t:2,k:'pass',v:400},{n:16,t:2,k:'pass',v:900},{n:22,t:2,k:'pass',v:16000},
- {n:10,t:3,k:'podinc',v:1},{n:16,t:3,k:'podinc',v:2.5},{n:22,t:3,k:'podinc',v:6.5},
- {n:10,t:4,k:'luck',v:10},{n:16,t:4,k:'luck',v:25},{n:22,t:4,k:'luck',v:65},
- {n:10,t:5,k:'pass',v:3250},{n:16,t:5,k:'pass',v:12000},{n:22,t:5,k:'pass',v:145000},
- {n:10,t:6,k:'inv',v:5},{n:16,t:6,k:'luck',v:75},{n:22,t:6,k:'pass',v:300000},
- {n:10,t:7,k:'podinc',v:5},{n:16,t:7,k:'luck',v:125},{n:22,t:7,k:'podinc',v:15}];
+ {n:10,t:0,k:'inv',v:2},{n:16,t:0,k:'inv',v:3},{n:99,t:0,k:'pod',v:1},
+ {n:10,t:1,k:'luck',v:4},{n:16,t:1,k:'luck',v:18},{n:99,t:1,k:'luck',v:50},
+ {n:10,t:2,k:'pass',v:400},{n:16,t:2,k:'pass',v:900},{n:99,t:2,k:'pass',v:16000},
+ {n:10,t:3,k:'podinc',v:1},{n:16,t:3,k:'podinc',v:2.5},{n:99,t:3,k:'podinc',v:6.5},
+ {n:10,t:4,k:'luck',v:10},{n:16,t:4,k:'luck',v:25},{n:99,t:4,k:'luck',v:65},
+ {n:10,t:5,k:'pass',v:3250},{n:16,t:5,k:'pass',v:12000},{n:99,t:5,k:'pass',v:145000},
+ {n:10,t:6,k:'inv',v:5},{n:16,t:6,k:'luck',v:75},{n:99,t:6,k:'pass',v:300000},
+ {n:10,t:7,k:'podinc',v:5},{n:16,t:7,k:'luck',v:125},{n:99,t:7,k:'podinc',v:15}];
 var __ixB=null,__ixAct=[];
 function ixCalc(){var B={inv:0,pod:0,luck:0,pass:0,podinc:0},act=[];
  try{var c={};try{var r=localStorage.getItem('upg_index_v1');if(r){var d=JSON.parse(r);if(d&&d.c&&typeof d.c==='object')c=d.c}}catch(e){}
   var list=PLC.map(function(x,i){return[x,i]}).sort(function(a,b){return a[0].cost-b[0].cost||a[1]-b[1]}).map(function(x){return x[0]});
-  IXBON.forEach(function(b,bi){var ok=true,L=list.slice(0,b.n);if(L.length<b.n)ok=false;for(var i=0;ok&&i<L.length;i++)if(!c[L[i].id+':'+b.t])ok=false;if(ok){B[b.k]+=b.v;act.push(bi)}})
+  IXBON.forEach(function(b,bi){var ok=true,L=list.slice(0,b.n);if(!L.length)ok=false;for(var i=0;ok&&i<L.length;i++)if(!c[L[i].id+':'+b.t])ok=false;if(ok){B[b.k]+=b.v;act.push(bi)}})
  }catch(e){return B}
  __ixB=B;__ixAct=act;return B}
 function ixB(){return __ixB||ixCalc()}
@@ -3360,7 +3359,10 @@ function tbuy(){if(!selU)return;const u=UP[selU];if(tstate(selU)!=='avail'||mone
  toast('Куплено: '+u.n+' \u00b7 '+u.eff);ptick();godCheck(u===UP[selU]?selU:0)}
 
 /* ===== Боги: скрыты, пока не куплены все 53 улучшения; кинематографичное появление ===== */
-let cine='',cineSet=new Set(),_gvSig='';
+let cine='',cineSet=new Set(),_gvSig='',gTgt=0;
+function gVig(ov){if(!gTgt||!UP[gTgt])return;const tc=$('tc'),r=tc.getBoundingClientRect(),k=r.width/4200,u=UP[gTgt],mg=!!u.mega;
+ ov.style.setProperty('--gx',Math.round(r.left+u.x*k)+'px');ov.style.setProperty('--gy',Math.round(r.top+u.y*k)+'px');
+ ov.style.setProperty('--gw',Math.round((mg?640:498)*k*.75)+'px');ov.style.setProperty('--gh',Math.round((mg?460:383)*k*.75)+'px')}
 const GOD_IDS=[54,55,56,57],MEGA_ID=58;
 function allBase(){for(let i=1;i<=53;i++)if(!owned.has(i))return false;return true}
 function gvis(id){
@@ -3397,17 +3399,17 @@ async function godCine(kind){
  ov.innerHTML='<div class="gvig"></div><div class="gbar t"></div><div class="gbar b"></div><div class="gfl"></div><div class="gcap"></div><div class="gprog"></div>';
  document.body.appendChild(ov);requestAnimationFrame(()=>ov.classList.add('on'));
  const pr=ov.querySelector('.gprog'),t0=performance.now();let raf=0;
- (function p(n){pr.style.width=Math.min(100,(n-t0)/total*100)+'%';raf=requestAnimationFrame(p)})(t0);
+ (function p(n){pr.style.width=Math.min(100,(n-t0)/total*100)+'%';gVig(ov);raf=requestAnimationFrame(p)})(t0);
  try{
   await gSleep(700);
   if(kind==='gods'){
-   for(const id of [54,55,57,56]){await gCam(UP[id].x,UP[id].y,2000);gReveal(id,ov,false);await gSleep(2500)}
+   for(const id of [54,55,57,56]){gTgt=id;await gCam(UP[id].x,UP[id].y,2000);gReveal(id,ov,false);await gSleep(2500)}
    await gSleep(700);
   }else{
-   await gCam(UP[MEGA_ID].x,UP[MEGA_ID].y,2800);gReveal(MEGA_ID,ov,true);await gSleep(3400);await gSleep(1100);
+   gTgt=MEGA_ID;await gCam(UP[MEGA_ID].x,UP[MEGA_ID].y,2800);gReveal(MEGA_ID,ov,true);await gSleep(3400);await gSleep(1100);
   }
  }finally{
-  cancelAnimationFrame(raf);ov.classList.remove('on');await gSleep(600);ov.remove();cine='';cineSet=new Set();_gvSig='';applyGodVis();trefresh(false);try{save()}catch(_){}}
+  cancelAnimationFrame(raf);gTgt=0;ov.classList.remove('on');await gSleep(600);ov.remove();cine='';cineSet=new Set();_gvSig='';applyGodVis();trefresh(false);try{save()}catch(_){}}
 }
 function godCheck(id){if(cine||!id)return;
  if(id>=1&&id<=53&&allBase())godCine('gods');
@@ -3456,6 +3458,7 @@ const PLC=[
 {id:'af',n:'Афганистан',f:'🇦🇫',cost:7500,code:'AFG',st:['#000','#d32011','#007a36'],al:'ABDFGHKMNQRT'},
 {id:'ru',n:'Россия',f:'🇷🇺',cost:10000,code:'RUS',st:['#fff','#2f6fe0','#e8334a'],al:PLN},
 {id:'jp',n:'Япония',f:'🇯🇵',cost:17500,code:'JPN',st:['#fff','#bc002d','#fff'],al:'ADHJKMNRSTWY'},
+{id:'az',n:'Азербайджан',f:'🇦🇿',cost:24000,code:'AZE',st:['#00b5e2','#ef3340','#509e2f'],al:'ABCDEGKLMNRZ'},
 {id:'de',n:'Германия',f:'🇩🇪',cost:30000,code:'D',st:['#111','#e8334a','#ffcc00'],al:'ABDEGHKLMNPR'},
 {id:'eg',n:'Египет',f:'🇪🇬',cost:30000,code:'EGY',st:['#ce1126','#fff','#000'],al:'ABDEHKLMNRSZ'},
 {id:'qa',n:'Катар',f:'🇶🇦',cost:47500,code:'QAT',st:['#fff','#8a1538','#8a1538'],al:'ABDHKLMQRSTW'},
@@ -3470,7 +3473,7 @@ const PLC=[
 {id:'pi',n:'пиратский',f:'🏴‍☠️',cost:1000000,code:'ПИРАТЫ',st:['#111','#ffd24d','#111'],al:'XZQJKVWYRBDG'},
 {id:'sp',n:'Спартанский',f:'⚔️',cost:1850000,code:'SPA',st:['#8f0f1c','#e0b43a','#8f0f1c'],al:'ΑΒΕΖΗΚΜΝΡΤΧΥ'},
 {id:'bb',n:'Вавилонский',f:'🏛️',cost:3500000,code:'BAB',st:['#16419a','#e0b43a','#16419a'],al:'ABEGIKLMNSUZ'},
-{id:'al',n:'Инопланетянский',f:'👽',cost:6000000,code:'UFO',st:['#7cfc8a','#7cfc8a','#7cfc8a'],al:'ZXQVWKJYHMNU'},
+{id:'al',n:'Инопланетянский',f:'🛸',cost:6000000,code:'UFO',st:['#7cfc8a','#7cfc8a','#7cfc8a'],al:'ZXQVWKJYHMNU'},
 {id:'gx',n:'Галактический',f:'🌌',cost:10000000,code:'GAL',st:['#7b4cf0','#35d0ff','#e23fb4'],al:'ΩΣΔΞΨΛΘΦΠΓΖΧ'},
 {id:'dv',n:'Божественный',f:'👼',cost:1000000000,code:'GOD',st:['#fff8d6','#ffd75e','#fff8d6'],al:'ΑΩΘΧΨΦΛΜΝΡΤΥ'}];
 const PLV={
@@ -3482,6 +3485,7 @@ ae:[[10000,39999],[50000,124999],[200000,699999],[1000000,2499999],[3000000,1249
 is:[[40000,99999],[175000,399999],[500000,1799999],[2500000,5999999],[7000000,24999999],[36000000,100000000],[200000000,550000000],[800000000,1650000000]],
 pi:[[200000,599999],[675000,1499999],[2500000,6999999],[10000000,19999999],[26000000,69999999],[100000000,325000000],[500000000,1200000000],[2200000000,4900000000]],
 al:[[750000,2500000],[3000000,7500000],[10000000,30000000],[40000000,75000000],[100000000,250000000],[350000000,1000000000],[1300000000,3000000000],[3800000000,7000000000]]};
+PLV.az=[[3500,12000],[15000,35000],[60000,170000],[275000,700000],[1200000,4500000],[6500000,17000000],[35000000,90000000],[140000000,260000000]];
 PLV.jp=[[4000,10000],[14500,32500],[50000,145000],[250000,650000],[900000,3250000],[5000000,15000000],[30000000,80000000],[100000000,225000000]];
 PLV.eg=[[6000,14500],[18000,35000],[60000,150000],[275000,650000],[1250000,4250000],[7450000,20500000],[42500000,87500000],[160000000,325000000]];
 PLV.qa=[[10000,24000],[30000,85000],[100000,225000],[400000,850000],[1400000,5000000],[8000000,25000000],[48000000,125500000],[240000000,600000000]];
@@ -3510,6 +3514,7 @@ pi:'<rect width="30" height="20" fill="#0b0b0d"/><path d="M6 4.5L24 16M24 4.5L6 
 in:'<rect width="30" height="7" fill="#ff9933"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#138808"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width=".7"/><path d="M15 7.4v5.2M12.4 10h5.2M13.2 8.2l3.6 3.6M16.8 8.2l-3.6 3.6" stroke="#000080" stroke-width=".4"/>',
 af:'<rect width="10" height="20" fill="#000"/><rect x="10" width="10" height="20" fill="#d32011"/><rect x="20" width="10" height="20" fill="#007a36"/><circle cx="15" cy="10" r="3.6" fill="none" stroke="#fff" stroke-width=".9"/><path d="M12.6 11.6h4.8M15 7.4v4" stroke="#fff" stroke-width=".9"/>',
 jp:'<rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="5.5" fill="#bc002d"/>',
+az:'<rect width="30" height="6.67" fill="#00b5e2"/><rect y="6.67" width="30" height="6.67" fill="#ef3340"/><rect y="13.33" width="30" height="6.67" fill="#509e2f"/><circle cx="14.4" cy="10" r="3" fill="#fff"/><circle cx="15.3" cy="10" r="2.45" fill="#ef3340"/><polygon points="18.40,7.90 18.73,9.21 19.88,8.52 19.19,9.67 20.50,10.00 19.19,10.33 19.88,11.48 18.73,10.79 18.40,12.10 18.07,10.79 16.92,11.48 17.61,10.33 16.30,10.00 17.61,9.67 16.92,8.52 18.07,9.21" fill="#fff"/>',
 eg:'<rect width="30" height="7" fill="#ce1126"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#000"/><path d="M11.6 11.2L15 7.2l3.4 4L15 13.4z" fill="#c09300"/><rect x="14.4" y="7.2" width="1.2" height="6" fill="#c09300"/>',
 qa:'<rect width="30" height="20" fill="#8a1538"/><polygon points="0,0 8,0 11,1.11 8,2.22 11,3.33 8,4.44 11,5.56 8,6.67 11,7.78 8,8.89 11,10.00 8,11.11 11,12.22 8,13.33 11,14.44 8,15.56 11,16.67 8,17.78 11,18.89 8,20.00 0,20" fill="#fff"/>',
 kz:'<rect width="30" height="20" fill="#00afca"/><circle cx="15" cy="8.5" r="3.2" fill="#fec50c"/><line x1="19.40" y1="8.50" x2="20.80" y2="8.50" stroke="#fec50c" stroke-width=".7"/><line x1="18.81" y1="10.70" x2="20.02" y2="11.40" stroke="#fec50c" stroke-width=".7"/><line x1="17.20" y1="12.31" x2="17.90" y2="13.52" stroke="#fec50c" stroke-width=".7"/><line x1="15.00" y1="12.90" x2="15.00" y2="14.30" stroke="#fec50c" stroke-width=".7"/><line x1="12.80" y1="12.31" x2="12.10" y2="13.52" stroke="#fec50c" stroke-width=".7"/><line x1="11.19" y1="10.70" x2="9.98" y2="11.40" stroke="#fec50c" stroke-width=".7"/><line x1="10.60" y1="8.50" x2="9.20" y2="8.50" stroke="#fec50c" stroke-width=".7"/><line x1="11.19" y1="6.30" x2="9.98" y2="5.60" stroke="#fec50c" stroke-width=".7"/><line x1="12.80" y1="4.69" x2="12.10" y2="3.48" stroke="#fec50c" stroke-width=".7"/><line x1="15.00" y1="4.10" x2="15.00" y2="2.70" stroke="#fec50c" stroke-width=".7"/><line x1="17.20" y1="4.69" x2="17.90" y2="3.48" stroke="#fec50c" stroke-width=".7"/><line x1="18.81" y1="6.30" x2="20.02" y2="5.60" stroke="#fec50c" stroke-width=".7"/><path d="M8 14.6Q15 10.6 22 14.6Q15 17.4 8 14.6Z" fill="#fec50c"/><rect x="1" y="1" width="1.6" height="18" fill="#fec50c"/>',
@@ -3521,10 +3526,11 @@ lu:'<rect width="30" height="7" fill="#ed2939"/><rect y="6.67" width="30" height
 sp:'<rect width="30" height="20" fill="#8f0f1c"/><rect x=".6" y=".6" width="28.8" height="18.8" fill="none" stroke="#e0b43a" stroke-width="1"/><path d="M8.5 16.5L15 3.5L21.5 16.5" fill="none" stroke="#e0b43a" stroke-width="2.4" stroke-linejoin="round"/>',
 bb:'<rect width="30" height="20" fill="#16419a"/><rect width="30" height="2.2" fill="#e0b43a"/><rect y="17.8" width="30" height="2.2" fill="#e0b43a"/><polygon points="15.00,3.80 15.99,7.60 19.38,5.62 17.40,9.01 21.20,10.00 17.40,10.99 19.38,14.38 15.99,12.40 15.00,16.20 14.01,12.40 10.62,14.38 12.60,10.99 8.80,10.00 12.60,9.01 10.62,5.62 14.01,7.60" fill="#e0b43a"/><circle cx="15" cy="10" r="1.6" fill="#16419a"/>',
 gx:'<defs><radialGradient id="g" cx=".5" cy=".5" r=".8"><stop offset="0" stop-color="#5a2bd0"/><stop offset="1" stop-color="#07031a"/></radialGradient></defs><rect width="30" height="20" fill="url(#g)"/><circle cx="4" cy="4" r=".6" fill="#fff"/><circle cx="25" cy="5" r=".5" fill="#fff"/><circle cx="7" cy="16" r=".5" fill="#fff"/><circle cx="26" cy="15" r=".7" fill="#fff"/><circle cx="21" cy="2.5" r=".4" fill="#fff"/><circle cx="15" cy="10" r="4.2" fill="#35d0ff"/><ellipse cx="15" cy="10" rx="8.5" ry="2.2" transform="rotate(-20 15 10)" fill="none" stroke="#e23fb4" stroke-width="1"/>',
-dv:'<defs><linearGradient id="dvb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffbe6"/><stop offset=".55" stop-color="#ffd75e"/><stop offset="1" stop-color="#c88a12"/></linearGradient><radialGradient id="dvg"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><rect width="30" height="20" fill="url(#dvb)"/><line x1="15" y1="9" x2="15" y2="-6" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><line x1="15" y1="9" x2="0" y2="-3" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><line x1="15" y1="9" x2="30" y2="-3" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><line x1="15" y1="9" x2="-4" y2="9" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><line x1="15" y1="9" x2="34" y2="9" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><line x1="15" y1="9" x2="2" y2="24" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><line x1="15" y1="9" x2="28" y2="24" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><line x1="15" y1="9" x2="15" y2="28" stroke="#fff" stroke-opacity=".55" stroke-width=".5"/><path d="M13 10C10 6 6 5 2 6C4 8 5 9 7 9C5 10 5 11 8 11C7 12 8 13 10 12.5C10 14 12 14 13 12Z" fill="#fff" stroke="#e8b830" stroke-width=".3"/><path d="M12 10C9 8 6 8 4 8.6" stroke="#e8b830" stroke-width=".3" fill="none"/><g transform="translate(30 0) scale(-1 1)"><path d="M13 10C10 6 6 5 2 6C4 8 5 9 7 9C5 10 5 11 8 11C7 12 8 13 10 12.5C10 14 12 14 13 12Z" fill="#fff" stroke="#e8b830" stroke-width=".3"/><path d="M12 10C9 8 6 8 4 8.6" stroke="#e8b830" stroke-width=".3" fill="none"/></g><circle cx="15" cy="9" r="7" fill="url(#dvg)"/><ellipse cx="15" cy="3" rx="4.5" ry="1.1" fill="none" stroke="#fff" stroke-width=".8"/><ellipse cx="15" cy="3" rx="4.5" ry="1.1" fill="none" stroke="#e8b830" stroke-width=".3"/><path d="M15 5.5L16.2 8.8L19.5 10L16.2 11.2L15 14.5L13.8 11.2L10.5 10L13.8 8.8Z" fill="#fff" stroke="#e8b830" stroke-width=".3"/>'};
+dv:'<defs><linearGradient id="dvb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#130a40"/><stop offset=".6" stop-color="#3a1c8c"/><stop offset="1" stop-color="#6a3bc8"/></linearGradient><linearGradient id="dvw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#ffeaa6"/></linearGradient><radialGradient id="dvg"><stop offset="0" stop-color="#ffe27a" stop-opacity=".9"/><stop offset=".55" stop-color="#ffc933" stop-opacity=".35"/><stop offset="1" stop-color="#ffc933" stop-opacity="0"/></radialGradient></defs><rect width="30" height="20" fill="url(#dvb)"/><line x1="15" y1="9" x2="15" y2="-6" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><line x1="15" y1="9" x2="0" y2="-3" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><line x1="15" y1="9" x2="30" y2="-3" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><line x1="15" y1="9" x2="-4" y2="9" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><line x1="15" y1="9" x2="34" y2="9" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><line x1="15" y1="9" x2="2" y2="24" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><line x1="15" y1="9" x2="28" y2="24" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><line x1="15" y1="9" x2="15" y2="28" stroke="#ffd75e" stroke-opacity=".6" stroke-width=".55"/><circle cx="3" cy="3" r="0.45" fill="#fff"/><circle cx="27" cy="3.5" r="0.4" fill="#fff"/><circle cx="4" cy="16.5" r="0.35" fill="#fff"/><circle cx="26.5" cy="16" r="0.45" fill="#fff"/><circle cx="8" cy="1.5" r="0.25" fill="#fff"/><circle cx="22" cy="17.5" r="0.3" fill="#fff"/><circle cx="15" cy="9" r="7.5" fill="url(#dvg)"/><path d="M13 10C10 6 6 5 2 6C4 8 5 9 7 9C5 10 5 11 8 11C7 12 8 13 10 12.5C10 14 12 14 13 12Z" fill="url(#dvw)" stroke="#ffc933" stroke-width=".45"/><path d="M12 10C9 8 6 8 4 8.6" stroke="#e8a410" stroke-width=".35" fill="none"/><g transform="translate(30 0) scale(-1 1)"><path d="M13 10C10 6 6 5 2 6C4 8 5 9 7 9C5 10 5 11 8 11C7 12 8 13 10 12.5C10 14 12 14 13 12Z" fill="url(#dvw)" stroke="#ffc933" stroke-width=".45"/><path d="M12 10C9 8 6 8 4 8.6" stroke="#e8a410" stroke-width=".35" fill="none"/></g><ellipse cx="15" cy="3" rx="4.5" ry="1.1" fill="none" stroke="#ffd75e" stroke-width="1"/><ellipse cx="15" cy="3" rx="4.5" ry="1.1" fill="none" stroke="#fff6c0" stroke-width=".3"/><path d="M15 5.3L16.3 8.7L19.7 10L16.3 11.3L15 14.7L13.7 11.3L10.3 10L13.7 8.7Z" fill="#fff" stroke="#ffb300" stroke-width=".45"/><rect x=".4" y=".4" width="29.2" height="19.2" fill="none" stroke="#ffd75e" stroke-width=".6"/>'};
+PLFLG.al='<defs><linearGradient id="alb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#03120d"/><stop offset=".6" stop-color="#0a3b2a"/><stop offset="1" stop-color="#14654a"/></linearGradient><linearGradient id="alm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b7ffd0" stop-opacity=".9"/><stop offset="1" stop-color="#7cfc8a" stop-opacity="0"/></linearGradient><linearGradient id="als" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2fff6"/><stop offset=".5" stop-color="#a9c7b5"/><stop offset="1" stop-color="#5d7f6c"/></linearGradient><radialGradient id="alg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7cfc8a" stop-opacity=".6"/><stop offset="1" stop-color="#7cfc8a" stop-opacity="0"/></radialGradient></defs><rect width="30" height="20" fill="url(#alb)"/><circle cx="3" cy="3" r="0.45" fill="#fff" opacity=".9"/><circle cx="8" cy="2" r="0.3" fill="#fff" opacity=".9"/><circle cx="26" cy="3.5" r="0.4" fill="#fff" opacity=".9"/><circle cx="23" cy="1.8" r="0.3" fill="#fff" opacity=".9"/><circle cx="5" cy="9" r="0.3" fill="#fff" opacity=".9"/><circle cx="27" cy="10" r="0.35" fill="#fff" opacity=".9"/><circle cx="3.5" cy="15.5" r="0.3" fill="#fff" opacity=".9"/><circle cx="26.5" cy="16" r="0.4" fill="#fff" opacity=".9"/><circle cx="20.5" cy="5" r="0.25" fill="#fff" opacity=".9"/><circle cx="9.5" cy="5.5" r="0.25" fill="#fff" opacity=".9"/><ellipse cx="15" cy="10" rx="12" ry="7.5" fill="url(#alg)"/><polygon points="11.5,13.1 18.5,13.1 22.5,20 7.5,20" fill="url(#alm)"/><path d="M11.4 10.7A3.6 3.6 0 0 1 18.6 10.7Z" fill="#9dffc0" fill-opacity=".5" stroke="#d8ffe6" stroke-width=".3"/><ellipse cx="15" cy="9.2" rx="1.25" ry="1.5" fill="#4be36a"/><ellipse cx="14.4" cy="9.1" rx=".42" ry=".62" fill="#04120c" transform="rotate(-20 14.4 9.1)"/><ellipse cx="15.6" cy="9.1" rx=".42" ry=".62" fill="#04120c" transform="rotate(20 15.6 9.1)"/><ellipse cx="15" cy="12.2" rx="7.2" ry="1.9" fill="url(#als)" stroke="#2a4a3a" stroke-width=".25"/><circle cx="10.7" cy="12.35" r=".4" fill="#ffe14d"/><circle cx="12.85" cy="12.35" r=".4" fill="#7cfc8a"/><circle cx="15" cy="12.35" r=".4" fill="#ffe14d"/><circle cx="17.15" cy="12.35" r=".4" fill="#7cfc8a"/><circle cx="19.3" cy="12.35" r=".4" fill="#ffe14d"/><rect x=".4" y=".4" width="29.2" height="19.2" fill="none" stroke="#7cfc8a" stroke-width=".5" opacity=".85"/>';
 const PLFLC={};
 /* красивые флаги в самой крутке вместо палочек */
-(function(){try{let css='';Object.keys(PLFLG).forEach(id=>{if(id==='gx'||id==='pi'||id==='al')return;
+(function(){try{let css='';Object.keys(PLFLG).forEach(id=>{if(id==='gx'||id==='pi')return;
 const u='url(&quot;data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">'+PLFLG[id]+'</svg>')+'&quot;)';
 const q='.plate[data-c="'+id+'"]',m='#plstage.multi>.plate[data-c="'+id+'"]';
 css+=q+' .plr em{display:none}'+
@@ -3534,7 +3540,7 @@ m+'>.plr{flex:0 0 auto!important}'+
 m+' .plr::before{width:22px;height:15px;border-radius:3px}'+
 m+' .plr small{font-size:5px!important}';});
 const st=document.createElement('style');st.id='plFlagCss';st.textContent=css.replace(/&quot;/g,'"');document.head.appendChild(st)}catch(e){}})();
-function plFl(k){const id=plCOf(k).id;if(id==='al')return '<span class="flg flge">\u{1F47D}</span>';if(!PLFLC[id]){const g=PLFLG[id]||PLFLG.ru;PLFLC[id]='<img class="flg" alt="" src="data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">'+g+'</svg>')+'">'}return PLFLC[id]}
+function plFl(k){const id=plCOf(k).id;if(!PLFLC[id]){const g=PLFLG[id]||PLFLG.ru;PLFLC[id]='<img class="flg" alt="" src="data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">'+g+'</svg>')+'">'}return PLFLC[id]}
 function plCur(){return plCOf(plCountry)}
 function plSkin(p,k){const c=plCOf(k);if(c.id==='ru')return p;return p.split('').map((ch,i)=>{if(i>1&&i<6)return ch;const x=PLN.indexOf(ch);return x<0?ch:c.al[x]}).join('')}
 function plSetC(pl,k){const c=plCOf(k);pl.dataset.c=c.id;pl.style.setProperty('--f1',c.st[0]);pl.style.setProperty('--f2',c.st[1]);pl.style.setProperty('--f3',c.st[2]);const sm=pl.querySelector('.plr small');if(sm)sm.textContent=c.code}
@@ -3549,7 +3555,7 @@ $('plautobtn').onclick=()=>{if(!owned.has(47))return;plAutoDraft=plAuto.slice();
 $('plautol').onclick=e=>{const b=e.target.closest('.plautorow');if(!b)return;const i=+b.dataset.i;plAutoDraft[i]=!plAutoDraft[i];plAutoDraw()};
 $('plautoc').onclick=()=>$('plautom').classList.remove('show');
 $('plautok').onclick=()=>{plAuto=plAutoDraft.slice(0,8).map(Boolean);$('plautom').classList.remove('show');plAutoUi();save();const n=plAuto.filter(Boolean).length;plMsg(n?'Авто-продажа включена: '+n+' из 8':'Авто-продажа выключена')};
-function plAutoSell(items){const arr=items.filter(i=>plAutoOn(i.t));if(!arr.length)return 0;let sum=0;arr.forEach(i=>sum+=i.v);const ids=new Set(arr.map(i=>i.id));plInv=plInv.filter(i=>!ids.has(i.id));money+=sum;premBonus(sum);showMoney(900);pfloat(sum);setTimeout(()=>SFX.sell(0),380);plMsg('Авто-продажа: '+arr.length+' шт. · +'+fmt(sum));return sum}
+function plAutoSell(items){const arr=items.filter(i=>plAutoOn(i.t));if(!arr.length)return 0;let sum=0;arr.forEach(i=>sum+=i.v);const ids=new Set(arr.map(i=>i.id));plInv=plInv.filter(i=>!ids.has(i.id));money+=sum;premBonus(sum);showMoney(900);pfloat(sum);try{window.dqEvent&&dqEvent('plsell',arr.length)}catch(e){}setTimeout(()=>SFX.sell(0),380);plMsg('Авто-продажа: '+arr.length+' шт. · +'+fmt(sum));return sum}
 let plQty=1,plInv=[],plBusy=false,plPending=null,plSaT=0,plPodium=[],plPodCarry=0,plPodLast=Date.now(),plPodNext=0,plCountry='ru';
 function plCost(){const c=plCur().cost*plQty,m=window.__evPrice||1;return m===1?c:Math.max(1,Math.round(c*m))}
 function plQtyUi(){const max=plMaxQty();if(plQty>max)plQty=max;document.querySelectorAll('[data-plqty]').forEach(b=>{const q=Number(b.dataset.plqty);b.disabled=q>max||plBusy;b.classList.toggle('active',q===plQty);b.setAttribute('aria-pressed',q===plQty?'true':'false');b.innerHTML='x'+q+(q>max?' <span class="lock">🔒</span>':'')});const cost=fmt(plCost());$('plgo').textContent='Крутить · '+cost;$('plcostval').textContent=cost;plCUi()}
@@ -3785,7 +3791,7 @@ function plUpd(){const full=plInv.length+plQty>plCap(),b=$('plgo'),m=$('plmsg'),
 function plIsPend(id){return Array.isArray(plPending)?plPending.includes(id):id===plPending}
 function plSell(id){const it=plInv.find(i=>i.id===id);if(!it||plIsPend(id))return;
  const el=document.querySelector('.plitem[data-id="'+id+'"]');if(el)el.classList.add('sold');SFX.sell(0);
- setTimeout(()=>{plInv=plInv.filter(i=>i.id!==id);money+=it.v;premBonus(it.v);showMoney(900);pfloat(it.v);save();plRender();plUpd()},el?320:0)}
+ setTimeout(()=>{plInv=plInv.filter(i=>i.id!==id);money+=it.v;premBonus(it.v);showMoney(900);pfloat(it.v);try{window.dqEvent&&dqEvent('plsell',1)}catch(e){}save();plRender();plUpd()},el?320:0)}
 $('plgrid').onclick=e=>{const put=e.target.closest('.plput');if(put){const it=plInv.find(i=>i.id===put.dataset.id);if(!it||plIsPend(it.id)||plPodium.length>=plPodCap())return;plInv=plInv.filter(i=>i.id!==it.id);plPodium.push({...it,_carry:0});plPodLast=Date.now();save();plRender();plUpd();return}const b=e.target.closest('.plsell');if(b)plSell(b.dataset.id)};
 $('plpodslot').onclick=e=>{const b=e.target.closest('[data-podtake]');if(!b||plInv.length>=plCap())return;const ix=plPodium.findIndex(i=>String(i.id)===b.dataset.podtake);if(ix<0)return;plInv.unshift(plPodium.splice(ix,1)[0]);plPodLast=Date.now();save();plRender();plUpd()};
 $('plpodbest').onclick=()=>{const cap=plPodCap();const pool=plInv.filter(i=>!plIsPend(i.id)).concat(plPodium);const best=pool.slice().sort((x,y)=>y.t-x.t||y.v-x.v).slice(0,cap);const ids=new Set(best.map(i=>i.id));const same=best.length===plPodium.length&&best.every((i,k)=>plPodium[k]&&plPodium[k].id===i.id);if(same)return;const out=plPodium.filter(i=>!ids.has(i.id));const incoming=best.filter(i=>!plPodium.some(p=>p.id===i.id));plInv=plInv.filter(i=>!ids.has(i.id));plInv=out.concat(plInv);plPodium=best.map(i=>{const o=plPodium.find(p=>p.id===i.id);return o||{...i,_carry:0}});plPodLast=Date.now();save();plRender();plUpd()};
@@ -3797,13 +3803,13 @@ $('plsellall').onclick=()=>{const b=$('plsellall'),keepPending=plPending,arr=plI
  if(!b.classList.contains('armed')){b.classList.add('armed');const bar=b.querySelector('.wbar');bar.style.transition='none';bar.style.transform='scaleX(1)';void bar.offsetWidth;bar.style.transition='transform 4s linear,opacity .3s';bar.style.transform='scaleX(0)';clearTimeout(plSaT);plSaT=setTimeout(plSaOff,4000);return}
  plSaOff();let sum=0;arr.forEach(i=>sum+=i.v);SFX.sell(1);
  document.querySelectorAll('.plitem').forEach((e,k)=>setTimeout(()=>e.classList.add('sold'),k*60));
- setTimeout(()=>{plInv=plInv.filter(i=>Array.isArray(keepPending)?keepPending.includes(i.id):i.id===keepPending);money+=sum;premBonus(sum);showMoney(1400);pfloat(sum);save();plRender();plUpd()},arr.length*60+340)};
+ setTimeout(()=>{plInv=plInv.filter(i=>Array.isArray(keepPending)?keepPending.includes(i.id):i.id===keepPending);money+=sum;premBonus(sum);showMoney(1400);pfloat(sum);try{window.dqEvent&&dqEvent('plsell',arr.length)}catch(e){}save();plRender();plUpd()},arr.length*60+340)};
 document.querySelectorAll('[data-plqty]').forEach(b=>b.addEventListener('click',()=>{if(b.disabled||plBusy)return;plQty=Number(b.dataset.plqty)||1;document.querySelectorAll('[data-plqty]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')});plUpd()}));
 function plGoRoll(auto){if(plBusy)return;
  if(plInv.length+plQty>plCap()){if(auto)plARStop();plMsg(auto?'Авто-ролл остановлен: в рюкзаке нет места':'В рюкзаке недостаточно места — продай номера');SFX.deny();plShake();plBump();return}
  const cost=plCost();if(money<cost){if(auto)plARStop();plMsg((auto?'Авто-ролл остановлен: не хватает ':'Не хватает ')+fmt(cost-money));SFX.deny();plShake();return}
  plBusy=true;$('plmsg').textContent='';money-=cost;showMoney();try{window.dqEvent&&dqEvent('plspend',cost)}catch(e){}SFX.bet();SFX.roll();plUpd();
- plLuckNow=plLuckArmed;plUltraNow=plUltraArmed;let items;try{items=Array.from({length:plQty},()=>plRoll())}finally{plLuckNow=false;plUltraNow=false}items.forEach(item=>{plInv.unshift(item)});plPending=items.map(x=>x.id);save();plRender();plPrep(items.length);
+ const _lk=plLuckArmed;plLuckNow=plLuckArmed;plUltraNow=plUltraArmed;let items;try{items=Array.from({length:plQty},()=>plRoll())}finally{plLuckNow=false;plUltraNow=false}items.forEach(item=>{plInv.unshift(item)});try{if(window.dqEvent){dqEvent('plroll',items.length);if(_lk)dqEvent('lucky',1);if(items.some(x=>x.t>=2))dqEvent('plrare',1);items.forEach(x=>dqEvent('country',1,x.k))}}catch(e){}plPending=items.map(x=>x.id);save();plRender();plPrep(items.length);
  plAnimate(items,()=>{plReveal(items);plLuckEnd();plPending=null;plAutoSell(items);plRender(items[items.length-1].id);plBump();save();
   const fin=()=>{plBusy=false;plUpd();if(plAR)plARNext()},mi=items.reduce((a,b)=>b.t>a.t?b:a,items[0]);
   if(mi.t>=4){const pls=plStagePlates();plxParty(mi.t,pls[items.indexOf(mi)]||pls[0],()=>{setTimeout(plCountRun,300);fin()})}else fin()})}
@@ -6544,7 +6550,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 @keyframes gpar{from{transform:translate(0,0) scale(1);opacity:1}to{transform:translate(var(--tx),var(--ty)) scale(.15);opacity:0}}
 .tree.gshake{animation:gshake .8s ease-out}
 #gcine{position:fixed;inset:0;z-index:2147483000;touch-action:none;overflow:hidden;cursor:wait;-webkit-user-select:none;user-select:none}
-#gcine .gvig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 50%,rgba(0,0,0,.6));opacity:0;transition:opacity .7s}
+#gcine .gvig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse var(--gw,45vw) var(--gh,35vh) at var(--gx,50%) var(--gy,50%),transparent 35%,rgba(0,0,0,.7) 100%);opacity:0;transition:opacity .7s}
 #gcine.on .gvig{opacity:1}
 #gcine .gbar{position:absolute;left:0;right:0;height:14vh;background:#000;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 #gcine .gbar.t{top:0;transform:translateY(-100%)}
@@ -7265,10 +7271,10 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
   ixB();var list=sorted().slice(0,N),total=list.length,got=0,seen=Object.assign({},ix.n),h='';
   PLT.forEach(function(_,T){list.forEach(function(c){if(ix.c[c.id+':'+T])got++})});
   var all=total*PLT.length,pc=all?Math.round(got/all*100):0;
-  h+='<div class="ixsum"><div class="ixt"><span>'+(N>=PLC.length?'Все страны · '+total:total+' самых дешёвых стран')+'</span><small><span id="ixcnt" data-g="'+got+'">0</span> / '+all+'</small></div><div class="ixbar"><i style="--w:'+pc+'%"></i></div><div class="ixinfo">\uD83C\uDF81 Собери <b>всю редкость</b> у '+N+' самых дешёвых стран — получишь бонус. Бонусы суммируются и работают всегда.</div>'+(function(){var t=totals();return t.length?'<div class="ixtot"><span>Активно сейчас</span>'+t.map(function(x){return'<i>'+x+'</i>'}).join('')+'</div>':'<div class="ixtot none">Пока нет активных бонусов — открой первую редкость!</div>'})()+'</div>';
+  h+='<div class="ixsum"><div class="ixt"><span>'+(N>=PLC.length?'Все страны · '+total:total+' самых дешёвых стран')+'</span><small><span id="ixcnt" data-g="'+got+'">0</span> / '+all+'</small></div><div class="ixbar"><i style="--w:'+pc+'%"></i></div><div class="ixinfo">\uD83C\uDF81 Собери <b>всю редкость</b> у '+(N>=PLC.length?'всех '+total+' стран':total+' самых дешёвых стран')+' — получишь бонус. Бонусы суммируются и работают всегда.</div>'+(function(){var t=totals();return t.length?'<div class="ixtot"><span>Активно сейчас</span>'+t.map(function(x){return'<i>'+x+'</i>'}).join('')+'</div>':'<div class="ixtot none">Пока нет активных бонусов — открой первую редкость!</div>'})()+'</div>';
   PLT.forEach(function(r,T){
    var n=0;list.forEach(function(c){if(ix.c[c.id+':'+T])n++});
-   h+='<div class="ixsec'+(n===total&&total?' done':'')+'" style="--rc:'+r.col+';--s:'+T+'"><div class="ixsh"><b>'+r.n+'</b><em>'+n+'/'+total+'</em></div><div class="ixbar"><i style="--w:'+(total?Math.round(n/total*100):0)+'%"></i></div>'+(function(){var bi=-1;IXBON.forEach(function(b,i){if(b.n===N&&b.t===T)bi=i});if(bi<0)return'';var on=__ixAct.indexOf(bi)>=0;return'<div class="ixbn'+(on?' on':'')+'"><span class="ixbi">'+(on?'\uD83C\uDF81':'\uD83D\uDD12')+'</span><span class="ixbt"><small>Бонус за '+N+'/'+N+'</small><b>'+bt(IXBON[bi])+'</b></span><em>'+(on?'ОТКРЫТ':n+'/'+total)+'</em></div>'})()+'<div class="ixgrid">';
+   h+='<div class="ixsec'+(n===total&&total?' done':'')+'" style="--rc:'+r.col+';--s:'+T+'"><div class="ixsh"><b>'+r.n+'</b><em>'+n+'/'+total+'</em></div><div class="ixbar"><i style="--w:'+(total?Math.round(n/total*100):0)+'%"></i></div>'+(function(){var bi=-1;IXBON.forEach(function(b,i){if(b.n===N&&b.t===T)bi=i});if(bi<0)return'';var on=__ixAct.indexOf(bi)>=0;return'<div class="ixbn'+(on?' on':'')+'"><span class="ixbi">'+(on?'\uD83C\uDF81':'\uD83D\uDD12')+'</span><span class="ixbt"><small>Бонус за '+total+'/'+total+'</small><b>'+bt(IXBON[bi])+'</b></span><em>'+(on?'ОТКРЫТ':n+'/'+total)+'</em></div>'})()+'<div class="ixgrid">';
    list.forEach(function(c,ci){var k=c.id+':'+T,has=!!ix.c[k];h+='<div class="ixc'+(has?' got':'')+(has&&seen[k]?' new':'')+'" style="--d:'+ci+'">'+plFl(c.id)+'<span>'+c.n+'</span></div>'});
    h+='</div></div>'});
   g('ixbody').innerHTML=h;g('ixbody').scrollTop=0;
@@ -7470,7 +7476,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 })();
 </script>
 
-<script>/* Ежедневные задания: 4 случайных задания из пула в 13, обновление каждые 6 часов (с 0:00 по местному времени). У каждого игрока свой набор, дублей в одной смене не бывает. */
+<script>/* Ежедневные задания: 4 случайных задания из пула в 25, обновление каждые 6 часов (с 0:00 по местному времени). У каждого игрока свой набор, дублей в одной смене не бывает. */
 (function(){
  var SLOT=21600000,KEY='upg_dq_v1',SALT='upg_dq_salt',top=document.querySelector('.top');
  if(!top)return;
@@ -7489,7 +7495,22 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
   gift:{name:'Щедрая душа',desc:'Подари другому игроку 1 000 000 ₽ или больше',type:'gift',target:1,icon:'🎁',r:{k:'m',v:1000000}},
   trade:{name:'Честная сделка',desc:'Заверши трейд с другим игроком',type:'trade',target:1,icon:'🤝',r:{k:'pm',v:H}},
   shopbuy:{name:'Шопинг за билетики',desc:'Купи что-нибудь в магазине билетиков',type:'shopbuy',target:1,icon:'🛍️',r:{k:'t',v:20}},
-  bpuse:{name:'Из рюкзака в дело',desc:'Используй любой предмет из рюкзака',type:'bpuse',target:1,icon:'🎒',r:{k:'sr',v:3}}
+  bpuse:{name:'Из рюкзака в дело',desc:'Используй любой предмет из рюкзака',type:'bpuse',target:1,icon:'🎒',r:{k:'sr',v:3}},
+  /* --- мини-игры --- */
+  upgser:{name:'Серия в Апгрейдере',desc:'Сыграй в Апгрейдер 10 раз, неважно, выиграл или нет',type:'upg',target:10,icon:'🔁',r:{k:'t',v:10}},
+  ltake:{name:'Осторожный игрок',desc:'Забери выигрыш в Лесенке 3 раза',type:'ltake',target:3,icon:'🪜',r:{k:'t',v:10}},
+  dpay:{name:'Король Дропера',desc:'Получи выплату в Дропере 5 раз',type:'dpay',target:5,icon:'👑',r:{k:'t',v:10}},
+  streak:{name:'Без осечек',desc:'Выиграй 3 раза подряд в любой мини-игре. Проигрыш сбрасывает серию',type:'streak',target:3,icon:'🎯',r:{k:'t',v:15}},
+  bigspend:{name:'Азартный миллиардер',desc:'Потрать 100 000 000 ₽ в мини-играх',type:'spend',target:100000000,icon:'💸',r:{k:'pm',v:24*H},cur:1},
+  /* --- номера --- */
+  plroll:{name:'Серия круток',desc:'Сделай 25 круток номеров',type:'plroll',target:25,icon:'🎲',r:{k:'t',v:10}},
+  plrare:{name:'Редкая добыча',desc:'Выбей номер редкости Редкий или выше',type:'plrare',target:1,icon:'💠',r:{k:'t',v:10}},
+  lucky:{name:'Счастливчик',desc:'Используй Lucky Roll',type:'lucky',target:1,icon:'🍀',r:{k:'t',v:10}},
+  plsell:{name:'Распродажа рюкзака',desc:'Продай 10 номеров',type:'plsell',target:10,icon:'🏷️',r:{k:'t',v:10}},
+  country:{name:'Мировой тур',desc:'Выбей номера из 3 разных стран',type:'country',target:3,icon:'🌍',r:{k:'t',v:10},uniq:1},
+  /* --- биржа и общее --- */
+  tonop:{name:'Биржевой скальпер',desc:'Сделай 5 операций на бирже TON: покупка и продажа считаются',type:'tonop',target:5,icon:'⚡',r:{k:'t',v:10}},
+  work:{name:'Рабочий день',desc:'Выполни 2 других задания за эту смену',type:'work',target:2,icon:'💼',r:{k:'sr',v:5}}
  };
  var KEYS=Object.keys(POOL),COUNT=4;
  function now(){try{return TC.n()}catch(e){return Date.now()}}
@@ -7540,8 +7561,8 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  document.body.appendChild(ov);
  var L=ov.querySelector('#dqL');
  function fm(n){try{return fmt(n)}catch(e){return String(n)}}
- function dur(ms){var h=ms/H;return h>=1?(h+' ч'):(Math.round(ms/60000)+' мин')}
- function rewardTxt(r){return r.k==='m'?'+'+fm(r.v)+' ₽':r.k==='t'?'+'+r.v+' 🎟':r.k==='sr'?'Super Roll ×'+r.v:'Premium на '+dur(r.v)}
+ function dur(ms){var h=ms/H;return h>=24?(h/24+' д'):h>=1?(h+' ч'):(Math.round(ms/60000)+' мин')}
+ function rewardTxt(r){return r.k==='m'?'+'+fm(r.v):r.k==='t'?'+'+r.v+' 🎟':r.k==='sr'?'Super Roll ×'+r.v:'Premium на '+dur(r.v)}
  function prog(t,d){var p=Math.min(t.p,d.target);if(d.tm)return Math.floor(p/60)+' / '+Math.round(d.target/60)+' мин';if(d.cur||d.target>=10000)return fm(Math.floor(p))+' / '+fm(d.target);return Math.floor(p)+' / '+d.target}
  function cardHtml(t,i,anim){
   var d=def(t),pr=Math.min(1,t.p/d.target),pct=Math.floor(pr*100),dn=done(t);
@@ -7615,20 +7636,40 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
  }
  function save_(){window.save&&window.save()}
  /* события из игры */
- window.dqEvent=function(type,n){
+ window.dqEvent=function(type,n,key){
   try{
-   roll();var ch=false,fin=null;n=(n===undefined||n===null)?1:Number(n);if(!(n>0))return;
-   st.t.forEach(function(t){var d=def(t);if(!t.c&&d.type===type&&t.p<d.target){var was=done(t);t.p=Math.min(d.target,t.p+n);ch=true;if(!was&&done(t))fin=d}});
+   roll();var ch=false,fin=null,nd=0;n=(n===undefined||n===null)?1:Number(n);if(!(n>0))return;
+   st.t.forEach(function(t){var d=def(t);if(!t.c&&d.type===type&&t.p<d.target){
+    var add=n;
+    /* uniq: считаем только разные значения key (например, страны) */
+    if(d.uniq){if(key===undefined||key===null)return;t.x=Array.isArray(t.x)?t.x:[];if(t.x.indexOf(key)>=0)return;t.x.push(key);add=1}
+    var was=done(t);t.p=Math.min(d.target,t.p+add);ch=true;if(!was&&done(t)){fin=d;if(d.type!=='work')nd++}
+   }});
    if(ch){sv();badge();if(open)update();if(fin){toast('✅ Задание выполнено: '+fin.name);try{SFX.win&&SFX.win(1)}catch(e){}}}
+   /* «Рабочий день»: каждое выполненное другое задание — шаг к нему */
+   if(nd)dqEvent('work',nd);
+  }catch(e){}
+ };
+ /* проигрыш в мини-игре: сбрасывает невыполненную серию побед */
+ window.dqLose=function(){
+  try{
+   roll();var ch=false;
+   st.t.forEach(function(t){if(!t.c&&def(t).type==='streak'&&!done(t)&&t.p>0){t.p=0;ch=true}});
+   if(ch){sv();if(open)update()}
   }catch(e){}
  };
  /* итог ставки в мини-игре: bet — ставка, pay — выплата (что вернулось на счёт) */
  window.dqWin=function(game,bet,pay){
   try{
-   bet=Number(bet);pay=Number(pay);if(!(bet>0)||!(pay>bet))return;
-   var x=pay/bet;
-   if(game==='upg'){if(x>=10)dqEvent('upg10',1);if(x>=2&&bet>=1000000)dqEvent('upg2m',1)}
-   if(pay-bet>=1000000)dqEvent('profit',1);
+   bet=Number(bet);pay=Number(pay);if(!(bet>0)||!(pay>=0))return;
+   if(game==='l')dqEvent('ltake',1);
+   if(game==='d'&&pay>0)dqEvent('dpay',1);
+   if(pay>bet){
+    var x=pay/bet;
+    if(game==='upg'){if(x>=10)dqEvent('upg10',1);if(x>=2&&bet>=1000000)dqEvent('upg2m',1)}
+    if(pay-bet>=1000000)dqEvent('profit',1);
+    dqEvent('streak',1);
+   }else if(pay<bet)dqLose();
   }catch(e){}
  };
  window.DQ={refresh:badge,get state(){return st}};
