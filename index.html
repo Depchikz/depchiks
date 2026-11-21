@@ -3625,7 +3625,9 @@ function plAnimate(items,done){if(!Array.isArray(items))items=[items];const f=(1
   });
  });
  /* для Легендарного/Мифического/Секретного — перед показом копится напряжение */
- setTimeout(()=>{if(mxT>=4)plxCharge(mxT,plates[mxI]||plates[0],items[mxI],done);else done()},last+180)}
+ /* в конце все ячейки получают цвет итоговой редкости (раньше красились только «подсказочные» ячейки, остальные оставались тёмными) */
+ const fin=()=>{items.forEach((it,pi)=>{const pl=plates[pi]||plates[0];if(it.t>=1)plSlots(pl).forEach(el=>{el.dataset.h=it.t})});done()};
+ setTimeout(()=>{if(mxT>=4)plxCharge(mxT,plates[mxI]||plates[0],items[mxI],fin);else fin()},last+180)}
 /* ===== v2.8: эффекты Легендарного / Мифического / Секретного ===== */
 const PLX={
  4:{c:'#ffc933',n:'ЛЕГЕНДАРНЫЙ',s:'Легендарная удача!',charge:1800,party:4400,dr:'26,13,0',vib:[80,40,80,40,160,60,260,60,160]},
