@@ -4197,6 +4197,8 @@ var shkN=0;document.addEventListener('pointerdown',e=>{if(shkN>7)return;shkN++;c
 <style>
 body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-events:none;box-shadow:none;cursor:not-allowed}
 #chatFab{transition:opacity .25s,filter .25s;position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;border:0;background:var(--ac);color:#06210f;font-size:24px;z-index:40;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+#chatFab.unread::after{content:'!';position:absolute;top:-5px;right:-5px;width:22px;height:22px;border-radius:50%;background:#ff3b4e;color:#fff;font:900 15px/22px system-ui,sans-serif;text-align:center;box-shadow:0 0 0 2px #0d1018,0 0 12px #ff3b4e;animation:chatBang 1.2s ease-in-out infinite}
+@keyframes chatBang{0%,100%{transform:scale(1);box-shadow:0 0 0 2px #0d1018,0 0 6px #ff3b4e}50%{transform:scale(1.18);box-shadow:0 0 0 2px #0d1018,0 0 18px #ff3b4e}}
 #nick::before{content:'@'}
 #chatList .cm{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:14px;word-break:break-word}
 #chatList .cm.me{border-color:var(--ac)}
@@ -4795,7 +4797,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
  function render(data){
   var keys=Object.keys(data||{}).sort();
   var k=keys.length?keys[keys.length-1]:'';
-  lastData=data;rnSync(data);
+  lastData=data;rnSync(data);if(mod.classList.contains('show'))seenSet(k);
   if(k===lastKey&&list.childNodes.length===keys.length&&rnSeen===rnVer)return;
   rnSeen=rnVer;
   var _fr=!list.dataset.s,_pk=lastKey;lastKey=k;if(!_fr&&_pk!==k&&data[k]&&data[k].n!==nick())SFX.msg();
@@ -4838,7 +4840,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    .then(function(d){render(d);st.textContent='';cleanOld()})
    .catch(function(){st.textContent='Нет связи с сервером'});
  }
- function open(){if(document.body.classList.contains('xcopen'))return;mod.classList.add('show');load();pushProfile(false);clearInterval(timer);timer=setInterval(load,3000)}
+ function open(){if(document.body.classList.contains('xcopen'))return;mod.classList.add('show');badge(false);load();pushProfile(false);clearInterval(timer);timer=setInterval(load,3000)}
  function close(){pvClose();mod.classList.remove('show');clearInterval(timer);timer=null}
  function send(){
   var t=inp.value.trim();
@@ -4854,7 +4856,24 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    .then(function(r){if(!r.ok)throw r.status;SFX.send();load();pushProfile(false)})
    .catch(function(c){st.textContent='Не удалось отправить'+(typeof c==='number'?' (код '+c+')':'')});
  }
- fab.onclick=open;g('chatX').onclick=close;btn.onclick=send;
+ fab.onclick=open;
+/* ===== Индикатор «!» на иконке чата: новое сообщение, пока чат закрыт ===== */
+var seenK=ls('chat_seen_v1')||'';
+function badge(on){fab.classList.toggle('unread',!!on)}
+function seenSet(k){if(!k)return;seenK=k;ls('chat_seen_v1',k);badge(false)}
+function pollNew(){
+ if(!ready()||document.hidden||mod.classList.contains('show'))return;
+ getJ('/chat.json?orderBy='+encodeURIComponent('"$key"')+'&limitToLast=1').then(function(d){
+  var ids=Object.keys(d||{});if(!ids.length)return;
+  var k=ids[0],m=d[k];
+  if(!seenK){seenSet(k);return}
+  if(k>seenK){if(m&&m.n===nick())seenSet(k);else badge(true)}
+ }).catch(function(){});
+}
+setInterval(pollNew,8000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)pollNew()});
+setTimeout(pollNew,2500);
+g('chatX').onclick=close;btn.onclick=send;
  inp.onkeydown=function(e){if(e.key==='Enter')send()};
 
  /* ===== Юзернейм: A-Z a-z 0-9, 3-15 символов, уникальный ===== */
