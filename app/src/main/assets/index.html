@@ -1008,6 +1008,10 @@ input:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(61,220
 
 /* ===== v2.27 premium effects ===== */
 .pfx>.fxo{position:absolute!important;inset:0;z-index:2!important;pointer-events:none;overflow:hidden;border-radius:inherit}
+/* блок NFT: эффекты стиля рисуются под плитками, а не поверх них */
+.pfx.nfxc>.fxo{z-index:0!important}
+/* аватарка с закреплёнными NFT выше слоя эффектов стиля */
+.pfx>.avw{z-index:3}
 .fxo::before,.fxo::after{content:"";position:absolute;display:none}
 .pfx[data-fx="1"]{--g:#7cc4ff;border-color:#7cc4ff;animation:peGlow 3s ease-in-out infinite}
 .pfx[data-fx="1"] :is(h3,.bw,.bc,.pm,.pphone,.pr>span,.pvph),.pfx[data-fx="1"] :is(#hl,#hall):empty::after{background:linear-gradient(100deg,#9fd8ff,#fff,#9fd8ff,#e8f6ff,#9fd8ff) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:peSw 3.5s linear infinite}
@@ -1429,7 +1433,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
  <main>
   <section id="p1">
    <div class="card prof pfx" id="pc1"><div class="bgfx s0" id="bgfx1"></div><div class="pinfo"><div class="nrow"><span class="lvslot" id="mylv"></span><div class="nick" id="nick">Player</div><span class="nmedal" id="nmedal"></span></div><div class="bdgs" id="bdgs"></div><div class="pton" id="pton"><span id="tonv">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="18" height="18"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="pphone" id="pphone"></div></div><div class="avw" id="avw"><div class="ava" id="ava"></div><div id="avring"></div><div class="avdeco" id="avdeco"></div><div class="avpin" id="avpin"></div></div><input type="file" id="af" accept="image/*" hidden></div>
-   <div class="card pfx" id="pc5"><div class="bgfx s0" id="bgfx5"></div><div class="nfbh"><h3>NFT</h3><span class="nfbc" id="nfbc"></span></div><div class="nfbg" id="nfbg"><div class="nfbe">Загружаю…</div></div></div>
+   <div class="card pfx nfxc" id="pc5"><div class="bgfx s0" id="bgfx5"></div><div class="nfbh"><h3>NFT</h3><span class="nfbc" id="nfbc"></span></div><div class="nfbg" id="nfbg"><div class="nfbe">Загружаю…</div></div></div>
    <div class="card pfx" id="pc2"><div class="bgfx s0" id="bgfx2"></div><h3>Лучшая победа</h3><div class="bw" id="bw">—</div><div class="bc" id="bc">Шанс: —</div></div>
    <div class="card hist pfx" id="pc3"><div class="bgfx s0" id="bgfx3"></div><div class="hh"><h3>История ставок</h3><button class="hbtn" id="hopen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div><div id="hl"></div></div>
   <div class="card pfx pvc3" id="pc4"><div class="bgfx s0" id="bgfx4"></div><div class="pr"><span>Баланс</span><span id="pc4bal">0 ₽</span></div><div class="pr tap" id="pc4l"><span>Уровень</span><span id="pc4lv"></span></div><div class="pvph">Подиум</div><div class="pvpod" id="pc4pod"></div></div>
@@ -2610,7 +2614,7 @@ function upgProfView(p,name){pvFx();const prem=Array.isArray(p.bg)&&p.bg.include
  {const pc=c1.querySelector('.avpin');if(pc){pc.innerHTML='';const ni=(Array.isArray(p.ni)?p.ni:[]).map(nftSnap).filter(x=>x&&x.n>0&&NN&&NN.valid(x)),ps=(Array.isArray(p.pn)?p.pn:[]).map(x=>+x|0).filter((x,i,a)=>a.indexOf(x)===i).slice(0,10),PL=ps.map(x=>ni.find(y=>y.s===x)).filter(Boolean);
   if(NN)pc.innerHTML=nfPinItems(PL,NN);pc.onclick=e=>{e.stopPropagation();const t=e.target.closest('.avpn');if(!t)return;const it=PL.find(x=>x.s===+t.dataset.s);if(it&&NN)NN.view(it,false)}}}
  {const nl=(Array.isArray(p.ni)?p.ni:[]).map(nftSnap).filter(x=>x&&NN&&NN.valid(x)).slice(0,20);
-  if(NN){const c5=document.createElement('div');c5.className='card pfx';const e5=fxK(4);c5.dataset.fx=e5;const b5=document.createElement('div');b5.className='bgfx s'+e5;c5.appendChild(b5);const o5=document.createElement('div');o5.className='fxo';c5.appendChild(o5);
+  if(NN){const c5=document.createElement('div');c5.className='card pfx nfxc';const e5=fxK(4);c5.dataset.fx=e5;const b5=document.createElement('div');b5.className='bgfx s'+e5;c5.appendChild(b5);const o5=document.createElement('div');o5.className='fxo';c5.appendChild(o5);
    const hd=document.createElement('div');hd.className='nfbh';hd.innerHTML='<h3>NFT</h3><span class="nfbc"></span>';hd.querySelector('.nfbc').textContent=nl.length+' / '+NN.max;c5.appendChild(hd);
    const gr=document.createElement('div');gr.className='nfbg';const pset=(Array.isArray(p.pn)?p.pn:[]).map(x=>+x|0);gr.innerHTML=nl.length?nl.map(it=>'<div class="nfbi" role="button" data-s="'+it.s+'">'+NN.stage(it)+(pset.includes(it.s)?nfPinTag():'')+'</div>').join(''):'<div class="nfbe">Пока нет NFT</div>';
    gr.onclick=e=>{const t=e.target.closest('.nfbi');if(!t)return;const it=nl.find(x=>x.s===+t.dataset.s);if(it)NN.view(it,false)};c5.appendChild(gr);wrap.appendChild(c5)}}
