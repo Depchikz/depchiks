@@ -2610,9 +2610,9 @@ function upgProfView(p,name){pvFx();const prem=Array.isArray(p.bg)&&p.bg.include
  {const pc=c1.querySelector('.avpin');if(pc){pc.innerHTML='';const ni=(Array.isArray(p.ni)?p.ni:[]).map(nftSnap).filter(x=>x&&x.n>0&&NN&&NN.valid(x)),ps=(Array.isArray(p.pn)?p.pn:[]).map(x=>+x|0).filter((x,i,a)=>a.indexOf(x)===i).slice(0,10),PL=ps.map(x=>ni.find(y=>y.s===x)).filter(Boolean);
   if(NN)pc.innerHTML=nfPinItems(PL,NN);pc.onclick=e=>{e.stopPropagation();const t=e.target.closest('.avpn');if(!t)return;const it=PL.find(x=>x.s===+t.dataset.s);if(it&&NN)NN.view(it,false)}}}
  {const nl=(Array.isArray(p.ni)?p.ni:[]).map(nftSnap).filter(x=>x&&NN&&NN.valid(x)).slice(0,20);
-  if(nl.length){const c5=document.createElement('div');c5.className='card pfx';const e5=fxK(4);c5.dataset.fx=e5;const b5=document.createElement('div');b5.className='bgfx s'+e5;c5.appendChild(b5);const o5=document.createElement('div');o5.className='fxo';c5.appendChild(o5);
+  if(NN){const c5=document.createElement('div');c5.className='card pfx';const e5=fxK(4);c5.dataset.fx=e5;const b5=document.createElement('div');b5.className='bgfx s'+e5;c5.appendChild(b5);const o5=document.createElement('div');o5.className='fxo';c5.appendChild(o5);
    const hd=document.createElement('div');hd.className='nfbh';hd.innerHTML='<h3>NFT</h3><span class="nfbc"></span>';hd.querySelector('.nfbc').textContent=nl.length+' / '+NN.max;c5.appendChild(hd);
-   const gr=document.createElement('div');gr.className='nfbg';const pset=(Array.isArray(p.pn)?p.pn:[]).map(x=>+x|0);gr.innerHTML=nl.map(it=>'<div class="nfbi" role="button" data-s="'+it.s+'">'+NN.stage(it)+(pset.includes(it.s)?nfPinTag():'')+'</div>').join('');
+   const gr=document.createElement('div');gr.className='nfbg';const pset=(Array.isArray(p.pn)?p.pn:[]).map(x=>+x|0);gr.innerHTML=nl.length?nl.map(it=>'<div class="nfbi" role="button" data-s="'+it.s+'">'+NN.stage(it)+(pset.includes(it.s)?nfPinTag():'')+'</div>').join(''):'<div class="nfbe">Пока нет NFT</div>';
    gr.onclick=e=>{const t=e.target.closest('.nfbi');if(!t)return;const it=nl.find(x=>x.s===+t.dataset.s);if(it)NN.view(it,false)};c5.appendChild(gr);wrap.appendChild(c5)}}
  const c2=mk($('pc2'),1);c2.querySelector('.bw').textContent=(typeof p.wn==='number'&&isFinite(p.wn)&&p.wn>0)?fmt(p.wn):((typeof p.w==='string'&&p.w)?(pvParseNum(p.w)!==null?fmt(pvParseNum(p.w)):p.w.slice(0,40)):'—');c2.querySelector('.bc').textContent=(typeof p.c==='string'&&p.c)?p.c.slice(0,60):'Шанс: —';wrap.appendChild(c2);
  /* история ставок, как у меня */
@@ -4197,6 +4197,7 @@ var shkN=0;document.addEventListener('pointerdown',e=>{if(shkN>7)return;shkN++;c
 <style>
 body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-events:none;box-shadow:none;cursor:not-allowed}
 #chatFab{transition:opacity .25s,filter .25s;position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:52px;height:52px;border-radius:50%;border:0;background:var(--ac);color:#06210f;font-size:24px;z-index:40;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.nfbe{grid-column:1/-1;text-align:center;color:var(--mut);font-size:13px;font-weight:700;padding:12px 0}
 #chatFab.unread::after{content:'!';position:absolute;top:-5px;right:-5px;width:22px;height:22px;border-radius:50%;background:#ff3b4e;color:#fff;font:900 15px/22px system-ui,sans-serif;text-align:center;box-shadow:0 0 0 2px #0d1018,0 0 12px #ff3b4e;animation:chatBang 1.2s ease-in-out infinite}
 @keyframes chatBang{0%,100%{transform:scale(1);box-shadow:0 0 0 2px #0d1018,0 0 6px #ff3b4e}50%{transform:scale(1.18);box-shadow:0 0 0 2px #0d1018,0 0 18px #ff3b4e}}
 #nick::before{content:'@'}
