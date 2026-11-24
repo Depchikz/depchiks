@@ -1389,6 +1389,30 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 .avfb{position:absolute;left:80%;top:16%;width:4px;height:4px;border-radius:50%;border:1px solid rgba(210,248,255,.9);background:radial-gradient(circle at 30% 30%,#fff,rgba(150,225,255,.3));opacity:0;animation:avFbub 2.6s ease-out infinite}
 @keyframes avFbub{0%{transform:translate(0,0) scale(.4);opacity:0}20%{opacity:1}100%{transform:translate(7px,-17px) scale(1.2);opacity:0}}
 
+
+/* ===== v3.80: блок «Улей» (стиль 16, PREMIUM) ===== */
+.stsw.s16{background:linear-gradient(135deg,#ffd54a,#b86e00 52%,#3a2300)}
+.bgfx.s16{background:radial-gradient(ellipse at 50% -12%,rgba(255,200,40,.42),transparent 62%),linear-gradient(165deg,#4a2f06,#2a1a03 56%,#3b2505)}
+.bgfx.s16::before{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'><path fill-rule='evenodd' fill='rgba(255,196,40,.2)' d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.34V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.3l-10.99-6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31l-11 6.13V49h-2z'/></svg>") 0 0/28px 49px;animation:fxHx 9s linear infinite}
+.bgfx.s16::after{background:linear-gradient(105deg,transparent 35%,rgba(255,236,150,.22) 50%,transparent 65%) 0 0/250% 100% no-repeat;animation:fxSweep 6s linear infinite}
+@keyframes fxHx{to{background-position:28px 49px}}
+.pfx[data-fx="16"]{--g:#ffb300;border-color:#ffb300;animation:peGlow 3s ease-in-out infinite}
+.pfx[data-fx="16"] :is(h3,.bw,.bc,.pm,.pphone,.pr>span,.pvph),.pfx[data-fx="16"] :is(#hl,#hall):empty::after{background:linear-gradient(100deg,#ffd54a,#fff3c0,#ffb300,#ffe27a,#ffd54a) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:peSw 3.6s linear infinite,peTw 2.8s ease-in-out infinite}
+.pfx[data-fx="16"] #hl{text-shadow:0 0 7px #ffb300}
+.pfx[data-fx="16"]>.fxo::before{display:block;top:0;bottom:0;width:34%;left:-50%;background:linear-gradient(105deg,transparent,rgba(255,236,160,.5),transparent);animation:peGl 4.6s ease-in-out infinite}
+.pfx[data-fx="16"]>.fxo::after{display:block;width:24px;height:17px;top:16%;left:-10%;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 24'><defs><clipPath id='c'><path d='M5 13C5 8 10 6.5 16 6.5C22 6.5 26 8.6 26 13C26 17.4 22 19.5 16 19.5C10 19.5 5 18 5 13Z'/></clipPath></defs><ellipse cx='13' cy='5' rx='6' ry='3.4' fill='white' fill-opacity='.65' transform='rotate(-18 13 5)'/><ellipse cx='19' cy='4.4' rx='7' ry='3.7' fill='white' fill-opacity='.6' transform='rotate(12 19 5)'/><path d='M5 13L1 13.6L5.4 15Z' fill='rgb(45,26,0)'/><path d='M5 13C5 8 10 6.5 16 6.5C22 6.5 26 8.6 26 13C26 17.4 22 19.5 16 19.5C10 19.5 5 18 5 13Z' fill='rgb(255,194,26)' stroke='rgb(154,90,0)' stroke-width='.7'/><g clip-path='url(%23c)' fill='rgb(45,26,0)'><rect x='9.5' y='5' width='3' height='16'/><rect x='15.2' y='5' width='3' height='16'/><rect x='20.8' y='5' width='3' height='16'/></g><circle cx='27.2' cy='12.2' r='4.3' fill='rgb(45,26,0)'/><circle cx='28.4' cy='11.2' r='1.6' fill='white'/></svg>") center/contain no-repeat;filter:drop-shadow(0 0 4px rgba(255,194,26,.8));animation:peBee 10s linear infinite}
+@keyframes peBee{0%{left:-10%;transform:translateY(0) rotate(6deg)}20%{transform:translateY(-9px) rotate(-6deg)}40%{transform:translateY(7px) rotate(7deg)}60%{transform:translateY(-8px) rotate(-5deg)}80%{transform:translateY(6px) rotate(6deg)}100%{left:106%;transform:translateY(0) rotate(4deg)}}
+
+/* ===== v3.80: рамка «Медовая» и украшение «Пчёлы» ===== */
+.avring.hy{background:conic-gradient(from 0deg,transparent 0 246deg,rgba(255,250,210,.95) 318deg,transparent 360deg);animation:avSpin 3.2s linear infinite;filter:drop-shadow(0 0 3px #ffe27a)}
+.avdrip{position:absolute;left:var(--x);top:var(--y,66px);width:5px;height:7px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:radial-gradient(circle at 35% 30%,#fff6c0,#ffc21a 55%,#c77700);box-shadow:0 0 4px rgba(255,194,26,.7);opacity:0;pointer-events:none;z-index:2;animation:avDrip var(--d) ease-in var(--w) infinite}
+@keyframes avDrip{0%{transform:translate(0,-5px) scale(.3,.1);opacity:0}18%{transform:translate(0,0) scale(1,1);opacity:1}100%{transform:translate(var(--s,0px),28px) scale(.85,1.3);opacity:0}}
+.avgl.hn{filter:drop-shadow(0 0 4px #ffd54a)}
+.avfw.bee{filter:drop-shadow(0 0 4px rgba(255,194,26,.6))}
+.f-bwg{transform-box:fill-box;transform-origin:50% 100%;animation:avBw .13s ease-in-out infinite alternate}
+.f-bwg.b{animation-delay:.05s}
+@keyframes avBw{0%{transform:scaleY(1) rotate(0)}100%{transform:scaleY(.35) rotate(-8deg)}}
+
 /* ===== v2.59: премиум-медали — общий блеск и новые эффекты ===== */
 .nmedal{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--mg,#fff) 70%,transparent))}
 .nmedal::before{animation:nmAura 2.6s ease-in-out infinite}
@@ -2647,7 +2671,7 @@ let pvFxDone=0;function pvFx(){if(pvFxDone)return;pvFxDone=1;try{[...document.st
 /* строка из чужого профиля в формате отправителя -> число (чтобы показать в МОЁМ формате) */
 function pvParseNum(str){if(typeof str!=='string')return null;const m=str.replace(/[\u00a0\u202f\s]+/g,'').replace(',','.').match(/(-?\d+(?:\.\d+)?)(Qa|Qi|[KMBT])?/);if(!m)return null;const U={K:1e3,M:1e6,B:1e9,T:1e12,Qa:1e15,Qi:1e18};const n=parseFloat(m[1])*(m[2]?U[m[2]]:1);return Number.isFinite(n)?n:null}
 function upgProfView(p,name){pvFx();const prem=Array.isArray(p.bg)&&p.bg.includes('prem');
- const fxK=i=>{const k=i===4?+p.f5:(Array.isArray(p.fx)?+p.fx[i]:0),v=(k>=0&&k<=15)?k:0;return(FXP.has(v)&&!prem)?0:v};
+ const fxK=i=>{const k=i===4?+p.f5:(Array.isArray(p.fx)?+p.fx[i]:0),v=(k>=0&&k<=16)?k:0;return(FXP.has(v)&&!prem)?0:v};
  const wrap=document.createElement('div');wrap.className='pvw';
  const mk=(src,fi)=>{const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));const e=fxK(fi);c.querySelector('.bgfx').className='bgfx s'+e;c.dataset.fx=e;if(!c.querySelector('.fxo')){const o=document.createElement('div');o.className='fxo';c.insertBefore(o,c.children[1])}return c};
  const c1=mk($('pc1'),0);c1.classList.add('pvpc1');
@@ -2888,10 +2912,11 @@ const NICK_COLORS=[
  ['Жёлтый','#ffd84d','#ffd84d',1],
  ['Океанский бриз','linear-gradient(100deg,#00e5ff,#2979ff,#00bfa5,#64ffda,#00e5ff)','#26c6da'],
  ['Лавандовый туман','linear-gradient(100deg,#e0c3ff,#a78bfa,#f0abfc,#c4b5fd,#e0c3ff)','#a78bfa'],
- ['Закат пустыни','linear-gradient(100deg,#ff6f61,#ffb347,#ffe29a,#ff8c94,#ffb347)','#ff9a62']
+ ['Закат пустыни','linear-gradient(100deg,#ff6f61,#ffb347,#ffe29a,#ff8c94,#ffb347)','#ff9a62'],
+ ['Медовый','linear-gradient(100deg,#fff3b0,#ffc21a,#e08a00,#ffe27a,#ffb300,#fff3b0)','#ffc21a']
 ];
 const NC_FREE=[10];
-const NC_PREM=[0,8,4,5,3,1,2,7,6,9,11,12,13];
+const NC_PREM=[0,8,4,5,3,1,2,7,6,9,11,12,13,14];
 let nickColor=-1;
 function applyNickColor(){const el=$('nick');if(nickColor>=0&&NICK_COLORS[nickColor]&&(NICK_COLORS[nickColor][3]||fxHasPrem())){const c=NICK_COLORS[nickColor];el.classList.add('nickfx');el.classList.toggle('flat',!!c[3]);if(c[3]){el.style.backgroundImage='none';el.style.webkitTextFillColor=c[1]}else{el.style.backgroundImage=c[1];el.style.webkitTextFillColor=''}el.style.setProperty('--ng',c[2])}else{el.classList.remove('nickfx','flat');el.style.backgroundImage='';el.style.webkitTextFillColor='';el.style.removeProperty('--ng')}}
 const NC_CROWN='<svg viewBox="0 0 24 24"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5L3 7z"/></svg>';
@@ -3194,6 +3219,30 @@ function _waterFx(){
  return `<div class="avring wl"></div><div class="avrip"></div><div class="avrip b"></div>`
   +BB.map(b=>`<span class="avbub" style="--x:${b[0]}px;--y:${b[1]}px;--z:${b[2]}px;--d:${b[3]}s;--w:${b[4]}s;--s:${b[5]}px"></span>`).join('')
   +`<b class="avgl" style="left:56px;top:-5px">${_STAR('#e6fbff')}</b><b class="avgl" style="left:75px;top:53px;animation-delay:.7s">${_STAR('#bff4ff')}</b><b class="avgl" style="left:-8px;top:19px;animation-delay:1.2s">${_STAR('#e6fbff')}</b>`}
+/* ===== v3.80: пчёлы и медовая рамка ===== */
+function _beeSvg(u,dl){
+ const B='M5 13C5 8 10 6.5 16 6.5C22 6.5 26 8.6 26 13C26 17.4 22 19.5 16 19.5C10 19.5 5 18 5 13Z',wg=(cx,cy,rx,ry,r,b)=>`<g class="f-bwg${b?' b':''}"><ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" transform="rotate(${r} ${cx} ${cy+.4})" fill="#fff" fill-opacity=".6" stroke="#cdeeff" stroke-width=".6"/></g>`;
+ return `<svg viewBox="0 0 34 24" aria-hidden="true" style="animation-delay:${dl||0}s"><defs>${_LG('bb'+u,['#ffec8a','#ffc21a','#e08a00'],0,0,0,1)}<clipPath id="bc${u}"><path d="${B}"/></clipPath></defs>`
+  +wg(13,5,6,3.4,-18,1)+wg(19,4.4,7,3.7,12,0)
+  +`<path d="M5.2 13L.8 13.6L5.4 15.2Z" fill="#2d1a00"/>`
+  +`<path d="${B}" fill="url(#bb${u})" stroke="#9a5a00" stroke-width=".7"/>`
+  +`<g clip-path="url(#bc${u})" fill="#2d1a00"><rect x="9.5" y="5" width="3.2" height="16"/><rect x="15.2" y="5" width="3.2" height="16"/><rect x="20.8" y="5" width="3.2" height="16"/></g>`
+  +`<path d="M8 9.6C11 8.1 17 7.7 21 8.5" stroke="#fff" stroke-width=".9" opacity=".6" fill="none" stroke-linecap="round"/>`
+  +`<path d="M28.6 8.6C30 6.4 31.4 6 32.6 6.4" stroke="#2d1a00" stroke-width=".8" fill="none" stroke-linecap="round"/><circle cx="32.7" cy="6.4" r=".9" fill="#ffc21a"/>`
+  +`<circle cx="27.2" cy="12.4" r="4.3" fill="#2d1a00" stroke="#9a5a00" stroke-width=".4"/>`
+  +`<g class="f-fe"><circle cx="28.4" cy="11.4" r="1.7" fill="#fff"/><circle cx="28.9" cy="11.5" r=".9" fill="#1a1020"/><circle cx="28.4" cy="10.9" r=".35" fill="#fff"/></g>`
+  +`<path d="M29.6 14.8Q30.8 15.4 31.3 14.4" stroke="#ffc21a" stroke-width=".6" fill="none" stroke-linecap="round"/></svg>`}
+function _bees(){
+ const F=(w,r,m,dl)=>{const u=_u();return `<i style="--r:${r}deg"><span class="avfk${m?' m':''}" style="--fw:${w}px">${_beeSvg(u,dl)}</span></i>`};
+ return `<div class="avaura" style="--ac2:#ffc21a"></div>`
+  +`<div class="avfw bee" style="--rs:11s">${F(28,0,0,0)}${F(28,120,0,.3)}${F(28,240,0,.6)}</div>`
+  +`<div class="avfw bee in" style="--rs:7s">${F(19,60,1,.2)}${F(19,240,1,.5)}</div>`
+  +`<b class="avgl hn" style="left:56px;top:-6px">${_STAR('#fff3b0')}</b><b class="avgl hn" style="left:-9px;top:20px;animation-delay:.6s">${_STAR('#ffe27a')}</b>`}
+function _honeyFx(){
+ const D=[[14,66,2.6,0,3],[30,72,3.2,1.1,-2],[47,72,2.8,.5,2],[62,66,3.4,1.7,-3]];
+ return `<div class="avring hy"></div>`
+  +D.map(d=>`<span class="avdrip" style="--x:${d[0]}px;--y:${d[1]}px;--d:${d[2]}s;--w:${d[3]}s;--s:${d[4]}px"></span>`).join('')
+  +`<b class="avgl hn" style="left:56px;top:-5px">${_STAR('#fff3b0')}</b><b class="avgl hn" style="left:75px;top:53px;animation-delay:.7s">${_STAR('#ffe27a')}</b>`}
 /* [name, glow color, builder, free] */
 const AVD=[
  ['Бантик','#ff7fc4',_bowSvg,1],
@@ -3209,7 +3258,8 @@ const AVD=[
  ['Лепестки сакуры','#ff9cc9',_sakura,0],
  ['Звёздная диадема','#b9a7ff',_diadem,0],
  ['Ледяные кристаллы','#9be7ff',_icecr,0],
- ['Рыбки','#4fd8ff',_fish,0]
+ ['Рыбки','#4fd8ff',_fish,0],
+ ['Пчёлы','#ffc21a',_bees,0]
 ];
 let avaDeco=-1;
 function avDecoMarkup(i){const d=AVD[i];return d?d[2]():''}
@@ -3225,7 +3275,8 @@ const FR=[
  ['Кровавая луна','#ff1744','conic-gradient(#ff1744,#3a0010,#ff6b8a,#3a0010,#ff1744)',0,'3s'],
  ['Сакура','#ff7fc4','conic-gradient(#ffb7d1,#ff7fc4,#fff0f6,#ff5ca8,#ffd6e6,#ffb7d1)',0,'4.5s'],
  ['Электро','#22d3ee','conic-gradient(#00e5ff,#ffffff,#2979ff,#00ffa3,#ffffff,#00e5ff)',0,'2.2s'],
- ['Водяная','#2fb8ff','conic-gradient(#0a4a8a,#2fb8ff,#bff4ff,#1b8fe0,#073a73,#5fd8ff,#0a4a8a)',0,'5.5s',_waterFx]
+ ['Водяная','#2fb8ff','conic-gradient(#0a4a8a,#2fb8ff,#bff4ff,#1b8fe0,#073a73,#5fd8ff,#0a4a8a)',0,'5.5s',_waterFx],
+ ['Медовая','#ffb300','conic-gradient(#fff3b0,#ffc21a,#e08a00,#ffe27a,#ffb300,#8a4f00,#ffd54a,#fff3b0)',0,'6s',_honeyFx]
 ];
 const FR_FREE=FR.map((f,i)=>f[3]?i:-1).filter(i=>i>=0),FR_PREM=FR.map((f,i)=>f[3]?-1:i).filter(i=>i>=0);
 let avaFrame=-1,avTab=0,pvDeco=null,pvFrame=null;
@@ -3545,7 +3596,7 @@ function tbuy(){if(!selU)return;const u=UP[selU];if(tstate(selU)!=='avail'||mone
 let cine='',cineSet=new Set(),_gvSig='',gTgt=0;
 function gVig(ov){if(!gTgt||!UP[gTgt])return;const tc=$('tc'),r=tc.getBoundingClientRect(),k=r.width/4200,u=UP[gTgt],mg=!!u.mega;
  ov.style.setProperty('--gx',Math.round(r.left+u.x*k)+'px');ov.style.setProperty('--gy',Math.round(r.top+u.y*k)+'px');
- ov.style.setProperty('--gw',Math.round((mg?640:498)*k*.75)+'px');ov.style.setProperty('--gh',Math.round((mg?460:383)*k*.75)+'px')}
+ ov.style.setProperty('--gw',Math.round((mg?640:498)*k*1.15)+'px');ov.style.setProperty('--gh',Math.round((mg?460:383)*k*1.15)+'px')}
 const GOD_IDS=[54,55,56,57],MEGA_ID=58;
 function allBase(){for(let i=1;i<=53;i++)if(!owned.has(i))return false;return true}
 function gvis(id){
@@ -3580,6 +3631,7 @@ async function godCine(kind){
  if(cine)return;cine=kind;cineSet=new Set();_gvSig='';applyGodVis();try{tclose()}catch(_){}
  const total=kind==='gods'?20000:8000,ov=document.createElement('div');ov.id='gcine';
  ov.innerHTML='<div class="gvig"></div><div class="gbar t"></div><div class="gbar b"></div><div class="gfl"></div><div class="gcap"></div><div class="gprog"></div>';
+ try{$('tree').parentElement.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'})}catch(_){try{$('tree').parentElement.scrollIntoView({block:'center'})}catch(__){}}
  document.body.appendChild(ov);requestAnimationFrame(()=>ov.classList.add('on'));
  const pr=ov.querySelector('.gprog'),t0=performance.now();let raf=0;
  (function p(n){pr.style.width=Math.min(100,(n-t0)/total*100)+'%';gVig(ov);raf=requestAnimationFrame(p)})(t0);
@@ -4200,7 +4252,7 @@ function ptick(){const now=Date.now(),I=ivl()*1000;
  if(s!==lastS){lastS=s;const tn=$('tn');tn.textContent=s;tn.style.animation='none';void tn.offsetWidth;tn.style.animation='tnp .35s'}
  const tx='+'+fmt(income());if($('tt').textContent!==tx)$('tt').textContent=tx;
  barSet('tbi',1-left/I)}
-const FXN=['Профиль','Лучшая победа','История ставок','Баланс и подиум','NFT'],FXS=['Обычный серый','Снег','Космос','Дождь','Светлячки','Матрица','Угли','Золото','Аврора','Синтвейв','Сакура','Радуга','Гроза','Океан','Закат','Кристалл'],FXP=new Set([1,2,4,5,6,7,8,9,10,11,12,13,14,15]);
+const FXN=['Профиль','Лучшая победа','История ставок','Баланс и подиум','NFT'],FXS=['Обычный серый','Снег','Космос','Дождь','Светлячки','Матрица','Угли','Золото','Аврора','Синтвейв','Сакура','Радуга','Гроза','Океан','Закат','Кристалл','Улей'],FXP=new Set([1,2,4,5,6,7,8,9,10,11,12,13,14,15,16]);
 function fxHasPrem(){return premLive(serverPremUntil)||(badges.includes('prem')&&premLive(premUntil<=0?-1:premUntil))}
 let fxS=[0,0,0,0,0],fxSel=0;
 function pc4Upd(){try{const b=$('pc4bal');if(!b)return;b.textContent=fmt(money);const l=lvOf(tonBought);$('pc4lv').textContent=l+' · '+LVN[l-1]+' · '+lvFmt(Math.round(tonBought*100)/100)+' TON';$('pc4pod').innerHTML=plPodium.slice(0,6).map(i=>{const kk=i.k||'ru';return '<div class="pvpi">'+plMini(i.p,i.t,kk)+plFl(kk)+'</div>'}).join('')}catch(e){}}
@@ -4255,12 +4307,12 @@ function load(){try{const d=JSON.parse(localStorage.getItem(SK)||'null');if(!d)r
  if(Array.isArray(d.h)){hist=d.h;hrender(false)}
  if(Array.isArray(d.u))used=d.u;
  if(Array.isArray(d.o)){owned=new Set(d.o.filter(x=>UP[x]));trefresh(false);requestAnimationFrame(()=>trefresh(false))}
- if(Array.isArray(d.fx)){fxS=[0,1,2,3,4].map(i=>(+d.fx[i]>=0&&+d.fx[i]<=15)?+d.fx[i]:0);fxApply()}
+ if(Array.isArray(d.fx)){fxS=[0,1,2,3,4].map(i=>(+d.fx[i]>=0&&+d.fx[i]<=16)?+d.fx[i]:0);fxApply()}
  if(Array.isArray(d.bg))badges=d.bg.filter(x=>BDG[x]);if(typeof d.pu==='number')premUntil=d.pu;if(typeof d.pp==='number'&&d.pp>0)premPend=Math.min(d.pp,16e10);if(Number.isInteger(d.nc)&&d.nc>=0&&d.nc<NICK_COLORS.length)nickColor=d.nc;applyNickColor();if(Number.isInteger(d.ad)&&d.ad>=0&&d.ad<AVD.length)avaDeco=d.ad;applyAvaDeco();if(Number.isInteger(d.fr)&&d.fr>=0&&d.fr<FR.length)avaFrame=d.fr;applyAvaFrame();if(Number.isInteger(d.nm)&&d.nm>=0&&d.nm<NM.length)nickMedal=d.nm;if(d.nf!==undefined)nickNft=nickSnap(d.nf);applyNickMedal();bdgRender();fastMode=!!d.q;if(Array.isArray(d.as))plAuto=[0,1,2,3,4,5,6,7].map(i=>!!d.as[i]);fastUi();plAutoUi();
  if(Array.isArray(d.pl)){plInv=d.pl.filter(i=>i&&typeof i.p==='string'&&i.p.length===8&&PLT[i.t]).slice(0,plCap())}
  if(Array.isArray(d.pod))plPodium=d.pod.filter(i=>i&&typeof i.p==='string'&&i.p.length===8&&PLT[i.t]).slice(0,plPodCap());else if(d.pod&&typeof d.pod.p==='string'&&d.pod.p.length===8&&PLT[d.pod.t])plPodium=[{...d.pod,_carry:Number.isFinite(d.podCarry)?Math.max(0,d.podCarry):0}];if(d.pn>0&&plPodium.length)plPodNext=Date.now()+Math.min(d.pn,60000);if(typeof d.pc==='string'&&PLC.some(c=>c.id===d.pc))plCountry=d.pc;plPodLast=Date.now();plRender();
  shown=0;showMoney(2500)}catch(e){}}
-function loadFx(){try{const d=JSON.parse(localStorage.getItem('upg_fx_v1')||'null');if(!d)return;if(Array.isArray(d.bg))d.bg.filter(x=>BDG[x]).forEach(x=>{if(!badges.includes(x))badges.push(x);if(x==='prem'&&typeof d.pu==='number')premUntil=d.pu});if(Array.isArray(d.fx))fxS=[0,1,2,3,4].map(i=>(+d.fx[i]>=0&&+d.fx[i]<=15)?+d.fx[i]:0);bdgRender()}catch(e){}}
+function loadFx(){try{const d=JSON.parse(localStorage.getItem('upg_fx_v1')||'null');if(!d)return;if(Array.isArray(d.bg))d.bg.filter(x=>BDG[x]).forEach(x=>{if(!badges.includes(x))badges.push(x);if(x==='prem'&&typeof d.pu==='number')premUntil=d.pu});if(Array.isArray(d.fx))fxS=[0,1,2,3,4].map(i=>(+d.fx[i]>=0&&+d.fx[i]<=16)?+d.fx[i]:0);bdgRender()}catch(e){}}
 load();try{if(plLuckArmed||plUltraArmed)plQty=1;plLuckUi();plUpd()}catch(e){}loadCustom();loadFx();/* Премиум с сервера загружается после авторизации; до синхронизации не стираем его оформление. */premCheck();premUi();lvRender();phInit();ptick();setInterval(ptick,100);setInterval(save,3000);document.addEventListener('visibilitychange',()=>{save();try{xcTick()}catch(e){}});addEventListener('pagehide',save);addEventListener('beforeunload',save);
 
 /* v1.96: ripple feedback on buttons */
@@ -6930,7 +6982,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 @keyframes gpar{from{transform:translate(0,0) scale(1);opacity:1}to{transform:translate(var(--tx),var(--ty)) scale(.15);opacity:0}}
 .tree.gshake{animation:gshake .8s ease-out}
 #gcine{position:fixed;inset:0;z-index:2147483000;touch-action:none;overflow:hidden;cursor:wait;-webkit-user-select:none;user-select:none}
-#gcine .gvig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse var(--gw,45vw) var(--gh,35vh) at var(--gx,50%) var(--gy,50%),transparent 35%,rgba(0,0,0,.7) 100%);opacity:0;transition:opacity .7s}
+#gcine .gvig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse var(--gw,45vw) var(--gh,35vh) at var(--gx,50%) var(--gy,50%),transparent 46%,rgba(0,0,0,.84) 100%);opacity:0;transition:opacity .7s}
 #gcine.on .gvig{opacity:1}
 #gcine .gbar{position:absolute;left:0;right:0;height:14vh;background:#000;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 #gcine .gbar.t{top:0;transform:translateY(-100%)}
@@ -6938,7 +6990,7 @@ div.trmon{min-height:41px;display:flex;align-items:center;color:#ffe08a}
 #gcine.on .gbar{transform:none}
 #gcine .gfl{position:absolute;inset:0;opacity:0;pointer-events:none}
 #gcine .gfl.go{animation:gflash .9s ease-out}
-#gcine .gcap{position:absolute;left:0;right:0;bottom:16vh;text-align:center;font-weight:900;font-size:clamp(24px,8vw,38px);letter-spacing:2px;opacity:0;pointer-events:none;
+#gcine .gcap{position:absolute;left:0;right:0;top:calc(14vh + 18px);text-align:center;font-weight:900;font-size:clamp(24px,8vw,38px);letter-spacing:2px;opacity:0;pointer-events:none;
  background:linear-gradient(90deg,#ff1744,#ff9100,#ffea00,#00e676,#00b0ff,#d500f9,#ff1744) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 8px rgba(0,0,0,.8))}
 #gcine .gcap.mega{background:linear-gradient(90deg,#fff3b0,#ffae00,#ff3d00,#ffae00,#fff3b0) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text}
 #gcine .gcap.show{animation:gcapIn 2.6s ease both,godText 2s linear infinite}
