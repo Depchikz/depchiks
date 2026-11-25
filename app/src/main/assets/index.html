@@ -8506,7 +8506,7 @@ roll();
 .cr-slot.burn{animation:crBurn 1.4s ease-in forwards!important;pointer-events:none}
 .cr-gs{position:absolute;width:15px;height:15px;background:#5dff90;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);pointer-events:none;z-index:3;opacity:0;animation:crGs .8s ease-in forwards}
 
-.nm.crm{--gc:rgba(255,216,77,.9);filter:saturate(1.08) contrast(1.04) drop-shadow(0 0 8px var(--gc));animation:nftFloat 3.2s ease-in-out infinite,crmGlow 2.4s ease-in-out infinite}.nm.crm0{--gc:rgba(96,150,255,.95)}.nm.crm1{--gc:rgba(255,196,64,.95)}.nm.crm2{--gc:rgba(255,92,226,.95)}@keyframes crmGlow{0%,100%{filter:saturate(1.08) contrast(1.04) drop-shadow(0 0 6px var(--gc))}50%{filter:saturate(1.16) contrast(1.06) drop-shadow(0 0 18px var(--gc))}}@media (prefers-reduced-motion:reduce){.nm.crm{animation:none}}
+.nm.crm{--gc:rgba(255,216,77,.9)}.nft-big .nm.crm,.nft-tile .nm.crm,.cr-slot .nm.crm,.cr-res .nm.crm{filter:saturate(1.08) contrast(1.04) drop-shadow(0 0 8px var(--gc));animation:crmGlow 2.4s ease-in-out infinite}.nft-big .ng.float .nm.crm,.nft-tile .ng.float .nm.crm,.cr-res .ng.float .nm.crm{animation:nftFloat 3.2s ease-in-out infinite,crmGlow 2.4s ease-in-out infinite}.nm.crm0{--gc:rgba(96,150,255,.95)}.nm.crm1{--gc:rgba(255,196,64,.95)}.nm.crm2{--gc:rgba(255,92,226,.95)}@keyframes crmGlow{0%,100%{filter:saturate(1.08) contrast(1.04) drop-shadow(0 0 6px var(--gc))}50%{filter:saturate(1.16) contrast(1.06) drop-shadow(0 0 18px var(--gc))}}@media (prefers-reduced-motion:reduce){.nm.crm{animation:none}}
 
 .nft-wrap{flex:1;overflow:auto;width:100%;max-width:480px;margin:0 auto;box-sizing:border-box;padding:0 16px 22px}
 .nft-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -8563,6 +8563,13 @@ roll();
 @keyframes nftShake{0%,100%{transform:translate(0,0)}25%{transform:translate(-1.5px,1px)}50%{transform:translate(1.5px,-1px)}75%{transform:translate(-1px,-1.5px)}}
 @keyframes nftSheen{0%,55%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
 @keyframes nftPop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes crSlam{0%{opacity:0;transform:rotate(-40deg) scale(3.4)}60%{opacity:1;transform:rotate(-8deg) scale(.9)}100%{opacity:1;transform:rotate(-12deg) scale(1)}}
+.ncr{position:absolute;z-index:4;top:8px;left:9px;padding:2px 8px;border-radius:9px;font-size:12px;font-weight:900;letter-spacing:.3px;color:#4a2f00;background:linear-gradient(120deg,#fff4b5 0%,#ffd84d 28%,#e7a900 52%,#ffe98a 76%,#d99500 100%);border:1px solid rgba(255,232,145,.9);box-shadow:0 0 12px rgba(255,200,40,.6),inset 0 1px 2px rgba(255,255,255,.65);text-shadow:0 1px 0 rgba(255,255,255,.35);transform:rotate(-12deg);transform-origin:left top;pointer-events:none}
+.nft-big .ncr{top:14px;left:16px;font-size:18px;padding:3px 12px;border-radius:12px}
+.nfbi .ncr{top:2px;left:3px;padding:1px 4px;font-size:8px;border-radius:6px}
+.avpn .ncr,.nfm .ncr{display:none}
+.nft-tile:has(.mkbadge) .ncr{top:36px}
+.ncr.slam{animation:crSlam .7s cubic-bezier(.2,1.4,.3,1) both}
 @keyframes nftSlam{0%{opacity:0;transform:rotate(40deg) scale(3.4)}60%{opacity:1;transform:rotate(8deg) scale(.9)}100%{opacity:1;transform:rotate(12deg) scale(1)}}
 @keyframes nftFlash{0%{opacity:.95}100%{opacity:0}}
 @keyframes nftRing{0%{transform:scale(.4);opacity:.9}100%{transform:scale(5.5);opacity:0}}
@@ -8792,7 +8799,7 @@ function numHtml(n,cls){return '<b class="nn g1'+(cls?' '+cls:'')+'">#'+n+'</b>'
 function stageHtml(it,cls){
  var up=it&&it.n>0,bd=up?BD[it.b]:DEF;
  var pic=up?(PEPE_IMG[it.m]||PEPE_IMG[0]):PEPE_DEFAULT;
- return '<div class="ng '+(up?'up ':'def ')+(cls||'')+'" style="--c1:'+bd.c1+';--c2:'+bd.c2+'">'+(up?patSvg(it.p,bd.pc):'')+'<img class="nm'+(up&&it.m>=CRM0?' crm crm'+(it.m-CRM0):'')+'" src="'+pic+'" alt="" aria-hidden="true">'+(up?numHtml(it.n):'')+'</div>'
+ return '<div class="ng '+(up?'up ':'def ')+(cls||'')+'" style="--c1:'+bd.c1+';--c2:'+bd.c2+'">'+(up?patSvg(it.p,bd.pc):'')+'<img class="nm'+(up&&it.m>=CRM0?' crm crm'+(it.m-CRM0):'')+'" src="'+pic+'" alt="" aria-hidden="true">'+(up?numHtml(it.n):'')+(up&&(it.cr||it.m>=CRM0)?'<b class="ncr">Crafted</b>':'')+'</div>'
 }
 function tier(c){return c<=1?4:c<=3?3:c<=8?2:1}
 function rarName(it){var c=Math.min(MD[it.m].c,BD[it.b].c,PT[it.p].c),t=tier(c);return ['','Обычный','Редкий','Эпический','Легендарный'][t]+(t===4?' ✦':'')}
@@ -8979,7 +8986,7 @@ function renderCrPick(){
 function onCrPick(e){var b=e.target.closest('[data-s]');if(!b||cr.pos<0)return;var s=+b.dataset.s;if(cr.sel.indexOf(s)>=0)return;var pi=item(s);if(!pi||isCr(pi)){toast('Скрафченный NFT нельзя крафтить повторно');sfx('deny');return}cr.sel[cr.pos]=s;cr.popI=cr.pos;sfx('tap');closeOv('nftCrPick');renderCr();if(navigator.vibrate)navigator.vibrate(12)}
 function crMark(n,b,p,m){var v={b:b,p:p,m:m};try{var o=JSON.parse(localStorage.getItem('nftp_crafted_v1')||'{}');o[n]=v;localStorage.setItem('nftp_crafted_v1',JSON.stringify(o))}catch(e){}st.cr[n]=v}
 /* скрафченный NFT может получить фон/узор от выбранных (хранится в /nftp/crafted/{номер}) */
-function crOv(o){var c=o&&o.n&&st.cr[o.n];if(c&&typeof c==='object'){if(c.b!=null&&BD[c.b|0])o.b=c.b|0;if(c.p!=null&&PT[c.p|0])o.p=c.p|0;if(c.m!=null&&c.m>=CRM0&&MD[c.m|0])o.m=c.m|0}return o}
+function crOv(o){var c=o&&o.n&&st.cr[o.n];if(c&&typeof c==='object'){if(c.b!=null&&BD[c.b|0])o.b=c.b|0;if(c.p!=null&&PT[c.p|0])o.p=c.p|0;if(c.m!=null&&c.m>=CRM0&&MD[c.m|0])o.m=c.m|0;if(c.q>=1&&c.q<=4)o.q=c.q|0}return o}
 function isCr(it){return !!(it&&it.n&&(it.cr||it.m>=CRM0))}
 function subHtml(it){return !it.n?'Лимитированный подарок':isCr(it)?'<span class="nft-crd" style="margin-left:0">Crafted</span>':esc(MD[it.m].n)}
 var REELN=[];
@@ -9027,8 +9034,13 @@ async function craftReveal(orig,fin,nums){
   if(dn)dn.style.display='none';if(R)R.style.visibility='hidden';if(pm)pm.style.display='none';
   REELN=(nums&&nums.length?nums:[fin.n]).slice().sort(function(a,b){return a-b});
   $('nftDetT').textContent='Pepe';var h2=document.querySelector('#nftDetB .nft-dt h2');if(h2)h2.innerHTML='Pepe <em>#?</em>';
+  var sp=document.querySelector('#nftDetB .nft-dt p');if(sp)sp.innerHTML='<span class="nft-crd" style="margin-left:0">Crafted</span>';
+  /* нейтральный вид до прокрутки: не показываем модель, фон и узор победившего NFT (иначе видно, какой номер выпал) */
+  stage.style.setProperty('--c1',DEF.c1);stage.style.setProperty('--c2',DEF.c2);
+  [].forEach.call(stage.querySelectorAll('.np'),function(x){x.remove()});
+  var im0=stage.querySelector('.nm');if(im0){im0.src=PEPE_DEFAULT;im0.className='nm'}
   st.upping=true;$('nftDetX').style.opacity='.35';
-  [].forEach.call(stage.querySelectorAll('.nn,.np'),function(x){x.remove()});
+  [].forEach.call(stage.querySelectorAll('.nn,.np,.ncr'),function(x){x.remove()});
   stage.classList.remove('up','float','reel-bg');stage.classList.add('spin');stage.dataset.cm='1';stage.dataset.bgIndex=String(orig.b);
   uxStart(stage);sfx('riser');
   await sleep(600);
@@ -9065,10 +9077,10 @@ async function doCraft(){
    var burn=ok?items.filter(function(x){return x.s!==win.s}):items;
    /* одна атомарная запись: метка крафта + сжигание. Если сервер отклонит (например, NFT уже скрафчен), ничего не сгорит */
    var body={};
-   if(ok)body['nftp/crafted/'+win.n]={b:nb,p:np,m:nm};
+   if(ok)body['nftp/crafted/'+win.n]={b:nb,p:np,m:nm,q:N};
    burn.forEach(function(x){body['nftp/slots/'+x.s]={u:'burn',n:(st.slots[x.s]&&st.slots[x.s].n)||S.nick(),t:S.sv}});
    if(Object.keys(body).length){var rr=await S.api('/.json',{method:'PATCH',body:JSON.stringify(body)});if(!rr.ok)throw rr.status}
-   if(ok)st.cr[win.n]={b:nb,p:np,m:nm};
+   if(ok)st.cr[win.n]={b:nb,p:np,m:nm,q:N};
    burn.forEach(function(x){try{if(window.__nftPin&&window.__nftPin.has(x.s))window.__nftPin.toggle(x.s)}catch(e){}});
   }catch(e){err=e}
   try{await syncAll()}catch(e){}
@@ -9091,7 +9103,7 @@ async function doCraft(){
  if(ok){
   var w=crOv(Object.assign({},item(win.s)||win));w.cr=1;w.m=nm;w.b=nb;w.p=np;
   mid.classList.add('ok');q.textContent='✓';
-  $('crRes').innerHTML='<div class="cr-res"><h3>Крафт удался!</h3><p>Улучшаем Pepe #'+w.n+'…</p></div>';
+  $('crRes').innerHTML='<div class="cr-res"><h3>Крафт удался!</h3><p>Улучшаем Pepe…</p></div>';
   sfx('reveal');if(navigator.vibrate)navigator.vibrate([40,40,80]);
   crFlash(bd,'#ffe27a');[0,200,400].forEach(function(t){setTimeout(function(){crRing(bd,'#ffd84d')},t)});crShards(bd,['#ffd84d','#fff','#c24bff','#27b4ff'],26);
   confetti(bd,['#ffd84d','#fff','#c24bff','#27b4ff'],40);
@@ -9119,7 +9131,7 @@ function item(s){for(var i=0;i<st.mine.length;i++)if(st.mine[i].s===s)return st.
 function rows(it){
  if(!it.n)return '';
  var M=MD[it.m],B=BD[it.b],P=PT[it.p];
- return '<div class="nft-rows"><div class="nft-row"><span>Модель</span><b>'+M.n+chip(M.dc!=null?M.dc:M.c)+(M.dc!=null?'<i class="ch r4">Rare</i>':'')+'</b></div><div class="nft-row"><span>Узор</span><b>'+P.n+chip(P.c)+'</b></div><div class="nft-row"><span>Фон</span><b>'+B.n+chip(B.c)+'</b></div>'+(isCr(it)?'<div class="nft-row"><span>Номер</span><b>#'+it.n+'</b></div>':'')+'</div>'
+ return '<div class="nft-rows"><div class="nft-row"><span>Модель</span><b>'+M.n+chip(M.dc!=null?M.dc:M.c)+(M.dc!=null?'<i class="ch r4">Rare</i>':'')+'</b></div><div class="nft-row"><span>Узор</span><b>'+P.n+chip(P.c)+'</b></div><div class="nft-row"><span>Фон</span><b>'+B.n+chip(B.c)+'</b></div>'+(isCr(it)?'<div class="nft-row"><span>Номер</span><b>#'+it.n+(function(){var c=st.cr[it.n],q=(c&&c.q)||it.q;return q>=1&&q<=4?chip(Math.round(1000/q)/10):''})()+'</b></div>':'')+'</div>'
 }
 function renderDet(it,rv){
  curS=it.s;pinUi(it);
@@ -9167,6 +9179,8 @@ async function reelPhase(stage,kind,target,duration){
  var current=kind==='m'?list[Math.floor(rnd()*list.length)]:Math.floor(rnd()*list.length),next=kind==='m'?list[Math.floor(rnd()*list.length)]:Math.floor(rnd()*list.length),previous=kind==='m'?list[Math.floor(rnd()*list.length)]:Math.floor(rnd()*list.length);
  if(next===current&&list.length>1)next=kind==='m'?list[(list.indexOf(next)+1)%list.length]:(next+1)%list.length;
  if(previous===current&&list.length>1)previous=kind==='m'?list[(list.indexOf(previous)+2)%list.length]:(previous+2)%list.length;
+ function rpick(){var i=Math.floor(rnd()*list.length);return kind==='m'?list[i]:i}
+ function rbump(v){if(kind==='m')return list[(list.indexOf(v)+1)%list.length];return (v+1)%list.length}
  var bgIndex=Number(stage.dataset.bgIndex||0),viewport=document.createElement('div');
  viewport.className='nft-reel-viewport';uxStep(stage,kind);
  var track=document.createElement('div');track.className='nft-reel-track no-transition';
@@ -9177,8 +9191,8 @@ async function reelPhase(stage,kind,target,duration){
   function spin(){
    if(finished)return;
    var progress=Math.min(1,(performance.now()-started)/duration);
-   var chosen=progress>=1?target:Math.floor(rnd()*list.length);
-   if(progress<1&&chosen===current&&list.length>1)chosen=(chosen+1)%list.length;
+   var chosen=progress>=1?target:rpick();
+   if(progress<1&&chosen===current&&list.length>1)chosen=rbump(chosen);
    next=chosen;
    draw();
    /* next is on the left; moving the strip right brings it into the center */
@@ -9193,8 +9207,8 @@ async function reelPhase(stage,kind,target,duration){
      else if(kind==='p')paintP(stage,target,bgIndex);
      lockFx(stage);uxLock(stage,kind,target);resolve();return;
     }
-    previous=current;current=next;next=Math.floor(rnd()*list.length);
-    if(next===current&&list.length>1)next=(next+1)%list.length;
+    previous=current;current=next;next=rpick();
+    if(next===current&&list.length>1)next=rbump(next);
     track.classList.add('no-transition');track.style.transform='translateX(-80%)';draw();void track.offsetWidth;track.classList.remove('no-transition');
     steps++;spin();
    },wait);
@@ -9230,7 +9244,7 @@ function uxStep(stage,k){
  [].forEach.call(s.children,function(c,j){c.className=j<i?'done':j===i?'on':''});
 }
 function uxLock(stage,kind,target){
- var d=kind==='m'?MD[target]:kind==='b'?BD[target]:kind==='n'?{n:'#'+REELN[target],c:Math.round(100/Math.max(1,REELN.length))}:PT[target],t=tier(d.c),col=UXC[t],bd=BD[+stage.dataset.bgIndex||0];
+ var d=kind==='m'?MD[target]:kind==='b'?BD[target]:kind==='n'?{n:'#'+REELN[target],c:Math.round(1000/Math.max(1,REELN.length))/10}:PT[target],t=tier(d.c),col=UXC[t],bd=BD[+stage.dataset.bgIndex||0];
  stage.classList.remove('reeling');
  var s=stage.querySelector('.ux-steps');if(s){var c=s.children['mbpn'.indexOf(kind)];if(c)c.className='done'}
  uxRings(stage,col,1+t);
@@ -9307,7 +9321,7 @@ function lockFx(stage){var r=document.createElement('i');r.className='rg';stage.
 function reveal(it,stage){
  var b=BD[it.b],f=document.createElement('div');f.className='fl';stage.appendChild(f);void f.offsetWidth;f.classList.add('on');setTimeout(function(){f.remove()},800);
  stage.classList.add('up','float');
- stage.insertAdjacentHTML('beforeend',numHtml(it.n,'slam'));uxWin(stage,it);
+ stage.insertAdjacentHTML('beforeend',numHtml(it.n,'slam')+(isCr(it)?'<b class="ncr slam">Crafted</b>':''));uxWin(stage,it);
  sfx('reveal');setTimeout(function(){sfx('fanfare')},250);
  if(navigator.vibrate)navigator.vibrate(it.n===1?[40,50,40,50,120]:[40,40,80]);
  confetti(stage,[b.c1,b.pc,'#fff','#ffd93d'],it.n===1?70:40);
