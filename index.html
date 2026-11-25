@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://flagcdn.com; media-src data: blob:; font-src 'self' data:; connect-src 'self' https://depchik-5c9b7-default-rtdb.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"><title>Upgrader v3.81</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://flagcdn.com; media-src data: blob:; font-src 'self' data:; connect-src 'self' https://depchik-5c9b7-default-rtdb.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"><title>Upgrader v3.84</title>
 
 <style>
 :root{color-scheme:dark;--bg:#0f1117;--card:#1a1d27;--line:#2a2e3d;--tx:#eef0f6;--mut:#8b90a3;--ac:#3ddc84;--bad:#ff5468;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -9819,7 +9819,8 @@ html.opt-fx .acbtn:before,html.opt-fx .acr.on:after{display:none!important}
 var D=window.__dep;if(!D||!D.ready())return;
 var MAX=4,DOM='@depchik.game',TTL_HB=20000,KEY=D.KEY,DB=D.DB,SV=D.SV;
 var IDT='https://identitytoolkit.googleapis.com/v1/accounts:';
-var MSG_BUSY='Ошибка. Другой пользователь пытается подключиться на ваш аккаунт';
+var MSG_TAKEN='Другой пользователь уже сидит на этом аккаунте';
+var MSG_TRY='Другой пользователь пытается зайти на ваш аккаунт';
 var $=function(i){return document.getElementById(i)};
 var KEEP=/^dep_(rt|auid|names|uid|accs|sid|lk)$|^dep_(sts|att)_/;
 /* защита: во время переключения игра не может перезаписать данные аккаунта */
@@ -9907,7 +9908,7 @@ async function acquire(tok,uid){
  return'net';
 }
 function release(tok,uid,ka){raw(dbu('/sessions/'+uid,tok),{method:'PUT',keepalive:!!ka,body:JSON.stringify({sid:SID,ts:0})})}
-function attempt(tok,uid){raw(dbu('/attempts/'+uid,tok),{method:'PUT',body:JSON.stringify(SV)})}
+function attempt(tok,uid){return raw(dbu('/attempts/'+uid,tok),{method:'PUT',body:JSON.stringify(SV)})}
 
 /* ---------- UI: кнопка ---------- */
 var top=document.querySelector('.top');
@@ -10110,7 +10111,7 @@ async function switchTo(i,forced){
   t.rt=tk.rt;tokT=tk.tok;saveAccs();
   if(!forced){var okp=await pushSave(true);if(!okp&&held)throw'save'}
   var res=await acquire(tokT,t.u);
-  if(res==='busy'){attempt(tokT,t.u);throw'busy'}
+  if(res==='busy'){await attempt(tokT,t.u);throw'busy'}
   if(res==='net')throw'net';if(res==='norules'){noRules=true;throw'norules'}
   lockedT=true;
   var sr=await raw(dbu('/saves/'+t.u,tokT));if(!sr)throw'net';
@@ -10130,7 +10131,7 @@ async function switchTo(i,forced){
   leaveU=null;SW=false;sw.classList.remove('show');if(row0)row0.classList.remove('ld');
   if(lockedT&&tokT)release(tokT,t.u,false);
   busy=false;
-  if(e==='busy'){await showErr(MSG_BUSY+'. Вы остаётесь на своём аккаунте.',{title:'Вход отклонён',auto:3200});if(!forced)render();toast('Вы на аккаунте №'+(actIdx()+1)+' — «'+D.nick()+'»')}
+  if(e==='busy'){await showErr(MSG_TAKEN+(actIdx()>0&&accs[0]?'. Возвращаю на аккаунт №1.':'. Вы остаётесь на своём аккаунте.'),{title:'Вход отклонён',auto:3200});if(!forced)render();if(!forced&&actIdx()>0&&accs[0]){switchTo(0,false)}else toast('Вы на аккаунте №'+(actIdx()+1)+' — «'+D.nick()+'»')}
   else if(e==='expired'){render();badge();toast('Пароль этого аккаунта изменён. Добавьте его заново',true,4200)}
   else if(e==='nosave'){toast('Аккаунт ещё не синхронизирован: пусть владелец один раз зайдёт в игру',true,4500)}
   else if(e==='save'){toast('Не удалось сохранить прогресс. Попробуйте ещё раз',true,3500)}
@@ -10227,27 +10228,42 @@ window.__acc={onRename:async function(k,n){
  syncSelf();}};
 
 /* ---------- блокировка при запуске и пульс ---------- */
-function conflict(){
+function conflict(kind){
  held=false;
- var i=actIdx();
- if(i>0&&accs[0]){showErr(MSG_BUSY+'. Возвращаю на ваш аккаунт.',{auto:2800}).then(function(){switchTo(0,true)});return}
- showErr(MSG_BUSY,{title:'Аккаунт занят',retry:async function(){var r=await acquire(await D.tokenFetch(),D.A.uid);if(r==='busy')conflict();else{held=true;location.reload()}}});
+ var taken=kind==='taken',msg=taken?MSG_TAKEN:MSG_TRY,i=actIdx();
+ if(i>0&&accs[0]){showErr(msg+'. Возвращаю на аккаунт №1.',{title:taken?'Вход отклонён':'Попытка входа',auto:2800}).then(function(){switchTo(0,true)});return}
+ showErr(msg,{title:taken?'Аккаунт занят':'Попытка входа',retry:async function(){var r=await acquire(await D.tokenFetch(),D.A.uid);if(r==='busy')conflict(kind);else{held=true;location.reload()}}});
 }
-var lastAtt=0;
+var kicking=false;
+/* владелец сессии узнаёт о попытке входа сразу (опрос каждые 3 сек), его кидает на свой аккаунт */
+async function pollAtt(first){
+ if(!held||busy||SW||kicking)return;
+ try{
+  var tok=await D.tokenFetch(),a=await raw(dbu('/attempts/'+D.A.uid,tok));
+  if(!a||!a.ok)return;
+  var v=await a.json(),k='dep_att_'+D.A.uid,seen=ls(k);
+  if(typeof v!=='number'){if(seen===null)ls(k,'0');return}
+  if(first){ls(k,String(v));if(seen!==null&&v>+seen)toast('⚠️ Кто-то пытался зайти на ваш аккаунт',true,5000);return}
+  if(seen===null)seen='0';
+  if(v>+seen){
+   ls(k,String(v));kicking=true;
+   await showErr(MSG_TRY,{title:'Попытка входа',auto:3500});kicking=false
+  }
+ }catch(e){kicking=false}
+}
 async function beat(){
  if(busy)return;
  syncSelf();
  try{
   var tok=await D.tokenFetch(),r=await acquire(tok,D.A.uid);
-  if(r==='busy'){if(held)conflict();return}
+  if(r==='busy'){if(held)conflict('kick');return}
   if(r==='ok'){held=true;noRules=false}
-  if(held){pushSave(false);
-   var a=await raw(dbu('/attempts/'+D.A.uid,tok));if(a&&a.ok){var v=await a.json();if(typeof v==='number'){var seen=+ls('dep_att_'+D.A.uid)||0;if(seen===0&&!ls('dep_att_'+D.A.uid))ls('dep_att_'+D.A.uid,String(v));else if(v>seen){ls('dep_att_'+D.A.uid,String(v));toast('⚠️ Кто-то пытался зайти на ваш аккаунт',true,5000)}}}}
+  if(held){pushSave(false);pollAtt()}
  }catch(e){}
 }
-document.addEventListener('visibilitychange',function(){if(document.hidden)pushSave(false);else beat()});
+document.addEventListener('visibilitychange',function(){if(document.hidden)pushSave(false);else{beat();pollAtt()}});
 window.addEventListener('pagehide',function(){if(held&&!SW&&D.A.tok){pushSave(false);release(D.A.tok,D.A.uid,true)}});
-window.addEventListener('pageshow',function(e){if(e.persisted)beat()});
+window.addEventListener('pageshow',function(e){if(e.persisted){beat();pollAtt()}});
 
 /* ---------- старт ---------- */
 (async function boot(){
@@ -10255,7 +10271,7 @@ window.addEventListener('pageshow',function(e){if(e.persisted)beat()});
   await D.bootP;await D.tokenFetch();
   syncSelf();badge();
   var res=await acquire(await D.tokenFetch(),D.A.uid);
-  if(res==='busy'){splOff();conflict();return}
+  if(res==='busy'){splOff();try{await attempt(await D.tokenFetch(),D.A.uid)}catch(e){}conflict('taken');return}
   if(res==='norules'){noRules=true}
   if(res==='ok')held=true;
   if(held){
@@ -10267,10 +10283,11 @@ window.addEventListener('pageshow',function(e){if(e.persisted)beat()});
     else{lastSnap='';if(sv.ts>lts)ls('dep_sts_'+D.A.uid,String(sv.ts))}
    }else if(r&&(r.status===401||r.status===403))noRules=true;
   }
+  if(held)await pollAtt(true);
   var w=null;try{w=sessionStorage.getItem('dep_swok');sessionStorage.removeItem('dep_swok')}catch(e){}
   if(w)setTimeout(function(){toast('👋 Вы вошли как «'+w+'»')},700);
  }catch(e){}
- splOff();setInterval(beat,TTL_HB);
+ splOff();setInterval(beat,TTL_HB);setInterval(function(){if(!document.hidden)pollAtt()},3000);
 })();
 })();
 </script>
