@@ -4808,8 +4808,8 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
    var bd=function(o){return JSON.stringify({p:Object.assign({},p,o||{})})};
    /* Rules на сервере: fx и f5 не больше 15, а стилей в игре 17 (0..16). Один такой стиль отклоняет ВСЮ запись профиля.
       Запись раз в 10 сек (ещё правило), поэтому повтор делаем не раньше чем через 10.5 сек */
-   var over=function(o){return(Array.isArray(o.fx)&&o.fx.some(function(v){return v>15}))||o.f5>15},
-    clamp=function(o){var c=Object.assign({},o);if(Array.isArray(c.fx))c.fx=c.fx.map(function(v){return v>15?0:v});if(c.f5>15)c.f5=0;return c},
+   var over=function(o){return(Array.isArray(o.fx)&&o.fx.some(function(v){return v>16}))||o.f5>16},
+    clamp=function(o){var c=Object.assign({},o);if(Array.isArray(c.fx))c.fx=c.fx.map(function(v){return v>16?0:v});if(c.f5>16)c.f5=0;return c},
     badAt=0;try{badAt=+localStorage.getItem('upg_fx16bad')||0}catch(e){}
    var useClamp=over(ex)&&badAt&&Date.now()-badAt<3600000;
     var isT=function(x){return +(x&&x.s!==undefined?x.s:x)>100},
@@ -10111,9 +10111,9 @@ var lastClk=0,lastHit=0;
 function roHit(){var n=Date.now();if(n-lastClk>1500||n-lastHit<8000)return;lastHit=n;toast('👁 Режим чтения: действие не сохраняется',true,3200)}
 /* режим чтения (гость): в базу можно писать ТОЛЬКО служебные ключи сессии. Всё остальное и смена пароля/почты — запрещены */
 function roPathOk(p){
- p=p.replace(/\.json$/,'');var uid=(D.A&&D.A.uid)||'';
- if(uid&&(p==='/sessions/'+uid||p==='/attempts/'+uid))return true;
- if(uid&&p==='/members/'+uid+'/'+SID)return true;
+ p=p.replace(/\.json$/,'');
+ if(/^\/(sessions|attempts)\/[A-Za-z0-9]{8,64}$/.test(p))return true;
+ if(/^\/members\/[A-Za-z0-9]{8,64}\/[A-Za-z0-9]{24}$/.test(p))return true;
  if(/^\/presence\/[a-z0-9]{3,15}$/.test(p))return true;
  return false}
 var _fetch=window.fetch.bind(window);
@@ -10210,7 +10210,7 @@ function release(tok,uid,ka){raw(dbu('/sessions/'+uid,tok),{method:'PUT',keepali
 function attempt(tok,uid){return raw(dbu('/attempts/'+uid,tok),{method:'PUT',body:JSON.stringify(SV)})}
 /* ключ владельца: правила базы пускают к записи только того, кто знает ключ (когда включён режим чтения) */
 async function ensureKey(){
- var i=actIdx();if(i<0)return false;var a=accs[i];if(a.ok)return true;
+ var i=actIdx();if(i<0)return false;var a=accs[i];if(a.ok)return true;if(isGuest()||!ACC)return false;
  var K=D.nonce(24);
  var r=await raw(dbu('/okey/'+D.A.uid,await D.tokenFetch()),{method:'PUT',body:JSON.stringify(K)});
  if(r&&r.ok){a.ok=K;saveAccs();return true}
@@ -10536,7 +10536,7 @@ function roLock(on){
  if(on&&!roObs){roObs=new MutationObserver(function(){if(roScanT)return;roScanT=setTimeout(function(){roScanT=0;roScan()},250)});roObs.observe(document.body,{childList:true,subtree:true})}
  roScan()}
 roLock(ROG);
-function isGuest(){var a=accs[actIdx()];if(!a)return false;if(a.g)return true;return!!(ACC&&ACC.o&&ACC.o!==SID)}
+function isGuest(){var a=accs[actIdx()];if(!a)return false;if(a.g)return true;if(a.ok)return false;return!!(ACC&&ACC.o&&ACC.o!==SID)}
 function applyRo(){
  var uid=D.A.uid,on=!!(ACC&&ACC.ro);
  ROS[uid]=on;ROG=!!(isGuest()&&on);roLock(ROG);
@@ -10564,7 +10564,7 @@ async function refreshAccess(first){
  }catch(e){roNoticeOn=false}
 }
 async function setRo(v){
- if(ROG)return'ro';if(!held)return'held';
+ if(ROG||isGuest()||!ACC)return'ro';if(!held)return'held';
  if(v){if(!(await ensureKey()))return'key';await lease()}
  var uid=D.A.uid,tok=await D.tokenFetch(),o=(ACC&&ACC.o)||SID;
  var r=await raw(dbu('/access/'+uid,tok),{method:'PUT',body:JSON.stringify({o:o,ro:v})});
@@ -10595,7 +10595,8 @@ function openSettings(){
     err.textContent='Неверный ключ';shake()}catch(e){err.textContent='Нет связи с сервером'}
    kb2.disabled=false};
   dlgB.appendChild(ki);dlgB.appendChild(kb2)}
- if(guest){sw.disabled=true;dlgB.appendChild(el('p','',on?'Режим чтения включён создателем аккаунта. Выключить его может только создатель.':'Режим чтения выключен. Включить его может только создатель аккаунта.'))}
+ if(!ACC){sw.disabled=true;dlgB.appendChild(el('p','','Проверяю права на аккаунт… Закройте и откройте настройки через пару секунд.'))}
+ else if(guest){sw.disabled=true;dlgB.appendChild(el('p','',on?'Режим чтения включён создателем аккаунта. Выключить его может только создатель.':'Режим чтения выключен. Включить его может только создатель аккаунта.'))}
  else sw.onclick=async function(){
   sw.disabled=true;err.textContent='';
   var r=await setRo(!(ACC&&ACC.ro));sw.disabled=false;
