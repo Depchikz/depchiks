@@ -4588,8 +4588,8 @@ var nfBlkC=null,nfBlkShown='',nfBlkT=0,nfPins=[],nfPinShown='';
 try{const j=JSON.parse(localStorage.getItem('upg_nfpin_v1')||'null');if(Array.isArray(j))nfPins=j.map(x=>+x|0).filter((x,i,a)=>x>=1&&x<=200&&a.indexOf(x)===i).slice(0,10)}catch(e){}
 function nfPinSave(){try{localStorage.setItem('upg_nfpin_v1',JSON.stringify(nfPins))}catch(e){}}
 /* 10 мест вокруг аватарки: [x, y, размер] от центра (в единицах аватарки) */
-const NF_PS=[[-62,-42,32],[62,-42,32],[-84,-4,34],[84,-4,34],[-60,36,28],[60,36,28],[-96,-46,24],[96,-46,24],[-92,36,24],[92,36,24]];
-function nfPinItems(L,N){return L.slice(0,10).map((it,i)=>{const q=NF_PS[i];return '<div class="avpn" role="button" data-s="'+it.s+'" style="--x:'+q[0]+';--y:'+q[1]+';--s:'+q[2]+';--d:-'+((i*.37)%3.4).toFixed(2)+'s">'+N.stage(it)+(it.n?'<i class="avpl">#'+it.n+'</i>':'')+'</div>'}).join('')}
+const NF_PS=[[-64,0,30],[64,0,30],[-52,-37,30],[52,-37,30],[-52,37,30],[52,37,30],[-88,-35,22],[88,-35,22],[-88,35,22],[88,35,22]];
+function nfPinItems(L,N){L=L.slice(0,10);const sz=L.length<=4?36:L.length<=7?31:27;return L.map((it,i)=>'<div class="avpn" role="button" data-s="'+it.s+'" style="--s:'+sz+';--d:-'+((i*.9)%7).toFixed(2)+'s">'+N.stage(it)+(it.n?'<i class="avpl">#'+it.n+'</i>':'')+'</div>').join('')}
 const NF_PIN='<svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 3h6l-1 7 3 3v2H7v-2l3-3z"/></svg>';
 function nfPinTag(){return '<span class="nfbp" aria-label="Закреплён">📌</span>'}
 function nfPinDraw(){try{const g=$('avpin');if(!g)return;const N=window.__nft;let L=[];if(N&&nfBlkC)L=nfPins.map(s=>nfBlkC.find(x=>x.s===s)).filter(x=>x&&x.n>0&&N.valid(x));const k=(N?'1':'0')+JSON.stringify(L);if(k===nfPinShown)return;nfPinShown=k;g.innerHTML=N?nfPinItems(L,N):''}catch(e){}}
@@ -4863,7 +4863,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
 @keyframes lvSh{0%,50%{transform:translateX(0)}100%{transform:translateX(56px)}}
 .lvslot{display:inline-flex;align-items:center;cursor:pointer;flex:none}.lvslot:empty{display:none}
 .nrow .lvslot{margin-right:2px}
-#chatList .cm b .lvslot{margin-right:5px;vertical-align:middle;position:relative;top:-1px;cursor:inherit}
+#chatList .cm b .lvslot{margin-right:9px;vertical-align:middle;position:relative;top:-1px;cursor:inherit}
 .lvb.pop{animation:lvPop .7s cubic-bezier(.2,1.6,.3,1)}
 @keyframes lvPop{0%{transform:scale(.2) rotate(-40deg)}60%{transform:scale(1.4) rotate(10deg)}100%{transform:none}}
 /* ===== панель начисления опыта ===== */
@@ -5342,7 +5342,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
  var lvC={};
   function lvSync(){var need=[],me=nick();
    list.querySelectorAll('.lvslot').forEach(function(sp){var n=sp.dataset.n,k=key(n),l=(n===me)?lvOf(tonBought):(lvC[k]?lvC[k].l:1);
-    if(sp.dataset.l!==String(l)){sp.dataset.l=l;sp.innerHTML=lvBadge(l,18)}
+    if(sp.dataset.l!==String(l)){sp.dataset.l=l;sp.innerHTML=lvBadge(l,22)}
     if(n!==me&&(!lvC[k]||Date.now()-lvC[k].ts>60000)&&need.indexOf(k)<0)need.push(k)});
    need.slice(0,15).forEach(function(k){lvC[k]=lvC[k]||{l:1,ts:0};lvC[k].ts=Date.now();
     getJ('/profiles/'+k+'/p/tb.json').then(function(v){if(typeof v==='number'&&v>=0){lvC[k].l=lvOf(v);lvSync()}}).catch(function(){})});}
@@ -10195,6 +10195,8 @@ var b9=$('t9');if(b9)b9.onclick=function(){window.tab(9)};
 .toprow.r2{border-color:#9aa3b5}.toprow.r3{border-color:#a8683a}
 .topav{flex:none;width:38px;height:38px;border-radius:50%;overflow:hidden;background:#2a2e3d;display:grid;place-items:center;font-weight:900;color:#ffd88a;font-size:16px}
 .topav img{width:100%;height:100%;object-fit:cover;display:block}
+.toplv{flex:none;display:flex;align-items:center;margin-right:-4px}
+.toplv svg{display:block}
 .topnm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:800;font-size:14px}
 .topmn{flex:none;font-weight:900;font-size:13px;color:#ffd88a;font-variant-numeric:tabular-nums}
 .topmsg{padding:26px 14px;text-align:center;color:var(--mut);font-size:13px}
@@ -10230,7 +10232,7 @@ var b9=$('t9');if(b9)b9.onclick=function(){window.tab(9)};
  function fmtM(n){try{if(typeof fmt==='function')return fmt(n)}catch(e){}return Math.floor(n).toLocaleString('ru-RU')+' ₽'}
  function msg(t,retry){list.textContent='';var d=document.createElement('div');d.className='topmsg';d.textContent=t;if(retry){d.appendChild(document.createElement('br'));var b=document.createElement('button');b.type='button';b.textContent='Повторить';b.onclick=load;d.appendChild(b)}list.appendChild(d)}
  function rows(obj){
-  var a=[];Object.keys(obj||{}).forEach(function(k){var v=obj[k],p=v&&v.p;if(!p||typeof p!=='object')return;var m=Number(p.mn);if(!isFinite(m)||m<=0)return;a.push({k:k,n:String(p.n||k).slice(0,20),m:m,a:typeof p.a==='string'?p.a:''})});
+  var a=[];Object.keys(obj||{}).forEach(function(k){var v=obj[k],p=v&&v.p;if(!p||typeof p!=='object')return;var m=Number(p.mn);if(!isFinite(m)||m<=0)return;var lv=0;try{lv=(p.tb!=null&&isFinite(+p.tb))?lvOf(+p.tb):lvClamp(p.lv)}catch(e){lv=0}a.push({k:k,n:String(p.n||k).slice(0,20),m:m,lv:lv,a:typeof p.a==='string'?p.a:''})});
   a.sort(function(x,y){return y.m-x.m});return a.slice(0,10)
  }
  function draw(a){
@@ -10242,9 +10244,10 @@ var b9=$('t9');if(b9)b9.onclick=function(){window.tab(9)};
    var rk=document.createElement('span');rk.className='toprk';rk.textContent=i<3?['🥇','🥈','🥉'][i]:String(i+1);
    var av=document.createElement('span');av.className='topav';
    if(/^data:image\//.test(r.a)){var im=document.createElement('img');im.alt='';im.src=r.a;av.appendChild(im)}else av.textContent=r.n.charAt(0).toUpperCase();
+   var lw=null;if(r.lv>0){try{lw=document.createElement('span');lw.className='toplv';lw.innerHTML=lvBadge(r.lv,24)}catch(e){lw=null}}
    var nm=document.createElement('span');nm.className='topnm';nm.textContent='@'+r.n;
    var mn=document.createElement('span');mn.className='topmn';mn.textContent=fmtM(r.m);
-   b.appendChild(rk);b.appendChild(av);b.appendChild(nm);b.appendChild(mn);list.appendChild(b)
+   b.appendChild(rk);b.appendChild(av);if(lw)b.appendChild(lw);b.appendChild(nm);b.appendChild(mn);list.appendChild(b)
   })
  }
  function load(){
@@ -11479,5 +11482,220 @@ t.style.setProperty('--i',ix++);var lb=document.createElement('b');lb.className=
   setTimeout(function(){b.classList.remove('bpr')},520);
   rip(b,e,'bpw');
  },{passive:true});
+})();
+</script>
+
+<!-- ===== Достижения ===== -->
+<style id="pinCss">
+/* закреплённые NFT — стеклянные пузыри, плавно плывущие по орбите вокруг аватарки (позиции задаёт скрипт pinOrbit) */
+.avpn{--x:0;--y:0;animation:none!important;will-change:transform;transition:filter .2s}
+.avpn:active{filter:brightness(1.2)}
+.avpn .ng{position:relative;border-radius:50%;overflow:hidden;background:
+ radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--c1,#7aa8ff) 14%,transparent) 0,color-mix(in srgb,var(--c1,#7aa8ff) 24%,transparent) 55%,color-mix(in srgb,var(--c2,#3a4a9a) 62%,transparent) 100%)!important;
+ border:1.5px solid rgba(255,255,255,.5);backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);
+ box-shadow:inset 0 0 12px 1px color-mix(in srgb,var(--c1,#7aa8ff) 70%,transparent),inset 4px 0 8px rgba(120,210,255,.32),inset -4px -2px 8px rgba(255,140,225,.3),0 0 14px -2px color-mix(in srgb,var(--c1,#7aa8ff) 85%,transparent);
+ animation:nfpBlob 7s ease-in-out infinite;animation-delay:var(--d,0s)}
+.avpn .ng .np{opacity:.22}
+.avpn .ng .nm{inset:19% 18% 14%;width:64%;height:67%;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35));animation:nfpBob 3.6s ease-in-out infinite;animation-delay:var(--d,0s)}
+.avpn::after{content:"";position:absolute;inset:0;z-index:3;border-radius:50%;pointer-events:none;background:
+ radial-gradient(ellipse 28% 18% at 30% 22%,rgba(255,255,255,.95),rgba(255,255,255,0) 100%),
+ radial-gradient(circle at 74% 80%,rgba(255,255,255,.55) 0 4%,transparent 9%),
+ linear-gradient(160deg,rgba(255,255,255,.28),transparent 40%)}
+.avpl{top:auto;bottom:-3px;right:-3px;font-size:5.5px;padding:0 3px;border-radius:6px;transform:none;z-index:6}
+@keyframes nfpBlob{0%,100%{border-radius:50% 50% 50% 50%/50% 50% 50% 50%}33%{border-radius:53% 47% 48% 52%/48% 54% 46% 52%}66%{border-radius:47% 53% 52% 48%/54% 46% 54% 46%}}
+@keyframes nfpBob{0%,100%{transform:translateY(-1.5%) rotate(-3deg)}50%{transform:translateY(2%) rotate(3deg)}}
+html.opt-fx .avpn .ng,html.opt-fx .avpn .ng .nm{animation:none}
+html.opt-fx .avpn .ng{backdrop-filter:none;-webkit-backdrop-filter:none}
+</style>
+<script id="pinOrbit">
+(function(){
+ /* эллиптическая орбита вокруг аватарки (единицы аватарки); пузыри равномерно по длине дуги — не сталкиваются */
+ var RX=92,RY=43,N=480,pts=[],L=0,px=RX,py=0;pts.push([RX,0,0]);
+ for(var i=1;i<=N;i++){var a=i/N*6.283185307,x=RX*Math.cos(a),y=RY*Math.sin(a);L+=Math.hypot(x-px,y-py);px=x;py=y;pts.push([x,y,L])}
+ function at(s){s=((s%L)+L)%L;var lo=0,hi=pts.length-1;while(hi-lo>1){var m=(lo+hi)>>1;if(pts[m][2]<=s)lo=m;else hi=m}
+  var A=pts[lo],B=pts[hi],k=(s-A[2])/((B[2]-A[2])||1);return[A[0]+(B[0]-A[0])*k,A[1]+(B[1]-A[1])*k]}
+ var SPEED=L/46,raf=0,slow=0;
+ function place(sec){
+  var boxes=document.querySelectorAll('.avpin');
+  for(var b=0;b<boxes.length;b++){var els=boxes[b].children,n=els.length,off=0;
+   for(var i=0;i<n;i++){var el=els[i];if(!el.classList||!el.classList.contains('avpn'))continue;
+    var p=at(i/n*L+sec*SPEED),dep=(p[1]/RY+1)/2,sc=.86+.14*dep;
+    el.style.transform='translate('+p[0].toFixed(2)+'px,'+p[1].toFixed(2)+'px) scale('+sc.toFixed(3)+')';
+    el.style.opacity=(.82+.18*dep).toFixed(2);el.style.zIndex=Math.round(dep*10)}}}
+ function tick(t){
+  if(document.hidden){raf=requestAnimationFrame(tick);return}
+  if(document.documentElement.classList.contains('opt-fx')){if(t-slow>1000){slow=t;place(t/1000)}}
+  else place(t/1000);
+  raf=requestAnimationFrame(tick)}
+ raf=requestAnimationFrame(tick);
+ window.__pinOrbit={place:place,L:L};
+})();
+</script>
+<style id="achCss">
+.achbtn{display:flex;align-items:center;gap:8px;width:max-content;margin:10px auto 0;padding:8px 14px 8px 12px;border-radius:14px;border:1px solid #2f5a4a;background:linear-gradient(160deg,#173a2c,#10201a);color:#8ff0bf;font-family:inherit;font-size:13px;font-weight:900;letter-spacing:.2px;box-shadow:0 0 16px -6px rgba(61,220,132,.6),inset 0 1px 0 rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.3,1.4,.5,1),box-shadow .3s;position:relative;justify-content:center}
+.top .achbtn{display:none!important}
+.achbtn:active{transform:scale(.96)}
+.achbtn svg{flex:none;display:block}
+.achbtn .achdot{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#ff4d6d;color:#fff;font-size:11px;font-weight:900;display:grid;place-items:center;box-shadow:0 0 10px rgba(255,77,109,.8);transform:scale(0);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.achbtn .achdot.on{transform:scale(1);animation:achDotP 1.8s ease-in-out infinite}
+@keyframes achDotP{50%{box-shadow:0 0 18px 2px rgba(255,77,109,.9)}}
+#achOv{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:14px;background:rgba(4,6,12,.9);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s .3s}
+#achOv.show{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .3s ease,visibility 0s}
+#achBox{width:100%;max-width:420px;max-height:calc(100dvh - 28px);display:flex;flex-direction:column;border-radius:22px;border:1px solid #2f5a4a;background:linear-gradient(165deg,#1d2a30,#141b25 55%,#111521);box-shadow:0 24px 70px rgba(0,0,0,.65),0 0 40px -12px rgba(61,220,132,.45);overflow:hidden;transform:translateY(24px) scale(.94);opacity:0;transition:transform .45s cubic-bezier(.2,1.1,.3,1),opacity .3s ease}
+#achOv.show #achBox{transform:none;opacity:1}
+.achhd{display:flex;align-items:center;gap:10px;padding:16px 16px 6px}
+.achhd h3{margin:0;flex:1;font-size:19px;font-weight:900;background:linear-gradient(90deg,#fff,#9af5c6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.achx{width:34px;height:34px;padding:0;border-radius:10px;border:1px solid var(--line);background:#1b1f2f;color:var(--mut);font-size:18px;line-height:1;transition:transform .2s}
+.achx:active{transform:scale(.9)}
+.achsum{padding:0 16px 10px}
+.achsum small{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);margin-bottom:5px}
+.achsum small b{color:#8ff0bf}
+.achsb{height:7px;border-radius:4px;background:#0e1220;overflow:hidden}
+.achsb i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,#2fbf75,#8ff0bf);transition:width 1s cubic-bezier(.2,.9,.3,1) .25s}
+#achList{overflow-y:auto;padding:4px 12px 14px;display:flex;flex-direction:column;gap:8px}
+.achrow{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:#1b1f2f;opacity:0;transform:translateY(14px);transition:border-color .4s,background .4s}
+#achOv.show .achrow{animation:achIn .5s cubic-bezier(.2,1.1,.3,1) forwards;animation-delay:calc(var(--i)*70ms + 120ms)}
+@keyframes achIn{to{opacity:1;transform:none}}
+.achic{flex:none;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:#252a3b;color:#5d667f;transition:all .5s;position:relative;overflow:hidden}
+.achic svg{width:30px;height:30px;display:block}
+.achrow.got{border-color:var(--c);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 18%,#1b1f2f),#1b1f2f 70%)}
+.achrow.got .achic{background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--c) 45%,#000));color:#fff;box-shadow:0 0 16px -2px var(--c)}
+.achrow.got .achic::after{content:"";position:absolute;top:-20%;bottom:-20%;width:40%;left:-60%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:achShine 3.6s ease-in-out infinite}
+@keyframes achShine{0%,55%{left:-60%}100%{left:140%}}
+.achrow:not(.got) .achic svg{opacity:.55}
+.achtx{flex:1;min-width:0}
+.achtx b{display:block;font-size:14px;font-weight:900;color:#fff}
+.achrow:not(.got) .achtx b{color:#b8bfd6}
+.achtx span{display:block;font-size:12px;color:var(--mut);margin-top:2px;line-height:1.3}
+.achpb{height:6px;border-radius:3px;background:#0e1220;margin-top:7px;overflow:hidden}
+.achpb i{display:block;height:100%;width:0;border-radius:3px;background:var(--c);transition:width .9s cubic-bezier(.2,.9,.3,1) .35s}
+.achpt{display:block;font-size:11px;color:var(--mut);margin-top:3px;font-variant-numeric:tabular-nums}
+.achrow.got .achpb,.achrow.got .achpt{display:none}
+.achck{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#fff;transform:scale(0);transition:transform .5s cubic-bezier(.3,1.7,.5,1) .5s}
+.achrow.got .achck{transform:scale(1)}
+.achck svg{width:15px;height:15px}
+.achnew{position:absolute;top:0;right:0}
+/* всплывающее уведомление */
+#achToasts{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:9600;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+.achtoast{pointer-events:auto;display:flex;align-items:center;gap:12px;width:min(92vw,360px);padding:10px 14px 10px 10px;border-radius:18px;border:1px solid var(--c);background:linear-gradient(160deg,color-mix(in srgb,var(--c) 22%,#1b2130),#12161f 75%);color:#fff;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 30px -4px var(--c);transform:translateY(-130%) scale(.9);opacity:0;position:relative;overflow:hidden}
+.achtoast.in{animation:achTin .65s cubic-bezier(.2,1.2,.3,1) forwards}
+.achtoast.out{animation:achTout .5s cubic-bezier(.5,0,.8,.4) forwards}
+@keyframes achTin{0%{transform:translateY(-130%) scale(.9);opacity:0}60%{opacity:1}100%{transform:none;opacity:1}}
+@keyframes achTout{to{transform:translateY(-130%) scale(.92);opacity:0}}
+.achtoast .achic{width:50px;height:50px;background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--c) 45%,#000));color:#fff;box-shadow:0 0 18px -2px var(--c);transform:scale(0) rotate(-40deg)}
+.achtoast.in .achic{animation:achIcon .8s cubic-bezier(.3,1.6,.5,1) .15s forwards}
+@keyframes achIcon{to{transform:none}}
+.achtoast .achic::after{content:"";position:absolute;top:-20%;bottom:-20%;width:40%;left:-60%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:achShine 2s ease-in-out .6s 2}
+.achtoast .achtx small{display:block;font-size:10px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--c);margin-bottom:1px}
+.achtoast .achtx b{font-size:15px}
+.achtoast::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);transform:translateX(-120%);animation:achSweep 1.3s ease-out .5s forwards}
+@keyframes achSweep{to{transform:translateX(120%)}}
+.achtoast .achtimer{position:absolute;left:0;bottom:0;height:3px;background:var(--c);width:100%;transform-origin:left;animation:achTm 4s linear forwards}
+@keyframes achTm{to{transform:scaleX(0)}}
+.achspk{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--c);left:34px;top:50%;opacity:0;animation:achSp .9s ease-out .3s forwards}
+@keyframes achSp{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}}
+html.opt-fx .achtoast::before,html.opt-fx .achrow.got .achic::after{animation:none}
+@media(prefers-reduced-motion:reduce){.achtoast.in,.achtoast.out{animation-duration:.01s}}
+</style>
+<script>
+(function(){
+ var S=function(){return window.__shop};
+ var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+ var IC={
+  fish:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12c3-4.6 7.2-6.4 11-5.2 2.4.8 4.4 2.6 6 5.2-1.6 2.6-3.6 4.4-6 5.2-3.8 1.2-8-.6-11-5.2z" fill="currentColor" fill-opacity=".22"/><path d="M19.5 12l3-3.6v7.2z" fill="currentColor" fill-opacity=".4"/><circle cx="8" cy="10.8" r="1" fill="currentColor"/><path d="M12.5 8.4c1 2.2 1 5 0 7.2"/></svg>',
+  gem:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11l4 5.5-9.5 11.5L2.5 9z" fill="currentColor" fill-opacity=".22"/><path d="M2.5 9h19M9 3.5L7.5 9 12 20.5 16.5 9 15 3.5"/></svg>',
+  coin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".2"/><path d="M7.5 8.5h9M12 8.5V17M9.2 12.2h5.6" /><path d="M3 3.5l3 2M21 3.5l-3 2" opacity=".0"/></svg>',
+  up:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 8h-5v6H9v-6H4z" fill="currentColor" fill-opacity=".25"/><path d="M8.5 21h7"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 4v-4h0A2.5 2.5 0 0 1 4 13.5z" fill="currentColor" fill-opacity=".22"/><path d="M8.5 8.5h7M8.5 11.7h4.5"/></svg>',
+  chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8l8 3v6c0 4.7-3.2 8.2-8 9.9-4.8-1.7-8-5.2-8-9.9v-6z" fill="currentColor" fill-opacity=".2"/><path d="M7.8 14l2.9-3 2.4 2.2 3.3-4.2"/><path d="M14.4 9h2v2"/></svg>'
+ };
+ var D=[
+  {id:'catch',n:'Большой улов',d:'Заработай 100 000 ₽ и больше с мини-игр',ic:'fish',c:'#4cc9ff',g:100000},
+  {id:'mill',n:'Миллионер',d:'Имей 1 000 000 ₽',ic:'gem',c:'#ffd84d',g:1000000},
+  {id:'crypto',n:'Крипта!',d:'Купи и продай TON',ic:'coin',c:'#ff9f43',g:2},
+  {id:'up',n:'С повышением!',d:'Повысь уровень',ic:'up',c:'#3ddc84',g:2},
+  {id:'spec',n:'Специалист криптовалют',d:'Получи 8 уровень и выше',ic:'chart',c:'#b48cff',g:8},
+  {id:'chat',n:'Общительный',d:'Напиши что-нибудь в чат',ic:'chat',c:'#ff7ab8',g:1}
+ ];
+ var st=null,stKey='',newN=0;
+ function nick(){try{return String(S().key(S().nick()))}catch(e){return ''}}
+ function kk(){return 'upg_ach_v1_'+nick()}
+ function load(){var k=kk();if(st&&k===stKey)return;stKey=k;st=null;try{st=JSON.parse(localStorage.getItem(k)||'null')}catch(e){}
+  if(!st||typeof st!=='object')st={};st.u=st.u||{};st.c=+st.c||0;st.mx=+st.mx||0;newN=0;dot()}
+ function save(){try{localStorage.setItem(stKey,JSON.stringify(st))}catch(e){}}
+ function lvl(){try{return lvOf(tonBought)}catch(e){return 1}}
+ function mon(){try{return Number(money)||0}catch(e){return 0}}
+ function cur(id){
+  if(id==='catch')return st.c;
+  if(id==='mill')return Math.max(st.mx,mon());
+  if(id==='crypto')return (st.b?1:0)+(st.s?1:0);
+  if(id==='chat')return st.t?1:0;
+  return lvl()}
+ function fmtN(n){try{if(typeof compactNum==='function')return compactNum(Math.floor(n))}catch(e){}return Math.floor(n).toLocaleString('ru-RU')}
+ function ptxt(a,v){
+  if(a.id==='catch'||a.id==='mill')return fmtN(Math.min(v,a.g))+' / '+fmtN(a.g)+' ₽';
+  if(a.id==='crypto')return 'Куплено: '+(st.b?'да':'нет')+' · Продано: '+(st.s?'да':'нет');
+  if(a.id==='chat')return 'Сообщение не отправлено';
+  return 'Уровень '+Math.min(v,a.g)+' / '+a.g}
+ /* уведомления */
+ var box=document.createElement('div');box.id='achToasts';document.body.appendChild(box);
+ var q=[],busy=false;
+ function snd(){try{window.SFX&&(SFX.cash?SFX.cash(3):SFX.coin&&SFX.coin())}catch(e){}try{navigator.vibrate&&navigator.vibrate([40,30,60])}catch(e){}}
+ function showT(a){
+  var t=document.createElement('div');t.className='achtoast';t.style.setProperty('--c',a.c);
+  t.innerHTML='<div class="achic">'+IC[a.ic]+'</div><div class="achtx"><small>Достижение получено</small><b></b></div><i class="achtimer"></i>';
+  t.querySelector('b').textContent=a.n;
+  for(var i=0;i<8;i++){var s=document.createElement('i');s.className='achspk';var an=i/8*6.283;s.style.setProperty('--dx',Math.round(Math.cos(an)*38)+'px');s.style.setProperty('--dy',Math.round(Math.sin(an)*38)+'px');t.appendChild(s)}
+  box.appendChild(t);void t.offsetWidth;t.classList.add('in');snd();
+  var done=false;function end(){if(done)return;done=true;t.classList.remove('in');t.classList.add('out');setTimeout(function(){t.remove();busy=false;next()},520)}
+  t.onclick=function(){end();openM()};
+  setTimeout(end,4000)}
+ function next(){if(busy||!q.length)return;busy=true;showT(q.shift())}
+ function unlock(a){if(st.u[a.id])return;st.u[a.id]=Date.now();save();newN++;dot();q.push(a);next();if(ov.classList.contains('show'))render(true)}
+ function check(){load();
+  var mx=mon();if(mx>st.mx){st.mx=mx;save()}
+  D.forEach(function(a){if(!st.u[a.id]&&cur(a.id)>=a.g)unlock(a)})}
+ /* кнопка */
+ var btn=document.createElement('button');btn.type='button';btn.className='achbtn';btn.id='achbtn';btn.setAttribute('aria-label','Достижения');
+ btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.6 14l-1.6 7 5-3 5 3-1.6-7"/></svg><span>Достижения</span><b class="achdot" id="achdot"></b>';
+ var anchor=document.getElementById('topbtn')||document.getElementById('bpbtn');
+ if(anchor&&anchor.parentNode)anchor.parentNode.insertBefore(btn,anchor.nextSibling);else document.body.appendChild(btn);
+ function syncW(){var b=document.getElementById('bpbtn');if(b&&b.offsetWidth)btn.style.width=b.offsetWidth+'px'}
+ syncW();setTimeout(syncW,500);setTimeout(syncW,2000);window.addEventListener('resize',syncW);
+ try{var bb=document.getElementById('bpbtn');if(bb&&window.ResizeObserver)new ResizeObserver(syncW).observe(bb)}catch(e){}
+ function dot(){var d=document.getElementById('achdot');if(!d)return;d.textContent=newN;d.classList.toggle('on',newN>0)}
+ /* окно */
+ var ov=document.createElement('div');ov.id='achOv';
+ ov.innerHTML='<div id="achBox" role="dialog" aria-modal="true" aria-label="Достижения"><div class="achhd"><h3>Достижения</h3><button type="button" class="achx" id="achX" aria-label="Закрыть">×</button></div><div class="achsum"><small><span>Получено</span><b id="achCnt"></b></small><div class="achsb"><i id="achSb"></i></div></div><div id="achList"></div></div>';
+ document.body.appendChild(ov);
+ var list=ov.querySelector('#achList');
+ function render(keep){load();var got=0;
+  if(!keep)list.textContent='';
+  D.forEach(function(a,i){
+   var on=!!st.u[a.id];if(on)got++;
+   var v=cur(a.id),p=Math.max(0,Math.min(1,v/a.g)),r=keep?list.children[i]:null;
+   if(!r){r=document.createElement('div');r.style.setProperty('--i',i);r.style.setProperty('--c',a.c);
+    r.innerHTML='<div class="achic">'+IC[a.ic]+'</div><div class="achtx"><b></b><span></span><div class="achpb"><i></i></div><em class="achpt" style="font-style:normal"></em></div><div class="achck">'+CHK+'</div>';
+    r.querySelector('b').textContent=a.n;r.querySelector('span').textContent=a.d;list.appendChild(r)}
+   r.className='achrow'+(on?' got':'');
+   r.querySelector('.achpt').textContent=ptxt(a,v);
+   var bar=r.querySelector('.achpb i');bar.style.width='0%';requestAnimationFrame(function(){requestAnimationFrame(function(){bar.style.width=(p*100)+'%'})})});
+  document.getElementById('achCnt').textContent=got+' / '+D.length;
+  var sb=document.getElementById('achSb');sb.style.width='0%';requestAnimationFrame(function(){requestAnimationFrame(function(){sb.style.width=(got/D.length*100)+'%'})})}
+ function openM(){check();render(false);newN=0;dot();ov.classList.add('show')}
+ function closeM(){ov.classList.remove('show')}
+ btn.onclick=openM;
+ ov.querySelector('#achX').onclick=closeM;
+ ov.addEventListener('click',function(e){if(e.target===ov)closeM()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))closeM()});
+ /* хуки: мини-игры (прибыль = выигрыш − ставка) и биржа TON */
+ if(typeof window.dqWin==='function'){var _w=window.dqWin;window.dqWin=function(g,bet,pay){var r=_w.apply(this,arguments);try{load();var pr=Math.floor(Number(pay)||0)-Math.floor(Number(bet)||0);if(pr>0){st.c+=pr;save();check()}}catch(e){}return r}}
+ if(typeof window.dqEvent==='function'){var _e=window.dqEvent;window.dqEvent=function(t){var r=_e.apply(this,arguments);try{if(t==='tonbuy'){load();if(!st.b){st.b=1;save()}check()}else if(t==='tonsell'){load();if(!st.s){st.s=1;save()}check()}}catch(e){}return r}}
+ try{if(typeof SFX!=='undefined'&&SFX&&typeof SFX.send==='function'){var _s=SFX.send;SFX.send=function(){var r=_s.apply(this,arguments);try{load();if(!st.t){st.t=1;save()}check()}catch(e){}return r}}}catch(e){}
+ /* иконка в общем меню — в стиле остальных */
+ try{var M=window.__mnIc;if(M){M.TH.achbtn=['#ff7ab8','#c81f6e'];
+  M.G.achbtn='<path d="M9.2 3h5.4l3.8 8.8-3.6 1.6zM22.8 3h-5.4l-3.8 8.8 3.6 1.6z" fill="#fff" opacity=".72"/><circle cx="16" cy="19.6" r="8.8" fill="#fff"/><g transform="translate(16 19.7) scale(1.3) translate(-16 -12.6)"><path d="M16 8l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" style="fill:var(--k)"/></g>'}}catch(e){}
+ setInterval(check,1500);setTimeout(check,2500);
+ window.__ach={list:D,check:check,open:openM};
 })();
 </script>
