@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://flagcdn.com; media-src data: blob:; font-src 'self' data:; connect-src 'self' https://depchik-5c9b7-default-rtdb.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"><title>Upgrader v3.89</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://flagcdn.com; media-src data: blob:; font-src 'self' data:; connect-src 'self' https://depchik-5c9b7-default-rtdb.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"><title>Upgrader v4.03</title>
 
 <style>
 :root{color-scheme:dark;--bg:#0f1117;--card:#1a1d27;--line:#2a2e3d;--tx:#eef0f6;--mut:#8b90a3;--ac:#3ddc84;--bad:#ff5468;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -1250,6 +1250,9 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 @keyframes xrip{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
 .xmsg{min-height:16px;text-align:center;font-size:12px;font-weight:800;margin-top:8px;color:#8993aa}
 .xmsg.pop{animation:xmp .4s ease}
+.xluck{margin:6px auto 0;max-width:340px;text-align:center;font-size:12px;font-weight:800;color:#8993aa;line-height:1.35;border-radius:12px;padding:5px 10px;transition:color .2s,background .2s}
+.xluck.on{color:#052212;background:linear-gradient(135deg,#2fd27a,#b6ffd2);animation:xlk 1.2s ease-in-out infinite}
+@keyframes xlk{0%,100%{box-shadow:0 0 6px #3ddc8455}50%{box-shadow:0 0 18px #3ddc84cc}}
 @keyframes xmp{0%{transform:translateY(6px);opacity:0}100%{transform:none;opacity:1}}
 #xfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:6}
 .xfl{position:absolute;inset:0;pointer-events:none;z-index:5;opacity:0}
@@ -1503,7 +1506,7 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
 
 
 <div id="app">
- <div class="top"><div class="ver">v3.89</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="codebtn cdbtn" id="cdbtn" aria-label="Коды"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18M12 9c-1-4-5-4-5-1.5S11 9 12 9zm0 0c1-4 5-4 5-1.5S13 9 12 9z"/></svg></button><button class="codebtn trfbtn" id="trfbtn" aria-label="Переводы"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10l7 3 3 7z"/><path d="M10 13l11-10"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><button class="codebtn ixbtn" id="ixbtn" aria-label="Индекс" title="Индекс"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg><i class="ixdot"></i></button><button class="codebtn clkbtn" id="clkbtn" aria-label="Награды за время" title="Награды за время"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path class="hm" d="M12 12V6.5"/><path class="hh" d="M12 12l3.6 2"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
+ <div class="top"><div class="ver">v4.03</div><button class="codebtn" id="codebtn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="codebtn cdbtn" id="cdbtn" aria-label="Коды"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18M12 9c-1-4-5-4-5-1.5S11 9 12 9zm0 0c1-4 5-4 5-1.5S13 9 12 9z"/></svg></button><button class="codebtn trfbtn" id="trfbtn" aria-label="Переводы"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L3 10l7 3 3 7z"/><path d="M10 13l11-10"/></svg></button><button class="codebtn xcbtn" id="xcbtn" aria-label="Биржа"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/><path d="M15 6h4v4"/></svg></button><button class="codebtn sndbtn" id="sndbtn" aria-label="Звук" title="Звук"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor"/><path class="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="wv" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="sx" d="M16 9l5 6M21 9l-5 6"/></svg></button><button class="codebtn ixbtn" id="ixbtn" aria-label="Индекс" title="Индекс"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg><i class="ixdot"></i></button><button class="codebtn clkbtn" id="clkbtn" aria-label="Награды за время" title="Награды за время"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path class="hm" d="M12 12V6.5"/><path class="hh" d="M12 12l3.6 2"/></svg></button><div id="bal">0 ₽</div><div class="balton" id="balton"><span id="tonv2">0.00</span><svg class="tonic" viewBox="0 0 56 56" width="13" height="13"><circle cx="28" cy="28" r="28" fill="#0098EA"/><path fill="#fff" d="M37.5603 15.6277H18.4386C14.9228 15.6277 12.6944 19.4202 14.4632 22.4861L26.2644 42.9409C27.0345 44.2765 28.9644 44.2765 29.7345 42.9409L41.5381 22.4861C43.3045 19.4251 41.0761 15.6277 37.5627 15.6277H37.5603ZM26.2548 36.8068L23.6847 31.8327L17.4833 20.7414C17.0742 20.0315 17.5795 19.1218 18.4362 19.1218H26.2524V36.8092L26.2548 36.8068ZM38.5108 20.739L32.3118 31.8351L29.7417 36.8068V19.1194H37.5579C38.4146 19.1194 38.9199 20.0291 38.5108 20.739Z"/></svg></div><div class="tick" id="tick"><span id="tt">+100 ₽</span> через <b id="tn">6</b></div><div class="tbar"><i id="tbi"></i></div><div class="tick tpod off" id="tpod"><span id="pt2">Подиум пуст</span><span id="pw2"> через <b id="pn2">60</b></span></div><div class="tbar tbp"><i id="pbi"></i></div></div>
  <div id="evPill" aria-live="polite"></div>
  <div class="tabs"><button id="t1" class="on">Профиль</button><button id="t6">Улучшения</button><button id="t2">Мини игры</button><button id="t7">Номера</button><button id="t9">NFT</button></div>
  <main>
@@ -1668,11 +1671,12 @@ body.xcopen #app,body.xcopen #fx{display:none!important}
  <div class="xprice"><small>Цена 1 TON</small><div class="xpl"><span class="xpv" id="xpv">120 000 ₽</span><span class="xpc up" id="xpc"></span></div><div class="xtimer" id="xtm"><i id="xtb"></i></div><div class="xcd" id="xcd"></div></div>
  <div class="xchart" id="xchart"><canvas id="xcv"></canvas></div>
  <div class="xtrade">
-  <div class="xlab">Сколько TON (от 0.01 до 1 000 000)</div>
+  <div class="xlab" id="xlab">Сколько TON (покупка за раз до 1 000)</div>
   <div class="xin"><input id="xin" inputmode="decimal" autocomplete="off" value="1"><span>TON</span></div>
   <div class="xchips" id="xchips"><button data-v="0.01">0.01</button><button data-v="1">1</button><button data-v="10">10</button><button data-v="100">100</button><button data-v="1000">1 000</button><button data-v="10000">10 000</button><button class="mx" data-v="buymax">Макс. купить</button><button class="mx" data-v="sellall">Все TON</button></div>
   <div class="xbtns"><button class="xbuy" id="xbuy">Купить<small id="xbc">—</small></button><button class="xsell" id="xsell">Продать<small id="xsc">—</small></button></div>
   <div class="xmsg" id="xmsg"></div>
+  <div class="xluck" id="xluck"></div>
  </div>
  <div class="xfl" id="xfl"></div>
  <canvas id="xfx"></canvas>
@@ -2389,16 +2393,28 @@ function mkBuyFx(o,row){
 }
 
 /* ===== Биржа TON: цена в ₽ за 1 TON ===== */
-const XC={base:120000,min:20000,max:3000000,segs:[],target:120000,next:0,last:0,raf:0,scr:[],WIN:120000,TICK:10000,TR:2000,L:500000,marks:[],parts:[],flashT:0,flashDir:1,seen:0,pulse:0,dm:0,dt:0,pt:0};
-(function(){let p=XC.base,sv=0;try{const d=JSON.parse(localStorage.getItem('upg_xch_v1')||'{}');if(d.p>=XC.min&&d.p<=XC.max){p=d.p;if(d.t>0)sv=d.t}}catch(e){}
+const XC={base:120000,min:20000,max:3000000,segs:[],target:120000,next:0,last:0,raf:0,scr:[],WIN:120000,TICK:10000,TR:2000,L:500000,marks:[],parts:[],flashT:0,flashDir:1,seen:0,pulse:0,dm:0,dt:0,pt:0,luck:null};
+(function(){let p=XC.base,sv=0;try{const d=JSON.parse(localStorage.getItem('upg_xch_v1')||'{}');if(d.p>=XC.min&&d.p<=XC.max){p=d.p;if(d.t>0)sv=d.t;if(d.r&&d.r.b>0&&d.r.c>0)XC.luck=d.r}}catch(e){}
  const n=Date.now();XC.segs=[{t0:n-1,t1:n,p0:p,p1:p}];XC.target=p;XC.next=(sv>0&&sv<n?sv+XC.TICK:n+XC.TICK)})();
 const xcEase=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
 function xcAt(t){const g=XC.segs;let i=g.length-1;while(i>0&&g[i].t0>t)i--;const s=g[i];if(t>=s.t1)return s.p1;if(t<=s.t0)return s.p0;return s.p0+(s.p1-s.p0)*xcEase((t-s.t0)/(s.t1-s.t0))}
 function xcPush(to,dur,isTick,at){const n=at||Date.now(),cur=xcAt(n);to=Math.min(XC.max,Math.max(XC.min,to));XC.segs.push({t0:n,t1:n+dur,p0:cur,p1:to});XC.target=to;
  if(!at){XC.flashT=n;XC.flashDir=to>=cur?1:-1;if(isTick)XC.pulse=n}
  const lim=Date.now()-XC.WIN-20000;while(XC.segs.length>2&&XC.segs[1].t1<lim)XC.segs.shift();
- if(!at)try{localStorage.setItem('upg_xch_v1',JSON.stringify({p:Math.round(to),t:Date.now()}))}catch(e){}}
+ if(!at)try{localStorage.setItem('upg_xch_v1',JSON.stringify({p:Math.round(to),t:Date.now(),r:XC.luck}))}catch(e){}}
+/* v4.01: шанс окупиться. На первом обновлении курса после покупки с шансом уровня курс идёт вверх —
+   выше цены этой покупки (+3…10%) и держится там ещё два обновления. До этого обновления результат неизвестен. */
+function xcLuck(p){
+ const L=XC.luck;if(!L)return null;
+ if(ton<0.01||(L.s&&L.h<=0)){XC.luck=null;return null}
+ if(!L.s){if(!(Math.random()*100<L.c)){XC.luck=null;return null}L.s=1;L.h=3;L.g=Math.min(XC.max,L.b*(1.03+Math.random()*.07))}
+ let np;
+ if(!L.hit){np=Math.min(Math.max(L.g,p),p*(1.025+Math.random()*.03));if(np>=L.g-.5){L.hit=1;L.h--}}
+ else{np=Math.max(L.g,p*(1+(Math.random()-.5)*.012));L.h--}
+ np=Math.min(XC.max,np);XC.last=np/p-1;return np}
+function xcLuckSave(){try{const d=JSON.parse(localStorage.getItem('upg_xch_v1')||'{}');if(!d.p){d.p=Math.round(XC.target);d.t=Date.now()}d.r=XC.luck;localStorage.setItem('upg_xch_v1',JSON.stringify(d))}catch(e){}}
 function xcStep(p){
+ const lk=xcLuck(p);if(lk!==null)return lk;
  const hold=Math.max(0,ton),s=Math.min(1,hold*p/4000);
  const anchor=hold>=0.01?XC.base*(1.2-.75*s):XC.base*2.2;
  let pDown=hold>=0.01?.55+.38*s:.12;
@@ -2427,11 +2443,34 @@ setInterval(xcTick,250);
 /* влияние сделки на цену: минимум 0.5% даже за 0.01 TON, дальше растёт с объёмом */
 const xcImp=a=>Math.max(-Math.log(.995),a/XC.L);
 const xcFmt=n=>compactNum(Math.round(n));
-function xcAmt(){const v=parseFloat(String($('xin').value).replace(',','.'));if(!(v>=0.01))return 0;return Math.round(Math.min(1e6,v)*100)/100}
+/* v3.90: TON на бирже — цифрами «1 000», буквами «1.00K» */
+const xcTn=(n,fx)=>{n=Math.max(0,Math.round((Number(n)||0)*100)/100);if(compactMoneyMode&&n>=1000)return compactNum(n);const t=fx?n.toFixed(2):String(n),p=t.split('.');return p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')+(p[1]?'.'+p[1]:'')};
+/* продажа за раз — до 1 000 000 TON (или до лимита покупки, если он выше); покупка за раз — по уровню */
+/* v4.01: XI.raw — точное число, XI.shown — как оно показано («1 000» или «1.00K») */
+const XI={raw:'1',shown:'1'};
+const xcClean=s=>{s=String(s).replace(/[^0-9.]/g,'');const i=s.indexOf('.');if(i>=0)s=s.slice(0,i+1)+s.slice(i+1).replace(/\./g,'').slice(0,2);return s.replace(/^0+(?=\d)/,'')};
+function xcRawOf(v){const s=String(v||'').replace(/\s/g,'').replace(/,/g,'.'),m=s.match(/^([0-9]*\.?[0-9]+)([KkMm])/);if(m)return String(Math.round(parseFloat(m[1])*(m[2].toLowerCase()==='k'?1e3:1e6)*100)/100);return xcClean(s)}
+const xcShort=raw=>compactMoneyMode&&Number(raw)>=1000;
+function xcShow(raw){if(!raw)return'';if(xcShort(raw))return compactNum(Number(raw));const p=raw.split('.');return p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')+(p.length>1?'.'+p[1]:'')}
+function xcPut(raw,caret){const el=$('xin'),t=xcShow(raw);XI.raw=raw;XI.shown=t;el.value=t;
+ if(document.activeElement===el){let i=t.length;if(caret!=null&&!xcShort(raw)){i=0;let n=0;while(i<t.length&&n<caret){if(t[i]!=='\u00A0')n++;i++}}try{el.setSelectionRange(i,i)}catch(e){}}}
+function xcTyped(e){
+ const el=$('xin'),v=el.value,prev=XI.shown,short=xcShort(XI.raw);let raw,caret=null;
+ if(short&&v.length>prev.length&&v.startsWith(prev))raw=xcClean(XI.raw+v.slice(prev.length).replace(/,/g,'.'));
+ else if(short&&v.length===prev.length-1&&prev.startsWith(v))raw=XI.raw.slice(0,-1);
+ else{raw=xcRawOf(v);
+  const pos=el.selectionStart==null?v.length:el.selectionStart;caret=xcClean(v.slice(0,pos).replace(/,/g,'.')).length;
+  /* стёрли только пробел — стираем цифру перед ним */
+  if(!short&&e&&e.inputType==='deleteContentBackward'&&raw===XI.raw&&v.length<prev.length&&caret>0){raw=xcClean(raw.slice(0,caret-1)+raw.slice(caret));caret--}}
+ if(Number(raw)>xcMaxIn()){raw=String(xcMaxIn());caret=null}
+ xcPut(raw,caret)}
+const xcMaxIn=()=>Math.max(1e6,lvBuyLim());
+function xcAmt(){const t=$('xin').value,v=parseFloat(t===XI.shown?XI.raw:xcRawOf(t));if(!(v>=0.01))return 0;return Math.round(Math.min(xcMaxIn(),v)*100)/100}
 let xcT={};
 function xcSet(id,v){if(xcT[id]!==v){xcT[id]=v;$(id).textContent=v}}
 function xcCls(id,c,on){const k=id+'.'+c;if(xcT[k]!==on){xcT[k]=on;$(id).classList.toggle(c,on)}}
 function xcUI(now,dt){
+ if($('xin').value===XI.shown&&xcShow(XI.raw)!==XI.shown)xcPut(XI.raw);/* сменили формат чисел */
  const p=xcAt(now),a=xcAmt();
  xcSet('xpv',xcFmt(p)+' ₽');
  xcSet('xpc',(XC.last>=0?'▲ +':'▼ ')+(XC.last*100).toFixed(1)+'%');xcCls('xpc','up',XC.last>=0);xcCls('xpc','down',XC.last<0);
@@ -2443,11 +2482,15 @@ function xcUI(now,dt){
  const k=Math.min(1,dt*9);
  XC.dm+=(money-XC.dm)*k;if(Math.abs(money-XC.dm)<.6)XC.dm=money;
  XC.dt+=(ton-XC.dt)*k;if(Math.abs(ton-XC.dt)<.005)XC.dt=ton;
- xcSet('xbm',xcFmt(XC.dm)+' ₽');xcSet('xbt',(Math.max(0,XC.dt)).toFixed(2));
+ xcSet('xbm',xcFmt(XC.dm)+' ₽');xcSet('xbt',xcTn(XC.dt,true));
  const cost=Math.ceil(a*p),gain=Math.floor(a*p);
+ const L=XC.luck,lon=!!(L&&L.s),bn=lvBonus();
+ xcSet('xluck',lon?(L.hit?'🍀 Удача уровня: ты в плюсе — самое время продать':'🍀 Удача уровня! Курс растёт к '+xcFmt(L.g)+' ₽'):(bn>0?'Шанс окупиться после покупки: '+lvPct(bn):'Шанс окупиться открывается со 2 уровня'));xcCls('xluck','on',lon);
  const cdl=Math.max(0,(XC.cd||0)-Date.now()),cdt='Подожди '+Math.ceil(cdl/1000)+' с';
- xcSet('xbc',cdl?cdt:(a?'−'+xcFmt(cost)+' ₽':'введи количество'));xcSet('xsc',cdl?cdt:(a?'+'+xcFmt(gain)+' ₽':'введи количество'));
- $('xbuy').disabled=!!cdl||!a||money<cost;$('xsell').disabled=!!cdl||!a||ton<a;
+ const lim=lvBuyLim(),over=a>lim;
+ xcSet('xlab','Сколько TON · покупка за раз до '+xcTn(lim));
+ xcSet('xbc',cdl?cdt:(over?'лимит '+xcTn(lim)+' TON':(a?'−'+xcFmt(cost)+' ₽':'введи количество')));xcSet('xsc',cdl?cdt:(a?'+'+xcFmt(gain)+' ₽':'введи количество'));
+ $('xbuy').disabled=!!cdl||!a||over||money<cost;$('xsell').disabled=!!cdl||!a||ton<a;
 }
 function xcDraw(now){
  const cv=$('xcv'),dpr=Math.min(2,window.devicePixelRatio||1),W=cv.clientWidth,H=cv.clientHeight;
@@ -2547,30 +2590,29 @@ function xcMsg(t,ok){if(!ok)SFX.deny();const e=$('xmsg');e.textContent=t;e.style
 function xcRip(btn,e){const r=btn.getBoundingClientRect(),d=document.createElement('span'),s=Math.max(r.width,r.height)*2;d.className='xrip';d.style.width=d.style.height=s+'px';d.style.left=((e&&e.clientX?e.clientX:r.left+r.width/2)-r.left)+'px';d.style.top=((e&&e.clientY?e.clientY:r.top+r.height/2)-r.top)+'px';btn.appendChild(d);setTimeout(()=>d.remove(),600)}
 function xcDone(btn){btn.classList.remove('done');void btn.offsetWidth;btn.classList.add('done')}
 $('xcbtn').onclick=xcOpen;$('xclose').onclick=xcClose;
-$('xin').addEventListener('input',()=>{
- let v=$('xin').value.replace(',','.').replace(/[^0-9.]/g,'');const i=v.indexOf('.');
- if(i>=0)v=v.slice(0,i+1)+v.slice(i+1).replace(/\./g,'').slice(0,2);
- if(parseFloat(v)>1e6)v='1000000';
- if($('xin').value!==v)$('xin').value=v;
-});
-$('xin').addEventListener('blur',()=>{const a=xcAmt();$('xin').value=a?String(a):''});
+$('xin').addEventListener('input',xcTyped);
+/* у сокращённой записи (1.00K) курсор держим в конце: дописывание и стирание идут по цифрам */
+['focus','click'].forEach(n=>$('xin').addEventListener(n,()=>setTimeout(()=>{const el=$('xin');if(xcShort(XI.raw)&&el.selectionStart===el.selectionEnd)try{el.setSelectionRange(el.value.length,el.value.length)}catch(e){}},0)));
+$('xin').addEventListener('blur',()=>{const a=xcAmt();xcPut(a?String(a):'')});
 $('xchips').onclick=e=>{const b=e.target.closest('button');if(!b)return;
  let v=b.dataset.v;const p=xcAt(Date.now());
- if(v==='buymax')v=Math.floor(Math.min(1e6,money/p)*100)/100;else if(v==='sellall')v=Math.floor(Math.min(1e6,ton)*100)/100;else v=+v;
- $('xin').value=v>=0.01?String(v):'';
+ if(v==='buymax')v=Math.floor(Math.min(lvBuyLim(),money/p)*100)/100;else if(v==='sellall')v=Math.floor(Math.min(xcMaxIn(),ton)*100)/100;else v=+v;
+ xcPut(v>=0.01?String(v):'');
 };
 $('xbuy').addEventListener('pointerdown',e=>xcRip($('xbuy'),e));$('xsell').addEventListener('pointerdown',e=>xcRip($('xsell'),e));
 $('xbuy').onclick=()=>{
  if(Date.now()<(XC.cd||0)){xcMsg('Покупка и продажа раз в 5 секунд — подожди '+Math.ceil(((XC.cd||0)-Date.now())/1000)+' с',false);return}
  const a=xcAmt();if(!a)return;const now=Date.now(),p=xcAt(now),cost=Math.ceil(a*p);
+ if(a>lvBuyLim()){xcMsg('За раз можно купить до '+xcTn(lvBuyLim())+' TON',false);return}
  if(money<cost){xcMsg('Недостаточно ₽',false);return}
  const _tb0=tonBought;tonBought=Math.round((tonBought+a)*100)/100;money-=cost;ton=Math.round((ton+a)*100)/100;tonUpd();showMoney();save();lvGain(_tb0,tonBought);try{window.dqEvent&&dqEvent('tonbuy',a);dqEvent('tonop',1)}catch(e){}try{window.__pp&&window.__pp(true)}catch(e){}
  XC.marks.push({t:now,p:p,type:'buy',a:a});
- /* сделка не влияет на цену */
- XC.cd=Date.now()+5000;xcMsg('Куплено '+a+' TON за '+xcFmt(cost)+' ₽',true);
+ /* сделка не влияет на цену; новая покупка — новый шанс окупиться */
+ XC.luck=lvBonus()>0?{b:p,c:lvBonus(),s:0}:null;xcLuckSave();
+ XC.cd=Date.now()+5000;xcMsg('Куплено '+xcTn(a)+' TON за '+xcFmt(cost)+' ₽',true);
  xcFx(1);xcDone($('xbuy'));SFX.sell(0);
  xcFly('rub',$('xbm'),$('xbuy'),12);xcFly('ton',$('xbuy'),$('xbt'),16);
- xcFloat($('xbt'),'+'+a+' TON','#6cc4ff');xcFloat($('xbm'),'−'+xcFmt(cost)+' ₽','#ff9aa6');
+ xcFloat($('xbt'),'+'+xcTn(a)+' TON','#6cc4ff');xcFloat($('xbm'),'−'+xcFmt(cost)+' ₽','#ff9aa6');
  if(navigator.vibrate)navigator.vibrate([25,20,45]);
 };
 $('xsell').onclick=()=>{
@@ -2581,75 +2623,284 @@ $('xsell').onclick=()=>{
  money+=gain;ton=Math.round((ton-a)*100)/100;tonUpd();showMoney();save();try{window.dqEvent&&dqEvent('tonsell',a);dqEvent('tonop',1)}catch(e){}
  XC.marks.push({t:now,p:p,type:'sell',a:a});
  /* сделка не влияет на цену */
- XC.cd=Date.now()+5000;xcMsg('Продано '+a+' TON за '+xcFmt(gain)+' ₽',true);
+ if(ton<0.01&&XC.luck){XC.luck=null;xcLuckSave()}
+ XC.cd=Date.now()+5000;xcMsg('Продано '+xcTn(a)+' TON за '+xcFmt(gain)+' ₽',true);
  xcFx(-1);xcDone($('xsell'));SFX.sell(0);
  xcFly('ton',$('xbt'),$('xsell'),12);xcFly('rub',$('xsell'),$('xbm'),16);
- xcFloat($('xbt'),'−'+a+' TON','#ff9aa6');xcFloat($('xbm'),'+'+xcFmt(gain)+' ₽','#8bffb9');
+ xcFloat($('xbt'),'−'+xcTn(a)+' TON','#ff9aa6');xcFloat($('xbm'),'+'+xcFmt(gain)+' ₽','#8bffb9');
  if(navigator.vibrate)navigator.vibrate([25,20,45]);
 };
 
-/* ===== v2.88: уровни (считаются по купленным TON) ===== */
-const LVT=[0,1000,3000,10000,25000,60000,140000,300000,600000,1000000];
+/* ===== v3.90: уровни (считаются по купленным TON) =====
+   Чтобы добавить новый уровень: строка в LV + оформление значка в LVS (в том же порядке).
+   [название, сколько TON купить всего, прибавка к шансу окупиться в десятых долях %, прибавка к лимиту покупки за раз, описание] */
+const LV=[
+ ['Искра',0,0,0,'Стартовый уровень: биржа открыта, за одну покупку можно взять до 1 000 TON.'],
+ ['Импульс',100,2,500,'Первый разгон: удача чуть на твоей стороне, а покупка за раз стала в полтора раза крупнее.'],
+ ['Разряд',500,1,1000,'Ещё немного удачи и +1 000 TON к лимиту — объём набирается быстрее.'],
+ ['Комета',2000,2,2500,'Лучший круглый значок: заметная прибавка к удаче, а лимит вырос в 2 раза — до 5 000 TON.'],
+ ['Страж',5000,1,12500,'Новая форма — квадрат. Главный подарок уровня — лимит в 3,5 раза выше: 17 500 TON.'],
+ ['Рыцарь',17500,2,32500,'Двойная порция удачи и крупные закупки: уже 50 000 TON за раз.'],
+ ['Командор',40000,1,100000,'Игра по-крупному: лимит вырос втрое — 150 000 TON.'],
+ ['Магнат',70000,1,200000,'Лучший квадратный значок с золотым кантом. Лимит увеличен ещё на 200 000 TON.'],
+ ['Кварц',125000,1,250000,'Новая форма — ромб. 600 000 TON одним нажатием.'],
+ ['Сапфир',200000,1,300000,'Гранёный синий кристалл: за раз можно купить почти миллион TON.'],
+ ['Аметист',350000,2,300000,'Крылатый кристалл: крупная прибавка к удаче и лимит 1,2 миллиона TON.'],
+ ['Алмаз',525000,1,300000,'Лучший ромб с золотым кантом: удача +1,5% в сумме и 1 500 000 TON за раз.'],
+ ['Бастион',800000,2,300000,'Новая форма — щит. Крупная прибавка к удаче и 1 800 000 TON за одну покупку.'],
+ ['Цитадель',1175000,1,300000,'Укреплённый щит: удача растёт дальше, а за раз можно взять 2 100 000 TON.'],
+ ['Эгида',1400000,1,300000,'Бронированный щит с крыльями: лимит поднимается до 2 400 000 TON.'],
+ ['Колосс',1850000,1,300000,'Золотой щит: ровно +2% удачи в сумме и 2 700 000 TON за раз.'],
+ ['Мистик',2300000,1,300000,'Новая форма — шестиугольник. За одну покупку теперь 3 000 000 TON.'],
+ ['Оракул',2850000,1,300000,'Сияющие грани с бегущими огоньками, лимит 3 300 000 TON.'],
+ ['Архонт',3500000,1,300000,'Шестиугольник с клинками и кристаллами: 3 600 000 TON за раз.'],
+ ['Владыка',4000000,1,300000,'Золотой кант, лучи и орбиты: удача +2,4% в сумме и лимит 3 900 000 TON.'],
+ ['Гладиатор',5200000,1,350000,'Новая форма — живое пламя: огонь колышется, взлетают искры. Лимит 4 250 000 TON.'],
+['Чемпион',7000000,1,350000,'За пламенем скрещиваются два меча: 4 600 000 TON за раз.'],
+['Триумфатор',9100000,1,350000,'Алый огонь в золотом лавровом венке: лимит 4 950 000 TON.'],
+['Феникс',12000000,1,350000,'Крылья и огненный хвост феникса в лучах: удача +2,8% в сумме и лимит 5 300 000 TON.'],
+['Банкир',15000000,1,500000,'Новая форма — золотой кристалл. Лимит сразу +500 000: 5 800 000 TON за раз.'],
+ ['Олигарх',18000000,1,550000,'Гранёный кристалл с бегущими огоньками, лимит 6 350 000 TON.'],
+ ['Монополист',22000000,1,600000,'Кристальные осколки и изумруды: 6 950 000 TON за одну покупку.'],
+ ['Мидас',27500000,1,650000,'Золотой кристалл в лучах и орбитах: удача +3,2% в сумме и лимит 7 600 000 TON.'],
+ ['Звезда',36000000,1,700000,'Новая форма — рубиновая звезда. За одну покупку теперь 8 300 000 TON.'],
+ ['Пульсар',45000000,1,800000,'Мерцающая звезда с огоньками на лучах, лимит 9 100 000 TON.'],
+ ['Сверхновая',57500000,1,900000,'Двойная звезда с кристаллами: ровно 10 000 000 TON за раз.'],
+ ['Квазар',71000000,1,1000000,'Золотой кант, сияние и орбиты: удача +3,6% в сумме и лимит 11 000 000 TON.'],
+ ['Принц',85000000,1,1500000,'Новая форма — переливающаяся корона. За раз можно купить 12 500 000 TON.'],
+ ['Монарх',100000000,1,1500000,'Корона с самоцветами и бегущими огоньками, лимит 14 000 000 TON.'],
+ ['Император',120000000,1,1500000,'Крылатая корона с кристаллами: 15 500 000 TON за раз.'],
+ ['Властелин',142500000,1,1500000,'Корона в лучах и орбитах: ровно +4% удачи и лимит 17 000 000 TON.'],
+ ['Дрейк',170000000,2,2000000,'Новая форма — обсидиановый драконий герб с радужным кантом. Двойной бонус удачи и 19 000 000 TON за раз.'],
+ ['Дракон',210000000,2,2000000,'У герба загораются глаза и огненные точки, лимит 21 000 000 TON.'],
+ ['Прародитель',260000000,2,2000000,'Расправленные крылья дракона: 23 000 000 TON за одну покупку.'],
+ ['Абсолют',325000000,4,2000000,'Вершина игры: радужное сияние, крылья и орбиты. Удача +5% и лимит 25 000 000 TON.']
+];
+const LV_MAX=LV.length,LV_BASE_LIM=1000;
+const LVN=LV.map(x=>x[0]),LVT=LV.map(x=>x[1]);
 let tonBought=0,lvUid=0,lvShown=0,lvBusy=false,lvQ=[];
 const lvOf=tb=>{let l=1;for(let i=1;i<LVT.length;i++)if(tb>=LVT[i])l=i+1;return l};
+const lvClamp=l=>Math.max(1,Math.min(LV_MAX,Math.floor(Number(l))||1));
+const lvSum=(l,i)=>LV.slice(0,lvClamp(l)).reduce((s,x)=>s+x[i],0);
+const lvBonusOf=l=>lvSum(l,2)/10;               /* суммарный бонус уровня, в % */
+const lvLimOf=l=>LV_BASE_LIM+lvSum(l,3);         /* лимит покупки TON за раз */
+const lvBonus=()=>lvBonusOf(lvOf(tonBought));
+const lvBuyLim=()=>lvLimOf(lvOf(tonBought));
 const lvFmt=n=>compactNum(Math.floor(n+1e-9));
-/* названия уровней */
-const LVN=['Новичок','Стажёр','Игрок','Профи','Мастер','Эксперт','Элита','Легенда','Титан','Грандтитан'];
-/* форма значка зависит от уровня: круг, квадрат, ромб, щит, шестиугольник, восьмиугольник, прямоугольник, звезда, корона */
-const LVS=[
- ['<circle cx="16" cy="16" r="14" @A@/>','#d3dbef','#656d8a','rgba(170,182,215,.55)',21,15],
- ['<rect x="2.5" y="2.5" width="27" height="27" rx="8" @A@/>','#86ffb4','#169650','rgba(61,220,132,.65)',21,15],
- ['<polygon points="16,1.2 30.8,16 16,30.8 1.2,16" @A@ stroke-linejoin="round"/>','#93ccff','#2155cf','rgba(76,150,255,.65)',20.5,13],
- ['<path d="M16 1.8 28.2 5.8V15.5C28.2 22.8 22.8 28 16 30.4 9.2 28 3.8 22.8 3.8 15.5V5.8Z" @A@ stroke-linejoin="round"/>','#74f6f0','#0a8394','rgba(40,224,224,.62)',19.5,14],
- ['<polygon points="16,1.5 29.2,9 29.2,23 16,30.5 2.8,23 2.8,9" @A@ stroke-linejoin="round"/>','#dcaaff','#5f25c9','rgba(176,100,255,.68)',21,15],
- ['<polygon points="10.6,1.8 21.4,1.8 30.2,10.6 30.2,21.4 21.4,30.2 10.6,30.2 1.8,21.4 1.8,10.6" @A@ stroke-linejoin="round"/>','#ffcb7e','#df530a','rgba(255,150,50,.68)',21,15],
- ['<rect x="1.5" y="5.5" width="29" height="21" rx="3.5" @A@/>','#fff3a8','#cf8806','rgba(255,215,60,.72)',21,15],
- ['<polygon points="16,1.4 19.9,11.4 30.6,12 22.3,18.7 25.1,29.2 16,23.4 6.9,29.2 9.7,18.7 1.4,12 12.1,11.4" @A@ stroke-linejoin="round"/>','#ff9eab','#c60f2e','rgba(255,70,100,.72)',21.5,11.5],
- ['<path d="M2.5 25 1.5 8.5 9.2 14.8 16 2.8 22.8 14.8 30.5 8.5 29.5 25Z" @A@ stroke-linejoin="round"/><rect x="2.5" y="25.5" width="27" height="3.6" rx="1.8" @A@/>','#ff6ae0','#ffb300','rgba(255,110,220,.82)',21.5,12.5],
- ['<path d="M2.5 25.2 1.6 9.6 8 15 9.6 5.2 13 13.6 16 1.8 19 13.6 22.4 5.2 24 15 30.4 9.6 29.5 25.2Z" @A@ stroke-linejoin="round"/><rect x="2.5" y="25.7" width="27" height="3.4" rx="1.7" @A@/>','#ff8cf0','#ffc400','rgba(255,130,235,.9)',22.4,10.6]
+const lvInt=n=>Math.round(n).toLocaleString('ru-RU');
+const lvPct=n=>String(Math.round(n*10)/10).replace('.',',')+'%';
+/* ----- значки: уровни 1–4 круг, 5–8 квадрат, 9–12 ромб, 13–16 щит, 17–20 шестиугольник, 21–24 пламя, 25–28 кристалл, 29–32 звезда, 33–36 корона, 37–40 драконий герб; внутри каждой формы значок становится богаче ----- */
+const lvStar=(n,R,r,cx,cy)=>{let p=[];for(let i=0;i<n*2;i++){const a=-Math.PI/2+i*Math.PI/n,k=i%2?r:R;p.push((cx+Math.cos(a)*k).toFixed(2)+','+(cy+Math.sin(a)*k).toFixed(2))}return p.join(' ')};
+const lvGemAt=(x,y,r,c)=>'<path d="M'+x+' '+(y-r)+'L'+(x+r)+' '+y+' '+x+' '+(y+r)+' '+(x-r)+' '+y+'Z" fill="'+c+'" stroke="#0a0d1c" stroke-width=".6"/>';
+const lvGems=(list,c)=>'<g class="lvgem">'+list.map(p=>'<g class="lvg">'+lvGemAt(p[0],p[1],p[2],c)+'</g>').join('')+'</g>';
+const lvDots=(list,r,c)=>list.map((p,i)=>'<circle class="lvrun" style="animation-delay:'+(i*1.6/list.length).toFixed(2)+'s" cx="'+p[0]+'" cy="'+p[1]+'" r="'+r+'" fill="'+c+'"/>').join('');
+const LV_CIR='<circle cx="16" cy="16" r="14.4" @A@/>';
+const LV_SQ='<rect x="2.3" y="2.3" width="27.4" height="27.4" rx="8.6" @A@/>';
+const LV_RH='<polygon points="16,1.5 30.5,16 16,30.5 1.5,16" @A@ stroke-linejoin="round"/>';
+const LV_SH='<path d="M16 1.6 28.6 5.6V15.5C28.6 22.8 22.9 28.2 16 30.6 9.1 28.2 3.4 22.8 3.4 15.5V5.6Z" @A@ stroke-linejoin="round"/>';
+const lvShIn=o=>'<path class="lvpulse" d="M16 5.6 25 8.5V15.5C25 20.6 21 24.6 16 26.5 11 24.6 7 20.6 7 15.5V8.5Z" fill="none" stroke="#fff" stroke-opacity="'+o+'" stroke-width=".7" stroke-linejoin="round"/>';
+const lvPlates=(c,s)=>'<path class="lvwing" d="M6 6-2.5 4 .5 10-3.5 12 1 16-2 19.5 8 24ZM26 6 34.5 4 31.5 10 35.5 12 31 16 34 19.5 24 24Z" fill="'+c+'" stroke="'+s+'" stroke-width=".8" stroke-linejoin="round"/>';
+const LV_HX='<polygon points="16,1.5 29.3,9.1 29.3,22.9 16,30.5 2.7,22.9 2.7,9.1" @A@ stroke-linejoin="round"/>';
+const lvHxIn=o=>'<polygon class="lvpulse" points="16,5.4 25.9,11 25.9,21 16,26.6 6.1,21 6.1,11" fill="none" stroke="#fff" stroke-opacity="'+o+'" stroke-width=".7" stroke-linejoin="round"/>';
+const lvBlades=(c,s)=>'<path class="lvwing" d="M5 8-3.5 5.5 1 12.5-4.5 16 1 19.5-3.5 26.5 5 24ZM27 8 35.5 5.5 31 12.5 36.5 16 31 19.5 35.5 26.5 27 24Z" fill="'+c+'" stroke="'+s+'" stroke-width=".8" stroke-linejoin="round"/>';
+const LV_HXD=[[16,4.4],[26.8,10.4],[26.8,21.6],[16,27.6],[5.2,21.6],[5.2,10.4]];
+/* 21–24: живое пламя. Силуэт — три языка огня, внутри второй огонь, вокруг ореол и искры;
+   22 — скрещённые мечи, 23 — лавровый венок, 24 — крылья феникса */
+const LV_FL_D='M16 31.6C8 31.6 2.4 26.6 2.4 19.8C2.4 15.2 4.8 11.8 4.6 5.4C7 8.8 8.8 10.4 11.2 10.8C10 5.8 12.6 .8 19 -3.4C17.6 2 19.4 5 22.2 7.8C24.2 7.2 25.8 5.4 26.2 2.2C29.4 7.6 29.6 13 29.6 19.8C29.6 26.6 24 31.6 16 31.6Z';
+const LV_FL='<path d="'+LV_FL_D+'" @A@ stroke-linejoin="round"/>';
+const lvFlAura=(c,c2)=>'<g class="lvaura"><path d="'+LV_FL_D+'" transform="translate(16 31.6) scale(1.27 1.1) translate(-16 -31.6)" fill="'+c+'" fill-opacity=".42"/></g><g class="lvaura a2"><path d="'+LV_FL_D+'" transform="translate(16 31.6) scale(-1.15 1.04) translate(-16 -31.6)" fill="'+c2+'" fill-opacity=".5"/></g>';
+const lvFlIn=(c,c2)=>'<path class="lvflk" d="M16 29.8C10 29.8 5.6 25.8 5.6 20.4C5.6 16.8 7.6 14.4 7.8 10.8C9.4 13.4 11 14.6 13 14.8C12 10.4 13.8 6.2 17.8 3C17 7.2 18.4 9.8 20.8 12.6C22.4 11.8 23.4 10.4 23.8 8.4C26 12.4 26.4 16 26.4 20.4C26.4 25.8 22 29.8 16 29.8Z" fill="'+c+'" fill-opacity=".82"/><path class="lvflk f2" d="M16 29C11.8 29 9 26.4 9 22.8C9 19.6 11.6 18.2 12 15C13.6 17 14.6 17.6 15.8 17.6C15.2 14.6 16.4 12 18.6 10.2C18.4 14.6 23 17.4 23 22.8C23 26.4 20.2 29 16 29Z" fill="'+c2+'" fill-opacity=".8"/>';
+const LV_EMB=[[-1.5,22,1.1],[33.5,18,1],[1,6,.8],[31,1,.9],[9,-.5,.7],[34,29,.8],[-3,12,.7],[24.5,-3,.8]];
+const lvFlTail=(c,c2)=>{const f=(d,k,a)=>'<path d="'+d+'" fill="'+k+'" stroke="#5a1400" stroke-width="'+a+'" stroke-linejoin="round"/>';
+ return '<g class="lvflk">'+f('M14 29C12.6 32.4 9.4 35 4.4 36 6.4 34.2 6.6 32.4 6.2 30.8 8.9 31.8 11.2 30.8 14 29Z',c,.8)+f('M18 29C19.4 32.4 22.6 35 27.6 36 25.6 34.2 25.4 32.4 25.8 30.8 23.1 31.8 20.8 30.8 18 29Z',c,.8)+f('M16 29C20 31.6 19.6 34.4 16 37.4 12.4 34.4 12 31.6 16 29Z',c,.8)+f('M16 31C17.6 32.8 17.5 34 16 35.4 14.5 34 14.4 32.8 16 31Z',c2,0)+'</g>'};
+const lvEmbers=(n,c)=>LV_EMB.slice(0,n).map((e,i)=>'<circle class="lvember" style="animation-delay:-'+(i*2.4/n).toFixed(2)+'s" cx="'+e[0]+'" cy="'+e[1]+'" r="'+e[2]+'" fill="'+c+'"/>').join('');
+const lvSword=(a,hilt)=>'<g transform="rotate('+a+' 16 16)"><path d="M16 -10 18.1 -6V31.5H13.9V-6Z" fill="#e9f1ff" stroke="#10131f" stroke-width=".8" stroke-linejoin="round"/><path d="M16 -7.5V30" stroke="#8d9bbd" stroke-width=".7"/><rect x="11.2" y="31.3" width="9.6" height="2.5" rx="1.2" fill="'+hilt+'" stroke="#10131f" stroke-width=".7"/><rect x="14.7" y="33.8" width="2.6" height="4.4" fill="#6b3416" stroke="#10131f" stroke-width=".7"/><circle class="lvfac" cx="16" cy="39.4" r="1.9" fill="'+hilt+'" stroke="#10131f" stroke-width=".7"/></g>';
+const lvSwords=h=>lvSword(46,h)+lvSword(-46,h);
+const lvLeaf=(x,y,a,c)=>'<path d="M0 0C1.6-2.4 4.6-2.4 6.6 0 4.6 2.4 1.6 2.4 0 0Z" transform="translate('+x+' '+y+') rotate('+a+')" fill="'+c+'" stroke="#4a2600" stroke-width=".55"/>';
+const lvLaurel=(c,c2)=>{const L=[[13,32.6,196],[12.6,33,158],[8,30.8,222],[7.4,31.4,178],[3.8,27.4,244],[3,28,202],[1.4,22.6,262],[.4,23.4,224],[1,17.4,282],[-.2,18,244]];
+ const half=L.map((l,i)=>lvLeaf(l[0],l[1],l[2],i%2?c2:c)).join('')+'<path d="M15.5 32.8C7.5 32.4 .6 26 .8 15.5" fill="none" stroke="'+c2+'" stroke-width=".9" stroke-linecap="round"/>';
+ return '<g class="lvpulse">'+half+'<g transform="matrix(-1 0 0 1 32 0)">'+half+'</g></g>'};
+const LV_PHX='M7 12C3 9-2 6-10.5-3.5C-9.6 1-8.4 3.6-6.4 5.4C-8.6 5.4-10.4 4.8-12 3.6C-10.8 8.6-8.6 11-5.4 12.4C-7.8 13-9.8 12.8-11.6 12C-9.8 16.6-7 18.6-3.4 19.2C-5.4 20.6-7.2 21-9 20.8C-6.4 24.8-2.4 26 2 25.2C1.2 26.8 0 27.8-1.8 28.6C2.6 30.4 6.4 28.8 8.6 25Z';
+const LV_PHI='M7 13.5C3 11-1.5 8.5-6.5 2.5C-5 7.5-2.8 9.6-.2 11C-2.4 11.8-4.4 11.6-6.6 10.8C-4 15-1.4 16.6 1.6 17.2C0 18.4-1.8 19-3.6 19C-.8 22.6 2.4 23.4 7.4 22.6Z';
+const lvPhoenix=(c,c2,s)=>{const w='<path d="'+LV_PHX+'" fill="'+c+'" stroke="'+s+'" stroke-width=".8" stroke-linejoin="round"/><path d="'+LV_PHI+'" fill="'+c2+'"/>';
+ return '<g class="lvfwl">'+w+'</g><g class="lvfwr"><g transform="matrix(-1 0 0 1 32 0)">'+w+'</g></g>'};
+const LV_CR='<polygon points="9.4,3.2 22.6,3.2 30.2,11.6 16,30.2 1.8,11.6" @A@ stroke-linejoin="round"/>';
+const lvCrFacet=(o,cls)=>'<g'+(cls?' class="'+cls+'"':'')+'><path d="M9.4 3.2H22.6L30.2 11.6H1.8Z" fill="#fff" fill-opacity=".2"/><path d="M9.4 3.2 12.9 11.6 16 3.2 19.1 11.6 22.6 3.2M1.8 11.6H30.2M12.9 11.6 16 30.2 19.1 11.6" fill="none" stroke="#fff" stroke-opacity="'+o+'" stroke-width=".9" stroke-linejoin="round"/></g>';
+const lvShards=(c,s)=>'<path class="lvwing" d="M-4.5 8 2 5 7 14 8.5 23 0 19ZM-3 22 2.5 20 9 27 3 27.5ZM36.5 8 30 5 25 14 23.5 23 32 19ZM35 22 29.5 20 23 27 29 27.5Z" fill="'+c+'" stroke="'+s+'" stroke-width=".8" stroke-linejoin="round"/>';
+const LV_CRD=[[10.4,4.9],[16,4.9],[21.6,4.9],[27.4,11.6],[16,27.2],[4.6,11.6]];
+/* ty — базовая линия цифры, cy — центр тёмной подложки (у кристалла центр выше) */
+const LV_ST='<polygon points="'+lvStar(5,15.4,9.4,16,16.9)+'" @A@ stroke-linejoin="round"/>';
+const lvStPts=r=>lvStar(5,r,r,16,16.9).split(' ').filter((p,i)=>!(i%2)).map(p=>p.split(',').map(Number));
+const lvStIn=o=>'<polygon class="lvpulse" points="'+lvStar(5,12,7.3,16,16.9)+'" fill="none" stroke="#fff" stroke-opacity="'+o+'" stroke-width=".7" stroke-linejoin="round"/>';
+const lvStBack=(c,s)=>'<g class="lvpulse"><polygon points="'+lvStar(5,19,10.5,16,16.9)+'" transform="rotate(36 16 16.9)" fill="'+c+'" stroke="'+s+'" stroke-width=".8" stroke-linejoin="round"/></g>';
+const LV_KR='<path d="M3.2 26.2 1.8 9.4 9.5 15.2 16 2.6 22.5 15.2 30.2 9.4 28.8 26.2Z" @A@ stroke-linejoin="round"/><rect x="3.2" y="26.6" width="25.6" height="3.6" rx="1.8" @A@/>';
+const lvKrBase=c=>lvDots([[7,28.4],[11.5,28.4],[16,28.4],[20.5,28.4],[25,28.4]],.85,c);
+const lvKrWings=(c,s)=>'<path class="lvwing" d="M4 13-5.5 9-2.5 15-7 17-2.5 20.5-5.5 26 4.5 24.5ZM28 13 37.5 9 34.5 15 39 17 34.5 20.5 37.5 26 27.5 24.5Z" fill="'+c+'" stroke="'+s+'" stroke-width=".8" stroke-linejoin="round"/>';
+const LV_DR='<path d="M16 6.6C19.4 6.6 21.4 5 22.6 2.4 23.8-.4 27-2.2 30.6-2.4 28.8.4 28.8 3.2 30.2 5.8 32.4 10.4 31.8 17 28.4 21.6 25.2 26 20 28.2 16 33 12 28.2 6.8 26 3.6 21.6.2 17-.4 10.4 1.8 5.8 3.2 3.2 3.2.4 1.4-2.4 5-2.2 8.2-.4 9.4 2.4 10.6 5 12.6 6.6 16 6.6Z" @A@ stroke-linejoin="round"/>';
+const lvDrScales=o=>'<path class="lvfac" d="M7 22Q11.5 22.5 16 27.5 20.5 22.5 25 22M5.2 17.6Q8 18 10 20.6M26.8 17.6Q24 18 22 20.6M10.5 8.4Q14 10.4 16 9.6 18 10.4 21.5 8.4" fill="none" stroke="#fff" stroke-opacity="'+o+'" stroke-width=".7" stroke-linecap="round"/>';
+const lvDrEyes=c=>'<g class="lvgem"><g class="lvg"><path d="M4.6 7.4 10.4 9.4 8.8 11.6Z" fill="'+c+'" stroke="#0a0614" stroke-width=".5"/></g><g class="lvg"><path d="M27.4 7.4 21.6 9.4 23.2 11.6Z" fill="'+c+'" stroke="#0a0614" stroke-width=".5"/></g></g>';
+const lvDrWings=(c,s)=>'<path class="lvwing" d="M5 8-8.5-.5Q-6.5 6-10 10Q-5.5 10.5-7.5 17Q-3 15.5-3 22.5Q1 19.5 7 23ZM27 8 40.5-.5Q38.5 6 42 10Q37.5 10.5 39.5 17Q35 15.5 35 22.5Q31 19.5 25 23Z" fill="'+c+'" stroke="'+s+'" stroke-width=".9" stroke-linejoin="round"/><path class="lvwing" d="M5 11-8 0M4 14-7 15.5M5 17-3 21.5M27 11 40 0M28 14 39 15.5M27 17 35 21.5" fill="none" stroke="'+s+'" stroke-opacity=".7" stroke-width=".6"/>';
+const LV_HOLO=['#8dfff2','#8a7bff','#ff5fd0','#ffd24d'];
+const lvBrk=c=>'<path class="lvpulse" d="M-.8 8.5V5Q-.8-.8 5-.8H8.5M23.5-.8H27Q32.8-.8 32.8 5V8.5M32.8 23.5V27Q32.8 32.8 27 32.8H23.5M8.5 32.8H5Q-.8 32.8-.8 27V23.5" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round"/>';
+const lvWing=(c,s)=>'<path class="lvwing" d="M7 9.5-3.5 7.5 1 12-4.5 14.5 1.5 16-4.5 17.5 1 20-3.5 24.5 7 22.5ZM25 9.5 35.5 7.5 31 12 36.5 14.5 30.5 16 36.5 17.5 31 20 35.5 24.5 25 22.5Z" fill="'+c+'" stroke="'+s+'" stroke-width=".8" stroke-linejoin="round"/>';
+const lvFacet=o=>'<path class="lvfac" d="M16 3.5 21.5 16 16 28.5 10.5 16ZM3.5 16 16 10.5 28.5 16 16 21.5Z" fill="none" stroke="#fff" stroke-opacity="'+o+'" stroke-width=".7" stroke-linejoin="round"/>';
+/* g — форма, a/b — цвета интерфейса, glow — свечение, body/rim — градиенты, in — внутренняя линия, back/deco — украшения под и над значком,
+   sh — блик, sp — число искр, orb — орбиты */
+const LVS_SRC=[
+ {g:LV_CIR,a:'#d3dbef',b:'#656d8a',glow:'rgba(170,182,215,.55)',body:['#a3adcc','#3a4263'],rim:['#ffffff','#7a84a6'],in:1},
+ {g:LV_CIR,a:'#e6f0ff',b:'#6f82b0',glow:'rgba(190,210,255,.65)',body:['#b9c8ee','#42528a'],rim:['#ffffff','#8fa2d4'],in:1,sh:1,
+  deco:'<circle class="lvpulse" cx="16" cy="16" r="11" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width=".6"/>'},
+ {g:LV_CIR,a:'#c8f1ff',b:'#3f87b8',glow:'rgba(130,215,255,.68)',body:['#9fdcf6','#27588c'],rim:['#ffffff','#5fb8e8'],in:1,sh:1,sp:1,
+  deco:lvDots([[16,4],[24.5,7.5],[28,16],[24.5,24.5],[16,28],[7.5,24.5],[4,16],[7.5,7.5]],.8,'#fff')},
+ {g:LV_CIR,a:'#e4fbff',b:'#4a7be0',glow:'rgba(150,200,255,.85)',body:['#aee4ff','#2b3f9e'],rim:['#ffffff','#7fa8ff'],in:1,sh:1,sp:2,
+  back:'<circle class="lvray" cx="16" cy="16" r="16.9" fill="none" stroke="#bfe6ff" stroke-width="1.5" stroke-dasharray="7.2 3.42" stroke-linecap="round"/>',
+  deco:lvDots([[24.5,7.5],[24.5,24.5],[7.5,24.5],[7.5,7.5]],.9,'#fff')+lvGems([[16,.4,2.5],[31.6,16,2.5],[16,31.6,2.5],[.4,16,2.5]],'#e9fbff')},
+
+ {g:LV_SQ,a:'#86ffb4',b:'#169650',glow:'rgba(61,220,132,.65)',body:['#34d476','#0a6a36'],rim:['#d5ffe6','#1b9a52'],in:1},
+ {g:LV_SQ,a:'#9dffc6',b:'#12a862',glow:'rgba(70,240,150,.7)',body:['#44e88c','#086034'],rim:['#f0fff6','#27bd6c'],in:1,sh:1,
+  deco:'<rect class="lvpulse" x="6.6" y="6.6" width="18.8" height="18.8" rx="5" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width=".6"/>'+lvDots([[7,7],[25,7],[25,25],[7,25]],1.05,'#fff')},
+ {g:LV_SQ,a:'#b4ffe0',b:'#0f9f8a',glow:'rgba(60,245,200,.75)',body:['#3ff0b4','#06584c'],rim:['#ffffff','#1fc9a0'],in:1,sh:1,sp:1,
+  back:'<path class="lvpulse" d="M2 11-3 16 2 21ZM30 11 35 16 30 21Z" fill="#8dffd8" stroke="#08584a" stroke-width=".7" stroke-linejoin="round"/>',
+  deco:lvBrk('#b4ffe0')+lvDots([[7,7],[25,7],[25,25],[7,25]],1.05,'#fff')},
+ {g:LV_SQ,a:'#fff0a8',b:'#12a05c',glow:'rgba(150,255,130,.85)',body:['#3df09a','#04502f'],rim:['#fff6c4','#d99a0c'],in:1,sh:1,sp:2,orb:1,
+  back:'<path class="lvpulse" d="M2 10-3.5 16 2 22ZM30 10 35.5 16 30 22Z" fill="#ffd84d" stroke="#8a5600" stroke-width=".7" stroke-linejoin="round"/>',
+  deco:lvBrk('#ffd84d')+lvDots([[7,7],[25,7],[25,25],[7,25]],1.1,'#ffe27a')+lvGems([[16,1.2,3.2],[16,30.8,2.2]],'#c8ffe0')},
+
+ {g:LV_RH,a:'#93ccff',b:'#2155cf',glow:'rgba(76,150,255,.65)',body:['#4a92ff','#15329f'],rim:['#d9ecff','#2b5fe0'],in:1,sh:1},
+ {g:LV_RH,a:'#a6d4ff',b:'#2a46d8',glow:'rgba(70,120,255,.78)',body:['#3f7bff','#0b1c7c'],rim:['#ffffff','#3f6cf0'],in:1,sh:1,sp:1,
+  deco:lvFacet(.34)+lvGems([[16,1,2.4],[31,16,2.4],[16,31,2.4],[1,16,2.4]],'#d6ecff')},
+ {g:LV_RH,a:'#e0b8ff',b:'#5a2fd0',glow:'rgba(165,100,255,.85)',body:['#a266ff','#2a0f86'],rim:['#ffffff','#9a62f5'],in:1,sh:1,sp:2,
+  back:lvWing('#8f6cff','#e6d6ff'),
+  deco:lvFacet(.36)+lvGems([[16,.6,3],[16,31.4,3]],'#f0ddff')},
+ {g:LV_RH,a:'#d6fbff',b:'#e0a010',glow:'rgba(120,235,255,.95)',body:['#8ff2ff','#1668b8'],rim:['#fffbe0','#f0a800'],in:1,sh:1,sp:2,orb:1,
+  back:'<g class="lvray"><polygon points="'+lvStar(12,19.5,11,16,16)+'" fill="#ffe27a" fill-opacity=".42"/></g>'+lvWing('#ffd24d','#fff6cc'),
+  deco:lvFacet(.5)+lvGems([[16,.2,3.5],[16,31.8,3.2],[31.4,16,2.2],[.6,16,2.2]],'#ffffff')},
+
+ {g:LV_SH,a:'#74f6f0',b:'#0a8394',glow:'rgba(40,224,224,.62)',body:['#19c8d4','#064a66'],rim:['#cffffb','#0f93a6'],in:1},
+ {g:LV_SH,a:'#98fff6',b:'#0b78a8',glow:'rgba(60,240,240,.75)',body:['#25e4e4','#05405e'],rim:['#ffffff','#18b8c4'],in:1,sp:1,
+  deco:lvShIn(.5)+lvDots([[6.8,8],[16,4.6],[25.2,8],[25.2,18],[16,27.2],[6.8,18]],.95,'#fff')},
+ {g:LV_SH,a:'#b8f4ff',b:'#1668d0',glow:'rgba(80,210,255,.85)',body:['#52dcff','#0a2f78'],rim:['#ffffff','#46b4f0'],in:1,sp:2,
+  back:lvPlates('#37c6e8','#e0fbff'),
+  deco:lvShIn(.5)+lvDots([[6.8,8],[25.2,8],[25.2,18],[6.8,18]],.95,'#fff')+lvGems([[16,1.2,3.1],[16,31,2.6]],'#dffcff')},
+ {g:LV_SH,a:'#fff1b0',b:'#0aa0b0',glow:'rgba(90,255,235,.95)',body:['#4ff5e0','#06566e'],rim:['#fff8cc','#eca200'],in:1,sp:2,orb:1,
+  back:'<g class="lvray"><polygon points="'+lvStar(14,20,11,16,16)+'" fill="#7dfff0" fill-opacity=".4"/></g>'+lvPlates('#ffd24d','#fff6cc'),
+  deco:lvShIn(.6)+lvDots([[6.8,8],[25.2,8],[25.2,18],[6.8,18]],1.05,'#ffe27a')+lvGems([[16,.4,3.8],[16,31.4,3.2],[3.6,5.6,2.2],[28.4,5.6,2.2]],'#ffffff')},
+
+ {g:LV_HX,a:'#dcaaff',b:'#5f25c9',glow:'rgba(176,100,255,.68)',body:['#a055ff','#3b1291'],rim:['#f0d8ff','#7a3be0'],in:1,sp:1},
+ {g:LV_HX,a:'#ebc2ff',b:'#7a22d8',glow:'rgba(195,110,255,.78)',body:['#bb66ff','#30087e'],rim:['#ffffff','#a050f0'],in:1,sp:1,
+  deco:lvHxIn(.5)+lvDots(LV_HXD,.95,'#fff')},
+ {g:LV_HX,a:'#ffc2f4',b:'#8a1cc0',glow:'rgba(235,100,255,.88)',body:['#e066ff','#40066e'],rim:['#ffffff','#d45cf0'],in:1,sp:2,
+  back:lvBlades('#b64cf0','#ffe0fb'),
+  deco:lvHxIn(.55)+lvDots(LV_HXD.filter((p,i)=>i%3),.95,'#fff')+lvGems([[16,1,3.1],[16,31,2.8]],'#ffe6fb')},
+ {g:LV_HX,a:'#fff0b8',b:'#8a2ae0',glow:'rgba(220,120,255,.98)',body:['#d070ff','#2c0670'],rim:['#fff8cc','#eca200'],in:1,sp:2,orb:1,
+  back:'<g class="lvray"><polygon points="'+lvStar(18,20.5,11,16,16)+'" fill="#e6a0ff" fill-opacity=".45"/></g>'+lvBlades('#ffd24d','#fff6cc'),
+  deco:lvHxIn(.65)+lvDots(LV_HXD.filter((p,i)=>i%3),1.05,'#ffe27a')+lvGems([[16,.4,3.9],[16,31.5,3.3],[2.9,9,2.3],[29.1,9,2.3],[2.9,23,2.3],[29.1,23,2.3]],'#ffffff')},
+
+ {g:LV_FL,ty:24.8,cy:20,a:'#ffd08a',b:'#e0480a',glow:'rgba(255,120,30,.85)',body:['#ff4a12','#a81c02'],rim:['#ffe9a8','#ff7a0a'],sp:1,
+  back:lvFlAura('#ff5a0a','#ffb01f'),
+  deco:lvFlIn('#ff9a12','#ffe14a')+lvEmbers(4,'#ffd24d')},
+ {g:LV_FL,ty:24.8,cy:20,a:'#ffe0a0',b:'#e8380a',glow:'rgba(255,110,20,.92)',body:['#ff3a0c','#8c0e02'],rim:['#fff6d0','#ff8c14'],sp:1,
+  back:lvSwords('#ffb020')+lvFlAura('#ff4a05','#ffc21f'),
+  deco:lvFlIn('#ffa514','#fff06a')+lvEmbers(6,'#ffe27a')},
+ {g:LV_FL,ty:24.8,cy:20,a:'#fff0a8',b:'#d4200c',glow:'rgba(255,170,30,1)',body:['#ff2d3c','#6a0222'],rim:['#fffbd6','#f5a800'],sp:2,
+  back:lvSwords('#ffd23c')+lvFlAura('#ff2a2a','#ffbc14'),
+  deco:lvFlIn('#ff8a1f','#ffec70')+lvLaurel('#ffe066','#f0a400')+lvEmbers(6,'#fff0a0')+lvGems([[16,32.8,3],[19,-3.4,2.4]],'#fff4c2')},
+ {g:LV_FL,ty:24.8,cy:20,a:'#fff6bc',b:'#ee4a00',glow:'rgba(255,190,30,1)',body:['#ff7a00','#8a0400'],rim:['#ffffff','#ffd21f','#ff4a0a'],sp:2,orb:1,
+  back:'<g class="lvray"><polygon points="'+lvStar(18,23,11,16,15)+'" fill="#ffc22e" fill-opacity=".55"/></g>'+lvFlAura('#ff3a00','#ffd21f')+lvPhoenix('#ff4600','#ffd534','#5a1400')+lvFlTail('#ff5a00','#ffe14a'),
+  deco:lvFlIn('#ffb300','#fff8a8')+lvEmbers(8,'#fff3a0')+lvGems([[19,-3.8,3.6],[16,31.8,3.4],[4.6,5.4,2.2],[26.2,2.2,2.2]],'#ffffff')},
+
+ {g:LV_CR,a:'#fff3a8',b:'#cf8806',glow:'rgba(255,215,60,.72)',body:['#f4b90a','#8a4f02'],rim:['#fff8cf','#d99006'],sp:1,ty:19.8,cy:14.6,
+  deco:lvCrFacet(.55)},
+ {g:LV_CR,a:'#fff7bc',b:'#d99400',glow:'rgba(255,225,70,.82)',body:['#ffcb1f','#7a4200'],rim:['#ffffff','#f0a800'],sp:1,ty:19.8,cy:14.6,
+  deco:lvCrFacet(.7,'lvfac')+lvDots(LV_CRD,.95,'#fff')},
+ {g:LV_CR,a:'#fffad0',b:'#c89000',glow:'rgba(255,235,100,.92)',body:['#ffd633','#6c3800'],rim:['#ffffff','#ffbc10'],sp:2,ty:19.8,cy:14.6,
+  back:lvShards('#ffcf1f','#fff6c0'),
+  deco:lvCrFacet(.75,'lvfac')+lvDots(LV_CRD.filter((p,i)=>i!==1&&i!==4),.95,'#fff')+lvGems([[16,2.4,3.2],[16,30.4,3]],'#5dffae')},
+ {g:LV_CR,a:'#ffffe0',b:'#e0a000',glow:'rgba(255,230,60,1)',body:['#ffe14a','#8a4a00'],rim:['#ffffff','#ffb000'],sp:2,orb:1,ty:19.8,cy:14.6,
+  back:'<g class="lvray"><polygon points="'+lvStar(18,22.5,11,16,16)+'" fill="#ffe55c" fill-opacity=".52"/></g>'+lvShards('#fff09a','#e59a00'),
+  deco:lvCrFacet(.9,'lvfac')+lvDots(LV_CRD.filter((p,i)=>i!==1&&i!==4),1.05,'#fff')+lvGems([[16,1.8,4.1],[16,30.8,3.6],[1.4,11.6,2.5],[30.6,11.6,2.5]],'#ffffff')},
+
+ {g:LV_ST,a:'#ff9eab',b:'#c60f2e',glow:'rgba(255,70,100,.72)',body:['#f43a55','#7b0620'],rim:['#ffd0d7','#cc1a38'],sp:1,ty:21.9,cy:16.9},
+ {g:LV_ST,a:'#ffb0bc',b:'#e0083a',glow:'rgba(255,60,100,.82)',body:['#ff4a68','#68021c'],rim:['#ffffff','#ff3d62'],sp:1,ty:21.9,cy:16.9,
+  deco:lvStIn(.55)+lvDots(lvStPts(12.2),1,'#fff')},
+ {g:LV_ST,a:'#ffc4d8',b:'#d6005c',glow:'rgba(255,60,150,.9)',body:['#ff4f8a','#5c0230'],rim:['#ffffff','#ff4590'],sp:2,ty:21.9,cy:16.9,
+  back:lvStBack('#ff2f78','#ffd6e6'),
+  deco:lvStIn(.6)+lvGems(lvStPts(14.6).map(p=>[p[0],p[1],2.6]),'#ffe3ee')},
+ {g:LV_ST,a:'#fff0b0',b:'#e0103c',glow:'rgba(255,80,90,1)',body:['#ff5266','#650014'],rim:['#fff8cc','#eca200'],sp:2,orb:1,ty:21.9,cy:16.9,
+  back:'<g class="lvray"><polygon points="'+lvStar(20,22.5,11,16,16)+'" fill="#ff6a7c" fill-opacity=".52"/></g>'+lvStBack('#ffd21f','#fff6cc'),
+  deco:lvStIn(.75)+lvDots(lvStPts(9.8),.9,'#ffe27a')+lvGems(lvStPts(15.6).map((p,i)=>[p[0],p[1],i?3:3.9]),'#ffffff')},
+
+ {g:LV_KR,a:'#ff6ae0',b:'#ffb300',glow:'rgba(255,110,220,.82)',body:['#e24fcc','#5c1488'],rim:['#fff3b0','#d98a00'],sp:1,ty:24.2,cy:19},
+ {g:LV_KR,a:'#ff8ae8',b:'#ffb300',glow:'rgba(255,110,225,.88)',body:['#f25ada','#4e0a82'],rim:['#ffffff','#f0a000'],sp:1,ty:24.2,cy:19,
+  deco:lvKrBase('#fff')+lvGems([[1.8,9.4,2.4],[16,2.6,2.9],[30.2,9.4,2.4]],'#ffffff')},
+ {g:LV_KR,a:'#ffa8f0',b:'#ffb300',glow:'rgba(255,100,230,.94)',body:['#ff64e4','#430680'],rim:['#fffbe0','#ffae00'],sp:2,ty:24.2,cy:19,
+  back:lvKrWings('#ffc21f','#fff3b0'),
+  deco:lvKrBase('#fff')+lvGems([[1.8,9.2,2.8],[9.5,14.6,2],[16,2.2,3.6],[22.5,14.6,2],[30.2,9.2,2.8],[16,31.6,2.6]],'#c8f6ff')},
+ {g:LV_KR,a:'#ffd0f8',b:'#ffc400',glow:'rgba(255,130,235,1)',body:['#ff78ea','#3a0478'],rim:['#ffffff','#ffb800'],sp:2,orb:1,ty:24.2,cy:19,
+  back:'<g class="lvray"><polygon points="'+lvStar(20,22.5,11,16,16)+'" fill="#ffd24d" fill-opacity=".55"/></g>'+lvKrWings('#fff0a0','#e59a00'),
+  deco:lvKrBase('#ffe27a')+lvGems([[1.8,9,3.2],[9.5,14.4,2.3],[16,1.8,4.3],[22.5,14.4,2.3],[30.2,9,3.2],[16,31.8,3.2]],'#ffffff')},
+
+ {g:LV_DR,a:'#a8fff4',b:'#8a4cff',glow:'rgba(140,110,255,.8)',body:['#3b2a68','#08040f'],rim:LV_HOLO,in:1,sp:1,
+  deco:lvDrScales(.4)},
+ {g:LV_DR,a:'#ffb0e8',b:'#7a38f0',glow:'rgba(200,90,255,.88)',body:['#4a2478','#0a0312'],rim:LV_HOLO,in:1,sp:1,
+  deco:lvDrScales(.6)+lvDrEyes('#ff3d5e')+lvDots([[5,13],[27,13],[8.5,23.5],[23.5,23.5],[16,29.5]],1,'#ffb347')},
+ {g:LV_DR,a:'#d8b8ff',b:'#ff3da8',glow:'rgba(255,80,210,.95)',body:['#561e80','#0b0214'],rim:LV_HOLO,in:1,sp:2,
+  back:lvDrWings('#4a1c8c','#ff7ae0'),
+  deco:lvDrScales(.65)+lvDrEyes('#ffd21f')+lvDots([[5,13],[27,13],[8.5,23.5],[23.5,23.5]],1,'#ffd24d')+lvGems([[16,4.8,3.2],[16,32,3]],'#8dfff2')},
+ {g:LV_DR,a:'#fff2b8',b:'#ff3dc8',glow:'rgba(255,120,235,1)',body:['#6a208c','#0d0116'],rim:['#ffffff','#7dfff0','#ff5fd0','#ffcc22'],in:1,sp:2,orb:1,
+  back:'<g class="lvray"><polygon points="'+lvStar(16,25,11,16,16)+'" fill="#8dfff2" fill-opacity=".42"/><polygon points="'+lvStar(16,22,10,16,16)+'" fill="#ff6ad8" fill-opacity=".5" transform="rotate(11.25 16 16)"/></g>'+lvDrWings('#8a1c9c','#ffe27a'),
+  deco:lvDrScales(.85)+lvDrEyes('#fff36a')+lvDots([[5,13],[27,13],[8.5,23.5],[23.5,23.5]],1.15,'#fff')+lvGems([[16,4.4,4.2],[16,32.4,3.8],[1.6,-1.6,2.6],[30.4,-1.6,2.6]],'#ffffff')}
 ];
-function lvBadge(l,px){l=Math.max(1,Math.min(10,Math.floor(Number(l))||1));px=px||22;const u=++lvUid,S=LVS[l-1],big=px>=34,mid=px>=22,geo=S[0];
- const A='fill="url(#lg'+u+')" stroke="url(#lr'+u+')" stroke-width="1.6"';
+/* [геометрия, акцент светлый, акцент тёмный, свечение] — LVS[i][1..3] использует интерфейс */
+const LVS=LVS_SRC.map(s=>[s.g,s.a,s.b,s.glow]);
+function lvBadge(l,px){l=lvClamp(l);px=px||22;const u=++lvUid,S=LVS_SRC[l-1],big=px>=34,mid=px>=22,geo=S.g,two=l>=10;
+ const A='fill="url(#lg'+u+')" stroke="url(#lr'+u+')" stroke-width="2.2"';
+ const OUT='fill="none" stroke="rgba(6,8,20,.6)" stroke-width="3.8" stroke-linejoin="round"';
  const OP='M34.5 16a18.5 6.8 0 1 1-37 0a18.5 6.8 0 1 1 37 0',OQ='M34.5 16a18.5 6.8 0 1 0-37 0a18.5 6.8 0 1 0 37 0';
-  const orb=(mid&&l>=10)?'<g class="lvo o1"><g transform="rotate(-28 16 16)"><ellipse cx="16" cy="16" rx="18.5" ry="6.8" fill="none" stroke="#ffd0f6" stroke-opacity=".8" stroke-width="1.1"/><circle r="1.9" fill="#fff"><animateMotion dur="3.2s" repeatCount="indefinite" path="'+OP+'"/></circle><circle r="1.3" fill="#ffd0f6"><animateMotion dur="3.2s" begin="-1.6s" repeatCount="indefinite" path="'+OP+'"/></circle></g></g><g class="lvo o2"><g transform="rotate(28 16 16)"><ellipse cx="16" cy="16" rx="18.5" ry="6.8" fill="none" stroke="#ffe08a" stroke-opacity=".8" stroke-width="1.1"/><circle r="1.7" fill="#ffe08a"><animateMotion dur="4.4s" repeatCount="indefinite" path="'+OQ+'"/></circle><circle r="1.2" fill="#fff"><animateMotion dur="4.4s" begin="-2.2s" repeatCount="indefinite" path="'+OQ+'"/></circle></g></g>':'';
-  const gems=l>=10?'<g class="lvgem"><circle cx="1.6" cy="8.8" r="1.6" fill="#fff"/><circle cx="9.6" cy="4.4" r="1.6" fill="#fff"/><circle cx="16" cy="1.2" r="2" fill="#fff"/><circle cx="22.4" cy="4.4" r="1.6" fill="#fff"/><circle cx="30.4" cy="8.8" r="1.6" fill="#fff"/></g>':'';
-  const sp=(mid&&l>=5)?'<path class="lvsp" d="M27.5 1.5 28.6 5 32 6 28.6 7 27.5 10.5 26.4 7 23 6 26.4 5Z" fill="#fff"/>':'';
- const sh=(big&&l>=3)?'<g clip-path="url(#lc'+u+')"><g class="lvsh"><rect x="-16" y="-6" width="7" height="44" fill="#fff" opacity=".5" transform="rotate(22 16 16)"/></g></g>':'';
- return '<span class="lvb l'+l+(big?' big':'')+'" style="--s:'+px+'px;--g:'+S[3]+'"><svg viewBox="0 0 32 32"><defs>'
-  +'<linearGradient id="lg'+u+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+S[1]+'"/><stop offset="1" stop-color="'+S[2]+'"/></linearGradient>'
-  +'<linearGradient id="lr'+u+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="'+S[2]+'"/></linearGradient>'
-  +'<linearGradient id="lw'+u+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".62"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
-  +'<clipPath id="lc'+u+'">'+geo.replace(/@A@/g,'')+'</clipPath></defs>'+orb
-  +geo.replace(/@A@/g,A)+gems
-  +'<g transform="translate(16 16) scale(.8) translate(-16 -16)" fill="none" stroke="#fff" stroke-opacity=".36" stroke-width="1">'+geo.replace(/@A@/g,'')+'</g>'
-  +'<g clip-path="url(#lc'+u+')"><rect x="0" y="0" width="32" height="16.5" fill="url(#lw'+u+')"/></g>'+sh
-  +'<text x="16" y="'+S[4]+'" text-anchor="middle" font-size="'+S[5]+'" font-weight="900" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" fill="#fff" stroke="rgba(0,0,0,.5)" stroke-width=".9" paint-order="stroke">'+l+'</text>'+sp+'</svg></span>'}
-function lvSeg(tb){const l=lvOf(tb);if(l>=10)return{l:10,lo:LVT[9],hi:LVT[9],p:1,max:1};const lo=LVT[l-1],hi=LVT[l];return{l,lo,hi,p:(tb-lo)/(hi-lo),max:0}}
+ const orb=(mid&&S.orb)?'<g class="lvo o1"><g transform="rotate(-28 16 16)"><ellipse cx="16" cy="16" rx="18.5" ry="6.8" fill="none" stroke="'+S.a+'" stroke-opacity=".8" stroke-width=".9"/><circle r="1.7" fill="#fff"><animateMotion dur="3.2s" repeatCount="indefinite" path="'+OP+'"/></circle></g></g><g class="lvo o2"><g transform="rotate(28 16 16)"><ellipse cx="16" cy="16" rx="18.5" ry="6.8" fill="none" stroke="#ffe08a" stroke-opacity=".7" stroke-width=".9"/><circle r="1.5" fill="#ffe08a"><animateMotion dur="4.4s" repeatCount="indefinite" path="'+OQ+'"/></circle></g></g>':'';
+ const sp=(mid&&S.sp)?'<path class="lvsp" d="M27.5 -.5 28.6 3 32 4 28.6 5 27.5 8.5 26.4 5 23 4 26.4 3Z" fill="#fff"/>'+(S.sp>1?'<path class="lvsp s2" d="M4 23 4.8 25.6 7.4 26.4 4.8 27.2 4 29.8 3.2 27.2 .6 26.4 3.2 25.6Z" fill="#fff"/>':''):'';
+ const sh=mid?'<g class="lvsh"><rect x="-16" y="-6" width="7" height="44" fill="#fff" opacity=".42" transform="rotate(22 16 16)"/></g>':'';
+ const inner=S.in?'<g transform="translate(16 16) scale(.8) translate(-16 -16)" fill="none" stroke="#fff" stroke-opacity=".26" stroke-width=".9">'+geo.replace(/@A@/g,'')+'</g>':'';
+ return '<span class="lvb l'+l+(big?' big':'')+(mid?' anim':'')+'" style="--s:'+px+'px;--g:'+S.glow+'"><svg viewBox="0 0 32 32"><defs>'
+  +'<linearGradient id="lg'+u+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+S.body[0]+'"/><stop offset="1" stop-color="'+S.body[1]+'"/></linearGradient>'
+  +'<linearGradient id="lr'+u+'" x1="0" y1="0" x2="'+(S.rim.length>2?1:0)+'" y2="1">'+S.rim.map((c,i)=>'<stop offset="'+(i/(S.rim.length-1)).toFixed(2)+'" stop-color="'+c+'"/>').join('')+'</linearGradient>'
+  +'<linearGradient id="lw'+u+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
+  +'<radialGradient id="lp'+u+'"><stop offset="0" stop-color="#050714" stop-opacity=".62"/><stop offset=".6" stop-color="#050714" stop-opacity=".38"/><stop offset="1" stop-color="#050714" stop-opacity="0"/></radialGradient>'
+  +'<clipPath id="lc'+u+'">'+geo.replace(/@A@/g,'')+'</clipPath></defs>'+(S.back||'')+orb
+  +geo.replace(/@A@/g,OUT)
+  +geo.replace(/@A@/g,A)+inner
+  +'<g clip-path="url(#lc'+u+')"><rect x="0" y="0" width="32" height="14" fill="url(#lw'+u+')"/><path d="M-2 36 38 -4V6L8 36Z" fill="#fff" opacity=".07"/>'+sh+'</g>'
+  +(S.deco||'')
+  +'<circle cx="16" cy="'+(S.cy||16)+'" r="9" fill="url(#lp'+u+')"/>'
+  +'<text x="16" y="'+(S.ty||(two?21.1:21.9))+'" text-anchor="middle" font-size="'+(two?14.5:16.5)+'" font-weight="900" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" fill="#fff" stroke="rgba(6,8,22,.8)" stroke-width="1.8" stroke-linejoin="round" paint-order="stroke"'+(two?' textLength="14" lengthAdjust="spacingAndGlyphs"':'')+'>'+l+'</text>'+sp+'</svg></span>'}
+function lvSeg(tb){const l=lvOf(tb);if(l>=LV_MAX)return{l:LV_MAX,lo:LVT[LV_MAX-1],hi:LVT[LV_MAX-1],p:1,max:1};const lo=LVT[l-1],hi=LVT[l];return{l,lo,hi,p:(tb-lo)/(hi-lo),max:0}}
 function lvRender(){try{pc4Upd()}catch(e){}const e=$('mylv');if(!e)return;const l=lvOf(tonBought);if(lvShown!==l||!e.firstChild){const ch=lvShown&&lvShown!==l;lvShown=l;e.innerHTML=lvBadge(l,24);if(ch&&e.firstChild)e.firstChild.classList.add('pop')}}
 $('mylv').onclick=e=>{e.stopPropagation();lvMenu(tonBought)};
 /* меню уровня: только текущий и следующий уровень */
 function lvMenu(tb,who){const s=lvSeg(tb),l=s.l,bx=$('lvbox'),nm=who?String(who).replace(/[<>&"']/g,'').slice(0,20):'',S=LVS[l-1],pct=Math.floor(s.p*100);
  bx.style.setProperty('--a',S[1]);bx.style.setProperty('--b',S[2]);bx.style.setProperty('--g',S[3]);
- let h='<div class="lvh2"><div class="lvaura"></div><div class="lvorbit"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lvbig">'+lvBadge(l,96)+'</div><div class="lvlbl">УРОВЕНЬ '+l+'</div><div class="lvnm">'+LVN[l-1]+'</div>'+(nm?'<div class="lvwho">@'+nm+'</div>':'')+'</div><div class="lvbd">'
- +'<div class="lvst"><span>Куплено всего</span><b>'+lvFmt(tb)+' TON</b></div>';
+ let h='<div class="lvxw"><button class="lvx" type="button" aria-label="Закрыть">✕</button></div><div class="lvh2"><div class="lvaura"></div><div class="lvorbit"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lvbig">'+lvBadge(l,96)+'</div><div class="lvlbl">УРОВЕНЬ '+l+'</div><div class="lvnm">'+LVN[l-1]+'</div>'+(nm?'<div class="lvwho">@'+nm+'</div>':'')+'</div><div class="lvbd">'
+ +'<div class="lvst"><span>Куплено всего</span><b>'+lvFmt(tb)+' TON</b></div>'
+ +'<div class="lvperk"><div class="lvpk"><div><small>Шанс окупиться на бирже</small><b>+'+lvPct(lvBonusOf(l))+'</b></div><div><small>Покупка за раз</small><b>'+lvInt(lvLimOf(l))+' TON</b></div></div><p>'+LV[l-1][4]+'</p></div>';
  if(s.max)h+='<div class="lvmax"><em>👑</em><div><b>Максимальный уровень</b><small>'+(nm?'Игрок':'Ты')+' на вершине — выше подниматься некуда</small></div></div>';
  else h+='<div class="lvpg"><div class="lvpgt"><span>Прогресс до уровня '+(l+1)+'</span><b id="lvpct" data-c="'+pct+'">0%</b></div><div class="lvpb"><div class="lvpf" id="lvpf" data-w="'+(s.p*100)+'"></div></div><div class="lvpgb"><span>'+lvFmt(s.lo)+'</span><span>'+lvFmt(s.hi)+' TON</span></div></div>'
- +'<div class="lvnx" style="--na:'+LVS[l][1]+';--nb:'+LVS[l][2]+'"><div class="lvnxb">'+lvBadge(l+1,46)+'<u>🔒</u></div><div class="lvnxt"><small>Следующий уровень</small><b>'+LVN[l]+' · '+(l+1)+'</b></div><div class="lvnxn"><small>'+(nm?'не хватает':'ещё')+'</small><b>'+lvFmt(Math.ceil(s.hi-tb-1e-9))+'</b><small>TON</small></div></div>';
- h+='<div class="lvnote">Считаются все купленные TON — даже если потом продал и купил снова.</div><button class="lvx" type="button">Закрыть</button></div>';
+ +'<div class="lvnx" style="--na:'+LVS[l][1]+';--nb:'+LVS[l][2]+'"><div class="lvnxb">'+lvBadge(l+1,46)+'<u>🔒</u></div><div class="lvnxt"><small>Следующий уровень</small><b>'+LVN[l]+' · '+(l+1)+'</b></div><div class="lvnxn"><small>'+(nm?'не хватает':'ещё')+'</small><b>'+lvFmt(Math.ceil(s.hi-tb-1e-9))+'</b><small>TON</small></div></div>'
+ +'<div class="lvgain"><span>Шанс окупиться на бирже <b>+'+lvPct(LV[l][2]/10)+'</b></span><span>Лимит покупки <b>+'+lvInt(LV[l][3])+'</b></span></div>';
+ h+='<div class="lvnote">Считаются все купленные TON — даже если потом продал и купил снова.<br>Шанс окупиться действует только на бирже: после покупки курс с этим шансом поднимается выше цены покупки. Новая покупка заменяет прошлый шанс.</div></div>';
  bx.innerHTML=h;bx.scrollTop=0;$('lvm').classList.add('show');
  if(!s.max){const f=$('lvpf'),pc=$('lvpct'),w=+f.dataset.w,t0=performance.now()+260;(function a(n){const k=Math.max(0,Math.min(1,(n-t0)/800)),e=1-Math.pow(1-k,3);f.style.width=(w*e)+'%';pc.textContent=Math.round(pct*e)+'%';if(k<1&&$('lvm').classList.contains('show'))requestAnimationFrame(a);else{f.style.width=w+'%';pc.textContent=pct+'%'}})(performance.now())}}
 document.addEventListener('click',e=>{const m=$('lvm');if(m&&m.classList.contains('show')&&(e.target===m||e.target.closest('.lvx')))m.classList.remove('show')});
 /* панель начисления опыта: слева текущий уровень, по центру опыт, справа следующий уровень. Заполнение — 0.5 сек. На максимальном уровне панели нет */
 function lvConfetti(host){const cs=['#ffd84d','#3ddc84','#4cc9ff','#ff5ad8','#ff7b4a','#fff'];for(let i=0;i<34;i++){const d=document.createElement('i');d.className='xqc';const a=Math.random()*6.283,r=60+Math.random()*110,w=5+Math.random()*5;d.style.width=w+'px';d.style.height=(i%3?w:w*.5)+'px';if(i%4===0)d.style.borderRadius='50%';d.style.setProperty('--dx',Math.cos(a)*r+'px');d.style.setProperty('--dy',(Math.sin(a)*r*.75-30)+'px');d.style.setProperty('--c',cs[i%cs.length]);d.style.setProperty('--r',Math.floor(Math.random()*720-360)+'deg');host.appendChild(d);setTimeout(()=>d.remove(),1100)}}
-function lvGain(a,b){if(!(b>a))return;if(lvOf(a)>=10){lvRender();return}lvQ.push([a,b]);if(!lvBusy)lvNext()}
+function lvGain(a,b){if(!(b>a))return;if(lvOf(a)>=LV_MAX){lvRender();return}lvQ.push([a,b]);if(!lvBusy)lvNext()}
 function lvNext(){const j=lvQ.shift();if(!j){lvBusy=false;return}lvBusy=true;lvPlay(j[0],j[1],lvNext)}
 function lvPlay(a,b,done){if(lvSeg(a).max){lvRender();done();return}
  const P=$('xpp'),L=$('xpL'),R=$('xpR'),F=$('xpfill'),T=$('xpt'),B=$('xpban'),G=$('xpgain');let lv=lvOf(a),upShown=false;
  const tint=l=>{const S=LVS[l-1];P.style.setProperty('--a',S[1]);P.style.setProperty('--b',S[2]);P.style.setProperty('--g',S[3])};
- const badges=(l,pop)=>{L.innerHTML=lvBadge(l,46)+'<small>Уровень '+l+'</small>';R.innerHTML=l<10?lvBadge(l+1,46)+'<small>Уровень '+(l+1)+'</small>':lvBadge(10,46)+'<small>МАКС</small>';R.classList.toggle('lock',l<10);if(pop){const lb=L.querySelector('.lvb');if(lb)lb.classList.add('pop')}};
+ const badges=(l,pop)=>{L.innerHTML=lvBadge(l,46)+'<small>Уровень '+l+'</small>';R.innerHTML=l<LV_MAX?lvBadge(l+1,46)+'<small>Уровень '+(l+1)+'</small>':lvBadge(LV_MAX,46)+'<small>МАКС</small>';R.classList.toggle('lock',l<LV_MAX);if(pop){const lb=L.querySelector('.lvb');if(lb)lb.classList.add('pop')}};
  const bar=(s,v)=>{F.style.width=Math.max(0,Math.min(1,(v-s.lo)/(s.hi-s.lo||1)))*100+'%';T.textContent=s.max?'МАКСИМАЛЬНЫЙ УРОВЕНЬ':lvFmt(v)+' / '+lvFmt(s.hi)+' TON'};
  const gtxt=x=>'+'+compactNum(Math.round(x*100)/100)+' TON';
- const segs=[];{let c=a,n=0;while(c<b&&n++<12){const s=lvSeg(c);if(s.max)break;const t=Math.min(b,s.hi);segs.push({s:s,from:c,to:t,up:t>=s.hi&&s.l<10});c=t}}
+ const segs=[];{let c=a,n=0;while(c<b&&n++<=LV_MAX){const s=lvSeg(c);if(s.max)break;const t=Math.min(b,s.hi);segs.push({s:s,from:c,to:t,up:t>=s.hi&&s.l<LV_MAX});c=t}}
  const total=Math.max(1e-9,b-a);let i=0;
  P.classList.remove('on','up');B.classList.remove('show');B.textContent='';tint(lv);G.textContent=gtxt(0);G.classList.remove('pop');
  F.style.transition='none';badges(lv);bar(lvSeg(a),a);void P.offsetWidth;P.classList.add('on');
@@ -2696,7 +2947,7 @@ function upgProfView(p,name){pvFx();const prem=Array.isArray(p.bg)&&p.bg.include
  const aw=c1.querySelector('.avw'),rg=aw.children[1],dc=aw.children[2],fr=Number.isInteger(p.fr)?p.fr:-1,ad=Number.isInteger(p.ad)?p.ad:-1;
  aw.style.cursor='default';rg.className='pvring';rg.innerHTML=(fr>=0&&FR[fr]&&(FR[fr][3]||prem))?ringHtml(fr):'';dc.innerHTML=(ad>=0&&AVD[ad]&&(AVD[ad][3]||prem))?AVD[ad][2]():'';
  const fi=c1.querySelector('input[type=file]');if(fi)fi.remove();
- const lv=Math.max(1,Math.min(10,Math.floor(+p.lv)||1)),ls=c1.querySelector('.lvslot'),tbv=Number.isFinite(+p.tb)&&+p.tb>=LVT[lv-1]?+p.tb:LVT[lv-1];ls.innerHTML=lvBadge(lv,26);ls.onclick=e=>{e.stopPropagation();lvMenu(tbv,String(p.n||name))};
+ const lv=(p.tb!=null&&Number.isFinite(+p.tb))?lvOf(+p.tb):lvClamp(p.lv),ls=c1.querySelector('.lvslot'),tbv=Number.isFinite(+p.tb)&&+p.tb>=LVT[lv-1]?+p.tb:LVT[lv-1];ls.innerHTML=lvBadge(lv,26);ls.onclick=e=>{e.stopPropagation();lvMenu(tbv,String(p.n||name))};
  wrap.appendChild(c1);
  {const pc=c1.querySelector('.avpin');if(pc){pc.innerHTML='';const ni=(Array.isArray(p.ni)?p.ni:[]).map(nftSnap).filter(x=>x&&x.n>0&&NN&&NN.valid(x)),ps=(Array.isArray(p.pn)?p.pn:[]).map(x=>+x|0).filter((x,i,a)=>a.indexOf(x)===i).slice(0,10),PL=ps.map(x=>ni.find(y=>y.s===x)).filter(Boolean);
   if(NN)pc.innerHTML=nfPinItems(PL,NN);pc.onclick=e=>{e.stopPropagation();const t=e.target.closest('.avpn');if(!t)return;const it=PL.find(x=>x.s===+t.dataset.s);if(it&&NN)NN.view(it,false)}}}
@@ -2850,7 +3101,7 @@ async function wipeServer(){
  }catch(e){}
 }
 function doWipe(){try{localStorage.removeItem(SK);localStorage.removeItem(CK);localStorage.removeItem('upg_fx_v1');localStorage.removeItem('upg_tix_v1');localStorage.removeItem('upg_shop_rc');localStorage.removeItem('upg_daily_v1');localStorage.removeItem('upg_nl_done');localStorage.removeItem('upg_bp_v1');localStorage.removeItem('upg_index_v1');localStorage.removeItem('upg_dq_v1')}catch(e){}try{window.__ixWipe&&window.__ixWipe()}catch(e){}try{window.__shopWipe&&window.__shopWipe()}catch(e){}try{window.__dailyWipe&&window.__dailyWipe()}catch(e){}try{window.__bpWipe&&window.__bpWipe()}catch(e){}
- money=1000;ton=0;tonBought=0;lvQ=[];lvShown=0;lvRender();try{XC.cd=0}catch(e){}tonUpd();myPhone=null;phInit();showMoney(1200);fastMode=false;owned=new Set();tclose();trefresh(false);
+ money=1000;ton=0;tonBought=0;lvQ=[];lvShown=0;lvRender();try{XC.cd=0;XC.luck=null;xcLuckSave()}catch(e){}tonUpd();myPhone=null;phInit();showMoney(1200);fastMode=false;owned=new Set();tclose();trefresh(false);
  plInv=[];plPending=null;plPodium=[];plPodCarry=0;plPodNext=0;plCountry='ru';plLucky=0;plLuckArmed=false;plUltra=0;plUltraArmed=false;plQtyKeep=1;plQty=1;try{plLuckUi()}catch(e){}plPodLast=Date.now();plRender();plUpd();hist=[];hrender(false);badges=[];premUntil=0;premPend=0;bdgRender();fxS=[0,0,0,0,0];fxApply();nfPins=[];try{nfPinSave();nfPinDraw()}catch(e){};best=0;$('bw').textContent='\u2014';$('bc').textContent='\u0428\u0430\u043d\u0441: \u2014';used=[];
  if(!(window.__depMine&&window.__depMine()))$('nick').textContent='Player';$('ava').style.backgroundImage='';delete $('ava').dataset.img;avaDeco=-1;applyAvaDeco();avaFrame=-1;applyAvaFrame();nickColor=-1;applyNickColor();nickMedal=-1;nickNft=null;applyNickMedal();
  $('bet').value='';$('tar').value='';clearQ();calc();$('dbet').value='';dupd();$('lbet').value='';lreset();
@@ -4494,16 +4745,47 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
 .lvb{display:inline-flex;align-items:center;justify-content:center;width:var(--s,22px);height:var(--s,22px);flex:none;vertical-align:middle;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
 .lvb svg{width:100%;height:100%;display:block;overflow:visible}
 .lvb.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 9px var(--g))}
-.lvb.l9 svg{animation:lvHue 5s linear infinite}.lvb.l9{filter:drop-shadow(0 0 5px rgba(255,120,220,.85))}.lvb.l9.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 12px rgba(255,120,220,.9))}
-.lvb.l10 svg{animation:lvHue 4s linear infinite}.lvb.l10{filter:drop-shadow(0 0 6px rgba(255,140,240,.95))}.lvb.l10.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 16px rgba(255,140,240,1))}
+/* корона переливается всеми цветами, как в старой версии; вершина (40) — тоже */
+.lvb.l33 svg,.lvb.l34 svg,.lvb.l35 svg,.lvb.l36 svg,.lvb.l40 svg{animation:lvHue 5s linear infinite}
+.lvb.anim.l33 svg,.lvb.anim.l34 svg,.lvb.anim.l35 svg,.lvb.anim.l36 svg,.lvb.anim.l40 svg{animation:lvHue 5s linear infinite,lvBreath 3.2s ease-in-out infinite}
+.lvb.l36{filter:drop-shadow(0 0 6px rgba(255,120,225,.95))}.lvb.l36.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 20px rgba(255,100,220,1))}
+.lvb.l40{filter:drop-shadow(0 0 7px rgba(200,130,255,1))}.lvb.l40.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 23px rgba(210,120,255,1))}
+.lvb.l32{filter:drop-shadow(0 0 6px rgba(255,80,100,.95))}.lvb.l32.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 20px rgba(255,60,90,1))}
+.lvb.l28{filter:drop-shadow(0 0 6px rgba(255,230,60,.95))}.lvb.l28.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 19px rgba(255,225,40,1))}
+.lvb.l24{filter:drop-shadow(0 0 6px rgba(255,150,30,.95))}.lvb.l24.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 18px rgba(255,140,20,1))}
+.lvb.l20{filter:drop-shadow(0 0 6px rgba(225,130,255,.95))}.lvb.l20.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 17px rgba(225,130,255,1))}
+.lvb.l16{filter:drop-shadow(0 0 6px rgba(90,255,235,.95))}.lvb.l16.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 16px rgba(90,255,235,1))}
+.lvb.l12{filter:drop-shadow(0 0 5px rgba(120,235,255,.9))}.lvb.l12.big{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 15px rgba(120,235,255,.95))}
+.lvray,.lvpulse,.lvwing{transform-box:view-box;transform-origin:16px 16px}
+.lvb.anim svg{animation:lvBreath 3.2s ease-in-out infinite}
+.lvb.anim .lvray{animation:lvOrb 14s linear infinite}
+.lvb.anim .lvrun{animation:lvGem 1.6s ease-in-out infinite}
+.lvb.anim .lvpulse{animation:lvPulse 2.2s ease-in-out infinite}
+.lvb.anim .lvwing{animation:lvFlap 1.9s ease-in-out infinite}
+.lvb.anim .lvfac{animation:lvGem 2.6s ease-in-out infinite}
+.lvsp.s2{animation-delay:.8s!important}
+@keyframes lvBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes lvPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+/* пламя 21–24: огонь колышется, искры взлетают, крылья феникса машут */
+.lvaura,.lvflk{transform-box:view-box;transform-origin:16px 31.6px}
+.lvfwl,.lvfwr,.lvember{transform-box:view-box}.lvfwl{transform-origin:7px 19px}.lvfwr{transform-origin:25px 19px}
+.lvb.anim .lvaura{animation:lvFlame 1.5s ease-in-out infinite}.lvb.anim .lvaura.a2{animation:lvFlame 1.1s ease-in-out -.5s infinite}
+.lvb.anim .lvflk{animation:lvFlame 1.3s ease-in-out -.3s infinite}.lvb.anim .lvflk.f2{animation:lvFlame .9s ease-in-out infinite}
+.lvb.anim .lvember{animation:lvRise 2.4s linear infinite}
+.lvb.anim .lvfwl{animation:lvWingL 1.8s ease-in-out infinite}.lvb.anim .lvfwr{animation:lvWingR 1.8s ease-in-out infinite}
+@keyframes lvFlame{0%,100%{transform:scale(1,1) skewX(0deg)}25%{transform:scale(.95,1.07) skewX(3deg)}50%{transform:scale(1.04,.96) skewX(0deg)}75%{transform:scale(.97,1.05) skewX(-3deg)}}
+@keyframes lvRise{0%{transform:translate(0,4px);opacity:0}20%{opacity:1}100%{transform:translate(1.5px,-9px);opacity:0}}
+@keyframes lvWingL{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(11deg) scale(.94,1)}}
+@keyframes lvWingR{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-11deg) scale(.94,1)}}
+@keyframes lvFlap{0%,100%{transform:scale(1,1)}50%{transform:scale(.86,1.06)}}
 .lvo{transform-box:view-box;transform-origin:16px 16px}.lvo.o1{animation:lvOrb 9s linear infinite}.lvo.o2{animation:lvOrb 12s linear infinite reverse}
 @keyframes lvOrb{to{transform:rotate(360deg)}}
-.lvgem circle{animation:lvGem 1.8s ease-in-out infinite}.lvgem circle:nth-child(2n){animation-delay:.6s}.lvgem circle:nth-child(3n){animation-delay:1.1s}
+.lvgem .lvg{animation:lvGem 1.8s ease-in-out infinite}.lvgem .lvg:nth-child(2n){animation-delay:.6s}.lvgem .lvg:nth-child(3n){animation-delay:1.1s}
 @keyframes lvGem{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes lvHue{to{filter:hue-rotate(360deg)}}
-.lvsp{opacity:.9}.lvb.big .lvsp{transform-box:fill-box;transform-origin:center;animation:lvTw 1.9s ease-in-out infinite}
+.lvsp{opacity:.9}.lvb.anim .lvsp{transform-box:fill-box;transform-origin:center;animation:lvTw 1.9s ease-in-out infinite}
 @keyframes lvTw{0%,100%{transform:scale(.45) rotate(0);opacity:.45}50%{transform:scale(1.15) rotate(45deg);opacity:1}}
-.lvb.big .lvsh{animation:lvSh 3.4s ease-in-out infinite}
+.lvb.anim .lvsh{animation:lvSh 3.4s ease-in-out infinite}
 @keyframes lvSh{0%,50%{transform:translateX(0)}100%{transform:translateX(56px)}}
 .lvslot{display:inline-flex;align-items:center;cursor:pointer;flex:none}.lvslot:empty{display:none}
 .nrow .lvslot{margin-right:2px}
@@ -4569,8 +4851,14 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
 .lvnxn{text-align:right;display:flex;flex-direction:column;line-height:1.15}.lvnxn small{font-size:11px;color:var(--mut);font-weight:700}.lvnxn b{font-size:18px;color:#6cc4ff;font-variant-numeric:tabular-nums}
 .lvmax{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:linear-gradient(120deg,rgba(255,200,60,.18),rgba(255,90,216,.14));border:1px solid rgba(255,216,77,.4);box-shadow:0 0 24px -6px rgba(255,200,60,.5)}
 .lvmax em{font-style:normal;font-size:30px;animation:lvFloat 2.4s ease-in-out infinite}.lvmax b{display:block;color:#ffe27a;font-size:16px}.lvmax small{display:block;margin-top:2px;color:var(--mut);font-size:12px;font-weight:700}
+.lvperk{padding:12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.lvpk{display:grid;grid-template-columns:1fr 1fr;gap:8px}.lvpk div{background:rgba(0,0,0,.28);border-radius:12px;padding:9px 6px;text-align:center}.lvpk small{display:block;font-size:11px;color:var(--mut);font-weight:700}.lvpk b{display:block;margin-top:2px;font-size:15px;color:var(--a);font-variant-numeric:tabular-nums}
+.lvperk p{margin:10px 2px 0;font-size:13px;line-height:1.4;color:var(--tx);text-align:center}
+.lvgain{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:-4px}.lvgain span{font-size:12px;font-weight:700;color:var(--mut);background:rgba(255,255,255,.05);border-radius:99px;padding:6px 10px}.lvgain b{color:#8bffb9}
 .lvnote{font-size:12px;color:var(--mut);text-align:center;line-height:1.4}
-.lvx{width:100%;border:0;border-radius:14px;padding:14px;font-size:15px;font-weight:900;background:linear-gradient(90deg,var(--b),var(--a));color:#06140c;box-shadow:0 6px 18px -6px var(--g)}.lvx:active{transform:scale(.98)}
+.lvxw{position:sticky;top:0;z-index:20;height:0;display:flex;justify-content:flex-end;align-items:flex-start}
+#lvbox .lvx{flex:none;width:38px;height:38px;margin:12px 12px 0 0;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(10,12,22,.68);color:#fff;font-size:17px;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+#lvbox .lvx:active{transform:scale(.9)}
 /* ===== профиль игрока (полноэкранный, как мой) ===== */
 #pvpage{position:fixed;inset:0;z-index:105;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box;transform:translateX(100%);opacity:0;pointer-events:none;transition:transform .32s cubic-bezier(.22,.8,.24,1),opacity .25s}
 #pvpage.show{transform:none;opacity:1;pointer-events:auto}
@@ -4981,7 +5269,7 @@ body.xcopen #chatFab{opacity:.35;filter:grayscale(1) brightness(.6);pointer-even
     if(sp.dataset.l!==String(l)){sp.dataset.l=l;sp.innerHTML=lvBadge(l,18)}
     if(n!==me&&(!lvC[k]||Date.now()-lvC[k].ts>60000)&&need.indexOf(k)<0)need.push(k)});
    need.slice(0,15).forEach(function(k){lvC[k]=lvC[k]||{l:1,ts:0};lvC[k].ts=Date.now();
-    getJ('/profiles/'+k+'/p/lv.json').then(function(v){if(typeof v==='number'&&v>=1&&v<=10){lvC[k].l=Math.floor(v);lvSync()}}).catch(function(){})});}
+    getJ('/profiles/'+k+'/p/tb.json').then(function(v){if(typeof v==='number'&&v>=0){lvC[k].l=lvOf(v);lvSync()}}).catch(function(){})});}
   list.onclick=function(e){var c=e.target.closest?e.target.closest('.cm'):null;if(c&&c.dataset.n)showProfile(c.dataset.n)};
   window.__showProfile=showProfile;
  /* храним только 75 последних сообщений: старые удаляем (раз в минуту, не больше 50 за раз) */
